@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio — [tema breve]</title>
+  <script>
+    window.EJERCICIO = {
+      // Campos obligatorios
+      id: "xxxxx",
+      materia: "",
+      tema: "",
+      dificultad: "basico, intermedio, avanzado",
+      fecha: "xxxx-xx-xx",
+      seo_keywords: [],
+      autor: ""
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <h2>Ejercicio</h2>
+  <div class="enunciado"></div>
+  <h2>Entendimiento</h2>
+  <div class="entendimiento"></div>
+  <h2>Solución</h2>
+  <div class="solucion" hidden></div>
+</body>
+</html>

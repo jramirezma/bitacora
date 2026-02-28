@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Matrices</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "c7r2t",
+      materia: "Álgebra Lineal",
+      tema: "Matrices",
+      dificultad: "intermedio",
+      fecha: "2026-02-21",
+      tipo: "examen",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["matrices", "determinante", "matriz inversa"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Calcule la inversa de la matriz $A = \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$ si existe.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Matriz:</strong> $A = \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$</p>
+        <p><strong>Para invertible:</strong> $\det(A) \neq 0$</p>
+        <p><strong>Fórmula:</strong> $A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$\det(A) = (2)(3) - (1)(5) = 6 - 5 = 1$$</td>
+            <td>Cálculo del determinante</td>
+          </tr>
+          <tr>
+            <td>$$A^{-1} = \frac{1}{1} \begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$$</td>
+            <td>Fórmula de la inversa</td>
+          </tr>
+          <tr>
+            <td>$$A^{-1} = \begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$$</td>
+            <td>Resultado final</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

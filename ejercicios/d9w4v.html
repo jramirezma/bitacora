@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Cinemática</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "d9w4v",
+      materia: "Física I",
+      tema: "Cinemática",
+      dificultad: "basico",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["cinematica", "movimiento uniforme", "velocidad"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Un auto parte del reposo y acelera a $3 \text{ m/s}^2$. Calcule su velocidad después de $10$ segundos y la distancia recorrida.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Datos:</strong> $a = 3 \text{ m/s}^2$, $t = 10 \text{ s}$, $v_0 = 0$</p>
+        <p><strong>Fórmulas:</strong> $v = v_0 + at$, $d = v_0 t + \frac{1}{2}at^2$</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$v = 0 + (3)(10) = 30 \text{ m/s}$$</td>
+            <td>Velocidad final</td>
+          </tr>
+          <tr>
+            <td>$$d = \frac{1}{2}(3)(10)^2 = \frac{1}{2}(3)(100) = 150 \text{ m}$$</td>
+            <td>Distancia recorrida</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

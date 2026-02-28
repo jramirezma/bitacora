@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Campo Eléctrico</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "h7n4s",
+      materia: "Física II",
+      tema: "Campo Eléctrico",
+      dificultad: "intermedio",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["campo electrico", "carga electrica", "ley de coulomb"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Dos cargas de $+2 \mu\text{C}$ y $-3 \mu\text{C}$ están separadas por $0.1$ m. Calcule la fuerza eléctrica entre ellas.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Carga 1:</strong> $q_1 = +2 \mu\text{C} = 2 \times 10^{-6} \text{ C}$</p>
+        <p><strong>Carga 2:</strong> $q_2 = -3 \mu\text{C} = -3 \times 10^{-6} \text{ C}$</p>
+        <p><strong>Distancia:</strong> $r = 0.1 \text{ m}$</p>
+        <p><strong>Constante:</strong> $k = 9 \times 10^9 \text{ N·m}^2/\text{C}^2$</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$F = k \frac{|q_1 q_2|}{r^2}$$</td>
+            <td>Ley de Coulomb</td>
+          </tr>
+          <tr>
+            <td>$$F = (9 \times 10^9) \frac{(2 \times 10^{-6})(3 \times 10^{-6})}{(0.1)^2}$$</td>
+            <td>Sustituir valores</td>
+          </tr>
+          <tr>
+            <td>$$F = (9 \times 10^9) \frac{6 \times 10^{-12}}{0.01}$$</td>
+            <td>Calcular producto y potencia</td>
+          </tr>
+          <tr>
+            <td>$$F = (9 \times 10^9)(6 \times 10^{-10}) = 5.4 \times 10^{-0} = 5.4 \text{ N}$$</td>
+            <td>Fuerza final (atracción por cargas de signo opuesto)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

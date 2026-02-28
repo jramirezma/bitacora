@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Probabilidad</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "f3h6p",
+      materia: "Estadística I",
+      tema: "Probabilidad",
+      dificultad: "basico",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["probabilidad", "dado", "espacio muestral"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Se lanza un dado balanceado. ¿Cuál es la probabilidad de obtener un número par?</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Espacio muestral:</strong> $\Omega = \{1, 2, 3, 4, 5, 6\}$</p>
+        <p><strong>Eventos favorables:</strong> $\{2, 4, 6\}$ (números pares)</p>
+        <p><strong>Fórmula:</strong> $P(A) = \frac{\#A}{\#\Omega}$</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$\#\Omega = 6$$</td>
+            <td>Total de resultados posibles</td>
+          </tr>
+          <tr>
+            <td>$$\#A = 3$$</td>
+            <td>Números pares: 2, 4, 6</td>
+          </tr>
+          <tr>
+            <td>$$P(A) = \frac{3}{6} = \frac{1}{2} = 0.5$$</td>
+            <td>Probabilidad final</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

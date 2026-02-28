@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prácticas Universitarias</title>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Configuración MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <!-- MathJax v3 (más estable que v4 para contenido dinámico) -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+  <aside class="buscador-panel" id="buscador-panel">
+    <div class="buscador-contenido">
+      <h2>Buscar</h2>
+
+      <div class="filtro-grupo">
+        <input type="text" id="filtro-busqueda" placeholder="Buscar...">
+      </div>
+
+      <div class="filtro-grupo">
+        <label for="filtro-materia">Materia</label>
+        <select id="filtro-materia">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div class="filtro-grupo">
+        <label for="filtro-tema">Tema</label>
+        <select id="filtro-tema">
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      <div class="filtro-grupo">
+        <label>Dificultad</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="dificultad" value="basico"> Básico</label>
+          <label><input type="checkbox" name="dificultad" value="intermedio"> Intermedio</label>
+          <label><input type="checkbox" name="dificultad" value="avanzado"> Avanzado</label>
+        </div>
+      </div>
+    </div>
+    <button class="buscador-toggle" id="buscador-toggle"></button>
+  </aside>
+
+  <main>
+    <section class="disclaimer">
+      <h2>Aviso importante</h2>
+      <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
+    </section>
+
+    <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
+  </main>
+
+  <script>
+    let INDEX_DATA = [];
+
+    async function cargarIndice() {
+      try {
+        const response = await fetch('index.json');
+        INDEX_DATA = await response.json();
+        inicializarBuscadorPanel();
+        aplicarFiltrosDesdeURL();
+      } catch (e) {
+        console.error('Error cargando índice:', e);
+      }
+    }
+
+    window.addEventListener('popstate', () => {
+      aplicarFiltrosDesdeURL();
+    });
+
+    window.addEventListener('load', restaurarEstadoSidebar);
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        restaurarEstadoSidebar();
+      }
+    });
+
+    function restaurarEstadoSidebar() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('sidebar') === 'collapsed') {
+        document.getElementById('buscador-panel').classList.add('collapsed');
+      }
+    }
+
+    function obtenerParamsURL() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        materia: params.get('materia') || '',
+        tema: params.get('tema') || '',
+        busqueda: params.get('q') || '',
+        dificultades: params.get('d') ? params.get('d').split(',') : []
+      };
+    }
+
+    function actualizarURL(filtros) {
+      const params = new URLSearchParams();
+      if (filtros.materia) params.set('materia', filtros.materia);
+      if (filtros.tema) params.set('tema', filtros.tema);
+      if (filtros.busqueda) params.set('q', filtros.busqueda);
+      if (filtros.dificultades.length > 0) params.set('d', filtros.dificultades.join(','));
+      
+      const nuevaURL = params.toString() 
+        ? `${window.location.pathname}?${params.toString()}` 
+        : window.location.pathname;
+      window.history.replaceState({}, '', nuevaURL);
+    }
+
+    function inicializarBuscadorPanel() {
+      const materias = new Set();
+      const temasPorMateria = {};
+
+      INDEX_DATA.forEach(ej => {
+        if (ej.materia) {
+          materias.add(ej.materia);
+          if (!temasPorMateria[ej.materia]) {
+            temasPorMateria[ej.materia] = new Set();
+          }
+          if (ej.tema) {
+            temasPorMateria[ej.materia].add(ej.tema);
+          }
+        }
+      });
+
+      const selectMateria = document.getElementById('filtro-materia');
+
+      Array.from(materias).sort().forEach(materia => {
+        const opt = document.createElement('option');
+        opt.value = materia;
+        opt.textContent = materia;
+        selectMateria.appendChild(opt);
+      });
+
+      window.temasPorMateria = temasPorMateria;
+
+      function actualizarTemas() {
+        const materia = document.getElementById('filtro-materia').value;
+        const selectTema = document.getElementById('filtro-tema');
+        selectTema.innerHTML = '<option value="">Todos</option>';
+        
+        if (materia && temasPorMateria[materia]) {
+          Array.from(temasPorMateria[materia]).sort().forEach(tema => {
+            const opt = document.createElement('option');
+            opt.value = tema;
+            opt.textContent = tema;
+            selectTema.appendChild(opt);
+          });
+        }
+        
+        aplicarFiltrosPanel();
+      }
+
+      document.getElementById('filtro-materia').addEventListener('change', actualizarTemas);
+      document.getElementById('filtro-tema').addEventListener('change', aplicarFiltrosPanel);
+      document.getElementById('filtro-busqueda').addEventListener('input', aplicarFiltrosPanel);
+      document.querySelectorAll('#buscador-panel input[name="dificultad"]').forEach(cb =>
+        cb.addEventListener('change', aplicarFiltrosPanel)
+      );
+
+      document.getElementById('buscador-toggle').addEventListener('click', () => {
+        const panel = document.getElementById('buscador-panel');
+        panel.classList.toggle('collapsed');
+        actualizarURLSidebar(panel.classList.contains('collapsed'));
+      });
+    }
+
+    function actualizarURLSidebar(collapsed) {
+      const params = new URLSearchParams(window.location.search);
+      if (collapsed) {
+        params.set('sidebar', 'collapsed');
+      } else {
+        params.delete('sidebar');
+      }
+      const nuevaURL = params.toString() 
+        ? `${window.location.pathname}?${params.toString()}` 
+        : window.location.pathname;
+      window.history.replaceState({}, '', nuevaURL);
+    }
+
+    function aplicarFiltrosPanel() {
+      const filtros = {
+        materia: document.getElementById('filtro-materia').value,
+        tema: document.getElementById('filtro-tema').value,
+        busqueda: document.getElementById('filtro-busqueda').value.toLowerCase(),
+        dificultades: Array.from(document.querySelectorAll('#buscador-panel input[name="dificultad"]:checked')).map(cb => cb.value)
+      };
+
+      actualizarURL(filtros);
+
+      const tieneFiltros =
+        filtros.materia ||
+        filtros.tema ||
+        filtros.busqueda ||
+        filtros.dificultades.length > 0;
+
+      if (!tieneFiltros) {
+        renderizarEjerciciosAleatorios();
+        return;
+      }
+
+      const resultados = INDEX_DATA.filter(ej => {
+        if (filtros.materia && ej.materia !== filtros.materia) return false;
+        if (filtros.tema && ej.tema !== filtros.tema) return false;
+
+        if (filtros.busqueda) {
+          const texto = (ej.enunciado + ' ' + ej.tema + ' ' + ej.seo_keywords.join(' '))
+            .toLowerCase();
+          if (!texto.includes(filtros.busqueda)) return false;
+        }
+
+        if (filtros.dificultades.length > 0 && !filtros.dificultades.includes(ej.dificultad)) return false;
+
+        return true;
+      });
+
+      renderizarResultados(resultados);
+    }
+
+    function aplicarFiltrosDesdeURL() {
+      const params = new URLSearchParams(window.location.search);
+      const ejercicioId = params.get('ejercicio');
+      
+      if (ejercicioId) {
+        const ej = INDEX_DATA.find(e => e.id === ejercicioId);
+        if (ej) {
+          cargarEjercicio(ej);
+          return;
+        }
+      }
+      
+      const main = document.querySelector('main');
+      const container = document.getElementById('ejercicios-destacados');
+      
+      if (!container) {
+        main.innerHTML = `
+          <section class="disclaimer">
+            <h2>Aviso importante</h2>
+            <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
+          </section>
+          <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
+        `;
+      }
+      
+      const filtros = obtenerParamsURL();
+      
+      if (!filtros.materia && !filtros.tema && !filtros.busqueda && filtros.dificultades.length === 0) {
+        renderizarEjerciciosAleatorios();
+        return;
+      }
+
+      document.getElementById('filtro-busqueda').value = filtros.busqueda;
+      
+      document.querySelectorAll('#buscador-panel input[name="dificultad"]').forEach(cb => {
+        cb.checked = filtros.dificultades.includes(cb.value);
+      });
+
+      const materiaSelect = document.getElementById('filtro-materia');
+      materiaSelect.value = filtros.materia;
+      
+      if (filtros.materia && window.temasPorMateria) {
+        const selectTema = document.getElementById('filtro-tema');
+        selectTema.innerHTML = '<option value="">Todos</option>';
+        if (window.temasPorMateria[filtros.materia]) {
+          Array.from(window.temasPorMateria[filtros.materia]).sort().forEach(tema => {
+            const opt = document.createElement('option');
+            opt.value = tema;
+            opt.textContent = tema;
+            selectTema.appendChild(opt);
+          });
+        }
+        selectTema.value = filtros.tema;
+      }
+
+      aplicarFiltrosPanel();
+    }
+
+    function renderizarResultados(ejercicios) {
+      const container = document.getElementById('ejercicios-destacados');
+
+      if (ejercicios.length === 0) {
+        container.innerHTML = '<p>No se encontraron ejercicios.</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+
+      ejercicios.forEach(ej => {
+        const btn = document.createElement('button');
+        btn.className = 'tarjeta-ejercicio-link';
+        btn.innerHTML = `
+          <article class="tarjeta-ejercicio">
+            <div class="tarjeta-tema">${ej.tema}</div>
+            <div class="tarjeta-enunciado">${ej.enunciado}</div>
+          </article>
+        `;
+        btn.addEventListener('click', () => cargarEjercicio(ej));
+
+        container.appendChild(btn);
+      });
+
+      renderMath();
+    }
+
+    async function cargarEjercicio(ej) {
+      const main = document.querySelector('main');
+      main.innerHTML = '<p>Cargando...</p>';
+      
+      const params = new URLSearchParams(window.location.search);
+      params.set('ejercicio', ej.id);
+      window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+      
+      try {
+        const response = await fetch(ej.archivo);
+        const html = await response.text();
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        const enunciado = doc.querySelector('.enunciado')?.innerHTML || '';
+        const entendimiento = doc.querySelector('.entendimiento')?.innerHTML || '';
+        const solucion = doc.querySelector('.solucion')?.innerHTML || '';
+        const tieneSolucion = !!doc.querySelector('.solucion');
+        
+        main.innerHTML = `
+          <button class="btn-volver">← Volver</button>
+          <h2>${ej.tema}</h2>
+          <h3>Enunciado</h3>
+          <div class="enunciado">${enunciado}</div>
+          ${entendimiento ? `<h3>Entendimiento</h3><div class="entendimiento">${entendimiento}</div>` : ''}
+          ${tieneSolucion ? `<h3>Solución</h3><div class="solucion">${solucion}</div>` : ''}
+        `;
+        
+        main.querySelector('.btn-volver').addEventListener('click', volverALista);
+        
+        window.ejercicioActual = { archivo: ej.archivo, materia: ej.materia, tema: ej.tema };
+        
+        renderMath();
+        
+        if (window.location.search.includes('mostrar=1')) {
+          const solucionEl = main.querySelector('.solucion');
+          if (solucionEl) solucionEl.hidden = false;
+        }
+        
+      } catch (e) {
+        main.innerHTML = '<p>Error cargando ejercicio.</p>';
+        console.error(e);
+      }
+    }
+
+    function volverALista() {
+      window.history.back();
+    }
+
+    function renderMath() {
+      if (!window.MathJax) return;
+
+      requestAnimationFrame(() => {
+        MathJax.typesetPromise()
+          .catch(err => console.error('MathJax error:', err));
+      });
+    }
+
+    function renderizarEjerciciosAleatorios() {
+      const cantidad = Math.min(3, INDEX_DATA.length);
+      const indices = [];
+
+      while (indices.length < cantidad) {
+        const idx = Math.floor(Math.random() * INDEX_DATA.length);
+        if (!indices.includes(idx)) indices.push(idx);
+      }
+
+      const aleatorios = indices.map(idx => INDEX_DATA[idx]);
+      renderizarResultados(aleatorios);
+    }
+
+    cargarIndice();
+  </script>
+
+</body>
+</html>

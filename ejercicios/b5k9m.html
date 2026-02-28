@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Derivadas</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "b5k9m",
+      materia: "Cálculo I",
+      tema: "Derivadas",
+      dificultad: "intermedio",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["derivadas", "regla de la cadena", "calculo diferencial"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Calcule la derivada de la función $f(x) = \sin(x^2 + 1) \cdot e^{3x}$.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Función:</strong> $f(x) = \sin(x^2 + 1) \cdot e^{3x}$</p>
+        <p><strong>Tipo:</strong> Producto de funciones compuestas</p>
+        <p><strong>Estrategia:</strong> Usar regla del producto y regla de la cadena</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$f'(x) = [\sin(x^2 + 1)]' \cdot e^{3x} + \sin(x^2 + 1) \cdot [e^{3x}]'$$</td>
+            <td>Regla del producto</td>
+          </tr>
+          <tr>
+            <td>$$f'(x) = \cos(x^2 + 1) \cdot 2x \cdot e^{3x} + \sin(x^2 + 1) \cdot e^{3x} \cdot 3$$</td>
+            <td>Regla de la cadena en ambas</td>
+          </tr>
+          <tr>
+            <td>$$f'(x) = e^{3x}[2x\cos(x^2 + 1) + 3\sin(x^2 + 1)]$$</td>
+            <td>Factor común $e^{3x}$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

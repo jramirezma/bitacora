@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Integrales</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "g5j2q",
+      materia: "Cálculo II",
+      tema: "Integrales",
+      dificultad: "intermedio",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["integrales", "integracion", "calculo integral"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Calcule la integral $\int x \cdot e^{2x} \, dx$ usando integración por partes.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Integral:</strong> $\int x e^{2x} dx$</p>
+        <p><strong>Fórmula:</strong> $\int u \, dv = uv - \int v \, du$</p>
+        <p><strong>Selección:</strong> $u = x$, $dv = e^{2x}dx$</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$u = x \Rightarrow du = dx$$</td>
+            <td>Derivar $u$</td>
+          </tr>
+          <tr>
+            <td>$$dv = e^{2x}dx \Rightarrow v = \frac{e^{2x}}{2}$$</td>
+            <td>Integrar $dv$</td>
+          </tr>
+          <tr>
+            <td>$$\int x e^{2x} dx = x \cdot \frac{e^{2x}}{2} - \int \frac{e^{2x}}{2} \cdot dx$$</td>
+            <td>Fórmula de integración por partes</td>
+          </tr>
+          <tr>
+            <td>$$= \frac{x e^{2x}}{2} - \frac{1}{2} \cdot \frac{e^{2x}}{2} + C$$</td>
+            <td>Integrar el segundo término</td>
+          </tr>
+          <tr>
+            <td>$$= \frac{e^{2x}}{2}\left(x - \frac{1}{2}\right) + C$$</td>
+            <td>Resultado simplificado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

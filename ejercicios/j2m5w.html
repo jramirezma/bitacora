@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio — Límites</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    window.EJERCICIO = {
+      id: "j2m5w",
+      materia: "Cálculo I",
+      tema: "Límites",
+      dificultad: "basico",
+      fecha: "2026-02-21",
+      tipo: "practica",
+      autor: { nombre: "ChatGPT", modelo: "o3-mini" },
+      seo_keywords: ["limites", "calculo", "funciones"]
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        ready: () => {
+          window.MathJax.startup.defaultReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../buscador.html">Buscador</a>
+      <a href="../simulacion.html">Simulación</a>
+      <a href="../configuracion.html">Configuración</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Enunciado</h2>
+    <div class="enunciado">Calcule el límite $\lim_{x \to 2} \frac{x^2 - 4}{x - 2}$.</div>
+
+    <h2>Solución</h2>
+    <div class="solucion" hidden>
+      <div class="entendimiento">
+        <p><strong>Límite:</strong> $\lim_{x \to 2} \frac{x^2 - 4}{x - 2}$</p>
+        <p><strong>Problema:</strong> Indeterminación $0/0$ al substituir $x = 2$</p>
+        <p><strong>Estrategia:</strong> Factorizar el numerador</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Desarrollo</th><th>Justificación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$$\frac{x^2 - 4}{x - 2} = \frac{(x+2)(x-2)}{x-2}$$</td>
+            <td>Diferencia de cuadrados: $x^2 - 4 = (x+2)(x-2)$</td>
+          </tr>
+          <tr>
+            <td>$$= x + 2$$</td>
+            <td>Cancelar $(x-2)$</td>
+          </tr>
+          <tr>
+            <td>$$\lim_{x \to 2} (x + 2) = 2 + 2 = 4$$</td>
+            <td>Evaluar el límite</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const solucion = document.querySelector('.solucion');
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mostrar') === '1') {
+      solucion.hidden = false;
+    }
+  </script>
+</body>
+</html>

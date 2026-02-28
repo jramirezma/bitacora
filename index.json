@@ -1,0 +1,192 @@
+[
+  {
+    "id": "d9w4v",
+    "materia": "Física I",
+    "tema": "Cinemática",
+    "dificultad": "basico",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "cinematica",
+      "movimiento uniforme",
+      "velocidad"
+    ],
+    "archivo": "ejercicios/d9w4v.html",
+    "enunciado": "Un auto parte del reposo y acelera a $3 \\text{ m/s}^2$. Calcule su velocidad después de $10$ segundos y la distancia recorrida."
+  },
+  {
+    "id": "g5j2q",
+    "materia": "Cálculo II",
+    "tema": "Integrales",
+    "dificultad": "intermedio",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "integrales",
+      "integracion",
+      "calculo integral"
+    ],
+    "archivo": "ejercicios/g5j2q.html",
+    "enunciado": "Calcule la integral $\\int x \\cdot e^{2x} \\, dx$ usando integración por partes."
+  },
+  {
+    "id": "c7r2t",
+    "materia": "Álgebra Lineal",
+    "tema": "Matrices",
+    "dificultad": "intermedio",
+    "fecha": "2026-02-21",
+    "tipo": "examen",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "matrices",
+      "determinante",
+      "matriz inversa"
+    ],
+    "archivo": "ejercicios/c7r2t.html",
+    "enunciado": "Calcule la inversa de la matriz $A = \\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$ si existe."
+  },
+  {
+    "id": "f3h6p",
+    "materia": "Estadística I",
+    "tema": "Probabilidad",
+    "dificultad": "basico",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "probabilidad",
+      "dado",
+      "espacio muestral"
+    ],
+    "archivo": "ejercicios/f3h6p.html",
+    "enunciado": "Se lanza un dado balanceado. ¿Cuál es la probabilidad de obtener un número par?"
+  },
+  {
+    "id": "a3f7c",
+    "materia": "Cálculo I",
+    "tema": "Números Reales",
+    "dificultad": "basico",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "numeros reales",
+      "ley de cancelacion",
+      "algebra basica"
+    ],
+    "archivo": "ejercicios/a3f7c.html",
+    "enunciado": "Demuestre la ley de cancelación para la adición en los números reales: si $a + b = a + c$, entonces $b = c$."
+  },
+  {
+    "id": "i9k7t",
+    "materia": "Álgebra Lineal",
+    "tema": "Sistemas de Ecuaciones",
+    "dificultad": "intermedio",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "sistemas de ecuaciones",
+      "gauss",
+      "metodo de sustitucion"
+    ],
+    "archivo": "ejercicios/i9k7t.html",
+    "enunciado": "Resuelva el sistema de ecuaciones: $\\begin{cases} x + y = 5 \\\\ 2x - y = 1 \\end{cases}$."
+  },
+  {
+    "id": "j2m5w",
+    "materia": "Cálculo I",
+    "tema": "Límites",
+    "dificultad": "basico",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "limites",
+      "calculo",
+      "funciones"
+    ],
+    "archivo": "ejercicios/j2m5w.html",
+    "enunciado": "Calcule el límite $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$."
+  },
+  {
+    "id": "e1x8z",
+    "materia": "Matemáticas I",
+    "tema": "Conjuntos",
+    "dificultad": "basico",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "conjuntos",
+      "union",
+      "interseccion"
+    ],
+    "archivo": "ejercicios/e1x8z.html",
+    "enunciado": "Sean $A = \\{1, 2, 3, 4\\}$ y $B = \\{3, 4, 5, 6\\}$. Calcule $A \\cup B$ y $A \\cap B$."
+  },
+  {
+    "id": "b5k9m",
+    "materia": "Cálculo I",
+    "tema": "Derivadas",
+    "dificultad": "intermedio",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "derivadas",
+      "regla de la cadena",
+      "calculo diferencial"
+    ],
+    "archivo": "ejercicios/b5k9m.html",
+    "enunciado": "Calcule la derivada de la función $f(x) = \\sin(x^2 + 1) \\cdot e^{3x}$."
+  },
+  {
+    "id": "h7n4s",
+    "materia": "Física II",
+    "tema": "Campo Eléctrico",
+    "dificultad": "intermedio",
+    "fecha": "2026-02-21",
+    "tipo": "practica",
+    "autor": {
+      "nombre": "ChatGPT",
+      "modelo": "o3-mini"
+    },
+    "seo_keywords": [
+      "campo electrico",
+      "carga electrica",
+      "ley de coulomb"
+    ],
+    "archivo": "ejercicios/h7n4s.html",
+    "enunciado": "Dos cargas de $+2 \\mu\\text{C}$ y $-3 \\mu\\text{C}$ están separadas por $0.1$ m. Calcule la fuerza eléctrica entre ellas."
+  }
+]
