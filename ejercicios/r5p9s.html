@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>r5p9s</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "r5p9s",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["21"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "desigualdad triangular",
+        "demostración por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "desigualdad valor absoluto tres términos",
+        "desigualdad triangular demostración",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Si $a > b > c$, demuestre que
+    $$|x-a| + |x-b| + |x-c| \geq a - c.$$</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La suma de distancias $|x-a| + |x-c|$ mide cuánto está $x$ lejos de $a$ y de $c$
+      simultáneamente. Por la desigualdad triangular, esa sola suma ya es $\geq |a-c| = a-c$.
+      El término del medio $|x-b|$ es no negativo, así que solo suma. La demostración
+      es casi inmediata una vez vista esa clave.
+    </p>
+    <div class="nota">
+      La desigualdad triangular dice $|u| + |v| \geq |u+v|$. Aplicada con
+      $u = x-a$ y $v = a-c-(x-c) $... o más directamente: $|x-a|+|x-c| \geq |(x-a)-(x-c)| = |c-a| = a-c$.
+    </div>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-a| + |x-c| \geq |(x-a) - (x-c)|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Desigualdad triangular</div>
+      Para todo $u, v \in \mathbb{R}$: $|u| + |v| \geq |u - v|$.
+      Aplicamos con $u = x-a$ y $v = x-c$.
+    </div>
+
+    <div class="paso-dev">
+      $$|(x-a)-(x-c)| = |c-a| = a-c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $(x-a)-(x-c) = c-a$. Como $a > c$, tenemos $c - a < 0$, así que $|c-a| = a-c$.
+    </div>
+
+    <div class="paso-dev">
+      $$|x-b| \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">No negatividad del valor absoluto</div>
+      Todo valor absoluto es mayor o igual a cero.
+    </div>
+
+    <div class="paso-dev">
+      $$|x-a|+|x-b|+|x-c| \geq (a-c) + 0 = a-c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de desigualdades</div>
+      Sumamos $|x-a|+|x-c| \geq a-c$ con $|x-b| \geq 0$.
+      El resultado sigue siendo válido.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{|x-a|+|x-b|+|x-c| \geq a-c}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      La hipótesis $a > b > c$ solo se usó para garantizar $a > c$ (y que $|c-a| = a-c$).
+      $b$ no interviene en la cota, solo aporta algo no negativo.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para $a > b > c$ y todo $x \in \mathbb{R}$:
+    $$\boxed{|x-a|+|x-b|+|x-c| \geq a-c}$$
+    La igualdad se alcanza cuando $|x-b| = 0$ y $|x-a|+|x-c| = a-c$,
+    es decir cuando $x = b$ y simultáneamente $c \leq b \leq a$, lo que se cumple por hipótesis.
+    Entonces la igualdad se da exactamente en $x = b$.
+  </div>
+
+</body>
+</html>
