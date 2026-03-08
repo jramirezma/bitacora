@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b7e2a</title>
+  <script>
+    window.EJERCICIO = {
+      id: "b7e2a",
+      materia: [
+        "Análisis Matemático",
+        "Cálculo 1",
+        "Matemáticas"
+      ],
+      tema: [
+        "Inecuaciones con valor absoluto",
+        "Desigualdades absolutas",
+        "Inecuaciones racionales con módulo"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "inecuacion valor absoluto",
+        "desigualdad con modulo",
+        "inecuacion racional",
+        "valor absoluto cociente",
+        "resolver inecuacion absoluta"
+      ],
+      fecha: "2026-03-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resolver la inecuación: $\left|\dfrac{x-1}{x-3}\right| \leq \left|\dfrac{x}{x+2}\right|$</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>Tenemos dos fracciones, cada una dentro de un valor absoluto. La inecuación pide que el "tamaño" del cociente izquierdo sea menor o igual al del derecho. El valor absoluto complica el análisis de signos, pero hay una observación que lo simplifica todo: si $|A| \leq |B|$, entonces elevando al cuadrado (ambos lados son no negativos) se obtiene una condición equivalente $A^2 \leq B^2$, lo que elimina los módulos de un solo golpe.</p>
+    <div class="nota">
+      Truco central: $|A| \leq |B| \iff A^2 \leq B^2$ (para cualquier expresión real). Esto convierte el problema en una inecuación polinomial racional, que se resuelve estudiando el signo del numerador.
+    </div>
+    <p>Al pasar todo al mismo lado y factorizar el numerador con la identidad $A^2 - B^2 = (A-B)(A+B)$, el problema se reduce a analizar el signo de un producto de factores lineales y cuadráticos. El denominador $(x-3)^2(x+2)^2$ es siempre positivo en el dominio, por lo que no afecta el signo de la expresión.</p>
+    <p class="chiste">El valor absoluto en una inecuación es como una cerradura: la llave es elevar al cuadrado.</p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1 -->
+    <div class="paso-dev">
+      <strong>Dominio:</strong><br>
+      $x \neq 3 \quad$ y $\quad x \neq -2$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Dominio de la expresión</div>
+      Los denominadores no pueden ser cero. Fuera de estos dos valores, la expresión está bien definida.
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="paso-dev">
+      $$\left(\frac{x-1}{x-3}\right)^2 \leq \left(\frac{x}{x+2}\right)^2$$
+      $$\frac{(x-1)^2(x+2)^2 - x^2(x-3)^2}{(x-3)^2(x+2)^2} \leq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Eliminación del valor absoluto</div>
+      Como $|A| \leq |B| \iff A^2 \leq B^2$ para reales, elevamos al cuadrado ambos lados. Luego pasamos todo al lado izquierdo para analizar el signo de una sola fracción.
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="paso-dev">
+      El denominador $(x-3)^2(x+2)^2 > 0$ en el dominio.<br><br>
+      Se reduce a estudiar:
+      $$N(x) = (x-1)^2(x+2)^2 - x^2(x-3)^2 \leq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reducción al numerador</div>
+      Un cuadrado es siempre positivo (o cero, pero en el dominio es estrictamente positivo). Entonces el signo de la fracción lo determina únicamente el numerador.
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="paso-dev">
+      Sea $A = (x-1)(x+2) = x^2+x-2$<br>
+      Sea $B = x(x-3) = x^2-3x$<br><br>
+      $N(x) = A^2 - B^2 = (A-B)(A+B)$<br><br>
+      $A - B = (x^2+x-2)-(x^2-3x) = 4x-2 = 2(2x-1)$<br>
+      $A + B = (x^2+x-2)+(x^2-3x) = 2x^2-2x-2 = 2(x^2-x-1)$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factorización: diferencia de cuadrados</div>
+      La identidad $A^2 - B^2 = (A-B)(A+B)$ transforma el numerador en un producto de factores más simples, que es exactamente lo que necesitamos para analizar signos.
+    </div>
+
+    <!-- Paso 5 -->
+    <div class="paso-dev">
+      $$N(x) = 4(2x-1)(x^2-x-1)$$<br>
+      Raíces de $x^2-x-1=0$:
+      $$x = \frac{1 \pm \sqrt{5}}{2}$$
+      $$\alpha = \frac{1-\sqrt{5}}{2} \approx -0{,}618 \qquad \beta = \frac{1+\sqrt{5}}{2} \approx 1{,}618$$<br>
+      Raíz de $2x-1=0$: $\quad x = \tfrac{1}{2}$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Raíces del numerador</div>
+      El numerador se anula en tres puntos: $\alpha$, $\tfrac{1}{2}$ y $\beta$. Estos son los únicos candidatos a cambio de signo, y dividirán la recta real en cuatro intervalos.
+    </div>
+
+    <!-- Paso 6 -->
+    <div class="paso-dev">
+      Orden en la recta: $\alpha < \tfrac{1}{2} < \beta$<br><br>
+      <table style="border-collapse:collapse; font-size:.93rem; width:100%;">
+        <tr style="border-bottom:1px solid #aaa;">
+          <th style="text-align:left; padding:4px 6px;">Intervalo</th>
+          <th style="padding:4px 6px;">$(2x-1)$</th>
+          <th style="padding:4px 6px;">$(x^2-x-1)$</th>
+          <th style="padding:4px 6px;">$N(x)$</th>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px;">$x < \alpha$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$ ✓</td>
+        </tr>
+        <tr style="border-top:1px dashed #ccc;">
+          <td style="padding:4px 6px;">$\alpha < x < \tfrac{1}{2}$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$ ✗</td>
+        </tr>
+        <tr style="border-top:1px dashed #ccc;">
+          <td style="padding:4px 6px;">$\tfrac{1}{2} < x < \beta$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$</td>
+          <td style="text-align:center; padding:4px 6px;">$-$ ✓</td>
+        </tr>
+        <tr style="border-top:1px dashed #ccc;">
+          <td style="padding:4px 6px;">$x > \beta$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$</td>
+          <td style="text-align:center; padding:4px 6px;">$+$ ✗</td>
+        </tr>
+      </table>
+      <br>En las raíces $N(x)=0$, también se cumple $\leq 0$.
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Análisis de signo por intervalos</div>
+      Se evalúa el signo de cada factor en cada intervalo tomando un punto de prueba. El producto es negativo cuando exactamente uno de los dos factores es negativo. Los extremos del intervalo se incluyen porque en ellos $N(x) = 0$, lo cual satisface la inecuación $\leq 0$.<br><br>
+      Notar que $-2$ y $3$ no caen dentro de ningún intervalo solución, por lo que las exclusiones del dominio no afectan el resultado final.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El conjunto solución de la inecuación es:
+    $$\boxed{x \in \left(-\infty,\; \frac{1-\sqrt{5}}{2}\right] \cup \left[\frac{1}{2},\; \frac{1+\sqrt{5}}{2}\right]}$$
+    Los valores $x = -2$ y $x = 3$ quedan excluidos del dominio, pero ninguno pertenece a los intervalos solución, por lo que no alteran la respuesta.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+* { box-sizing: border-box; }
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: Georgia, serif;
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 0 24px 60px;
+  color: #111;
+  line-height: 1.8;
+}
+
+h2 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  border-bottom: 2px solid #111;
+  padding-bottom: 5px;
+  margin-top: 2.2rem;
+}
+
+.bloque { margin-top: 12px; padding: 0 4px; }
+
+.nota {
+  border-left: 3px solid #555;
+  padding: 6px 14px;
+  margin: 14px 0;
+  font-style: italic;
+  font-size: .97rem;
+}
+
+.chiste {
+  font-style: italic;
+  font-size: .92rem;
+  color: #444;
+  margin-top: 4px;
+}
+
+/* ── Dos columnas — Solución ── */
+.dos-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 14px;
+  border: 1px solid #aaa;
+}
+
+.col-header {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-bottom: 1px solid #aaa;
+}
+
+.col-desarrollo { border-right: 1px solid #aaa; }
+
+.paso-dev {
+  padding: 12px 16px;
+  border-bottom: 1px dashed #ccc;
+  border-right: 1px solid #aaa;
+  font-size: .97rem;
+}
+.paso-dev:last-child { border-bottom: none; }
+
+.paso-just {
+  padding: 12px 16px;
+  border-bottom: 1px dashed #ccc;
+  font-size: .93rem;
+  color: #333;
+}
+.paso-just:last-child { border-bottom: none; }
+
+.paso-just .titulo {
+  font-family: sans-serif;
+  font-size: .78rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 4px;
+  color: #111;
+}
+
+.resultado-final {
+  border: 2px solid #111;
+  padding: 16px 22px;
+  margin-top: 20px;
+  font-size: 1.02rem;
+}

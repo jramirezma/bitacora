@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c7d1f</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "c7d1f",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["2", "Ejercicio 2", "ej2"],
+      tema: [
+        "números reales",
+        "axiomas de cuerpo",
+        "ley de cancelación",
+        "inverso aditivo",
+        "neutro aditivo",
+        "demostración algebraica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "a por 0 es 0 demostración",
+        "menos de menos a es a",
+        "inverso aditivo de cero",
+        "axiomas números reales",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Aplicando el ejercicio anterior, demuestre lo siguiente:</p>
+    <p>a) $a \cdot 0 = 0$. &nbsp;&nbsp;&nbsp; b) $-0 = 0$. &nbsp;&nbsp;&nbsp; c) $-(-a) = a$. &nbsp;&nbsp;&nbsp; d) $(-1)a = -a$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Cada una de estas cuatro afirmaciones parece obvia, pero ninguna es gratuita: hay que
+      construirlas desde los axiomas. La estrategia en todos los casos es la misma: fabricar
+      una igualdad de la forma $a + X = a + Y$ y luego aplicar la ley de cancelación del
+      ejercicio 1 para concluir $X = Y$.
+    </p>
+    <div class="nota">
+      Truco unificador: si logramos escribir $a + X = a + 0$ (o cualquier forma $a + X = a + Y$),
+      la cancelación hace el trabajo y nos da $X = Y$ de inmediato.
+    </div>
+    <p>
+      Los axiomas disponibles son los del cuerpo: existencia de neutro aditivo ($a + 0 = a$),
+      inverso aditivo ($a + (-a) = 0$), distributividad ($a(b+c) = ab + ac$) y todos los
+      habituales. Nada más.
+    </p>
+  </div>
+
+  <h2>Solución — parte a) $\ a \cdot 0 = 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $a \cdot 0 = a \cdot (0 + 0) = a\cdot 0 + a\cdot 0$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro aditivo + Distributividad</div>
+      Primero: $0 = 0 + 0$ por el neutro aditivo. Luego: $a(0+0) = a\cdot 0 + a\cdot 0$
+      por distributividad. Encadenando, obtenemos $a\cdot 0 = a\cdot 0 + a\cdot 0$.
+    </div>
+
+    <div class="paso-dev">
+      $a\cdot 0 + 0 = a\cdot 0 + a\cdot 0$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro aditivo</div>
+      El lado izquierdo de la igualdad anterior es $a\cdot 0$, que es lo mismo que $a\cdot 0 + 0$.
+      Reescribimos así para tener exactamente la forma $x + A = x + B$ que pide la cancelación.
+    </div>
+
+    <div class="paso-dev">
+      $\boxed{a \cdot 0 = 0}$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 1)</div>
+      La igualdad $a\cdot 0 + 0 = a\cdot 0 + a\cdot 0$ tiene la forma $a\cdot 0 + A = a\cdot 0 + B$
+      con $A = 0$ y $B = a\cdot 0$. Cancelando $a\cdot 0$ concluimos $0 = a\cdot 0$.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ {-0} = 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$0 + (-0) = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso aditivo</div>
+      Por definición, todo número $x$ satisface $x + (-x) = 0$. Con $x = 0$: $0 + (-0) = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$0 + 0 = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro aditivo</div>
+      $0 + 0 = 0$ por el axioma del neutro. Entonces el lado derecho también puede escribirse así.
+    </div>
+
+    <div class="paso-dev">
+      $$0 + (-0) = 0 + 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos las dos expresiones</div>
+      Ambos lados son iguales a $0$, así que son iguales entre sí.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{-0 = 0}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 1)</div>
+      Cancelamos el $0$ del lado izquierdo en $0 + (-0) = 0 + 0$ y obtenemos $-0 = 0$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ {-(-a)} = a$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$(-a) + (-(-a)) = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso aditivo</div>
+      $-(-a)$ es el inverso aditivo de $(-a)$, así que $(-a) + (-(-a)) = 0$ por definición.
+    </div>
+
+    <div class="paso-dev">
+      $$(-a) + a = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso aditivo</div>
+      También $(-a) + a = 0$, porque $a$ y $(-a)$ son inversos mutuos (el axioma es simétrico).
+    </div>
+
+    <div class="paso-dev">
+      $$(-a) + (-(-a)) = (-a) + a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos</div>
+      Ambas expresiones son iguales a $0$, así que son iguales entre sí.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{-(-a) = a}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 1)</div>
+      Cancelamos $(-a)$ de ambos lados y concluimos.
+    </div>
+  </div>
+
+  <h2>Solución — parte d) $\ (-1)a = -a$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$(-1)a + a = (-1)a + 1 \cdot a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro multiplicativo</div>
+      $1 \cdot a = a$ por el axioma del neutro multiplicativo. Reescribimos $a$ como $1\cdot a$.
+    </div>
+
+    <div class="paso-dev">
+      $$(-1)a + 1\cdot a = (-1 + 1)\,a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Distributividad</div>
+      $ba + ca = (b+c)a$. Factorizamos con $b = -1$, $c = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$(-1 + 1)\,a = 0 \cdot a = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inverso aditivo + parte a)</div>
+      $-1 + 1 = 0$ por el axioma del inverso. Luego $0 \cdot a = 0$ por la parte a) de este ejercicio.
+    </div>
+
+    <div class="paso-dev">
+      $$(-1)a + a = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resumen de la cadena</div>
+      Juntando los pasos: $(-1)a + a = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$(-a) + a = 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso aditivo</div>
+      Por definición, $(-a) + a = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$(-1)a + a = (-a) + a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos</div>
+      Ambas expresiones son iguales a $0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(-1)a = -a}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 1)</div>
+      Cancelamos $a$ de ambos lados.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Usando la ley de cancelación para la adición junto con los
+    axiomas de cuerpo, se demuestran las cuatro propiedades:
+    $$\text{a)}\ a\cdot 0 = 0 \qquad \text{b)}\ {-0}=0 \qquad \text{c)}\ {-(-a)}=a \qquad \text{d)}\ (-1)a=-a$$
+    Todas siguen el mismo patrón: construir $x + A = x + B$ y cancelar $x$.
+  </div>
+
+</body>
+</html>

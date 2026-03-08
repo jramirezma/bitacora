@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f2a8c</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "f2a8c",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["4", "Ejercicio 4", "ej4"],
+      tema: [
+        "números reales",
+        "axiomas de cuerpo",
+        "inverso multiplicativo",
+        "ley de cancelación multiplicativa",
+        "demostración algebraica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "inverso de 1 es 1",
+        "inverso del inverso",
+        "inverso del producto",
+        "axiomas números reales",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Aplicando el ejercicio anterior, demuestre lo siguiente:</p>
+    <p>a) $1^{-1} = 1$. &nbsp;&nbsp;&nbsp; b) $(a^{-1})^{-1} = a$. &nbsp;&nbsp;&nbsp; c) $(ab)^{-1} = a^{-1}b^{-1}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Las tres partes siguen la misma estrategia: para mostrar que algo es el inverso
+      multiplicativo de $x$, basta exhibir que su producto con $x$ es $1$, y luego
+      aplicar la ley de cancelación del ejercicio 3 para concluir que ese algo es
+      único y coincide con $x^{-1}$.
+    </p>
+    <div class="nota">
+      Si $x \cdot p = 1$ y $x \cdot x^{-1} = 1$, entonces $x \cdot p = x \cdot x^{-1}$,
+      y la cancelación (con $x \neq 0$) da $p = x^{-1}$. Ese es el molde de las tres demostraciones.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ 1^{-1} = 1$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$1 \cdot 1 = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro multiplicativo</div>
+      $1 \cdot x = x$ para todo $x$. Con $x = 1$: $1 \cdot 1 = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$1 \cdot 1^{-1} = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso multiplicativo</div>
+      Por definición, $1 \cdot 1^{-1} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$1 \cdot 1 = 1 \cdot 1^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos</div>
+      Ambas expresiones son iguales a $1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{1 = 1^{-1}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 3)</div>
+      Cancelamos el factor $1$ de ambos lados. El $1$ que cancela es distinto de $0$,
+      así que la cancelación es válida.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ (a^{-1})^{-1} = a$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^{-1} \cdot (a^{-1})^{-1} = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso multiplicativo</div>
+      $(a^{-1})^{-1}$ es por definición el inverso de $a^{-1}$, así que su producto es $1$.
+    </div>
+
+    <div class="paso-dev">
+      $$a^{-1} \cdot a = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso multiplicativo</div>
+      También $a^{-1} \cdot a = 1$ por definición (el axioma es simétrico).
+    </div>
+
+    <div class="paso-dev">
+      $$a^{-1} \cdot (a^{-1})^{-1} = a^{-1} \cdot a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos</div>
+      Ambas expresiones son iguales a $1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(a^{-1})^{-1} = a}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 3)</div>
+      Cancelamos $a^{-1}$ de ambos lados. Es válido porque $a \neq 0$ implica $a^{-1} \neq 0$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ (ab)^{-1} = a^{-1}b^{-1}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$(ab) \cdot (ab)^{-1} = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso multiplicativo</div>
+      Por definición, todo número no nulo multiplicado por su inverso da $1$.
+      Aquí $ab \neq 0$ porque $a \neq 0$ y $b \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$(ab) \cdot (a^{-1}b^{-1})$$
+      $$= a(b \cdot a^{-1})b^{-1}$$
+      $$= a(a^{-1} \cdot b)b^{-1}$$
+      $$= (a \cdot a^{-1})(b \cdot b^{-1})$$
+      $$= 1 \cdot 1 = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Asociatividad + Conmutatividad + Inversos</div>
+      Reagrupamos usando asociatividad y conmutatividad de la multiplicación.
+      Luego $a \cdot a^{-1} = 1$ y $b \cdot b^{-1} = 1$ por el axioma del inverso,
+      y $1 \cdot 1 = 1$ por el neutro.
+    </div>
+
+    <div class="paso-dev">
+      $$(ab)(ab)^{-1} = (ab)(a^{-1}b^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Igualamos</div>
+      Ambas expresiones son iguales a $1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(ab)^{-1} = a^{-1}b^{-1}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ley de cancelación (ejercicio 3)</div>
+      Cancelamos $ab$ de ambos lados. Válido porque $ab \neq 0$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Usando la ley de cancelación para la multiplicación junto
+    con los axiomas de cuerpo, se demuestran las tres propiedades:
+    $$\text{a)}\ 1^{-1}=1 \qquad \text{b)}\ (a^{-1})^{-1}=a \qquad \text{c)}\ (ab)^{-1}=a^{-1}b^{-1}$$
+    El patrón es siempre el mismo: mostrar que dos expresiones dan $1$ al multiplicarse
+    por el mismo factor, y cancelar.
+  </div>
+
+</body>
+</html>

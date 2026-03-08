@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>p2c6y</title>
+  <script>
+    window.EJERCICIO = {
+      id: "p2c6y",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "simbolizacion",
+        "lenguaje natural a logica",
+        "logica proposicional",
+        "traduccion logica"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "simbolizacion logica",
+        "lenguaje natural",
+        "logica proposicional",
+        "condicion necesaria",
+        "condicion suficiente",
+        "bicondicional"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .resultado-final p { margin: .3rem 0; }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>
+    Considere las proposiciones $P$: se nombra presidente; $Q$: la mayoría vota por él;
+    $R$: tiene buena salud; $S$: habrá una crisis de gobierno. Simbolice las siguientes proposiciones:
+  </p>
+  <p>
+    (a) Una condición necesaria para que se nombre presidente es que la mayoría vote por él y tenga buena salud.<br>
+    (b) La mayoría votó por él y tiene buena salud. Por lo tanto, se nombró presidente.<br>
+    (c) No habrá crisis si y solo si una condición suficiente para que se nombre presidente es que la mayoría vote por él.<br>
+    (d) Si la mayoría no vota por él o no tiene buena salud, entonces no se nombra presidente y habrá una crisis de gobierno.<br>
+    (e) O la mayoría vota por él o habrá una crisis de gobierno si y solo si no se nombra presidente.
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Este ejercicio extiende el anterior con los mismos patrones de simbolizacion, pero
+    los enunciados son mas largos y los conectivos aparecen en posiciones menos obvias.
+    El riesgo principal es perder el hilo de que es antecedente y que es consecuente
+    cuando la oracion esta construida de forma no estandar.
+  </p>
+  <div class="nota">
+    Recordatorio de las formas equivalentes de la implicacion $P \to Q$:
+    "si $P$ entonces $Q$", "$P$ solo si $Q$", "$Q$ si $P$", "$Q$ es condicion necesaria para $P$",
+    "$P$ es condicion suficiente para $Q$". Todas dicen lo mismo.
+  </div>
+  <p>
+    El inciso (e) requiere cuidado con el alcance del bicondicional: hay que determinar
+    si el "si y solo si" une solo una parte de la oracion o toda ella. La coma y la
+    estructura gramatical ayudan a decidirlo.
+  </p>
+  <p class="chiste">(Crisis de gobierno, elecciones, salud presidencial... este ejercicio es mas dramatico que el anterior.)</p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <!-- Inciso a -->
+  <div class="paso-dev">
+    (a) $P \to (Q \land R)$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Condicion necesaria</div>
+    "$B$ es condicion necesaria para $A$" se escribe $A \to B$: el resultado implica
+    la condicion. Aqui el resultado es $P$ y la condicion necesaria es $Q \land R$.
+    Sin votos de la mayoria y sin buena salud, no hay presidencia.
+  </div>
+
+  <!-- Inciso b -->
+  <div class="paso-dev">
+    (b) $(Q \land R) \to P$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Argumento con "por lo tanto"</div>
+    "Por lo tanto" indica una conclusion que se sigue de las premisas. Las premisas
+    ($Q \land R$) implican la conclusion ($P$). Es exactamente la contrapositiva del
+    inciso anterior: aqui $Q \land R$ es condicion suficiente para $P$.
+  </div>
+
+  <!-- Inciso c -->
+  <div class="paso-dev">
+    (c) $\neg S \leftrightarrow (Q \to P)$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Condicion suficiente dentro de bicondicional</div>
+    "No habra crisis" es $\neg S$. "Una condicion suficiente para $P$ es $Q$"
+    significa $Q \to P$: si la mayoria vota, eso basta para nombrarlo presidente.
+    El bicondicional une ambas partes: no hay crisis si y solo si esa condicion
+    suficiente se cumple.
+  </div>
+
+  <!-- Inciso d -->
+  <div class="paso-dev">
+    (d) $(\neg Q \lor \neg R) \to (\neg P \land S)$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">"O no... o no..."</div>
+    "La mayoria no vota por el o no tiene buena salud" es $\neg Q \lor \neg R$.
+    El consecuente "no se nombra presidente y habra crisis" es $\neg P \land S$.
+    La estructura es una implicacion directa.
+  </div>
+
+  <!-- Inciso e -->
+  <div class="paso-dev">
+    (e) $Q \lor (S \leftrightarrow \neg P)$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Alcance del bicondicional</div>
+    La oracion dice "o $Q$ o [$S$ si y solo si $\neg P$]". El bicondicional une
+    "habra crisis" con "no se nombra presidente", y eso completo forma el segundo
+    termino de la disyuncion con $Q$. La disyuncion tiene menor precedencia que
+    el bicondicional en este contexto, por lo que el bicondicional se agrupa primero.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultados.</strong>
+  <p>(a) $P \to (Q \land R)$</p>
+  <p>(b) $(Q \land R) \to P$</p>
+  <p>(c) $\neg S \leftrightarrow (Q \to P)$</p>
+  <p>(d) $(\neg Q \lor \neg R) \to (\neg P \land S)$</p>
+  <p>(e) $Q \lor (S \leftrightarrow \neg P)$</p>
+  <p style="margin-top:.8rem; font-size:.92rem;">
+    Vale notar que (a) y (b) son contrapositivas entre si: $P \to (Q \land R)$
+    equivale a $(\neg Q \lor \neg R) \to \neg P$, que es casi el antecedente de (d).
+  </p>
+</div>
+
+</body>
+</html>

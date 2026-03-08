@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>h1e5d</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "h1e5d",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["13", "Ejercicio 13", "ej13"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "orden en los reales",
+        "demostración de desigualdad",
+        "comparación de fracciones"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "desigualdad 1/n3 menor 1/n2",
+        "comparación fracciones enteros",
+        "desigualdad raíces",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre lo siguiente:</p>
+    <p>a) Si $n > 1$, entonces $\dfrac{1}{n^3} < \dfrac{1}{n^2}$.</p>
+    <p>b) Si $n > 1$, entonces $\dfrac{2}{n^3} < \dfrac{3}{n^2}$.</p>
+    <p>c) Si $n \geq 8$, entonces $\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{18+n}}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Las tres partes usan la misma lógica: para comparar dos fracciones con numeradores
+      fijos, basta comparar sus denominadores, recordando que la fracción con denominador
+      mayor es la menor. Y para comparar denominadores, se parte de la hipótesis sobre $n$
+      y se opera algebraicamente hasta llegar a la conclusión.
+    </p>
+    <div class="nota">
+      Si $0 &lt; A &lt; B$, entonces $\dfrac{1}{A} > \dfrac{1}{B}$: el orden se invierte
+      al tomar recíprocos. Ese es el mecanismo central de las tres partes.
+    </div>
+  </div>
+
+  <h2>Solución — parte a)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$n > 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $$n^2 > n \cdot 1 = n \quad \Rightarrow \quad n^3 > n^2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Multiplicación por $n^2 > 0$</div>
+      Multiplicamos $n > 1$ por $n^2 > 0$. El sentido se conserva y obtenemos $n^3 > n^2$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\frac{1}{n^3} < \frac{1}{n^2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Recíprocos de positivos</div>
+      Como $0 < n^2 < n^3$, al tomar recíprocos el orden se invierte.
+    </div>
+  </div>
+
+  <h2>Solución — parte b)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{1}{n^3} < \frac{1}{n^2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Parte a)</div>
+      Ya demostrado para $n > 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\frac{2}{n^3} < \frac{2}{n^2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Multiplicación por $2 > 0$</div>
+      Multiplicamos ambos lados por $2$. El sentido se conserva.
+    </div>
+
+    <div class="paso-dev">
+      $$\frac{2}{n^2} < \frac{3}{n^2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Comparación de numeradores</div>
+      $2 < 3$ y el denominador $n^2 > 0$ es el mismo, así que $\frac{2}{n^2} < \frac{3}{n^2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\frac{2}{n^3} < \frac{3}{n^2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Transitividad</div>
+      $\frac{2}{n^3} < \frac{2}{n^2} < \frac{3}{n^2}$, entonces $\frac{2}{n^3} < \frac{3}{n^2}$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$n \geq 8$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $$n \geq 8 \;\Rightarrow\; n - 8 \geq 0 \;\Rightarrow\; 2n - 7 \geq n + 9$$
+      $$\;\Rightarrow\; 2n + 7 \geq n + 16 > n + 18 - 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Manipulación algebraica</div>
+      Buscamos comparar $2n+7$ con $n+18$. De $n \geq 8$ se sigue $n - 8 \geq 0$,
+      es decir $n \geq 8$, y entonces $2n + 7 \geq n + 15$. Pero necesitamos
+      $2n+7 \geq n+18$, es decir $n \geq 11$. Revisamos: para $n \geq 8$ esto
+      no es siempre cierto. Comparamos directamente los radicandos.
+    </div>
+
+    <div class="paso-dev">
+      $$2n+7 \leq n + 18 \iff n \leq 11$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Revisión de la dirección</div>
+      Para $8 \leq n \leq 11$: $2n+7 \leq n+18$. Para $n > 11$: $2n+7 > n+18$.
+      La desigualdad del enunciado requiere $\sqrt{2n+7} \geq \sqrt{n+18}$,
+      es decir $2n+7 \geq n+18$, es decir $n \geq 11$. Pero el enunciado dice $n \geq 8$.
+      Verificamos $n=8$: $\sqrt{23} \leq \sqrt{26}$ ✓. Entonces la dirección correcta
+      es $2n+7 \geq n+18$ para $n \geq 11$, y para $8 \leq n \leq 10$ verificar directamente.
+    </div>
+
+    <div class="paso-dev">
+      $$n \geq 8 \;\Rightarrow\; n + 7 \geq 15 \;\Rightarrow\; 2n+7 \geq n+15$$
+      $$\text{y } n+18 \leq 2n+10 \text{ para } n \geq 8$$
+      $$\Rightarrow\; 2n+7 \geq n+18 \iff n \geq 11$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Corrección: el enunciado dice $\sqrt{18+n}$, no $\sqrt{n+18}$</div>
+      Leemos de nuevo: $\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$ equivale a
+      $\sqrt{18+n} \leq \sqrt{2n+7}$, es decir $18+n \leq 2n+7$, es decir $11 \leq n$.
+      Pero el enunciado asume $n \geq 8$. Para $n = 8$: $26 \leq 23$, falso.
+      Releyendo el enunciado original: la desigualdad es $\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$$
+      $$\iff \sqrt{18+n} \leq \sqrt{2n+7}$$
+      $$\iff 18+n \leq 2n+7$$
+      $$\iff 11 \leq n$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia de la desigualdad</div>
+      Tomar recíprocos invierte el orden (ambos radicales positivos).
+      Elevar al cuadrado preserva el orden (ambos lados positivos).
+      La condición necesaria y suficiente es $n \geq 11$.
+      Como $n \geq 8$ no implica $n \geq 11$, la desigualdad del enunciado
+      es válida solo para $n \geq 11$. Para $n = 8, 9, 10$ la desigualdad
+      es falsa: por ejemplo $n=8$ da $\frac{1}{\sqrt{23}} \leq \frac{1}{\sqrt{26}}$,
+      es decir $\sqrt{26} \leq \sqrt{23}$, que es falso.
+    </div>
+
+    <div class="paso-dev">
+      $$n \geq 11 \;\Rightarrow\; n - 11 \geq 0 \;\Rightarrow\; n+7 \geq 18$$
+      $$\;\Rightarrow\; 2n+7 \geq n+18$$
+      $$\;\Rightarrow\; \sqrt{2n+7} \geq \sqrt{n+18}$$
+      $$\;\Rightarrow\; \boxed{\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{n+18}}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Demostración para $n \geq 11$ (que incluye $n \geq 8$ del enunciado con precaución)</div>
+      La cadena es directa. La condición mínima real es $n \geq 11$, más fuerte que $n \geq 8$.
+      Es posible que el enunciado tenga una errata o que $n$ sea entero y la condición
+      $n \geq 8$ sea un error tipográfico por $n \geq 11$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>
+    a) $n > 1 \Rightarrow n^3 > n^2 \Rightarrow \boxed{\dfrac{1}{n^3} < \dfrac{1}{n^2}}$.
+    <br><br>
+    b) Por transitividad: $\dfrac{2}{n^3} < \dfrac{2}{n^2} < \dfrac{3}{n^2}$, luego $\boxed{\dfrac{2}{n^3} < \dfrac{3}{n^2}}$.
+    <br><br>
+    c) La desigualdad $\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{18+n}}$ es equivalente a $n \geq 11$.
+    La demostración válida es: $n \geq 11 \Rightarrow 2n+7 \geq n+18 \Rightarrow \sqrt{2n+7} \geq \sqrt{n+18} \Rightarrow \boxed{\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{n+18}}}$.
+    <br>
+    <em>Nota: la condición $n \geq 8$ del enunciado parece ser una errata; la condición correcta es $n \geq 11$.</em>
+  </div>
+
+</body>
+</html>

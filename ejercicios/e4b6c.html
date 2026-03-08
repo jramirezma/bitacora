@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>e4b6c</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "e4b6c",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["9", "Ejercicio 9", "ej9"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "media aritmética geométrica",
+        "AM-GM",
+        "producto de sumas"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "desigualdad (ab+xy)(ax+by) mayor 4abxy",
+        "AM-GM cuatro variables",
+        "desigualdad producto sumas",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre que para $a, b, x, y$ reales positivos cualesquiera:
+    $$(ab + xy)(ax + by) \geq 4abxy.$$</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      El lado izquierdo es un producto de dos sumas. La idea es aplicar AM-GM
+      a cada factor por separado: cada suma de dos positivos es mayor o igual
+      al doble de la raíz de su producto. Si logramos dos desigualdades del estilo
+      $A \geq 2\sqrt{P}$ y $B \geq 2\sqrt{Q}$, multiplicarlas da $AB \geq 4\sqrt{PQ}$,
+      y si $PQ = (abxy)^2$ entonces $\sqrt{PQ} = abxy$ y llegamos al resultado.
+    </p>
+    <div class="nota">
+      Aplicar AM-GM a cada factor y luego multiplicar las desigualdades.
+      El producto de desigualdades es válido cuando todos los miembros son positivos.
+    </div>
+    <p>
+      Como $a, b, x, y > 0$, ambos factores $(ab+xy)$ y $(ax+by)$ son positivos,
+      y sus raíces geométricas también. Todo está bien definido.
+    </p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$ab + xy \geq 2\sqrt{ab \cdot xy} = 2\sqrt{abxy}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM al primer factor (ejercicio 8)</div>
+      Para $a, b, x, y > 0$ se tiene $ab > 0$ y $xy > 0$.
+      Aplicamos $u + v \geq 2\sqrt{uv}$ con $u = ab$ y $v = xy$.
+    </div>
+
+    <div class="paso-dev">
+      $$ax + by \geq 2\sqrt{ax \cdot by} = 2\sqrt{abxy}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM al segundo factor (ejercicio 8)</div>
+      Aplicamos $u + v \geq 2\sqrt{uv}$ con $u = ax$ y $v = by$.
+      De nuevo $ax > 0$ y $by > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$(ab+xy)(ax+by) \geq 2\sqrt{abxy} \cdot 2\sqrt{abxy}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Producto de desigualdades</div>
+      Si $A \geq C > 0$ y $B \geq D > 0$, entonces $AB \geq CD$.
+      Ambos lados son positivos, así que el producto preserva el sentido.
+    </div>
+
+    <div class="paso-dev">
+      $$2\sqrt{abxy} \cdot 2\sqrt{abxy} = 4\,abxy$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $2\sqrt{abxy} \cdot 2\sqrt{abxy} = 4(\sqrt{abxy})^2 = 4\,abxy$,
+      ya que $abxy > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(ab+xy)(ax+by) \geq 4\,abxy}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Encadenando las dos desigualdades anteriores.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para $a, b, x, y > 0$, aplicando AM-GM a cada factor y multiplicando:
+    $$\boxed{(ab+xy)(ax+by) \geq 4\,abxy}$$
+    La igualdad se alcanza cuando $ab = xy$ y $ax = by$ simultáneamente,
+    lo que ocurre cuando $a = y$ y $b = x$ (o $a=b=x=y$).
+  </div>
+
+</body>
+</html>

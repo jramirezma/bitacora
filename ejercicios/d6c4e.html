@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>d6c4e</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "d6c4e",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["5", "Ejercicio 5", "ej5"],
+      tema: [
+        "números reales",
+        "axiomas de cuerpo",
+        "división",
+        "fracciones",
+        "inverso multiplicativo",
+        "demostración algebraica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "propiedades división números reales",
+        "demostración fracciones axiomas",
+        "suma fracciones demostración",
+        "cálculo 1 UMSA",
+        "guía práctica cálculo"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Usando la definición $\dfrac{a}{b} = ab^{-1}$, con $b \neq 0$, demuestre que:</p>
+    <p>
+      a) $\dfrac{a}{1} = a$. &nbsp;&nbsp;
+      b) $\dfrac{a+b}{c} = \dfrac{a}{c} + \dfrac{b}{c}$. &nbsp;&nbsp;
+      c) $\dfrac{a}{b} + \dfrac{c}{d} = \dfrac{ad+bc}{bd}$. &nbsp;&nbsp;
+      d) $\dfrac{1}{a} = a^{-1}$. &nbsp;&nbsp;
+      e) $\dfrac{ac}{bc} = \dfrac{a}{b}$. &nbsp;&nbsp;
+      f) $\dfrac{a}{b} \cdot \dfrac{c}{d} = \dfrac{ac}{bd}$.
+    </p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Todo el ejercicio se reduce a una sola idea: la fracción $\frac{a}{b}$ no es más que
+      $a \cdot b^{-1}$. Con esa definición, cada propiedad se demuestra expandiendo,
+      operando con los axiomas del cuerpo, y volviendo a contraer en forma de fracción.
+    </p>
+    <div class="nota">
+      La definición $\frac{a}{b} = ab^{-1}$ es el diccionario. Cada vez que veas una fracción,
+      traducila; cada vez que llegues al resultado, volvé a escribirlo como fracción.
+    </div>
+    <p>
+      Los ingredientes son los de siempre: distributividad, asociatividad, conmutatividad,
+      neutro multiplicativo, inverso multiplicativo, y los resultados de los ejercicios anteriores
+      (en particular $(ab)^{-1} = a^{-1}b^{-1}$).
+    </p>
+  </div>
+
+  <h2>Solución — a) $\ \dfrac{a}{1} = a$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a}{1} = a \cdot 1^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      $\frac{a}{b} = ab^{-1}$ con $b = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$a \cdot 1^{-1} = a \cdot 1 = a$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 4a + neutro multiplicativo</div>
+      $1^{-1} = 1$ por el ejercicio 4a. Luego $a \cdot 1 = a$ por el neutro multiplicativo.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{a}{1} = a}$$</div>
+    <div class="paso-just"><div class="titulo">Conclusión</div>Cadena directa.</div>
+  </div>
+
+  <h2>Solución — b) $\ \dfrac{a+b}{c} = \dfrac{a}{c} + \dfrac{b}{c}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a+b}{c} = (a+b)c^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      Expandimos la fracción del lado izquierdo.
+    </div>
+
+    <div class="paso-dev">
+      $$(a+b)c^{-1} = ac^{-1} + bc^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Distributividad</div>
+      $(x+y)z = xz + yz$.
+    </div>
+
+    <div class="paso-dev">
+      $$ac^{-1} + bc^{-1} = \frac{a}{c} + \frac{b}{c}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      Contraemos cada término usando $xc^{-1} = \frac{x}{c}$.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{a+b}{c} = \frac{a}{c}+\frac{b}{c}}$$</div>
+    <div class="paso-just"><div class="titulo">Conclusión</div>Cadena directa.</div>
+  </div>
+
+  <h2>Solución — c) $\ \dfrac{a}{b} + \dfrac{c}{d} = \dfrac{ad+bc}{bd}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a}{b} + \frac{c}{d} = ab^{-1} + cd^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      Expandimos ambas fracciones.
+    </div>
+
+    <div class="paso-dev">
+      $$ab^{-1} + cd^{-1} = ab^{-1}(dd^{-1}) + cd^{-1}(bb^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inverso multiplicativo</div>
+      Multiplicamos cada término por $1 = dd^{-1}$ y $1 = bb^{-1}$ respectivamente,
+      sin cambiar el valor.
+    </div>
+
+    <div class="paso-dev">
+      $$= (ad)(b^{-1}d^{-1}) + (cb)(d^{-1}b^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conmutatividad y asociatividad</div>
+      Reagrupamos factores libremente.
+    </div>
+
+    <div class="paso-dev">
+      $$= (ad)(bd)^{-1} + (bc)(bd)^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 4c</div>
+      $(bd)^{-1} = b^{-1}d^{-1}$, así que $b^{-1}d^{-1} = (bd)^{-1}$.
+    </div>
+
+    <div class="paso-dev">
+      $$= (ad + bc)(bd)^{-1} = \frac{ad+bc}{bd}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Distributividad + definición</div>
+      Factorizamos $(bd)^{-1}$ y contraemos con la definición de fracción.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}}$$</div>
+    <div class="paso-just"><div class="titulo">Conclusión</div>Cadena directa.</div>
+  </div>
+
+  <h2>Solución — d) $\ \dfrac{1}{a} = a^{-1}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{1}{a} = 1 \cdot a^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      $\frac{a}{b} = ab^{-1}$ con $a=1$.
+    </div>
+
+    <div class="paso-dev">
+      $$1 \cdot a^{-1} = a^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Neutro multiplicativo</div>
+      $1 \cdot x = x$.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{1}{a} = a^{-1}}$$</div>
+    <div class="paso-just"><div class="titulo">Conclusión</div>Cadena directa.</div>
+  </div>
+
+  <h2>Solución — e) $\ \dfrac{ac}{bc} = \dfrac{a}{b}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{ac}{bc} = (ac)(bc)^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      Expandimos. Se asume $b \neq 0$ y $c \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$(ac)(bc)^{-1} = (ac)(b^{-1}c^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 4c</div>
+      $(bc)^{-1} = b^{-1}c^{-1}$.
+    </div>
+
+    <div class="paso-dev">
+      $$= a(cc^{-1})b^{-1} = a \cdot 1 \cdot b^{-1} = ab^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Asociatividad + inverso + neutro</div>
+      Reagrupamos para juntar $c$ con $c^{-1}$; su producto es $1$, que desaparece.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{ac}{bc} = \frac{a}{b}}$$</div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      $ab^{-1} = \frac{a}{b}$.
+    </div>
+  </div>
+
+  <h2>Solución — f) $\ \dfrac{a}{b} \cdot \dfrac{c}{d} = \dfrac{ac}{bd}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a}{b} \cdot \frac{c}{d} = (ab^{-1})(cd^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      Expandimos ambas fracciones.
+    </div>
+
+    <div class="paso-dev">
+      $$(ab^{-1})(cd^{-1}) = (ac)(b^{-1}d^{-1})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conmutatividad y asociatividad</div>
+      Reagrupamos: juntamos $a$ con $c$ y $b^{-1}$ con $d^{-1}$.
+    </div>
+
+    <div class="paso-dev">
+      $$(ac)(b^{-1}d^{-1}) = (ac)(bd)^{-1} = \frac{ac}{bd}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 4c + definición</div>
+      $b^{-1}d^{-1} = (bd)^{-1}$ por el ejercicio 4c. Luego contraemos con la definición.
+    </div>
+
+    <div class="paso-dev">$$\boxed{\frac{a}{b}\cdot\frac{c}{d} = \frac{ac}{bd}}$$</div>
+    <div class="paso-just"><div class="titulo">Conclusión</div>Cadena directa.</div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Usando $\frac{a}{b} = ab^{-1}$ y los axiomas de cuerpo se demuestran las seis propiedades:
+    $$\text{a)}\ \frac{a}{1}=a \quad
+      \text{b)}\ \frac{a+b}{c}=\frac{a}{c}+\frac{b}{c} \quad
+      \text{c)}\ \frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$$
+    $$\text{d)}\ \frac{1}{a}=a^{-1} \quad
+      \text{e)}\ \frac{ac}{bc}=\frac{a}{b} \quad
+      \text{f)}\ \frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{bd}$$
+    El patrón es siempre el mismo: expandir con la definición, operar, contraer.
+  </div>
+
+</body>
+</html>

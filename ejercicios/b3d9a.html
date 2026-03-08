@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b3d9a</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "b3d9a",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["7", "Ejercicio 7", "ej7"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "suma de cuadrados",
+        "demostración de desigualdad",
+        "media aritmética geométrica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "desigualdad suma cuadrados tres variables",
+        "desigualdad Cauchy-Schwarz elemental",
+        "a cubo más b cubo mayor ab",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Utilizando el ejercicio anterior, demuestre que:</p>
+    <p>a) $a^2 + b^2 + c^2 \geq ab + ac + bc$.</p>
+    <p>b) Si $a^2 + b^2 = 1$ y $c^2 + d^2 = 1$, entonces $1 \geq ac + bd$.</p>
+    <p>c) Si $a + b = 1$, entonces $a^3 + b^3 \geq ab$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      El ejercicio 6 nos da una herramienta: para cualquier par de reales,
+      $x^2 + y^2 \geq 2xy$. La estrategia en las tres partes es aplicar esa
+      herramienta a pares bien elegidos y sumar las desigualdades obtenidas.
+    </p>
+    <div class="nota">
+      Sumar desigualdades del mismo sentido es válido: si $A \geq B$ y $C \geq D$,
+      entonces $A + C \geq B + D$. Ese es el mecanismo central de las tres partes.
+    </div>
+    <p class="chiste">Elegir bien los pares es como elegir bien los ingredientes:
+      con los mismos axiomas se puede cocinar algo mediocre o algo elegante.</p>
+  </div>
+
+  <h2>Solución — parte a) $\ a^2+b^2+c^2 \geq ab+ac+bc$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^2 + b^2 \geq 2ab$$
+      $$a^2 + c^2 \geq 2ac$$
+      $$b^2 + c^2 \geq 2bc$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 6 aplicado a tres pares</div>
+      Aplicamos $x^2 + y^2 \geq 2xy$ a los pares $(a,b)$, $(a,c)$ y $(b,c)$.
+      Cada desigualdad es válida por sí sola.
+    </div>
+
+    <div class="paso-dev">
+      $$2a^2 + 2b^2 + 2c^2 \geq 2ab + 2ac + 2bc$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de desigualdades</div>
+      Sumamos las tres desigualdades miembro a miembro. El sentido se conserva.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{a^2 + b^2 + c^2 \geq ab + ac + bc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">División por 2</div>
+      Dividimos ambos lados por $2 > 0$. Dividir por un positivo conserva el sentido.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ 1 \geq ac + bd$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^2 + c^2 \geq 2ac$$
+      $$b^2 + d^2 \geq 2bd$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 6 aplicado a dos pares</div>
+      Aplicamos $x^2 + y^2 \geq 2xy$ a los pares $(a,c)$ y $(b,d)$.
+    </div>
+
+    <div class="paso-dev">
+      $$a^2 + b^2 + c^2 + d^2 \geq 2ac + 2bd$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de desigualdades</div>
+      Sumamos miembro a miembro.
+    </div>
+
+    <div class="paso-dev">
+      $$(a^2+b^2) + (c^2+d^2) \geq 2(ac+bd)$$
+      $$1 + 1 \geq 2(ac + bd)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Sustituimos $a^2+b^2 = 1$ y $c^2+d^2 = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{1 \geq ac + bd}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">División por 2</div>
+      Dividimos $2 \geq 2(ac+bd)$ por $2 > 0$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ a^3+b^3 \geq ab$, dado $a+b=1$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^3 + b^3 = (a+b)(a^2 - ab + b^2)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factorización de suma de cubos</div>
+      $x^3 + y^3 = (x+y)(x^2 - xy + y^2)$.
+    </div>
+
+    <div class="paso-dev">
+      $$= 1 \cdot (a^2 - ab + b^2) = a^2 - ab + b^2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis $a + b = 1$</div>
+      Sustituimos $a + b = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$a^2 + b^2 \geq 2ab$$
+      $$\Rightarrow a^2 - ab + b^2 \geq ab$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 6</div>
+      Del ejercicio 6 tenemos $a^2+b^2 \geq 2ab$. Restamos $ab$ a ambos lados:
+      $a^2 - ab + b^2 \geq ab$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{a^3 + b^3 \geq ab}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Juntando: $a^3+b^3 = a^2-ab+b^2 \geq ab$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Aplicando $x^2+y^2 \geq 2xy$ a pares bien elegidos y sumando desigualdades:
+    $$\text{a)}\ a^2+b^2+c^2 \geq ab+ac+bc$$
+    $$\text{b)}\ a^2+b^2=1,\ c^2+d^2=1 \;\Rightarrow\; 1 \geq ac+bd$$
+    $$\text{c)}\ a+b=1 \;\Rightarrow\; a^3+b^3 \geq ab$$
+    En todos los casos la igualdad se alcanza cuando los valores involucrados son iguales.
+  </div>
+
+</body>
+</html>

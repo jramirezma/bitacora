@@ -1,142 +1,1282 @@
 [
   {
-    "id": "d9w4v",
-    "materia": "Física I",
-    "tema": "Cinemática",
-    "dificultad": "basico",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "cinematica",
-      "movimiento uniforme",
-      "velocidad"
+    "id": "b7k2f",
+    "materia": [
+      "Álgebra",
+      "Lógica matemática",
+      "Matemática discreta"
     ],
-    "archivo": "ejercicios/d9w4v.html",
-    "enunciado": "Un auto parte del reposo y acelera a $3 \\text{ m/s}^2$. Calcule su velocidad después de $10$ segundos y la distancia recorrida."
+    "origen": [
+      "Práctica Álgebra UMSA",
+      "Práctica",
+      "Guía UMSA"
+    ],
+    "ejercicio_nro": [
+      "23e",
+      "Ejercicio 23(e)",
+      "ej23e"
+    ],
+    "tema": [
+      "reglas de inferencia",
+      "deducción lógica",
+      "demostración formal",
+      "modus ponens",
+      "modus tollens"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "reglas de inferencia lógica",
+      "demostración lógica paso a paso",
+      "modus tollens modus ponens",
+      "álgebra UMSA lógica",
+      "deducción formal premisas"
+    ],
+    "fecha": "2026-03-07",
+    "autor": {
+      "nombre": "",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b7k2f.html",
+    "enunciado": "En cada caso, utilice las reglas de inferencia y las leyes de la lógica para demostrar la proposición indicada a partir de las premisas dadas. Justifique cada paso."
   },
   {
-    "id": "g5j2q",
-    "materia": "Cálculo II",
-    "tema": "Integrales",
-    "dificultad": "intermedio",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "integrales",
-      "integracion",
-      "calculo integral"
+    "id": "a8f1b",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
     ],
-    "archivo": "ejercicios/g5j2q.html",
-    "enunciado": "Calcule la integral $\\int x \\cdot e^{2x} \\, dx$ usando integración por partes."
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "6",
+      "Ejercicio 6",
+      "ej6"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "cuadrado no negativo",
+      "demostración de desigualdad",
+      "media aritmética geométrica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "a cuadrado más b cuadrado mayor o igual 2ab",
+      "desigualdad cuadrados demostración",
+      "cuadrado diferencia no negativo",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/a8f1b.html",
+    "enunciado": "Demuestre que $(a-b)^2 \\geq 0$ implica $a^2 + b^2 \\geq 2ab$."
   },
   {
-    "id": "c7r2t",
-    "materia": "Álgebra Lineal",
-    "tema": "Matrices",
-    "dificultad": "intermedio",
-    "fecha": "2026-02-21",
-    "tipo": "examen",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "matrices",
-      "determinante",
-      "matriz inversa"
+    "id": "b3d9a",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
     ],
-    "archivo": "ejercicios/c7r2t.html",
-    "enunciado": "Calcule la inversa de la matriz $A = \\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$ si existe."
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "7",
+      "Ejercicio 7",
+      "ej7"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "suma de cuadrados",
+      "demostración de desigualdad",
+      "media aritmética geométrica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "desigualdad suma cuadrados tres variables",
+      "desigualdad Cauchy-Schwarz elemental",
+      "a cubo más b cubo mayor ab",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b3d9a.html",
+    "enunciado": "Utilizando el ejercicio anterior, demuestre que: a) $a^2 + b^2 + c^2 \\geq ab + ac + bc$. b) Si $a^2 + b^2 = 1$ y $c^2 + d^2 = 1$, entonces $1 \\geq ac + bd$. c) Si $a + b = 1$, entonces $a^3 + b^3 \\geq"
   },
   {
-    "id": "f3h6p",
-    "materia": "Estadística I",
-    "tema": "Probabilidad",
-    "dificultad": "basico",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "probabilidad",
-      "dado",
-      "espacio muestral"
+    "id": "b4e2a",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
     ],
-    "archivo": "ejercicios/f3h6p.html",
-    "enunciado": "Se lanza un dado balanceado. ¿Cuál es la probabilidad de obtener un número par?"
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "1",
+      "Ejercicio 1",
+      "ej1"
+    ],
+    "tema": [
+      "números reales",
+      "axiomas de cuerpo",
+      "ley de cancelación",
+      "adición",
+      "demostración algebraica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "ley de cancelación adición",
+      "demostración a+b=a+c implica b=c",
+      "axiomas números reales",
+      "cálculo 1 UMSA",
+      "guía práctica cálculo"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b4e2a.html",
+    "enunciado": "Demuestre la ley de cancelación para la adición: si $a + b = a + c$, entonces $b = c$."
+  },
+  {
+    "id": "c2e7f",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "8",
+      "Ejercicio 8",
+      "ej8"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "media aritmética",
+      "media geométrica",
+      "desigualdad AM-GM",
+      "raíces"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "desigualdad media aritmética geométrica",
+      "AM-GM demostración",
+      "a más b mayor o igual 2 raiz ab",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c2e7f.html",
+    "enunciado": "Demuestre que $\\left(\\sqrt{a} - \\sqrt{b}\\right)^2 \\geq 0$ implica que $a + b \\geq 2\\sqrt{ab}$."
+  },
+  {
+    "id": "c7d1f",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "2",
+      "Ejercicio 2",
+      "ej2"
+    ],
+    "tema": [
+      "números reales",
+      "axiomas de cuerpo",
+      "ley de cancelación",
+      "inverso aditivo",
+      "neutro aditivo",
+      "demostración algebraica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "a por 0 es 0 demostración",
+      "menos de menos a es a",
+      "inverso aditivo de cero",
+      "axiomas números reales",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c7d1f.html",
+    "enunciado": "Aplicando el ejercicio anterior, demuestre lo siguiente: a) $a \\cdot 0 = 0$. &nbsp;&nbsp;&nbsp; b) $-0 = 0$. &nbsp;&nbsp;&nbsp; c) $-(-a) = a$. &nbsp;&nbsp;&nbsp; d) $(-1)a = -a$."
+  },
+  {
+    "id": "d5a3e",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "10",
+      "Ejercicio 10",
+      "ej10"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "media aritmética geométrica",
+      "AM-GM",
+      "reales positivos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "a/b + b/a mayor o igual 2",
+      "desigualdad suma cocientes",
+      "AM-GM aplicaciones",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d5a3e.html",
+    "enunciado": "Sean $a, b, c, d$ reales positivos, demuestre que: a) $\\dfrac{a}{b} + \\dfrac{b}{a} \\geq 2$. b) $(a+b)(a+c)(b+c) \\geq 8abc$. c) $\\dfrac{a}{b} + \\dfrac{b}{c} + \\dfrac{c}{d} + \\dfrac{d}{a} \\geq 4$. d) $a"
+  },
+  {
+    "id": "d6c4e",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "5",
+      "Ejercicio 5",
+      "ej5"
+    ],
+    "tema": [
+      "números reales",
+      "axiomas de cuerpo",
+      "división",
+      "fracciones",
+      "inverso multiplicativo",
+      "demostración algebraica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "propiedades división números reales",
+      "demostración fracciones axiomas",
+      "suma fracciones demostración",
+      "cálculo 1 UMSA",
+      "guía práctica cálculo"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d6c4e.html",
+    "enunciado": "Usando la definición $\\dfrac{a}{b} = ab^{-1}$, con $b \\neq 0$, demuestre que: a) $\\dfrac{a}{1} = a$. &nbsp;&nbsp; b) $\\dfrac{a+b}{c} = \\dfrac{a}{c} + \\dfrac{b}{c}$. &nbsp;&nbsp; c) $\\dfrac{a}{b} + \\df"
+  },
+  {
+    "id": "e4b6c",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "9",
+      "Ejercicio 9",
+      "ej9"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "media aritmética geométrica",
+      "AM-GM",
+      "producto de sumas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "desigualdad (ab+xy)(ax+by) mayor 4abxy",
+      "AM-GM cuatro variables",
+      "desigualdad producto sumas",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/e4b6c.html",
+    "enunciado": "Demuestre que para $a, b, x, y$ reales positivos cualesquiera: $$(ab + xy)(ax + by) \\geq 4abxy.$$"
+  },
+  {
+    "id": "e9b3d",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "3",
+      "Ejercicio 3",
+      "ej3"
+    ],
+    "tema": [
+      "números reales",
+      "axiomas de cuerpo",
+      "ley de cancelación",
+      "multiplicación",
+      "inverso multiplicativo",
+      "demostración algebraica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "ley de cancelación multiplicación",
+      "demostración ab=ac implica b=c",
+      "inverso multiplicativo",
+      "axiomas números reales",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/e9b3d.html",
+    "enunciado": "Demuestre la ley de cancelación para la multiplicación: si $ab = ac$ y $a \\neq 0$, entonces $b = c$."
+  },
+  {
+    "id": "f2a8c",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "4",
+      "Ejercicio 4",
+      "ej4"
+    ],
+    "tema": [
+      "números reales",
+      "axiomas de cuerpo",
+      "inverso multiplicativo",
+      "ley de cancelación multiplicativa",
+      "demostración algebraica"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "inverso de 1 es 1",
+      "inverso del inverso",
+      "inverso del producto",
+      "axiomas números reales",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f2a8c.html",
+    "enunciado": "Aplicando el ejercicio anterior, demuestre lo siguiente: a) $1^{-1} = 1$. &nbsp;&nbsp;&nbsp; b) $(a^{-1})^{-1} = a$. &nbsp;&nbsp;&nbsp; c) $(ab)^{-1} = a^{-1}b^{-1}$."
+  },
+  {
+    "id": "f7c2b",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "11",
+      "Ejercicio 11",
+      "ej11"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "media aritmética geométrica",
+      "AM-GM",
+      "reales positivos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "desigualdad s-a s-b s-c s-d",
+      "AM-GM cuatro factores",
+      "desigualdad producto restos suma",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f7c2b.html",
+    "enunciado": "Si $a, b, c, d$ son reales positivos tales que $s = a+b+c+d$, demuestre que: $$(s-a)(s-b)(s-c)(s-d) \\geq 81\\,abcd.$$"
+  },
+  {
+    "id": "g3d8a",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "12",
+      "Ejercicio 12",
+      "ej12"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "Cauchy-Schwarz",
+      "producto interno",
+      "vectores unitarios"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "desigualdad Cauchy-Schwarz",
+      "ax+by+cz menor o igual 1",
+      "vectores unitarios desigualdad",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/g3d8a.html",
+    "enunciado": "Si $a^2+b^2+c^2 = 1$ y $x^2+y^2+z^2 = 1$, entonces $1 \\geq ax+by+cz$."
+  },
+  {
+    "id": "h1e5d",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "13",
+      "Ejercicio 13",
+      "ej13"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "orden en los reales",
+      "demostración de desigualdad",
+      "comparación de fracciones"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "desigualdad 1/n3 menor 1/n2",
+      "comparación fracciones enteros",
+      "desigualdad raíces",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/h1e5d.html",
+    "enunciado": "Demuestre lo siguiente: a) Si $n > 1$, entonces $\\dfrac{1}{n^3} b) Si $n > 1$, entonces $\\dfrac{2}{n^3} c) Si $n \\geq 8$, entonces $\\dfrac{1}{\\sqrt{2n+7}} \\leq \\dfrac{1}{\\sqrt{18+n}}$."
+  },
+  {
+    "id": "i2f4c",
+    "materia": [
+      "Cálculo I",
+      "MAT-132",
+      "INF-115",
+      "Análisis matemático",
+      "Cálculo 1"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "14",
+      "Ejercicio 14",
+      "ej14"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "mínimo de funciones",
+      "completar cuadrados",
+      "AM-GM",
+      "cota inferior"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "mínimo función cuadrática completar cuadrado",
+      "cota inferior función real",
+      "AM-GM mínimo",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/i2f4c.html",
+    "enunciado": "Encuentre un número $m$ con la propiedad de que para todo $x \\in \\mathbb{R}$: a) $x^2 + 6x + 15 \\geq m$. b) $x^2 - x + 1 \\geq m$. c) $x^6 + \\dfrac{1}{x^2} \\geq m$. d) $x^{10} + \\dfrac{1}{x^4} + \\dfrac"
+  },
+  {
+    "id": "cb3f2",
+    "materia": [
+      "Programación Orientada a Objetos",
+      "POO",
+      "Programación II"
+    ],
+    "tema": [
+      "Clases y objetos",
+      "Pseudocódigo",
+      "Atributos y métodos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "POO pseudocódigo",
+      "clases objetos Bolivia",
+      "comparar atributos método",
+      "carnavales Bolivia programación",
+      "instanciar objetos pseudocódigo"
+    ],
+    "fecha": "2026-03-05",
+    "autor": {
+      "nombre": "Estudiante",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/cb3f2.html",
+    "enunciado": "a) Identificar 5 clases donde cada clase debe tener 5 atributos significativos. b) Implementar dos clases definidas en el inciso a. b.1) Instanciar dos objetos para cada clase. b.2) Para los objetos d"
+  },
+  {
+    "id": "d82a1",
+    "materia": [
+      "Programación Orientada a Objetos",
+      "POO",
+      "Programación II"
+    ],
+    "tema": [
+      "Clases y objetos",
+      "Pseudocódigo",
+      "Métodos y atributos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "POO pseudocódigo",
+      "clase boligrafo",
+      "instanciar objetos",
+      "valor total objetos",
+      "objeto mas caro pseudocódigo"
+    ],
+    "fecha": "2026-03-05",
+    "autor": {
+      "nombre": "Estudiante",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d82a1.html",
+    "enunciado": "a) Implementar la clase Bolígrafo con sus atributos y métodos correspondientes. b) Instanciar 3 objetos de dicha clase y cargar sus datos. c) Mostrar el valor total de los 3 bolígrafos. d) Verificar s"
+  },
+  {
+    "id": "b7e2a",
+    "materia": [
+      "Análisis Matemático",
+      "Cálculo 1",
+      "Matemáticas"
+    ],
+    "tema": [
+      "Inecuaciones con valor absoluto",
+      "Desigualdades absolutas",
+      "Inecuaciones racionales con módulo"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuacion valor absoluto",
+      "desigualdad con modulo",
+      "inecuacion racional",
+      "valor absoluto cociente",
+      "resolver inecuacion absoluta"
+    ],
+    "fecha": "2026-03-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b7eda.html",
+    "enunciado": "Resolver la inecuación: $\\left|\\dfrac{x-1}{x-3}\\right| \\leq \\left|\\dfrac{x}{x+2}\\right|$"
   },
   {
     "id": "a3f7c",
-    "materia": "Cálculo I",
-    "tema": "Números Reales",
-    "dificultad": "basico",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "numeros reales",
-      "ley de cancelacion",
-      "algebra basica"
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
     ],
+    "tema": [
+      "principio de inclusion-exclusion",
+      "teoria de conjuntos",
+      "cardinalidad de intersecciones",
+      "logica de conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "inclusion-exclusion",
+      "logica",
+      "conjuntos",
+      "cardinalidad",
+      "interseccion",
+      "algebra"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
     "archivo": "ejercicios/a3f7c.html",
-    "enunciado": "Demuestre la ley de cancelación para la adición en los números reales: si $a + b = a + c$, entonces $b = c$."
+    "enunciado": "Si se asume que el 70% de los hombres son inteligentes, el 70% guapos y el 70% buenos. Como mínimo, en un grupo de 100 hombres, ¿cuántos de ellos serán a la vez inteligentes, guapos y buenos?"
   },
   {
-    "id": "i9k7t",
-    "materia": "Álgebra Lineal",
-    "tema": "Sistemas de Ecuaciones",
-    "dificultad": "intermedio",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "sistemas de ecuaciones",
-      "gauss",
-      "metodo de sustitucion"
+    "id": "b8d2e",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
     ],
-    "archivo": "ejercicios/i9k7t.html",
-    "enunciado": "Resuelva el sistema de ecuaciones: $\\begin{cases} x + y = 5 \\\\ 2x - y = 1 \\end{cases}$."
+    "tema": [
+      "razonamiento logico",
+      "problema de jarras",
+      "logica combinatoria",
+      "pensamiento algoritmico"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "jarras de agua",
+      "problema de medicion",
+      "razonamiento logico",
+      "logica",
+      "algoritmo",
+      "combinatoria"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b8d2e.html",
+    "enunciado": "Juan necesita recoger 5 litros de agua de una laguna, pero solo dispone de dos jarras, una de 7 litros y otra de 4 litros. Describa el proceder de Juan para lograr su cometido."
   },
   {
-    "id": "j2m5w",
-    "materia": "Cálculo I",
-    "tema": "Límites",
-    "dificultad": "basico",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "limites",
-      "calculo",
-      "funciones"
+    "id": "c1a9f",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
     ],
-    "archivo": "ejercicios/j2m5w.html",
-    "enunciado": "Calcule el límite $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$."
+    "tema": [
+      "logica proposicional",
+      "tablas de verdad",
+      "razonamiento logico",
+      "paradojas logicas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "logica proposicional",
+      "sincero mentiroso",
+      "vacilonio",
+      "razonamiento logico",
+      "implicacion",
+      "tablas de verdad"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c1a9f.html",
+    "enunciado": "Suponga que el vacilonio A dice: \"yo soy un mentiroso o, en caso contrario, uno más uno es igual a tres\". ¿Qué se puede concluir?"
+  },
+  {
+    "id": "d4b1c",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "logica proposicional",
+      "razonamiento logico",
+      "deduccion logica",
+      "tablas de verdad"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "logica proposicional",
+      "razonamiento logico",
+      "deduccion",
+      "verdad y mentira",
+      "problema de detectives",
+      "vacilonia"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d4b1c.html",
+    "enunciado": "Un crimen es cometido por una persona y hay 4 sospechosos: Juan, Andrés, Pedro y Rafael. Al ser interrogados, cada uno declara: Andrés: \"Pedro es culpable\". Rafael: \"yo no soy culpable\". Pedro: \"Juan "
+  },
+  {
+    "id": "e7f3a",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "logica proposicional",
+      "valor de verdad",
+      "conectivas logicas",
+      "tablas de verdad"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "logica proposicional",
+      "valor de verdad",
+      "conectivas logicas",
+      "implicacion",
+      "bicondicional",
+      "conjuncion",
+      "disyuncion",
+      "negacion"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/e7f3a.html",
+    "enunciado": "Si $P$, $Q$, $R$ son verdaderas y $S$, $T$ son falsas, determine el valor de verdad de las proposiciones: (a) $[P \\to (R \\to T)] \\leftrightarrow [(\\neg P \\land S) \\to (Q \\to \\neg T)]$ (b) $[(\\neg T \\l"
+  },
+  {
+    "id": "f2c8d",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "tablas de verdad",
+      "tautologia contradiccion contingencia",
+      "logica proposicional",
+      "clasificacion de proposiciones"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "tabla de verdad",
+      "tautologia",
+      "contradiccion",
+      "contingencia",
+      "logica proposicional",
+      "conectivas logicas"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f2c8d.html",
+    "enunciado": "Determine, utilizando tablas de verdad, si cada proposición compuesta es tautología, contradicción o contingencia. (a) $\\neg(P \\to Q) \\leftrightarrow (P \\land \\neg Q)$ (b) $R \\to [(\\neg P \\lor Q) \\lan"
+  },
+  {
+    "id": "g5e2b",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "implicacion tautologica",
+      "contraejemplo logico",
+      "logica proposicional",
+      "tablas de verdad"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "implicacion tautologica",
+      "contraejemplo",
+      "logica proposicional",
+      "tablas de verdad",
+      "consecuencia logica"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/g5e2b.html",
+    "enunciado": "Determine una asignación de valores de verdad para $A$, $B$, $C$, $D$ y $E$ que verifique que $$[(A \\to (B \\lor C)) \\land (C \\to (D \\land E)) \\land \\neg D]$$ no implica tautológicamente a $A \\to E$."
+  },
+  {
+    "id": "h3k7p",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "equivalencia tautologica",
+      "tablas de verdad",
+      "logica proposicional",
+      "bicondicional tautologico"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "equivalencia tautologica",
+      "tablas de verdad",
+      "logica proposicional",
+      "bicondicional",
+      "tautologia"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/h3k7p.html",
+    "enunciado": "Utilice tablas de verdad para determinar si la proposición $(P \\to Q) \\lor [(\\neg Q \\to \\neg P) \\land \\neg R]$ es tautológicamente equivalente a la proposición $\\neg(P \\land \\neg Q)$."
+  },
+  {
+    "id": "j4m9n",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "logica proposicional",
+      "valor de verdad",
+      "implicacion",
+      "conectivas logicas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "logica proposicional",
+      "valor de verdad",
+      "implicacion falsa",
+      "conectivas logicas",
+      "deduccion"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/j4m9n.html",
+    "enunciado": "Si $P \\to Q$ es falsa, determine el valor de verdad de la proposición $$[(P \\lor R) \\land \\neg Q] \\to [(\\neg P \\land S) \\to (T \\lor P)]$$"
+  },
+  {
+    "id": "k6r2w",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "logica proposicional",
+      "valor de verdad",
+      "implicacion",
+      "conectivas logicas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "logica proposicional",
+      "valor de verdad",
+      "conjuncion verdadera",
+      "conectivas logicas",
+      "deduccion"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/k6r2w.html",
+    "enunciado": "Si $(P \\to Q) \\land R$ es verdadera, determine el valor de verdad de la proposición $$[(\\neg P \\lor T) \\lor Q] \\land (\\neg R \\to S)$$"
+  },
+  {
+    "id": "m1t5q",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "implicacion tautologica",
+      "equivalencia tautologica",
+      "tablas de verdad",
+      "logica proposicional"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "implicacion tautologica",
+      "equivalencia tautologica",
+      "tablas de verdad",
+      "logica proposicional",
+      "tautologia"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/m1t5q.html",
+    "enunciado": "Utilice tablas de verdad para comprobar que: (a) $[(Q \\to R) \\land (\\neg Q \\to S)] \\Rightarrow (R \\lor S)$ (b) $[\\neg P \\lor (Q \\to R)] \\Longleftrightarrow [\\neg(P \\land Q) \\lor R]$"
+  },
+  {
+    "id": "n8v3x",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "simbolizacion",
+      "lenguaje natural a logica",
+      "logica proposicional",
+      "traduccion logica"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "simbolizacion logica",
+      "lenguaje natural",
+      "logica proposicional",
+      "traduccion",
+      "condicion necesaria",
+      "condicion suficiente"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/n8v3x.html",
+    "enunciado": "Considere las proposiciones $P$: Héctor estudia; $Q$: Felipe estudia; $R$: Héctor juega fútbol; $S$: Felipe juega fútbol; $T$: Héctor invita a Felipe a jugar fútbol. Simbolice las proposiciones: (a) H"
+  },
+  {
+    "id": "p2c6y",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "simbolizacion",
+      "lenguaje natural a logica",
+      "logica proposicional",
+      "traduccion logica"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "simbolizacion logica",
+      "lenguaje natural",
+      "logica proposicional",
+      "condicion necesaria",
+      "condicion suficiente",
+      "bicondicional"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/p2c6y.html",
+    "enunciado": "Considere las proposiciones $P$: se nombra presidente; $Q$: la mayoría vota por él; $R$: tiene buena salud; $S$: habrá una crisis de gobierno. Simbolice las siguientes proposiciones: (a) Una condición"
+  },
+  {
+    "id": "q9d4z",
+    "materia": [
+      "algebra",
+      "matematica discreta",
+      "logica matematica"
+    ],
+    "tema": [
+      "simplificacion logica",
+      "leyes del algebra de proposiciones",
+      "logica proposicional",
+      "equivalencias logicas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "simplificacion logica",
+      "leyes logica",
+      "de morgan",
+      "absorcion",
+      "distribucion",
+      "equivalencias logicas"
+    ],
+    "fecha": "2026-02-28",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/q9d4z.html",
+    "enunciado": "Simplifique las siguientes expresiones: a) $[(\\neg P \\lor Q) \\land \\neg R] \\to [(\\neg Q \\land R) \\lor P]$ b) $(\\neg P \\land Q) \\lor [\\neg P \\land \\neg(Q \\land R)] \\lor \\neg(R \\to P)$ c) $[P \\to (Q \\la"
   },
   {
     "id": "e1x8z",
-    "materia": "Matemáticas I",
-    "tema": "Conjuntos",
-    "dificultad": "basico",
+    "materia": [
+      "Matemáticas I"
+    ],
+    "tema": [
+      "Conjuntos"
+    ],
+    "dificultad": [
+      "basico"
+    ],
     "fecha": "2026-02-21",
     "tipo": "practica",
     "autor": {
@@ -150,43 +1290,5 @@
     ],
     "archivo": "ejercicios/e1x8z.html",
     "enunciado": "Sean $A = \\{1, 2, 3, 4\\}$ y $B = \\{3, 4, 5, 6\\}$. Calcule $A \\cup B$ y $A \\cap B$."
-  },
-  {
-    "id": "b5k9m",
-    "materia": "Cálculo I",
-    "tema": "Derivadas",
-    "dificultad": "intermedio",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "derivadas",
-      "regla de la cadena",
-      "calculo diferencial"
-    ],
-    "archivo": "ejercicios/b5k9m.html",
-    "enunciado": "Calcule la derivada de la función $f(x) = \\sin(x^2 + 1) \\cdot e^{3x}$."
-  },
-  {
-    "id": "h7n4s",
-    "materia": "Física II",
-    "tema": "Campo Eléctrico",
-    "dificultad": "intermedio",
-    "fecha": "2026-02-21",
-    "tipo": "practica",
-    "autor": {
-      "nombre": "ChatGPT",
-      "modelo": "o3-mini"
-    },
-    "seo_keywords": [
-      "campo electrico",
-      "carga electrica",
-      "ley de coulomb"
-    ],
-    "archivo": "ejercicios/h7n4s.html",
-    "enunciado": "Dos cargas de $+2 \\mu\\text{C}$ y $-3 \\mu\\text{C}$ están separadas por $0.1$ m. Calcule la fuerza eléctrica entre ellas."
   }
 ]

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>d4b1c</title>
+  <script>
+    window.EJERCICIO = {
+      id: "d4b1c",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "logica proposicional",
+        "razonamiento logico",
+        "deduccion logica",
+        "tablas de verdad"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "logica proposicional",
+        "razonamiento logico",
+        "deduccion",
+        "verdad y mentira",
+        "problema de detectives",
+        "vacilonia"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .93rem;
+      margin: 6px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      Un crimen es cometido por una persona y hay 4 sospechosos: Juan, Andrés, Pedro y Rafael.
+      Al ser interrogados, cada uno declara:
+    </p>
+    <p>
+      Andrés: "Pedro es culpable".<br>
+      Rafael: "yo no soy culpable".<br>
+      Pedro: "Juan es culpable".<br>
+      Juan: "Pedro miente cuando dice que yo soy culpable".
+    </p>
+    <p>Si se sabe que solo uno dice la verdad, ¿quién es el culpable?</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Hay cuatro sospechosos y exactamente uno cometió el crimen. Cada uno hizo una declaración,
+      y se nos dice que exactamente una de las cuatro declaraciones es verdadera. La estrategia
+      natural es probar cada caso: suponer que cada sospechoso es el culpable y ver cuantas
+      declaraciones resultan verdaderas. El caso correcto sera el unico que deje exactamente
+      una declaracion verdadera.
+    </p>
+    <div class="nota">
+      La declaracion de Juan merece atencion especial: "Pedro miente cuando dice que yo soy
+      culpable" es equivalente a decir "yo no soy culpable". Juan y Pedro hacen afirmaciones
+      opuestas sobre lo mismo, lo que significa que exactamente uno de los dos dice la verdad,
+      sin importar quien sea el culpable.
+    </div>
+    <p>
+      Esto ya nos da una restriccion poderosa: como Juan y Pedro siempre tienen valores de
+      verdad opuestos, entre ellos solos ya hay exactamente una verdad. Para que en total
+      haya solo una verdad, Andres y Rafael deben mentir los dos.
+    </p>
+    <p class="chiste">(Cuatro sospechosos, uno dice la verdad, y todos tienen cara de inocentes. Suena a lunes cualquiera en Vacilonia.)</p>
+  </div>
+
+  <h2>Solución</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1 -->
+    <div class="paso-dev">
+      Declaraciones:<br><br>
+      $D_A$: "Pedro es culpable" <em>(Andrés)</em><br>
+      $D_R$: "Yo no soy culpable" <em>(Rafael)</em><br>
+      $D_P$: "Juan es culpable" <em>(Pedro)</em><br>
+      $D_J$: "Pedro miente sobre Juan" $\equiv$ "Juan no es culpable" <em>(Juan)</em><br><br>
+      Condicion: exactamente una de $\{D_A, D_R, D_P, D_J\}$ es verdadera.
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simbolización</div>
+      Reescribimos cada declaracion en terminos claros. La de Juan parece complicada
+      pero no lo es: decir "Pedro miente cuando dice que Juan es culpable" es lo mismo
+      que decir "Juan no es culpable". Son la misma afirmacion con distintas palabras.
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="paso-dev">
+      $D_P$ y $D_J$ son contradictorias:<br><br>
+      $D_P$: "Juan es culpable"<br>
+      $D_J$: "Juan no es culpable"<br><br>
+      $\Rightarrow$ Siempre exactamente una de las dos es verdadera.<br><br>
+      Para que el total sea exactamente 1 verdad:<br><br>
+      $D_A$ debe ser falsa $\Rightarrow$ Pedro no es culpable.<br>
+      $D_R$ debe ser falsa $\Rightarrow$ Rafael es culpable.
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Restriccion clave</div>
+      Pedro y Juan dicen cosas opuestas sobre lo mismo. En logica, dos proposiciones
+      contradictorias no pueden ser ambas verdaderas ni ambas falsas: siempre una
+      es verdadera y la otra falsa. Eso consume el unico cupo de verdad disponible.
+      Por lo tanto Andres y Rafael tienen que estar mintiendo los dos, obligatoriamente.
+      Si Rafael miente al decir "no soy culpable", entonces Rafael es culpable.
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="paso-dev">
+      Si Rafael es culpable, verificamos las cuatro declaraciones:<br><br>
+      <table>
+        <tr><th>Quien</th><th>Declaracion</th><th>Valor</th></tr>
+        <tr><td>Andrés</td><td>Pedro es culpable</td><td>F</td></tr>
+        <tr><td>Rafael</td><td>Yo no soy culpable</td><td>F</td></tr>
+        <tr><td>Pedro</td><td>Juan es culpable</td><td>F</td></tr>
+        <tr><td>Juan</td><td>Juan no es culpable</td><td>V</td></tr>
+      </table>
+      <br>
+      Total de verdades: 1. ✓
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Verificación</div>
+      Siempre hay que verificar. Suponemos que Rafael es el culpable y evaluamos
+      cada declaracion: Andres dice que Pedro es culpable (falso), Rafael dice que
+      el no es culpable (falso, porque si lo es), Pedro dice que Juan es culpable
+      (falso), y Juan dice que Juan no es culpable (verdadero, porque el culpable
+      es Rafael). Una sola verdad. Cuadra perfectamente.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El culpable es <strong>Rafael</strong>.
+    <br><br>
+    La clave del razonamiento fue notar que las declaraciones de Pedro y Juan son
+    contradictorias entre si, lo que garantiza exactamente una verdad entre ellas.
+    Eso obliga a que Andres y Rafael mientan, y la mentira de Rafael
+    ("yo no soy culpable") lo delata directamente.
+  </div>
+
+</body>
+</html>

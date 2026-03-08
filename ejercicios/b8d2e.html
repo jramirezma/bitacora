@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b8d2e</title>
+  <script>
+    window.EJERCICIO = {
+      id: "b8d2e",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "razonamiento logico",
+        "problema de jarras",
+        "logica combinatoria",
+        "pensamiento algoritmico"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "jarras de agua",
+        "problema de medicion",
+        "razonamiento logico",
+        "logica",
+        "algoritmo",
+        "combinatoria"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .93rem;
+      margin: 4px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      Juan necesita recoger 5 litros de agua de una laguna, pero solo dispone de dos jarras,
+      una de 7 litros y otra de 4 litros. Describa el proceder de Juan para lograr su cometido.
+    </p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Juan no tiene jarra de 5 litros, ni balanza, ni nada elegante. Solo tiene una de 7 y una de 4,
+      y necesita exactamente 5. La clave es que llenando y vaciando entre jarras se pueden
+      obtener cantidades que ninguna jarra puede medir directamente.
+    </p>
+    <div class="nota">
+      Las únicas operaciones válidas son tres: llenar una jarra desde la laguna hasta el tope,
+      vaciar una jarra completamente de vuelta a la laguna, y trasvasar el contenido de una
+      jarra a la otra hasta que la que recibe se llene o la que vierte se vacíe.
+    </div>
+    <p>
+      El estado del sistema en cada momento se describe con un par $(A, B)$, donde $A$ es el
+      contenido de la jarra de 7 litros y $B$ el de la de 4. El estado inicial es $(0, 0)$
+      y el objetivo es llegar a cualquier estado donde $A = 5$ o $B = 5$. Como $B$ tiene
+      capacidad 4, el objetivo es necesariamente $A = 5$.
+    </p>
+    <p>
+      ¿Por qué es posible? Porque $\gcd(7, 4) = 1$, que divide a 5. El teorema de Bezout
+      garantiza que cualquier múltiplo del $\gcd$ es alcanzable combinando las dos capacidades.
+      Pero no hace falta saber eso para resolver el problema: con ensayo sistemático alcanza.
+    </p>
+    <p class="chiste">(Juan claramente no fue al supermercado a comprar una jarra de 5 litros. Respetamos su método.)</p>
+  </div>
+
+  <h2>Solución</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1 -->
+    <div class="paso-dev">
+      <table>
+        <tr><th>Acción</th><th>Jarra 7 L</th><th>Jarra 4 L</th></tr>
+        <tr><td>Estado inicial</td><td>0</td><td>0</td></tr>
+        <tr><td>Llenar jarra de 4</td><td>0</td><td>4</td></tr>
+        <tr><td>Trasvasar 4 → 7</td><td>4</td><td>0</td></tr>
+        <tr><td>Llenar jarra de 4</td><td>4</td><td>4</td></tr>
+        <tr><td>Trasvasar 4 → 7 (caben 3)</td><td>7</td><td>1</td></tr>
+        <tr><td>Vaciar jarra de 7</td><td>0</td><td>1</td></tr>
+        <tr><td>Trasvasar 4 → 7</td><td>1</td><td>0</td></tr>
+        <tr><td>Llenar jarra de 4</td><td>1</td><td>4</td></tr>
+        <tr><td>Trasvasar 4 → 7</td><td>5</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Secuencia de operaciones</div>
+      <p>Cada fila es un estado $(A, B)$ del sistema. Las únicas operaciones usadas son
+      llenar desde la laguna, vaciar a la laguna y trasvasar entre jarras.</p>
+      <p>El trasvasar siempre vierte todo lo posible: se detiene cuando la jarra receptora
+      se llena o la jarra fuente se vacía, lo que ocurra primero.</p>
+      <p>En el paso 5, la jarra de 7 solo puede recibir 3 litros más (ya tiene 4),
+      por eso queda 1 litro en la de 4. Ese litro "sobrante" es el que eventualmente
+      permite construir el 5.</p>
+      <p>Al final, la jarra de 7 contiene exactamente 5 litros. Mision cumplida.</p>
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> En 8 operaciones, Juan obtiene exactamente 5 litros en la jarra de 7:
+    $$(0,0) \to (0,4) \to (4,0) \to (4,4) \to (7,1) \to (0,1) \to (1,0) \to (1,4) \to (5,0)$$
+    Existe también una solución alternativa llenando primero la jarra de 7, que requiere 6 operaciones:
+    $$(0,0) \to (7,0) \to (3,4) \to (3,0) \to (0,3) \to (7,3) \to (6,4) \to (6,0) \to (5,1)$$
+  </div>
+
+</body>
+</html>

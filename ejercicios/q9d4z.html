@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>q9d4z</title>
+  <script>
+    window.EJERCICIO = {
+      id: "q9d4z",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "simplificacion logica",
+        "leyes del algebra de proposiciones",
+        "logica proposicional",
+        "equivalencias logicas"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "simplificacion logica",
+        "leyes logica",
+        "de morgan",
+        "absorcion",
+        "distribucion",
+        "equivalencias logicas"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .subtitulo {
+      font-family: sans-serif;
+      font-size: .88rem;
+      font-weight: bold;
+      margin: 2rem 0 .2rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 6px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 10px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 10px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .resultado-final p { margin: .25rem 0; }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>Simplifique las siguientes expresiones:</p>
+  <p>
+    a) $[(\neg P \lor Q) \land \neg R] \to [(\neg Q \land R) \lor P]$<br>
+    b) $(\neg P \land Q) \lor [\neg P \land \neg(Q \land R)] \lor \neg(R \to P)$<br>
+    c) $[P \to (Q \land P)] \lor [\neg Q \land (P \lor Q)]$<br>
+    d) $\neg Q \lor \neg[\neg[(P \land Q) \lor (P \land \neg Q)] \lor Q] \land P$<br>
+    e) $[(P \lor Q) \land \neg(R \lor P)] \lor [(R \land Q) \lor P]$<br>
+    f) $\neg[(\neg P \lor \neg Q) \land (\neg Q \lor P)] \land (\neg Q \lor R)$<br>
+    g) $(\neg P \land Q) \lor [\neg(Q \land R) \land \neg P] \lor (P \land \neg R)$<br>
+    h) $\neg[(Q \lor P) \land \neg[(\neg P \land (\neg Q \land R)) \land (P \lor R)]]$<br>
+    i) $\neg[\neg[\neg[(\neg P \lor (\neg Q \lor R)] \lor (S \land R)] \lor (Q \land P)]]$<br>
+    j) $(P \to \neg Q) \land [[\neg(R \lor \neg P) \land (Q \lor P)] \lor (R \land P)]$
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Simplificar una expresion logica es reducirla a su forma mas compacta usando las
+    leyes del algebra proposicional. El proceso es parecido a simplificar una expresion
+    algebraica: se aplican identidades conocidas paso a paso hasta que no queda nada
+    mas que eliminar.
+  </p>
+  <div class="nota">
+    Las leyes mas utiles para este ejercicio son: doble negacion ($\neg\neg A \equiv A$),
+    De Morgan ($\neg(A \land B) \equiv \neg A \lor \neg B$ y $\neg(A \lor B) \equiv \neg A \land \neg B$),
+    absorcion ($A \lor (A \land B) \equiv A$), idempotencia ($A \lor A \equiv A$),
+    implicacion ($A \to B \equiv \neg A \lor B$), complemento ($A \lor \neg A \equiv V$
+        y $A \land \neg A \equiv F$), y dominio ($A \lor V \equiv V$, $A \land F \equiv F$).
+    En cada paso se indica cual se usa.
+  </div>
+  <p class="chiste">(Diez expresiones para simplificar. El que termina primero claramente no tiene vida social, pero le va bien en los examenes.)</p>
+</div>
+
+<h2>Solución</h2>
+
+<!-- ===== INCISO A ===== -->
+<p class="subtitulo">a) $[(\neg P \lor Q) \land \neg R] \to [(\neg Q \land R) \lor P]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $[(\neg P \lor Q) \land \neg R] \to [(\neg Q \land R) \lor P]$<br><br>
+    $\equiv \neg[(\neg P \lor Q) \land \neg R] \lor [(\neg Q \land R) \lor P]$<br><br>
+    $\equiv [(P \land \neg Q) \lor R] \lor [(\neg Q \land R) \lor P]$<br><br>
+    $\equiv P \land \neg Q \lor R \lor \neg Q \land R \lor P$<br><br>
+    $\equiv P \lor (P \land \neg Q) \lor R \lor (\neg Q \land R)$<br><br>
+    $\equiv P \lor R$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Implicacion → De Morgan → Absorcion</div>
+    Se elimina la implicacion con $A \to B \equiv \neg A \lor B$. Luego De Morgan sobre
+    $\neg[(\neg P \lor Q) \land \neg R]$ da $(P \land \neg Q) \lor R$. Se reordenan los
+    terminos y se aplica absorcion dos veces: $P \lor (P \land \neg Q) \equiv P$
+    y $R \lor (\neg Q \land R) \equiv R$.
+  </div>
+</div>
+
+<!-- ===== INCISO B ===== -->
+<p class="subtitulo">b) $(\neg P \land Q) \lor [\neg P \land \neg(Q \land R)] \lor \neg(R \to P)$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $(\neg P \land Q) \lor [\neg P \land \neg(Q \land R)] \lor \neg(R \to P)$<br><br>
+    $\equiv (\neg P \land Q) \lor [\neg P \land (\neg Q \lor \neg R)] \lor (R \land \neg P)$<br><br>
+    $\equiv \neg P \land [Q \lor (\neg Q \lor \neg R)] \lor (R \land \neg P)$<br><br>
+    $\equiv \neg P \land [V \lor \neg R] \lor (R \land \neg P)$<br><br>
+    $\equiv \neg P \land V \lor (R \land \neg P)$<br><br>
+    $\equiv \neg P \lor (R \land \neg P)$<br><br>
+    $\equiv \neg P$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan → Distribucion → Complemento → Absorcion</div>
+    Se expande $\neg(Q \land R)$ con De Morgan y $\neg(R \to P)$ con la definicion de
+    implicacion. Se factoriza $\neg P$ en los dos primeros terminos. Dentro del corchete,
+    $Q \lor \neg Q \equiv V$, entonces $V \lor \neg R \equiv V$. Queda $\neg P \lor (R \land \neg P)$,
+    que por absorcion es $\neg P$.
+  </div>
+</div>
+
+<!-- ===== INCISO C ===== -->
+<p class="subtitulo">c) $[P \to (Q \land P)] \lor [\neg Q \land (P \lor Q)]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $[P \to (Q \land P)] \lor [\neg Q \land (P \lor Q)]$<br><br>
+    $\equiv (\neg P \lor (Q \land P)) \lor [\neg Q \land (P \lor Q)]$<br><br>
+    $\equiv ((\neg P \lor Q) \land (\neg P \lor P)) \lor [\neg Q \land (P \lor Q)]$<br><br>
+    $\equiv ((\neg P \lor Q) \land V) \lor [\neg Q \land (P \lor Q)]$<br><br>
+    $\equiv (\neg P \lor Q) \lor [(\neg Q \land P) \lor (\neg Q \land Q)]$<br><br>
+    $\equiv (\neg P \lor Q) \lor [(\neg Q \land P) \lor F]$<br><br>
+    $\equiv (\neg P \lor Q) \lor (\neg Q \land P)$<br><br>
+    $\equiv \neg P \lor Q \lor \neg Q \lor \neg P \lor Q \lor P$<br><br>
+    $\equiv V$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Implicacion → Distribucion → Complemento → Tautologia</div>
+    Se elimina la implicacion y se distribuye. $\neg P \lor P \equiv V$ simplifica el
+    primer bloque a $\neg P \lor Q$. El segundo bloque se distribuye y $\neg Q \land Q \equiv F$
+    desaparece. Al expandir la disyuncion final aparece $Q \lor \neg Q \equiv V$,
+    lo que hace que toda la expresion sea tautologia.
+  </div>
+</div>
+
+<!-- ===== INCISO D ===== -->
+<p class="subtitulo">d) $\neg Q \lor \neg[\neg[(P \land Q) \lor (P \land \neg Q)] \lor Q] \land P$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    Primero el nucleo: $(P \land Q) \lor (P \land \neg Q)$<br><br>
+    $\equiv P \land (Q \lor \neg Q) \equiv P \land V \equiv P$<br><br>
+    Entonces $\neg[P] \lor Q \equiv \neg P \lor Q$<br><br>
+    $\neg[\neg P \lor Q] \equiv P \land \neg Q$<br><br>
+    La expresion completa:<br><br>
+    $\neg Q \lor (P \land \neg Q) \land P$<br><br>
+    $\equiv \neg Q \lor (P \land \neg Q)$<br><br>
+    $\equiv \neg Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Distribucion → Complemento → De Morgan → Absorcion</div>
+    Se simplifica el nucleo mas interno primero: $P \land (Q \lor \neg Q) \equiv P$.
+    Luego las negaciones anidadas se deshacen con De Morgan y doble negacion.
+    Al final queda $\neg Q \lor (P \land \neg Q)$, que por absorcion es $\neg Q$:
+    $\neg Q$ ya contiene a $P \land \neg Q$.
+  </div>
+</div>
+
+<!-- ===== INCISO E ===== -->
+<p class="subtitulo">e) $[(P \lor Q) \land \neg(R \lor P)] \lor [(R \land Q) \lor P]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $\neg(R \lor P) \equiv \neg R \land \neg P$<br><br>
+    $(P \lor Q) \land (\neg R \land \neg P)$<br><br>
+    $\equiv (P \land \neg R \land \neg P) \lor (Q \land \neg R \land \neg P)$<br><br>
+    $\equiv F \lor (Q \land \neg R \land \neg P)$<br><br>
+    $\equiv Q \land \neg R \land \neg P$<br><br>
+    Expresion completa:<br><br>
+    $(Q \land \neg R \land \neg P) \lor (R \land Q) \lor P$<br><br>
+    $\equiv Q \land (\neg R \land \neg P \lor R) \lor P$<br><br>
+    $\equiv Q \land ((\neg R \lor R) \land (\neg P \lor R)) \lor P$<br><br>
+    $\equiv Q \land (V \land (\neg P \lor R)) \lor P$<br><br>
+    $\equiv Q \land (\neg P \lor R) \lor P$<br><br>
+    $\equiv (Q \land \neg P) \lor (Q \land R) \lor P$<br><br>
+    $\equiv (Q \lor P) \land (\neg P \lor P) \land \ldots$<br><br>
+    $\equiv P \lor Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan → Distribucion → Complemento → Absorcion</div>
+    Se expande $\neg(R \lor P)$ con De Morgan. $P \land \neg P \equiv F$ elimina el
+    primer termino. Se factoriza $Q$ en los terminos restantes y se aplica
+    $\neg R \lor R \equiv V$. Al final $P \lor (Q \land \neg P) \equiv P \lor Q$
+    por absorcion generalizada.
+  </div>
+</div>
+
+<!-- ===== INCISO F ===== -->
+<p class="subtitulo">f) $\neg[(\neg P \lor \neg Q) \land (\neg Q \lor P)] \land (\neg Q \lor R)$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $\neg[(\neg P \lor \neg Q) \land (\neg Q \lor P)]$<br><br>
+    $\equiv (P \land Q) \lor (Q \land \neg P)$<br><br>
+    $\equiv Q \land (P \lor \neg P)$<br><br>
+    $\equiv Q \land V \equiv Q$<br><br>
+    Expresion completa:<br><br>
+    $Q \land (\neg Q \lor R)$<br><br>
+    $\equiv (Q \land \neg Q) \lor (Q \land R)$<br><br>
+    $\equiv F \lor (Q \land R)$<br><br>
+    $\equiv Q \land R$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan → Factorizacion → Complemento → Distribucion</div>
+    De Morgan convierte la negacion de la conjuncion en disyuncion de negaciones de
+    cada factor. Se factoriza $Q$ y aparece $P \lor \neg P \equiv V$. La expresion
+    completa queda $Q \land (\neg Q \lor R)$, que al distribuir da $Q \land R$
+    porque $Q \land \neg Q \equiv F$.
+  </div>
+</div>
+
+<!-- ===== INCISO G ===== -->
+<p class="subtitulo">g) $(\neg P \land Q) \lor [\neg(Q \land R) \land \neg P] \lor (P \land \neg R)$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $\neg(Q \land R) \equiv \neg Q \lor \neg R$<br><br>
+    $(\neg Q \lor \neg R) \land \neg P \equiv (\neg Q \land \neg P) \lor (\neg R \land \neg P)$<br><br>
+    Expresion completa:<br><br>
+    $(\neg P \land Q) \lor (\neg Q \land \neg P) \lor (\neg R \land \neg P) \lor (P \land \neg R)$<br><br>
+    $\equiv \neg P \land (Q \lor \neg Q) \lor \neg P \land \neg R \lor P \land \neg R$<br><br>
+    $\equiv \neg P \land V \lor \neg R \land (\neg P \lor P)$<br><br>
+    $\equiv \neg P \lor (\neg R \land V)$<br><br>
+    $\equiv \neg P \lor \neg R$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan → Distribucion → Complemento → Factorizacion</div>
+    Se expande $\neg(Q \land R)$ con De Morgan y se distribuye con $\neg P$.
+    En los cuatro terminos resultantes se factoriza: los dos primeros dan
+    $\neg P \land (Q \lor \neg Q) \equiv \neg P$, y los dos ultimos dan
+    $\neg R \land (\neg P \lor P) \equiv \neg R$.
+  </div>
+</div>
+
+<!-- ===== INCISO H ===== -->
+<p class="subtitulo">h) $\neg[(Q \lor P) \land \neg[(\neg P \land (\neg Q \land R)) \land (P \lor R)]]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    Nucleo: $(\neg P \land \neg Q \land R) \land (P \lor R)$<br><br>
+    $\equiv (\neg P \land \neg Q \land R \land P) \lor (\neg P \land \neg Q \land R \land R)$<br><br>
+    $\equiv F \lor (\neg P \land \neg Q \land R)$<br><br>
+    $\equiv \neg P \land \neg Q \land R$<br><br>
+    Entonces $\neg[\neg P \land \neg Q \land R] \equiv P \lor Q \lor \neg R$<br><br>
+    Expresion principal:<br><br>
+    $\neg[(Q \lor P) \land (P \lor Q \lor \neg R)]$<br><br>
+    $\equiv \neg[(P \lor Q) \land (P \lor Q \lor \neg R)]$<br><br>
+    Por absorcion: $(P \lor Q) \land (P \lor Q \lor \neg R) \equiv P \lor Q$<br><br>
+    $\equiv \neg(P \lor Q)$<br><br>
+    $\equiv \neg P \land \neg Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Distribucion → Complemento → De Morgan → Absorcion</div>
+    Se simplifica el nucleo mas interno primero: al distribuir aparece $\neg P \land P \equiv F$
+    que elimina el primer termino. La negacion del nucleo da $P \lor Q \lor \neg R$ por
+    De Morgan. En la expresion principal, $(P \lor Q)$ absorbe a $(P \lor Q \lor \neg R)$
+    porque el primero esta contenido en el segundo. La negacion final da $\neg P \land \neg Q$.
+  </div>
+</div>
+
+<!-- ===== INCISO I ===== -->
+<p class="subtitulo">i) $\neg[\neg[\neg[(\neg P \lor (\neg Q \lor R)] \lor (S \land R)] \lor (Q \land P)]]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    Nucleo: $\neg P \lor \neg Q \lor R \equiv \neg(P \land Q) \lor R \equiv (P \land Q) \to R$<br><br>
+    Llamemos $A = (P \land Q) \to R$.<br><br>
+    $\neg A \lor (S \land R)$: llamemos esto $B$.<br><br>
+    $\neg B \lor (Q \land P) \equiv \neg B \lor (P \land Q)$: llamemos esto $C$.<br><br>
+    $\neg C$ es la expresion pedida.<br><br>
+    $\neg C = \neg[\neg B \lor (P \land Q)] \equiv B \land \neg(P \land Q)$<br><br>
+    $B = \neg A \lor (S \land R) = \neg[(P \land Q) \to R] \lor (S \land R)$<br><br>
+    $= (P \land Q \land \neg R) \lor (S \land R)$<br><br>
+    $\neg C = [(P \land Q \land \neg R) \lor (S \land R)] \land (\neg P \lor \neg Q)$<br><br>
+    $\equiv (P \land Q \land \neg R \land (\neg P \lor \neg Q)) \lor (S \land R \land (\neg P \lor \neg Q))$<br><br>
+    $\equiv F \lor (S \land R \land (\neg P \lor \neg Q))$<br><br>
+    $\equiv S \land R \land \neg(P \land Q)$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Negaciones anidadas → De Morgan → Complemento</div>
+    Con tantas negaciones anidadas, la clave es ir de adentro hacia afuera nombrando
+    bloques intermedios. El nucleo $\neg P \lor \neg Q \lor R$ equivale a $(P \land Q) \to R$.
+    Al deshacer las negaciones externas con De Morgan, el termino $P \land Q \land \neg(P \land Q)$
+    colapsa a $F$ por contradiccion. Lo que queda es $S \land R \land \neg(P \land Q)$.
+  </div>
+</div>
+
+<!-- ===== INCISO J ===== -->
+<p class="subtitulo">j) $(P \to \neg Q) \land [[\neg(R \lor \neg P) \land (Q \lor P)] \lor (R \land P)]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    $\neg(R \lor \neg P) \equiv \neg R \land P$<br><br>
+    $(\neg R \land P) \land (Q \lor P) \equiv (\neg R \land P \land Q) \lor (\neg R \land P)$<br><br>
+    Por absorcion: $\equiv \neg R \land P$<br><br>
+    El corchete: $(\neg R \land P) \lor (R \land P) \equiv P \land (\neg R \lor R) \equiv P$<br><br>
+    Expresion completa:<br><br>
+    $(P \to \neg Q) \land P$<br><br>
+    $\equiv (\neg P \lor \neg Q) \land P$<br><br>
+    $\equiv (\neg P \land P) \lor (\neg Q \land P)$<br><br>
+    $\equiv F \lor (P \land \neg Q)$<br><br>
+    $\equiv P \land \neg Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan → Absorcion → Complemento → Distribucion</div>
+    Se simplifica el bloque interno: $\neg(R \lor \neg P) \equiv \neg R \land P$, y al
+    distribuir con $(Q \lor P)$ aparece $\neg R \land P$ como factor comun que absorbe
+    al otro termino. El corchete completo queda $P$ gracias a $\neg R \lor R \equiv V$.
+    Al final se distribuye la implicacion sobre $P$ y $\neg P \land P \equiv F$ elimina
+    un termino, dejando $P \land \neg Q$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultados.</strong>
+  <p>a) $P \lor R$</p>
+  <p>b) $\neg P$</p>
+  <p>c) $V$ (tautologia)</p>
+  <p>d) $\neg Q$</p>
+  <p>e) $P \lor Q$</p>
+  <p>f) $Q \land R$</p>
+  <p>g) $\neg P \lor \neg R$</p>
+  <p>h) $\neg P \land \neg Q$</p>
+  <p>i) $S \land R \land \neg(P \land Q)$</p>
+  <p>j) $P \land \neg Q$</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>d5a3e</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "d5a3e",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["10", "Ejercicio 10", "ej10"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "media aritmética geométrica",
+        "AM-GM",
+        "reales positivos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "a/b + b/a mayor o igual 2",
+        "desigualdad suma cocientes",
+        "AM-GM aplicaciones",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sean $a, b, c, d$ reales positivos, demuestre que:</p>
+    <p>a) $\dfrac{a}{b} + \dfrac{b}{a} \geq 2$.</p>
+    <p>b) $(a+b)(a+c)(b+c) \geq 8abc$.</p>
+    <p>c) $\dfrac{a}{b} + \dfrac{b}{c} + \dfrac{c}{d} + \dfrac{d}{a} \geq 4$.</p>
+    <p>d) $a^4 + b^4 + c^4 + d^4 \geq 4abcd$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Todas las partes son aplicaciones de AM-GM, directas o encadenadas.
+      El patrón base es $u + v \geq 2\sqrt{uv}$: si elegimos bien $u$ y $v$,
+      la raíz cuadrada colapsa en algo simple. Para los productos de factores
+      (parte b) aplicamos AM-GM a cada factor y multiplicamos.
+      Para las sumas de cuatro términos (partes c y d) aplicamos AM-GM en pares y sumamos.
+    </p>
+    <div class="nota">
+      AM-GM para cuatro términos positivos: $u+v+w+z \geq 4\sqrt[4]{uvwz}$.
+      Se obtiene aplicando AM-GM dos veces en pares y luego una vez más al resultado.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ \dfrac{a}{b} + \dfrac{b}{a} \geq 2$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a}{b} + \frac{b}{a} \geq 2\sqrt{\frac{a}{b} \cdot \frac{b}{a}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM (ejercicio 8)</div>
+      Aplicamos $u+v \geq 2\sqrt{uv}$ con $u = \frac{a}{b}$ y $v = \frac{b}{a}$.
+      Ambos son positivos porque $a, b > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$2\sqrt{\frac{a}{b} \cdot \frac{b}{a}} = 2\sqrt{1} = 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $\frac{a}{b} \cdot \frac{b}{a} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\frac{a}{b} + \frac{b}{a} \geq 2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Encadenando. La igualdad se da cuando $a = b$.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ (a+b)(a+c)(b+c) \geq 8abc$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a + b \geq 2\sqrt{ab}$$
+      $$a + c \geq 2\sqrt{ac}$$
+      $$b + c \geq 2\sqrt{bc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM a cada factor (ejercicio 8)</div>
+      Aplicamos $u+v \geq 2\sqrt{uv}$ a cada par. Los tres factores son positivos.
+    </div>
+
+    <div class="paso-dev">
+      $$(a+b)(a+c)(b+c) \geq 2\sqrt{ab}\cdot 2\sqrt{ac}\cdot 2\sqrt{bc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Producto de desigualdades</div>
+      Multiplicamos las tres desigualdades. Válido porque todos los miembros son positivos.
+    </div>
+
+    <div class="paso-dev">
+      $$2\sqrt{ab}\cdot 2\sqrt{ac}\cdot 2\sqrt{bc} = 8\sqrt{a^2b^2c^2} = 8abc$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $\sqrt{ab}\cdot\sqrt{ac}\cdot\sqrt{bc} = \sqrt{a^2b^2c^2} = abc$, ya que $a,b,c > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(a+b)(a+c)(b+c) \geq 8abc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Igualdad cuando $a = b = c$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ \dfrac{a}{b}+\dfrac{b}{c}+\dfrac{c}{d}+\dfrac{d}{a} \geq 4$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{a}{b}+\frac{b}{c}+\frac{c}{d}+\frac{d}{a} \geq 4\sqrt[4]{\frac{a}{b}\cdot\frac{b}{c}\cdot\frac{c}{d}\cdot\frac{d}{a}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM para cuatro términos</div>
+      Para $u,v,w,z > 0$: $u+v+w+z \geq 4\sqrt[4]{uvwz}$.
+      Se obtiene aplicando AM-GM dos veces en pares:
+      $u+v \geq 2\sqrt{uv}$, $w+z \geq 2\sqrt{wz}$,
+      y luego $2\sqrt{uv}+2\sqrt{wz} \geq 4\sqrt[4]{uvwz}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\frac{a}{b}\cdot\frac{b}{c}\cdot\frac{c}{d}\cdot\frac{d}{a} = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación telescópica</div>
+      Todos los factores se cancelan en cadena: $\frac{a \cdot b \cdot c \cdot d}{b \cdot c \cdot d \cdot a} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\frac{a}{b}+\frac{b}{c}+\frac{c}{d}+\frac{d}{a} \geq 4\sqrt[4]{1} = 4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      $\sqrt[4]{1} = 1$. Igualdad cuando $a = b = c = d$.
+    </div>
+  </div>
+
+  <h2>Solución — parte d) $\ a^4+b^4+c^4+d^4 \geq 4abcd$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^4+b^4+c^4+d^4 \geq 4\sqrt[4]{a^4 b^4 c^4 d^4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM para cuatro términos</div>
+      Aplicamos $u+v+w+z \geq 4\sqrt[4]{uvwz}$ con $u=a^4$, $v=b^4$, $w=c^4$, $z=d^4$.
+      Todos positivos.
+    </div>
+
+    <div class="paso-dev">
+      $$4\sqrt[4]{a^4b^4c^4d^4} = 4\sqrt[4]{(abcd)^4} = 4abcd$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $\sqrt[4]{(abcd)^4} = abcd$ porque $a,b,c,d > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{a^4+b^4+c^4+d^4 \geq 4abcd}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Igualdad cuando $a = b = c = d$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para $a,b,c,d > 0$, aplicando AM-GM en sus distintas formas:
+    $$\text{a)}\ \frac{a}{b}+\frac{b}{a} \geq 2 \qquad \text{b)}\ (a+b)(a+c)(b+c) \geq 8abc$$
+    $$\text{c)}\ \frac{a}{b}+\frac{b}{c}+\frac{c}{d}+\frac{d}{a} \geq 4 \qquad \text{d)}\ a^4+b^4+c^4+d^4 \geq 4abcd$$
+    En todos los casos la igualdad se alcanza cuando todas las variables son iguales.
+  </div>
+
+</body>
+</html>

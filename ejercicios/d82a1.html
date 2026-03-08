@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>d82a1</title>
+  <script>
+    window.EJERCICIO = {
+      id: "d82a1",
+      materia: [
+        "Programación Orientada a Objetos",
+        "POO",
+        "Programación II"
+      ],
+      tema: [
+        "Clases y objetos",
+        "Pseudocódigo",
+        "Métodos y atributos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "POO pseudocódigo",
+        "clase boligrafo",
+        "instanciar objetos",
+        "valor total objetos",
+        "objeto mas caro pseudocódigo"
+      ],
+      fecha: "2026-03-05",
+      autor: { nombre: "Estudiante", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    /* UML */
+    .uml-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .uml-box {
+      border: 1px solid #111;
+      font-size: 8.5pt;
+      font-family: Georgia, serif;
+      min-width: 180px;
+      display: inline-block;
+    }
+    .uml-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 9pt;
+      border-bottom: 1px solid #111;
+      padding: 4px 12px;
+    }
+    .uml-attrs {
+      border-bottom: 1px solid #111;
+      padding: 6px 12px;
+      line-height: 1.7;
+    }
+    .uml-methods {
+      padding: 6px 12px;
+      line-height: 1.7;
+    }
+
+    /* Dos columnas */
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    pre {
+      font-family: 'Courier New', monospace;
+      font-size: 8.5pt;
+      line-height: 1.5;
+      white-space: pre;
+      border: 1px solid #aaa;
+      padding: 10px 16px;
+      margin: 0;
+    }
+
+    /* Code blocks */
+    .code-block {
+      border: 1px solid #aaa;
+      font-family: 'Courier New', monospace;
+    }
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 14px;
+      border-bottom: 1px solid #aaa;
+      font-family: sans-serif;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+    .code-header button {
+      font-family: sans-serif;
+      font-size: .75rem;
+      padding: 2px 10px;
+      cursor: pointer;
+      border: 1px solid #aaa;
+      background: white;
+    }
+    .code-header button:hover { background: #f0f0f0; }
+    .code-block pre {
+      border: none;
+      margin: 0;
+      padding: 12px 16px;
+      overflow-x: auto;
+    }
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>a) Implementar la clase <strong>Bolígrafo</strong> con sus atributos y métodos correspondientes.</p>
+    <p>b) Instanciar <strong>3 objetos</strong> de dicha clase y cargar sus datos.</p>
+    <p>c) Mostrar el <strong>valor total</strong> de los 3 bolígrafos.</p>
+    <p>d) Verificar si los 3 bolígrafos son del <strong>mismo color</strong>.</p>
+    <p>e) Mostrar el bolígrafo <strong>más caro</strong>.</p>
+  </div>
+
+  <h2>Diagrama de clases</h2>
+  <div class="bloque">
+    <p style="font-family:sans-serif; font-size:.85rem; color:#444; margin-bottom:8px;">
+      <strong>Nota de notación:</strong> El diagrama sigue la convención UML estándar: <code>nombre : Tipo</code> tanto en atributos como en métodos (ej. <code>− precio : float</code>, <code>+ getPrecio() : float</code>). Algunas cátedras usan el orden inverso (<code>Tipo nombre</code>, más cercano a la sintaxis de Java), que es lo que puede exigirse en el examen. Ambas variantes representan lo mismo; la diferencia es solo de formato.
+    </p>
+    <div class="uml-container">
+      <div class="uml-box">
+        <div class="uml-title">Boligrafo</div>
+        <div class="uml-attrs">
+          − color : String<br>
+          − marca : String<br>
+          − industria : String<br>
+          − precio : float
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getPrecio() : float<br>
+          + getColor() : String
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>El ejercicio tiene dos partes bien diferenciadas: definir la clase y luego operar sobre tres instancias de ella desde el programa principal. La clase en sí es sencilla: cuatro atributos y los métodos mínimos necesarios para que el programa principal pueda consultarlos.</p>
+    <div class="nota">
+      Los incisos c, d y e se resuelven todos en el <code>Begin/End</code>, no dentro de la clase. La clase solo expone getters; la lógica de comparación y suma vive afuera.
+    </div>
+    <p>Para el inciso d basta comparar en cadena: si <code>a == b</code> y <code>b == c</code>, los tres son iguales (por transitividad). Para el inciso e se necesita encontrar el máximo de tres valores, lo que se resuelve con dos condiciones anidadas: primero verificar si <code>a</code> gana a los otros dos, luego si lo hace <code>b</code>; si ninguna se cumple, gana <code>c</code>.</p>
+    <p class="chiste">Tres bolígrafos, una sola tinta: el clásico problema de quién se quedó sin lapicera a mitad del parcial.</p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1: atributos -->
+    <div class="paso-dev">
+<pre>class Boligrafo
+{
+    private:
+
+    String color, marca, industria;
+    float  precio;</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Atributos de la clase</div>
+      Cuatro atributos representativos de un bolígrafo. <code>precio</code> es <code>float</code> por posibles decimales; los otros tres son cadenas descriptivas.
+    </div>
+
+    <!-- Paso 2: leer / mostrar -->
+    <div class="paso-dev">
+<pre>    public:
+
+    leer()
+    {
+        read(color, marca, industria, precio);
+    }
+
+    mostrar()
+    {
+        print(color, marca, industria, precio);
+    }</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Entrada y salida</div>
+      <code>leer()</code> carga los cuatro atributos desde el usuario. <code>mostrar()</code> los imprime. Son los métodos básicos de toda clase en este estilo de pseudocódigo.
+    </div>
+
+    <!-- Paso 3: getters -->
+    <div class="paso-dev">
+<pre>    float  getPrecio() { return precio; }
+    String getColor()  { return color;  }
+}</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Getters</div>
+      Solo se exponen los atributos que el programa principal necesita consultar: <code>precio</code> (para sumar y comparar) y <code>color</code> (para verificar igualdad). El encapsulamiento se respeta: el exterior no accede directamente a los campos.
+    </div>
+
+    <!-- Paso 4: instanciación -->
+    <div class="paso-dev">
+<pre>Begin
+    a = creaobjeto Boligrafo();
+    b = creaobjeto Boligrafo();
+    c = creaobjeto Boligrafo();
+
+    a.leer(); b.leer(); c.leer();</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inciso b — Instanciación</div>
+      Se crean tres objetos independientes de la clase <code>Boligrafo</code> y se cargan sus datos. Cada objeto tiene su propio espacio de atributos en memoria.
+    </div>
+
+    <!-- Paso 5: valor total -->
+    <div class="paso-dev">
+<pre>    // c. Valor total
+    pa = a.getPrecio();
+    pb = b.getPrecio();
+    pc = c.getPrecio();
+    print(pa + pb + pc);</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inciso c — Suma de precios</div>
+      Se guardan los tres precios en variables auxiliares para no llamar al getter múltiples veces. La suma se imprime directamente.
+    </div>
+
+    <!-- Paso 6: mismo color -->
+    <div class="paso-dev">
+<pre>    // d. Mismo color
+    ca = a.getColor();
+    cb = b.getColor();
+    cc = c.getColor();
+    if (ca == cb) and (cb == cc) then
+        print("Son del mismo color");
+    else
+        print("No son del mismo color");</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inciso d — Comparación de color</div>
+      Comparar <code>ca == cb</code> y <code>cb == cc</code> es suficiente por transitividad: si <em>a</em> igual a <em>b</em> y <em>b</em> igual a <em>c</em>, entonces los tres son iguales. No hace falta comparar <code>ca == cc</code>.
+    </div>
+
+    <!-- Paso 7: más caro -->
+    <div class="paso-dev">
+<pre>    // e. Boligrafo mas caro
+    if (pa >= pb) and (pa >= pc) then
+        a.mostrar();
+    elseif (pb >= pa) and (pb >= pc) then
+        b.mostrar();
+    else
+        c.mostrar();
+End</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Inciso e — Máximo de tres</div>
+      Se verifica si <code>a</code> supera a los otros dos; si no, se verifica lo mismo con <code>b</code>. Si ninguno de los dos primeros gana, necesariamente gana <code>c</code>. En caso de empate, se muestra el primero que cumpla la condición.
+    </div>
+
+  </div>
+
+  <div class="subtitulo-impl" style="margin-top:28px; font-family:sans-serif; font-size:.85rem; font-weight:bold; text-transform:uppercase; letter-spacing:.07em; color:#111;">Implementación en Java</div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span>Boligrafo.java</span>
+      <button onclick="copyCode('code-boligrafo')">Copiar</button>
+    </div>
+    <pre id="code-boligrafo">import java.util.Scanner;
+
+public class Boligrafo {
+
+    // En Java cada atributo lleva su propio modificador private.
+    // No existe el bloque private: de C++.
+    private String color;
+    private String marca;
+    private String industria;
+    private float precio;
+
+    // leer() recibe un Scanner como parámetro para leer desde consola.
+    // En el pseudocódigo ese detalle estaba implícito en read().
+    public void leer(Scanner sc) {
+        System.out.print("Color: ");
+        color = sc.next();
+        System.out.print("Marca: ");
+        marca = sc.next();
+        System.out.print("Industria: ");
+        industria = sc.next();
+        System.out.print("Precio: ");
+        precio = sc.nextFloat();
+    }
+
+    public void mostrar() {
+        System.out.println(color + " " + marca + " " + industria + " " + precio);
+    }
+
+    // En Java el tipo de retorno va antes del nombre del método,
+    // al revés de la notación UML estándar (nombre : Tipo).
+    public float getPrecio() { return precio; }
+    public String getColor() { return color; }
+}</pre>
+  </div>
+
+  <div class="code-block" style="margin-top:12px;">
+    <div class="code-header">
+      <span>Main.java</span>
+      <button onclick="copyCode('code-main')">Copiar</button>
+    </div>
+    <pre id="code-main">import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // new Boligrafo() es el equivalente Java de "creaobjeto Boligrafo()".
+        // El Scanner se crea una sola vez y se comparte entre los tres objetos.
+        Scanner sc = new Scanner(System.in);
+        Boligrafo a = new Boligrafo();
+        Boligrafo b = new Boligrafo();
+        Boligrafo c = new Boligrafo();
+
+        a.leer(sc);
+        b.leer(sc);
+        c.leer(sc);
+
+        // c. Valor total — en Java las variables locales se declaran con tipo explícito.
+        float pa = a.getPrecio();
+        float pb = b.getPrecio();
+        float pc = c.getPrecio();
+        System.out.println("Total: " + (pa + pb + pc));
+
+        // d. Mismo color — los String se comparan con .equals(), nunca con ==.
+        // El operador == compara referencias de memoria, no contenido.
+        String ca = a.getColor();
+        String cb = b.getColor();
+        String cc = c.getColor();
+        if (ca.equals(cb) && cb.equals(cc))
+            System.out.println("Son del mismo color");
+        else
+            System.out.println("No son del mismo color");
+
+        // e. Bolígrafo más caro — misma lógica que el pseudocódigo.
+        if (pa >= pb && pa >= pc)
+            a.mostrar();
+        else if (pb >= pa && pb >= pc)
+            b.mostrar();
+        else
+            c.mostrar();
+
+        sc.close(); // buena práctica: liberar el recurso de entrada al terminar
+    }
+}</pre>
+  </div>
+
+  <script>
+    function copyCode(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = event.target;
+        btn.textContent = "Copiado";
+        setTimeout(() => btn.textContent = "Copiar", 2000);
+      });
+    }
+  </script>
+
+  <div class="resultado-final">
+    <strong>Resumen.</strong> Se implementó la clase <strong>Bolígrafo</strong> con cuatro atributos (<em>color, marca, industria, precio</em>) y los métodos <code>leer()</code>, <code>mostrar()</code>, <code>getPrecio()</code> y <code>getColor()</code>. Desde el programa principal se instanciaron tres objetos y se resolvieron los tres requerimientos: suma de precios, verificación de color idéntico por transitividad, y búsqueda del más caro mediante comparación de máximo entre tres valores.
+  </div>
+
+</body>
+</html>

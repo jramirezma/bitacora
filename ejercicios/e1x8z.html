@@ -33,20 +33,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="../index.html">Inicio</a>
-      <a href="../buscador.html">Buscador</a>
-      <a href="../simulacion.html">Simulación</a>
-      <a href="../configuracion.html">Configuración</a>
-    </nav>
-  </header>
   <main>
     <h2>Enunciado</h2>
-    <div class="enunciado">Sean $A = \{1, 2, 3, 4\}$ y $B = \{3, 4, 5, 6\}$. Calcule $A \cup B$ y $A \cap B$.</div>
+    <div class="ejercicio">Sean $A = \{1, 2, 3, 4\}$ y $B = \{3, 4, 5, 6\}$. Calcule $A \cup B$ y $A \cap B$.</div>
 
     <h2>Solución</h2>
-    <div class="solucion" hidden>
+    <div class="solucion">
       <div class="entendimiento">
         <p><strong>Conjunto A:</strong> $\{1, 2, 3, 4\}$</p>
         <p><strong>Conjunto B:</strong> $\{3, 4, 5, 6\}$</p>
@@ -70,12 +62,5 @@
       </table>
     </div>
   </main>
-  <script>
-    const solucion = document.querySelector('.solucion');
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('mostrar') === '1') {
-      solucion.hidden = false;
-    }
-  </script>
 </body>
 </html>

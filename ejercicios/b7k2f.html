@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b7k2f</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "b7k2f",
+      materia: ["Álgebra", "Lógica matemática", "Matemática discreta"],
+      origen: ["Práctica Álgebra UMSA", "Práctica", "Guía UMSA"],
+      ejercicio_nro: ["23e", "Ejercicio 23(e)", "ej23e"],
+      tema: [
+        "reglas de inferencia",
+        "deducción lógica",
+        "demostración formal",
+        "modus ponens",
+        "modus tollens"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "reglas de inferencia lógica",
+        "demostración lógica paso a paso",
+        "modus tollens modus ponens",
+        "álgebra UMSA lógica",
+        "deducción formal premisas"
+      ],
+      fecha: "2026-03-07",
+      autor: { nombre: "", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    body { font-family: Georgia, serif; max-width: 900px; margin: 0 auto; padding: 2rem; color: #111; }
+    h2 { border-bottom: 1px solid #999; padding-bottom: 0.3rem; margin-top: 2rem; }
+    .ejercicio { margin: 1rem 0 1.5rem 0; }
+    .bloque { margin: 1rem 0; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 0.5rem 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+    .chiste { color: #555; font-style: italic; margin-top: 1rem; }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 1.5rem 0;
+    }
+    .col-header {
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+      padding: 0.4rem 0.8rem;
+      text-align: center;
+    }
+    .col-desarrollo { border-right: 1px solid #bbb; }
+    .paso-dev, .paso-just {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+    .paso-dev {
+      border-right: 1px solid #bbb;
+      font-family: "Courier New", monospace;
+      font-size: 0.95rem;
+    }
+    .paso-just .titulo {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    .resultado-final {
+      border: 1px solid #555;
+      padding: 1rem 1.5rem;
+      margin-top: 2rem;
+    }
+    @media print {
+      body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>
+    En cada caso, utilice las reglas de inferencia y las leyes de la lógica para demostrar la
+    proposición indicada a partir de las premisas dadas. Justifique cada paso.
+  </p>
+</div>
+
+<h2>Inciso (e)</h2>
+<div class="ejercicio">
+  <p>
+    Demuestre $R \wedge (P \vee Q)$ a partir de las premisas
+    $P \vee Q,\quad Q \to R,\quad P \to T,\quad \neg T$.
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Tenemos cuatro premisas y queremos concluir $R \wedge (P \vee Q)$.
+    La conjunción de destino tiene dos partes: la primera es $P \vee Q$, que ya viene
+    dada directamente como premisa. La parte interesante es obtener $R$.
+  </p>
+  <div class="nota">
+    La clave está en que $\neg T$ junto con $P \to T$ nos fuerza a descartar $P$;
+    luego, como $P \vee Q$ sigue siendo verdadera, $Q$ debe ser verdadero,
+    y de $Q \to R$ obtenemos $R$.
+  </div>
+  <p>
+    El camino es: aplicar <em>Modus Tollens</em> para eliminar $P$, luego
+    <em>Silogismo Disyuntivo</em> para aislar $Q$, luego <em>Modus Ponens</em>
+    para obtener $R$, y finalmente <em>Conjunción</em> para armar el resultado.
+  </p>
+  <p class="chiste">
+    Cuatro pasos para llegar a la conclusión: menos que armar un mueble de IKEA
+    y con instrucciones más claras.
+  </p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <!-- Paso 1 -->
+  <div class="paso-dev">
+    (1) $P \vee Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Se toma directamente de las hipótesis dadas.
+  </div>
+
+  <!-- Paso 2 -->
+  <div class="paso-dev">
+    (2) $Q \to R$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Segunda hipótesis.
+  </div>
+
+  <!-- Paso 3 -->
+  <div class="paso-dev">
+    (3) $P \to T$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Tercera hipótesis.
+  </div>
+
+  <!-- Paso 4 -->
+  <div class="paso-dev">
+    (4) $\neg T$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Cuarta hipótesis.
+  </div>
+
+  <!-- Paso 5 -->
+  <div class="paso-dev">
+    (5) $\neg P$
+    <br>
+    De (3) y (4)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    Si $P \to T$ es verdadera y $T$ es falsa ($\neg T$), entonces $P$ debe ser
+    falsa. La regla dice: de $\alpha \to \beta$ y $\neg \beta$, se deduce $\neg \alpha$.
+  </div>
+
+  <!-- Paso 6 -->
+  <div class="paso-dev">
+    (6) $Q$
+    <br>
+    De (1) y (5)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    Teníamos $P \vee Q$ y ahora sabemos que $P$ es falsa. La disyunción solo
+    puede sostenerse gracias a $Q$. La regla dice: de $\alpha \vee \beta$ y
+    $\neg \alpha$, se deduce $\beta$.
+  </div>
+
+  <!-- Paso 7 -->
+  <div class="paso-dev">
+    (7) $R$
+    <br>
+    De (2) y (6)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    Teníamos $Q \to R$ y acabamos de demostrar $Q$. Se aplica la regla más
+    clásica de la lógica: de $\alpha \to \beta$ y $\alpha$, se deduce $\beta$.
+  </div>
+
+  <!-- Paso 8 -->
+  <div class="paso-dev">
+    (8) $R \wedge (P \vee Q)$
+    <br>
+    De (7) y (1)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Introducción de la Conjunción</div>
+    Si $R$ es verdadera (paso 7) y $P \vee Q$ es verdadera (premisa 1),
+    podemos unirlas con $\wedge$. Regla: de $\alpha$ y $\beta$, se deduce
+    $\alpha \wedge \beta$.
+  </div>
+
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de las premisas $P \vee Q$, $Q \to R$, $P \to T$ y $\neg T$,
+  se demuestra que $\boxed{R \wedge (P \vee Q)}$.
+  <br><br>
+  Secuencia de reglas utilizadas:
+  Modus Tollens $\Rightarrow$ Silogismo Disyuntivo $\Rightarrow$ Modus Ponens $\Rightarrow$ Introducción de la Conjunción.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (f)</h2>
+<div class="ejercicio">
+  <p>
+    Demuestre $\neg(L \wedge D)$ a partir de las premisas
+    $V \to (R \vee P),\quad R \to \neg V,\quad L \to \neg P,\quad V$.
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    La conclusión $\neg(L \wedge D)$ es equivalente por De Morgan a $\neg L \vee \neg D$.
+    Basta con obtener $\neg L$ para que la disyunción sea verdadera, sin importar el valor de $D$.
+  </p>
+  <div class="nota">
+    $V$ es verdadera y también implica $R \vee P$. Pero $R$ es incompatible con $V$
+    (porque $R \to \neg V$), así que de toda la disyunción solo queda $P$.
+    Con $P$ verdadero, la premisa $L \to \neg P$ obliga a que $L$ sea falso,
+    y $\neg L$ ya alcanza para concluir.
+  </div>
+  <p>
+    La estrategia es: usar $V$ para activar $R \vee P$, descartar $R$ por contradicción
+    con la propia $V$, aislar $P$, aplicar Modus Tollens sobre $L \to \neg P$
+    para obtener $\neg L$, y cerrar con Debilitamiento de la Conjunción.
+  </p>
+  <p class="chiste">
+    $R$ intentó ser verdadero, pero $V$ ya ocupaba ese lugar. No hay espacio para los dos.
+  </p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $V \to (R \vee P)$</div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Primera hipótesis.
+  </div>
+
+  <div class="paso-dev">(2) $R \to \neg V$</div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Segunda hipótesis.
+  </div>
+
+  <div class="paso-dev">(3) $L \to \neg P$</div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Tercera hipótesis.
+  </div>
+
+  <div class="paso-dev">(4) $V$</div>
+  <div class="paso-just">
+    <div class="titulo">Premisa</div>
+    Cuarta hipótesis.
+  </div>
+
+  <div class="paso-dev">
+    (5) $R \vee P$
+    <br>De (1) y (4)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $V$ es verdadera y $V \to (R \vee P)$, por lo que se obtiene $R \vee P$.
+  </div>
+
+  <div class="paso-dev">
+    (6) $\neg R$
+    <br>De (2) y (4)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $R \to \neg V$ y la premisa $V$ (es decir, $\neg\neg V$), se concluye $\neg R$.
+    Si $R$ fuera verdadero, tendríamos $\neg V$, contradiciendo (4).
+  </div>
+
+  <div class="paso-dev">
+    (7) $P$
+    <br>De (5) y (6)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    Teníamos $R \vee P$ y acabamos de establecer $\neg R$.
+    La disyunción solo puede mantenerse por $P$.
+  </div>
+
+  <div class="paso-dev">
+    (8) $\neg L$
+    <br>De (3) y (7)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $L \to \neg P$ y $P$ (es decir, $\neg\neg P$), se concluye $\neg L$.
+    Si $L$ fuera verdadero, tendríamos $\neg P$, contradiciendo (7).
+  </div>
+
+  <div class="paso-dev">
+    (9) $\neg L \vee \neg D$
+    <br>De (8)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Adición (Debilitamiento)</div>
+    De cualquier proposición $\alpha$ verdadera se puede concluir $\alpha \vee \beta$
+    para cualquier $\beta$. Aquí $\alpha = \neg L$ y $\beta = \neg D$.
+  </div>
+
+  <div class="paso-dev">
+    (10) $\neg(L \wedge D)$
+    <br>De (9)
+  </div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg L \vee \neg D \equiv \neg(L \wedge D)$. Son la misma proposición
+    escrita de dos formas distintas.
+  </div>
+
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de las premisas $V \to (R \vee P)$, $R \to \neg V$, $L \to \neg P$ y $V$,
+  se demuestra que $\boxed{\neg(L \wedge D)}$.
+  <br><br>
+  Secuencia: Modus Ponens $\Rightarrow$ Modus Tollens (×2) $\Rightarrow$ Silogismo Disyuntivo $\Rightarrow$ Adición $\Rightarrow$ De Morgan.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (g)</h2>
+<div class="ejercicio">
+  <p>Demuestre $Q \vee T$ a partir de las premisas
+  $P \to Q,\quad \neg R \to (S \to T),\quad R \vee P \vee S,\quad \neg R$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Tenemos $\neg R$ como hecho firme. Eso activa $S \to T$ (vía la segunda premisa).
+    Además, de $R \vee P \vee S$ con $\neg R$ queda $P \vee S$.
+    Si cae $P$, la primera premisa da $Q$; si cae $S$, la tercera da $T$.
+    En ambos casos llegamos a $Q \vee T$.
+  </p>
+  <div class="nota">
+    El dilema constructivo es la regla clave: de $P \vee S$, $P \to Q$ y $S \to T$
+    se concluye directamente $Q \vee T$.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $P \to Q$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $\neg R \to (S \to T)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $R \vee P \vee S$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $\neg R$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $S \to T$<br>De (2) y (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $\neg R$ activa el condicional $\neg R \to (S \to T)$.
+  </div>
+
+  <div class="paso-dev">(6) $P \vee S$<br>De (3) y (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    De $R \vee P \vee S \equiv R \vee (P \vee S)$ y $\neg R$ queda $P \vee S$.
+  </div>
+
+  <div class="paso-dev">(7) $Q \vee T$<br>De (6), (1) y (5)</div>
+  <div class="paso-just">
+    <div class="titulo">Dilema Constructivo</div>
+    De $P \vee S$, $P \to Q$ y $S \to T$ se concluye $Q \vee T$:
+    cualquiera de las dos ramas lleva a la disyunción deseada.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $P \to Q$, $\neg R \to (S \to T)$, $R \vee P \vee S$ y $\neg R$,
+  se demuestra que $\boxed{Q \vee T}$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (h)</h2>
+<div class="ejercicio">
+  <p>Demuestre $T$ a partir de las premisas
+  $(P \vee Q) \to (R \wedge S),\quad \neg(\neg P \vee \neg R),\quad \neg T \to \neg(P \wedge S)$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    La segunda premisa tiene forma de doble negación anidada. Simplificarla con
+    De Morgan revela $P \wedge R$, de donde extraemos $P$ y $R$ por separado.
+    Con $P$ activamos la primera premisa para obtener $R \wedge S$, de donde sale $S$.
+    Tenemos $P$ y $S$, es decir $P \wedge S$. Aplicando Modus Tollens sobre la tercera premisa obtenemos $T$.
+  </p>
+  <div class="nota">
+    La segunda premisa es la llave: $\neg(\neg P \vee \neg R) \equiv P \wedge R$.
+    Todo lo demás fluye de ahí.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $(P \vee Q) \to (R \wedge S)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $\neg(\neg P \vee \neg R)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $\neg T \to \neg(P \wedge S)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $P \wedge R$<br>De (2)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg(\neg P \vee \neg R) \equiv \neg\neg P \wedge \neg\neg R \equiv P \wedge R$.
+  </div>
+
+  <div class="paso-dev">(5) $P$<br>De (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Simplificación</div>
+    De una conjunción $\alpha \wedge \beta$ se puede extraer $\alpha$.
+  </div>
+
+  <div class="paso-dev">(6) $P \vee Q$<br>De (5)</div>
+  <div class="paso-just">
+    <div class="titulo">Adición</div>
+    De $P$ se obtiene $P \vee Q$ para cualquier $Q$.
+  </div>
+
+  <div class="paso-dev">(7) $R \wedge S$<br>De (1) y (6)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $P \vee Q$ activa el condicional de la primera premisa.
+  </div>
+
+  <div class="paso-dev">(8) $S$<br>De (7)</div>
+  <div class="paso-just">
+    <div class="titulo">Simplificación</div>
+    De $R \wedge S$ se extrae $S$.
+  </div>
+
+  <div class="paso-dev">(9) $P \wedge S$<br>De (5) y (8)</div>
+  <div class="paso-just">
+    <div class="titulo">Introducción de la Conjunción</div>
+    Se tienen $P$ y $S$ por separado; se unen con $\wedge$.
+  </div>
+
+  <div class="paso-dev">(10) $T$<br>De (3) y (9)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $\neg T \to \neg(P \wedge S)$ y $P \wedge S$ (es decir $\neg\neg(P\wedge S)$),
+    se concluye $\neg\neg T \equiv T$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $(P \vee Q) \to (R \wedge S)$, $\neg(\neg P \vee \neg R)$ y $\neg T \to \neg(P \wedge S)$,
+  se demuestra que $\boxed{T}$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (i)</h2>
+<div class="ejercicio">
+  <p>Demuestre $\neg U$ a partir de las premisas
+  $(Q \wedge R) \to \neg P,\quad \neg Q \to S,\quad R \vee T,\quad P,\quad U \to (\neg S \wedge \neg T)$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Queremos $\neg U$. La quinta premisa dice $U \to (\neg S \wedge \neg T)$;
+    si logramos que $\neg S \wedge \neg T$ sea falso, por Modus Tollens obtenemos $\neg U$.
+    Para falsear $\neg S \wedge \neg T$ basta con probar $S \vee T$.
+    La estrategia: $P$ con la primera premisa fuerza $\neg(Q \wedge R)$;
+    eso da $\neg Q \vee \neg R$. Si $\neg Q$, la segunda premisa da $S$.
+    Si $\neg R$, la tercera premisa da $T$. En cualquier caso, $S \vee T$.
+  </p>
+  <div class="nota">
+    Necesitamos mostrar que $\neg S \wedge \neg T$ es falso. Equivale a demostrar $S \vee T$,
+    y eso surge naturalmente de la primera y tercera premisa combinadas con $P$.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $(Q \wedge R) \to \neg P$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $\neg Q \to S$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $R \vee T$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $P$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $U \to (\neg S \wedge \neg T)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Quinta hipótesis.</div>
+
+  <div class="paso-dev">(6) $\neg(Q \wedge R)$<br>De (1) y (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $(Q \wedge R) \to \neg P$ y $P$ (es decir $\neg\neg P$), se obtiene $\neg(Q \wedge R)$.
+  </div>
+
+  <div class="paso-dev">(7) $\neg Q \vee \neg R$<br>De (6)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg(Q \wedge R) \equiv \neg Q \vee \neg R$.
+  </div>
+
+  <div class="paso-dev">(8) $S \vee T$<br>De (7), (2) y (3)</div>
+  <div class="paso-just">
+    <div class="titulo">Dilema Constructivo</div>
+    De $\neg Q \vee \neg R$, $\neg Q \to S$ y $\neg R \to T$
+    (esta última es la contrapositiva de $R \vee T \equiv \neg\neg R \vee T$,
+    reescrita como $\neg R \to T$ por definición de disyunción)
+    se concluye $S \vee T$.
+  </div>
+
+  <div class="paso-dev">(9) $\neg(\neg S \wedge \neg T)$<br>De (8)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $S \vee T \equiv \neg(\neg S \wedge \neg T)$.
+  </div>
+
+  <div class="paso-dev">(10) $\neg U$<br>De (5) y (9)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $U \to (\neg S \wedge \neg T)$ y $\neg(\neg S \wedge \neg T)$, se concluye $\neg U$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $(Q \wedge R) \to \neg P$, $\neg Q \to S$, $R \vee T$, $P$ y $U \to (\neg S \wedge \neg T)$,
+  se demuestra que $\boxed{\neg U}$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (j)</h2>
+<div class="ejercicio">
+  <p>Demuestre $P$ a partir de las premisas
+  $(\neg P \vee Q) \to R,\quad R \to (S \vee T),\quad \neg S \wedge \neg U,\quad \neg U \to \neg T$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Queremos probar $P$. Lo haremos por contradicción: suponemos $\neg P$ y
+    derivamos una contradicción. Con $\neg P$ se forma $\neg P \vee Q$,
+    que activa la primera premisa para dar $R$, luego $S \vee T$.
+    Pero de la tercera premisa tenemos $\neg S$, y de la cuarta con $\neg U$
+    obtenemos $\neg T$. Entonces $\neg S \wedge \neg T$, que contradice $S \vee T$.
+  </p>
+  <div class="nota">
+    La demostración es por reducción al absurdo: asumir $\neg P$ colapsa
+    la cadena hasta una contradicción con $S \vee T$.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $(\neg P \vee Q) \to R$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $R \to (S \vee T)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $\neg S \wedge \neg U$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $\neg U \to \neg T$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $\neg S$<br>De (3)</div>
+  <div class="paso-just">
+    <div class="titulo">Simplificación</div>
+    De $\neg S \wedge \neg U$ se extrae $\neg S$.
+  </div>
+
+  <div class="paso-dev">(6) $\neg U$<br>De (3)</div>
+  <div class="paso-just">
+    <div class="titulo">Simplificación</div>
+    De $\neg S \wedge \neg U$ se extrae $\neg U$.
+  </div>
+
+  <div class="paso-dev">(7) $\neg T$<br>De (4) y (6)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $\neg U$ activa $\neg U \to \neg T$.
+  </div>
+
+  <div class="paso-dev">(8) $\neg S \wedge \neg T$<br>De (5) y (7)</div>
+  <div class="paso-just">
+    <div class="titulo">Introducción de la Conjunción</div>
+    Se tienen $\neg S$ y $\neg T$ por separado.
+  </div>
+
+  <div class="paso-dev">(9) $\neg(S \vee T)$<br>De (8)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg S \wedge \neg T \equiv \neg(S \vee T)$.
+  </div>
+
+  <div class="paso-dev">(10) $\neg R$<br>De (2) y (9)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $R \to (S \vee T)$ y $\neg(S \vee T)$, se concluye $\neg R$.
+  </div>
+
+  <div class="paso-dev">(11) $\neg(\neg P \vee Q)$<br>De (1) y (10)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Tollens</div>
+    De $(\neg P \vee Q) \to R$ y $\neg R$, se concluye $\neg(\neg P \vee Q)$.
+  </div>
+
+  <div class="paso-dev">(12) $P \wedge \neg Q$<br>De (11)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg(\neg P \vee Q) \equiv \neg\neg P \wedge \neg Q \equiv P \wedge \neg Q$.
+  </div>
+
+  <div class="paso-dev">(13) $P$<br>De (12)</div>
+  <div class="paso-just">
+    <div class="titulo">Simplificación</div>
+    De $P \wedge \neg Q$ se extrae $P$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $(\neg P \vee Q) \to R$, $R \to (S \vee T)$, $\neg S \wedge \neg U$ y $\neg U \to \neg T$,
+  se demuestra que $\boxed{P}$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (k)</h2>
+<div class="ejercicio">
+  <p>Demuestre $\neg(T \wedge \neg U)$ a partir de las premisas
+  $(R \vee Q) \to \neg T,\quad \neg Q \vee R,\quad P \vee Q,\quad P \to (R \wedge S)$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    La conclusión $\neg(T \wedge \neg U) \equiv \neg T \vee U$. Basta obtener $\neg T$.
+    La primera premisa da $\neg T$ si logramos $R \vee Q$.
+    La segunda premisa $\neg Q \vee R$ es equivalente a $Q \to R$.
+    De $P \vee Q$ con la cuarta premisa (que da $R$ si $P$) y $Q \to R$,
+    en ambos casos obtenemos $R$, y $R$ implica $R \vee Q$.
+  </p>
+  <div class="nota">
+    El camino más directo: mostrar $R$ (que implica $R \vee Q$), y de ahí $\neg T$,
+    que ya alcanza para $\neg(T \wedge \neg U)$.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $(R \vee Q) \to \neg T$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $\neg Q \vee R$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $P \vee Q$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $P \to (R \wedge S)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $Q \to R$<br>De (2)</div>
+  <div class="paso-just">
+    <div class="titulo">Equivalencia disyunción–condicional</div>
+    $\neg Q \vee R \equiv Q \to R$.
+  </div>
+
+  <div class="paso-dev">(6) $P \to R$<br>De (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Hipotético + Simplificación</div>
+    De $P \to (R \wedge S)$ se obtiene $P \to R$, pues de $R \wedge S$ se puede extraer $R$.
+  </div>
+
+  <div class="paso-dev">(7) $R$<br>De (3), (6) y (5)</div>
+  <div class="paso-just">
+    <div class="titulo">Dilema Constructivo + Simplificación</div>
+    De $P \vee Q$, $P \to R$ y $Q \to R$: en cualquier caso se obtiene $R$.
+    (Dilema constructivo con la misma conclusión en ambas ramas.)
+  </div>
+
+  <div class="paso-dev">(8) $R \vee Q$<br>De (7)</div>
+  <div class="paso-just">
+    <div class="titulo">Adición</div>
+    De $R$ se obtiene $R \vee Q$.
+  </div>
+
+  <div class="paso-dev">(9) $\neg T$<br>De (1) y (8)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $R \vee Q$ activa $(R \vee Q) \to \neg T$.
+  </div>
+
+  <div class="paso-dev">(10) $\neg T \vee U$<br>De (9)</div>
+  <div class="paso-just">
+    <div class="titulo">Adición</div>
+    De $\neg T$ se obtiene $\neg T \vee U$ para cualquier $U$.
+  </div>
+
+  <div class="paso-dev">(11) $\neg(T \wedge \neg U)$<br>De (10)</div>
+  <div class="paso-just">
+    <div class="titulo">De Morgan</div>
+    $\neg T \vee U \equiv \neg T \vee \neg\neg U \equiv \neg(T \wedge \neg U)$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $(R \vee Q) \to \neg T$, $\neg Q \vee R$, $P \vee Q$ y $P \to (R \wedge S)$,
+  se demuestra que $\boxed{\neg(T \wedge \neg U)}$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (l)</h2>
+<div class="ejercicio">
+  <p>Demuestre una contradicción $F_0$ a partir de las premisas
+  $(S \vee T) \vee (T \wedge K),\quad \neg(T \wedge K),\quad \neg T,\quad (R \vee S) \to (T \wedge K)$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Demostrar $F_0$ significa derivar una contradicción del conjunto de premisas,
+    es decir, probar que son inconsistentes. Con $\neg T$ y $\neg(T \wedge K)$
+    podemos simplificar la primera premisa hasta obtener $S$.
+    Luego $S$ implica $R \vee S$, que activa la cuarta premisa dando $T \wedge K$.
+    Pero eso contradice directamente la segunda premisa $\neg(T \wedge K)$.
+  </p>
+  <div class="nota">
+    La contradicción es $T \wedge K$ (deducida) junto con $\neg(T \wedge K)$ (premisa).
+    Las hipótesis son mutuamente inconsistentes.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $(S \vee T) \vee (T \wedge K)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $\neg(T \wedge K)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $\neg T$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $(R \vee S) \to (T \wedge K)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $S \vee T$<br>De (1) y (2)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    De $(S \vee T) \vee (T \wedge K)$ y $\neg(T \wedge K)$ queda $S \vee T$.
+  </div>
+
+  <div class="paso-dev">(6) $S$<br>De (5) y (3)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    De $S \vee T$ y $\neg T$ queda $S$.
+  </div>
+
+  <div class="paso-dev">(7) $R \vee S$<br>De (6)</div>
+  <div class="paso-just">
+    <div class="titulo">Adición</div>
+    De $S$ se obtiene $R \vee S$.
+  </div>
+
+  <div class="paso-dev">(8) $T \wedge K$<br>De (4) y (7)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $R \vee S$ activa $(R \vee S) \to (T \wedge K)$.
+  </div>
+
+  <div class="paso-dev">(9) $(T \wedge K) \wedge \neg(T \wedge K)$<br>De (8) y (2)</div>
+  <div class="paso-just">
+    <div class="titulo">Introducción de la Conjunción</div>
+    Se tienen $T \wedge K$ (paso 8) y $\neg(T \wedge K)$ (premisa 2). Su conjunción
+    es una contradicción explícita: $F_0$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  Las premisas $(S \vee T) \vee (T \wedge K)$, $\neg(T \wedge K)$, $\neg T$ y $(R \vee S) \to (T \wedge K)$
+  son mutuamente inconsistentes. Se obtiene la contradicción
+  $\boxed{(T \wedge K) \wedge \neg(T \wedge K)}$, es decir $F_0$.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2 style="margin-top:3rem;">Inciso (m)</h2>
+<div class="ejercicio">
+  <p>Demuestre $\neg R \to \neg T$ a partir de las premisas
+  $P \to (Q \to R),\quad P \vee S,\quad T \to Q,\quad \neg S$.</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Queremos demostrar un condicional $\neg R \to \neg T$, equivalente por contrapositiva
+    a $T \to R$. La estrategia es asumir $\neg R$ (hipótesis del condicional) y
+    derivar $\neg T$. Con $\neg S$ y $P \vee S$ obtenemos $P$. Con $P$ activamos
+    $P \to (Q \to R)$ para obtener $Q \to R$. Ahora suponiendo $\neg R$,
+    por Modus Tollens de $Q \to R$ obtenemos $\neg Q$, y de $T \to Q$
+    con $\neg Q$ obtenemos $\neg T$.
+  </p>
+  <div class="nota">
+    La demostración del condicional $\neg R \to \neg T$ se hace asumiendo $\neg R$
+    como hipótesis adicional y derivando $\neg T$ dentro de ese contexto.
+  </div>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">(1) $P \to (Q \to R)$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Primera hipótesis.</div>
+
+  <div class="paso-dev">(2) $P \vee S$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Segunda hipótesis.</div>
+
+  <div class="paso-dev">(3) $T \to Q$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Tercera hipótesis.</div>
+
+  <div class="paso-dev">(4) $\neg S$</div>
+  <div class="paso-just"><div class="titulo">Premisa</div>Cuarta hipótesis.</div>
+
+  <div class="paso-dev">(5) $P$<br>De (2) y (4)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Disyuntivo</div>
+    De $P \vee S$ y $\neg S$ se concluye $P$.
+  </div>
+
+  <div class="paso-dev">(6) $Q \to R$<br>De (1) y (5)</div>
+  <div class="paso-just">
+    <div class="titulo">Modus Ponens</div>
+    $P$ activa $P \to (Q \to R)$, dando $Q \to R$.
+  </div>
+
+  <div class="paso-dev">(7) $T \to R$<br>De (3) y (6)</div>
+  <div class="paso-just">
+    <div class="titulo">Silogismo Hipotético</div>
+    De $T \to Q$ y $Q \to R$ se encadenan para obtener $T \to R$.
+  </div>
+
+  <div class="paso-dev">(8) $\neg R \to \neg T$<br>De (7)</div>
+  <div class="paso-just">
+    <div class="titulo">Contrapositiva</div>
+    $T \to R$ es lógicamente equivalente a su contrapositiva $\neg R \to \neg T$.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  A partir de $P \to (Q \to R)$, $P \vee S$, $T \to Q$ y $\neg S$,
+  se demuestra que $\boxed{\neg R \to \neg T}$.
+  <br><br>
+  El camino más elegante: encadenar $T \to Q \to R$ por silogismo hipotético
+  y tomar la contrapositiva directamente.
+</div>
+
+</body>
+</html>

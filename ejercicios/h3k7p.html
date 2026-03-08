@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>h3k7p</title>
+  <script>
+    window.EJERCICIO = {
+      id: "h3k7p",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "equivalencia tautologica",
+        "tablas de verdad",
+        "logica proposicional",
+        "bicondicional tautologico"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "equivalencia tautologica",
+        "tablas de verdad",
+        "logica proposicional",
+        "bicondicional",
+        "tautologia"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .88rem;
+      margin: 6px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 5px 8px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    td.dest { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>
+    Utilice tablas de verdad para determinar si la proposición
+    $(P \to Q) \lor [(\neg Q \to \neg P) \land \neg R]$
+    es tautológicamente equivalente a la proposición $\neg(P \land \neg Q)$.
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Dos proposiciones son <em>tautologicamente equivalentes</em> cuando tienen exactamente
+    el mismo valor de verdad en cada fila posible. La forma de verificarlo es construir
+    las tablas de verdad de ambas y comparar columna por columna.
+  </p>
+  <div class="nota">
+    Una manera mas compacta: si $\Phi \leftrightarrow \Psi$ es una tautologia, entonces
+    $\Phi$ y $\Psi$ son equivalentes. Pero tambien basta comparar sus columnas directamente
+    en la tabla: si coinciden en todas las filas, son equivalentes; si difieren en al menos
+    una fila, no lo son.
+  </div>
+  <p>
+    Llamemos $\Phi = (P \to Q) \lor [(\neg Q \to \neg P) \land \neg R]$ y $\Psi = \neg(P \land \neg Q)$.
+    Con tres variables ($P$, $Q$, $R$) hay $2^3 = 8$ combinaciones posibles.
+  </p>
+  <p>
+    Antes de armar la tabla conviene notar que $\neg Q \to \neg P$ es la contrapositiva de
+    $P \to Q$, por lo que ambas son logicamente equivalentes. Eso significa que
+    $\Phi$ se puede reescribir como $(P \to Q) \lor [(P \to Q) \land \neg R]$,
+    que por absorcion simplifica a $P \to Q$. Y $\Psi = \neg(P \land \neg Q) \equiv P \to Q$
+    tambien. Pero comprobemos esto formalmente con la tabla.
+  </p>
+  <p class="chiste">(Spoiler algebraico: son lo mismo. Pero la tabla no miente, asi que la hacemos igual.)</p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <!-- Paso 1 -->
+  <div class="paso-dev">
+    Simplificacion previa de $\Phi$:<br><br>
+    $\neg Q \to \neg P \equiv P \to Q$ (contrapositiva)<br><br>
+    $\Phi = (P \to Q) \lor [(P \to Q) \land \neg R]$<br><br>
+    Por la ley de absorcion: $A \lor (A \land B) \equiv A$<br><br>
+    $\Phi \equiv P \to Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Simplificacion algebraica</div>
+    La contrapositiva de $P \to Q$ es $\neg Q \to \neg P$: son dos formas de decir exactamente
+    lo mismo. Una vez hecha esa sustitucion, la disyuncion $A \lor (A \land B)$ simplifica a $A$
+    por absorcion: si $A$ ya es verdadera, agregar $A \land B$ no cambia nada; y si $A$ es falsa,
+    $A \land B$ tambien lo es. En ambos casos el resultado es $A$.
+  </div>
+
+  <!-- Paso 2 -->
+  <div class="paso-dev">
+    Simplificacion de $\Psi$:<br><br>
+    $\Psi = \neg(P \land \neg Q)$<br><br>
+    Por De Morgan: $\neg P \lor \neg\neg Q = \neg P \lor Q$<br><br>
+    $\neg P \lor Q \equiv P \to Q$<br><br>
+    $\Psi \equiv P \to Q$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Simplificacion de Ψ</div>
+    De Morgan convierte la negacion de una conjuncion en una disyuncion de negaciones.
+    La expresion $\neg P \lor Q$ es exactamente la definicion alternativa de $P \to Q$:
+    "o $P$ es falsa, o $Q$ es verdadera". Son la misma cosa.
+  </div>
+
+  <!-- Paso 3 -->
+  <div class="paso-dev">
+    Ambas simplifican a $P \to Q$. Verificacion con tabla completa:<br><br>
+    <table>
+      <tr>
+        <th>$P$</th><th>$Q$</th><th>$R$</th>
+        <th>$\neg Q{\to}\neg P$</th><th>$\neg R$</th>
+        <th>$(\neg Q{\to}\neg P){\land}\neg R$</th>
+        <th>$P{\to}Q$</th>
+        <th>$\Phi$</th>
+        <th>$\Psi$</th>
+      </tr>
+      <tr><td>V</td><td>V</td><td>V</td><td>V</td><td>F</td><td>F</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>V</td><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>F</td><td>V</td><td>F</td><td>F</td><td>F</td><td>F</td><td class="dest">F</td><td class="dest">F</td></tr>
+      <tr><td>V</td><td>F</td><td>F</td><td>F</td><td>V</td><td>F</td><td>F</td><td class="dest">F</td><td class="dest">F</td></tr>
+      <tr><td>F</td><td>V</td><td>V</td><td>V</td><td>F</td><td>F</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>V</td><td>V</td><td>F</td><td>F</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td class="dest">V</td></tr>
+    </table>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Verificacion fila a fila</div>
+    Las columnas $\Phi$ y $\Psi$ son identicas en las 8 filas. Eso confirma la equivalencia
+    tautologica. Vale la pena mirar las filas 3 y 4: son las unicas donde ambas son falsas,
+    justamente cuando $P = V$ y $Q = F$, que es la unica situacion donde $P \to Q$ falla.
+    La variable $R$ no afecta el resultado final de ninguna de las dos proposiciones.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> Las proposiciones son tautologicamente equivalentes:
+  $$(P \to Q) \lor [(\neg Q \to \neg P) \land \neg R] \;\equiv\; \neg(P \land \neg Q)$$
+  Ambas simplifican a $P \to Q$. La variable $R$ es irrelevante en $\Phi$ porque
+  aparece dentro de una subformula que nunca altera el valor de la disyuncion principal.
+</div>
+
+</body>
+</html>

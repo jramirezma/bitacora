@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>m1t5q</title>
+  <script>
+    window.EJERCICIO = {
+      id: "m1t5q",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "implicacion tautologica",
+        "equivalencia tautologica",
+        "tablas de verdad",
+        "logica proposicional"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "implicacion tautologica",
+        "equivalencia tautologica",
+        "tablas de verdad",
+        "logica proposicional",
+        "tautologia"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .subtitulo {
+      font-family: sans-serif;
+      font-size: .9rem;
+      font-weight: bold;
+      margin: 2rem 0 .4rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .87rem;
+      margin: 6px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 4px 7px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    td.dest { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>Utilice tablas de verdad para comprobar que:</p>
+  <p>(a) $[(Q \to R) \land (\neg Q \to S)] \Rightarrow (R \lor S)$</p>
+  <p>(b) $[\neg P \lor (Q \to R)] \Longleftrightarrow [\neg(P \land Q) \lor R]$</p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    El ejercicio usa dos simbolos distintos que conviene no confundir:
+  </p>
+  <p>
+    $\Rightarrow$ denota <strong>implicacion tautologica</strong>: $\Phi \Rightarrow \Psi$ significa
+    que en toda fila donde $\Phi$ es verdadera, $\Psi$ tambien lo es. Equivalentemente,
+    $\Phi \to \Psi$ es una tautologia.
+  </p>
+  <p>
+    $\Longleftrightarrow$ denota <strong>equivalencia tautologica</strong>: $\Phi \Longleftrightarrow \Psi$
+    significa que $\Phi$ y $\Psi$ tienen el mismo valor en toda fila. Equivalentemente,
+    $\Phi \leftrightarrow \Psi$ es una tautologia.
+  </p>
+  <div class="nota">
+    Para verificar $\Phi \Rightarrow \Psi$: buscar si existe alguna fila donde $\Phi = V$ y $\Psi = F$.
+    Si no existe, la implicacion tautologica se cumple.
+    Para verificar $\Phi \Longleftrightarrow \Psi$: comparar las columnas de $\Phi$ y $\Psi$ fila a fila.
+    Si son identicas, la equivalencia tautologica se cumple.
+  </div>
+  <p class="chiste">(Dos simbolos que parecen flecha pero significan cosas distintas. La logica ama las distinciones sutiles.)</p>
+</div>
+
+<h2>Solución</h2>
+
+<p class="subtitulo">Inciso (a): $[(Q \to R) \land (\neg Q \to S)] \Rightarrow (R \lor S)$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    Llamemos $\Phi = (Q \to R) \land (\neg Q \to S)$ y $\Psi = R \lor S$.<br><br>
+    Hay $2^3 = 8$ combinaciones. Buscamos filas donde $\Phi = V$ y $\Psi = F$.<br><br>
+    <table>
+      <tr>
+        <th>$Q$</th><th>$R$</th><th>$S$</th>
+        <th>$Q{\to}R$</th><th>$\neg Q{\to}S$</th>
+        <th>$\Phi$</th>
+        <th>$R{\lor}S$</th>
+        <th>$\Psi$</th>
+      </tr>
+      <tr><td>V</td><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>V</td><td>F</td><td>V</td><td>V</td><td class="dest">V</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>F</td><td>V</td><td>F</td><td>V</td><td class="dest">F</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>F</td><td>F</td><td>F</td><td>V</td><td class="dest">F</td><td>F</td><td class="dest">F</td></tr>
+      <tr><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>F</td><td class="dest">F</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>F</td><td>V</td><td>F</td><td class="dest">F</td><td>F</td><td class="dest">F</td></tr>
+    </table>
+    <br>
+    No existe ninguna fila con $\Phi = V$ y $\Psi = F$. $\checkmark$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Implicacion tautologica verificada</div>
+    <p>Las filas donde $\Phi = V$ son la 1, 2, 5 y 7. En todas ellas $\Psi = V$ tambien. Nunca ocurre que $\Phi$ sea verdadera y $\Psi$ falsa.</p>
+    <p>Tiene sentido intuitivo: si $Q$ implica $R$ y $\neg Q$ implica $S$, entonces pase lo que pase con $Q$ siempre tenemos al menos uno de $R$ o $S$ verdadero. Si $Q$ es verdadera, $R$ lo es; si $Q$ es falsa, $S$ lo es. En ambos casos $R \lor S$ resulta verdadera.</p>
+  </div>
+</div>
+
+<p class="subtitulo">Inciso (b): $[\neg P \lor (Q \to R)] \Longleftrightarrow [\neg(P \land Q) \lor R]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    Simplificacion algebraica previa:<br><br>
+    $Q \to R \equiv \neg Q \lor R$<br><br>
+    $\neg P \lor (\neg Q \lor R) \equiv \neg P \lor \neg Q \lor R$<br><br>
+    Por De Morgan: $\neg(P \land Q) \equiv \neg P \lor \neg Q$<br><br>
+    $\neg(P \land Q) \lor R \equiv \neg P \lor \neg Q \lor R$<br><br>
+    Ambos lados son identicos. $\checkmark$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Equivalencia algebraica</div>
+    <p>Ambas expresiones simplifican a $\neg P \lor \neg Q \lor R$. Como son la misma formula, son trivialmente equivalentes tautologicamente.</p>
+    <p>No es necesaria la tabla, pero la hacemos igual para cumplir con el enunciado.</p>
+  </div>
+
+  <div class="paso-dev">
+    Verificacion con tabla ($2^3 = 8$ filas):<br><br>
+    <table>
+      <tr>
+        <th>$P$</th><th>$Q$</th><th>$R$</th>
+        <th>$Q{\to}R$</th>
+        <th>$\neg P{\lor}(Q{\to}R)$</th>
+        <th>$P{\land}Q$</th>
+        <th>$\neg(P{\land}Q){\lor}R$</th>
+      </tr>
+      <tr><td>V</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td>V</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>V</td><td>F</td><td>F</td><td class="dest">F</td><td>V</td><td class="dest">F</td></tr>
+      <tr><td>V</td><td>F</td><td>V</td><td>V</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+      <tr><td>V</td><td>F</td><td>F</td><td>V</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>V</td><td>V</td><td>V</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>V</td><td>F</td><td>F</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>V</td><td>V</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+      <tr><td>F</td><td>F</td><td>F</td><td>V</td><td class="dest">V</td><td>F</td><td class="dest">V</td></tr>
+    </table>
+    <br>
+    Las dos columnas destacadas son identicas en las 8 filas. $\checkmark$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Equivalencia tautologica verificada</div>
+    <p>Las columnas de $\Phi$ y $\Psi$ coinciden fila a fila. La unica fila donde ambas son falsas es la 2: cuando $P = V$, $Q = V$ y $R = F$, que es exactamente cuando $P \land Q$ es verdadera y $R$ no alcanza a salvar la disyuncion.</p>
+    <p>La simplificacion algebraica previa anticipo el resultado: si dos formulas son la misma expresion reescrita, sus tablas son identicas por definicion.</p>
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultados.</strong><br><br>
+  (a) $[(Q \to R) \land (\neg Q \to S)] \Rightarrow (R \lor S)$: <strong>se cumple</strong>.
+  En toda fila donde la premisa es verdadera, la conclusion tambien lo es.<br><br>
+  (b) $[\neg P \lor (Q \to R)] \Longleftrightarrow [\neg(P \land Q) \lor R]$: <strong>se cumple</strong>.
+  Ambas expresiones son equivalentes a $\neg P \lor \neg Q \lor R$ y tienen columnas identicas.
+</div>
+
+</body>
+</html>

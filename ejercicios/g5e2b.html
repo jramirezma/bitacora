@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>g5e2b</title>
+  <script>
+    window.EJERCICIO = {
+      id: "g5e2b",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "implicacion tautologica",
+        "contraejemplo logico",
+        "logica proposicional",
+        "tablas de verdad"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "implicacion tautologica",
+        "contraejemplo",
+        "logica proposicional",
+        "tablas de verdad",
+        "consecuencia logica"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .9rem;
+      margin: 6px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    td.dest { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>
+    Determine una asignación de valores de verdad para $A$, $B$, $C$, $D$ y $E$ que verifique que
+    $$[(A \to (B \lor C)) \land (C \to (D \land E)) \land \neg D]$$
+    no implica tautológicamente a $A \to E$.
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Decir que una proposicion $\Phi$ <em>implica tautologicamente</em> a $\Psi$ significa que en toda
+    fila donde $\Phi$ es verdadera, $\Psi$ tambien lo es. Escrito de otra forma: la implicacion
+    $\Phi \to \Psi$ es una tautologia.
+  </p>
+  <div class="nota">
+    Para demostrar que $\Phi$ <strong>no</strong> implica tautologicamente a $\Psi$, basta encontrar
+    una sola asignacion de valores donde $\Phi$ sea verdadera y $\Psi$ sea falsa al mismo tiempo.
+    Ese es el contraejemplo que pide el ejercicio.
+  </div>
+  <p>
+    Llamemos $\Phi = (A \to (B \lor C)) \land (C \to (D \land E)) \land \neg D$ y $\Psi = A \to E$.
+    Necesitamos que $\Phi$ sea verdadera y $\Psi$ sea falsa.
+  </p>
+  <p>
+    Para que $\Psi = A \to E$ sea falsa, necesitamos $A = V$ y $E = F$.
+    Para que $\neg D$ sea verdadera, necesitamos $D = F$.
+    Con $D = F$, la unica forma de que $C \to (D \land E)$ sea verdadera es que $C = F$.
+    Con $C = F$ y $A = V$, necesitamos que $A \to (B \lor C) = V \to (B \lor F)$ sea verdadera,
+    lo que exige $B = V$.
+  </p>
+  <p class="chiste">(Un solo contraejemplo basta para hundir una implicacion tautologica. La logica es implacable pero justa.)</p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <!-- Paso 1 -->
+  <div class="paso-dev">
+    Para que $\Psi = A \to E$ sea falsa:<br><br>
+    $A = V$ y $E = F$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Condicion sobre Ψ</div>
+    La implicacion $A \to E$ es falsa unicamente cuando $A$ es verdadera y $E$ es falsa.
+    Esa es la unica combinacion que nos sirve para el contraejemplo.
+  </div>
+
+  <!-- Paso 2 -->
+  <div class="paso-dev">
+    Para que $\neg D$ sea verdadera:<br><br>
+    $D = F$<br><br>
+    Con $D = F$ y $E = F$:<br>
+    $D \land E = F \land F = F$<br><br>
+    Para que $C \to (D \land E) = C \to F$ sea verdadera:<br>
+    $C = F$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Condicion sobre C y D</div>
+    $\neg D$ verdadera obliga a $D = F$. Con $D$ y $E$ ambos falsos, $D \land E = F$.
+    Para que $C \to F$ sea verdadera, el antecedente $C$ debe ser falso:
+    una implicacion con consecuente falso solo se salva si el antecedente tambien es falso.
+  </div>
+
+  <!-- Paso 3 -->
+  <div class="paso-dev">
+    Con $A = V$ y $C = F$:<br>
+    $B \lor C = B \lor F = B$<br><br>
+    Para que $A \to (B \lor C) = V \to B$ sea verdadera:<br>
+    $B = V$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Condicion sobre B</div>
+    Con $A = V$, la implicacion $A \to (B \lor C)$ exige que el consecuente sea verdadero.
+    Como $C = F$, el consecuente se reduce a $B$. Entonces $B$ debe ser verdadero.
+  </div>
+
+  <!-- Paso 4 -->
+  <div class="paso-dev">
+    Asignacion encontrada:<br><br>
+    $A = V,\; B = V,\; C = F,\; D = F,\; E = F$<br><br>
+    Verificacion:<br>
+    <table>
+      <tr><th>Subformula</th><th>Valor</th></tr>
+      <tr><td>$\neg D$</td><td>V</td></tr>
+      <tr><td>$B \lor C$</td><td>V</td></tr>
+      <tr><td>$A \to (B \lor C)$</td><td>V</td></tr>
+      <tr><td>$D \land E$</td><td>F</td></tr>
+      <tr><td>$C \to (D \land E)$</td><td>V</td></tr>
+      <tr><td class="dest">$\Phi$ (conjuncion de las tres)</td><td class="dest">V</td></tr>
+      <tr><td class="dest">$\Psi = A \to E$</td><td class="dest">F</td></tr>
+    </table>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Verificacion del contraejemplo</div>
+    La tabla confirma que con esta asignacion $\Phi$ es verdadera y $\Psi$ es falsa al mismo tiempo.
+    Eso es exactamente lo que se necesita: una fila donde la premisa se cumple pero la conclusion no.
+    Si $\Phi$ implicara tautologicamente a $\Psi$, esto seria imposible. Como ocurre, queda demostrado
+    que la implicacion tautologica no se cumple.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> La asignacion
+  $$A = V,\quad B = V,\quad C = F,\quad D = F,\quad E = F$$
+  es un contraejemplo: hace que $\Phi$ sea verdadera y $A \to E$ sea falsa simultaneamente,
+  lo que prueba que $\Phi$ no implica tautologicamente a $A \to E$.
+</div>
+
+</body>
+</html>

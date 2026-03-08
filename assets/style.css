@@ -110,7 +110,106 @@ main {
 }
 
 .buscador-toggle::before {
-  content: "☰";
+  content: "◀";
+  font-size: 1.2rem;
+}
+
+.buscador-panel.collapsed .buscador-toggle::before {
+  content: "▶";
+}
+
+/* ─── NUEVO BUSCADOR ─────────────────────────────────────── */
+.buscador-input-wrapper {
+  position: relative;
+  margin-bottom: var(--spacing-2);
+}
+
+.buscador-input-wrapper input {
+  width: 100%;
+  padding: var(--spacing-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.buscador-input-wrapper input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 200;
+  display: none;
+}
+
+.sugerencias.mostrar {
+  display: block;
+}
+
+.sugerencia-item {
+  padding: var(--spacing-1) var(--spacing-2);
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sugerencia-item:last-child {
+  border-bottom: none;
+}
+
+.sugerencia-item:hover {
+  background: var(--color-bg-alt);
+}
+
+.sugerencia-item .campo {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.filtros-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+}
+
+.filtro-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-primary);
+  color: white;
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+}
+
+.filtro-tag .campo {
+  opacity: 0.8;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.filtro-tag .quitar {
+  cursor: pointer;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.filtro-tag .quitar:hover {
+  opacity: 1;
 }
 
 .buscador-panel h2 {
@@ -493,6 +592,25 @@ button.tarjeta-ejercicio-link:hover .tarjeta-ejercicio {
   padding: var(--spacing-4);
 }
 
+.tarjeta-meta {
+  font-size: .8rem;
+  color: #555;
+  margin: 2px 0 6px;
+  font-family: sans-serif;
+}
+
+.sugerencia-separador {
+  padding: 6px 12px;
+  font-size: .8rem;
+  color: #555;
+  font-style: italic;
+  cursor: pointer;
+  border-top: 1px solid #ddd;
+}
+.sugerencia-separador:hover {
+  background: var(--color-bg-alt);
+}
+
 /* ─── CART ───────────────────────────────────────────────── */
 .carrito {
   background: white;
@@ -565,64 +683,53 @@ button.tarjeta-ejercicio-link:hover .tarjeta-ejercicio {
 }
 
 /* ─── EXERCISE VIEW ───────────────────────────────────────── */
-.enunciado,
-.entendimiento {
-  background: var(--color-bg-alt);
-  padding: var(--spacing-3);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-3);
+
+/* Barra superior con el botón volver */
+.ejercicio-nav {
+  padding: var(--spacing-2) 0 var(--spacing-3);
 }
 
-.enunciado {
-  font-size: 1.1rem;
-}
-
-.entendimiento {
-  background: var(--color-warning);
-  background: rgba(192, 160, 64, 0.1);
-  border-left: 4px solid var(--color-warning);
-}
-
-.entendimiento p {
-  margin: var(--spacing-1) 0;
-}
-
-.solucion table {
+/* El iframe se estira al alto del contenido, sin scroll interno */
+.ejercicio-iframe {
+  display: block;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: var(--spacing-2);
+  height: 500px; /* altura inicial mientras carga */
+  border: none;
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
-.solucion th,
-.solucion td {
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-2);
-  text-align: left;
+/* Bloquea el scroll del index cuando hay un ejercicio abierto */
+body.ejercicio-abierto {
+  overflow: hidden;
 }
 
-.solucion th {
-  background: var(--color-primary);
-  color: white;
+body.ejercicio-abierto main {
+  overflow: hidden;
 }
 
-.solucion td:first-child {
-  font-family: var(--font-mono);
-}
-
-.btn-ver-solucion {
+/* Botón volver */
+.btn-volver {
   display: inline-block;
-  padding: var(--spacing-2) var(--spacing-4);
-  background: var(--color-accent);
+  padding: var(--spacing-1) var(--spacing-3);
+  background: var(--color-primary);
   color: white;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: var(--spacing-2);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
 }
 
-.btn-ver-solucion:hover {
-  opacity: 0.9;
+.btn-volver:hover {
+  opacity: 0.85;
+}
+
+/* Responsive móvil */
+@media (max-width: 768px) {
+  .ejercicio-iframe {
+    height: calc(100vh - 130px); /* más espacio por la barra inferior del buscador */
+  }
 }
 
 /* ─── MATHJAX ───────────────────────────────────────────── */

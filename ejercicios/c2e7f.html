@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c2e7f</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "c2e7f",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["8", "Ejercicio 8", "ej8"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "media aritmética",
+        "media geométrica",
+        "desigualdad AM-GM",
+        "raíces"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "desigualdad media aritmética geométrica",
+        "AM-GM demostración",
+        "a más b mayor o igual 2 raiz ab",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre que $\left(\sqrt{a} - \sqrt{b}\right)^2 \geq 0$ implica que $a + b \geq 2\sqrt{ab}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Es el mismo esquema que el ejercicio 6, pero con $\sqrt{a}$ y $\sqrt{b}$ en lugar de
+      $a$ y $b$. La hipótesis nos da el cuadrado no negativo; expandirlo y reorganizar
+      produce la desigualdad pedida. Para que $\sqrt{a}$ y $\sqrt{b}$ estén definidas,
+      se asume $a, b \geq 0$.
+    </p>
+    <div class="nota">
+      Este resultado es la desigualdad AM-GM para dos términos:
+      la media aritmética $\frac{a+b}{2}$ nunca es menor que la media geométrica $\sqrt{ab}$.
+    </div>
+    <p>
+      La igualdad $a + b = 2\sqrt{ab}$ se alcanza exactamente cuando $a = b$,
+      es decir cuando $\sqrt{a} = \sqrt{b}$, que hace que el cuadrado de la hipótesis valga $0$.
+    </p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\left(\sqrt{a} - \sqrt{b}\right)^2 \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Todo cuadrado real es no negativo. Se asume $a, b \geq 0$ para que las raíces estén definidas.
+    </div>
+
+    <div class="paso-dev">
+      $$a - 2\sqrt{a}\sqrt{b} + b \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Expansión del cuadrado</div>
+      $(\sqrt{a} - \sqrt{b})^2 = (\sqrt{a})^2 - 2\sqrt{a}\sqrt{b} + (\sqrt{b})^2 = a - 2\sqrt{ab} + b$.
+    </div>
+
+    <div class="paso-dev">
+      $$a + b \geq 2\sqrt{a}\sqrt{b}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de $2\sqrt{ab}$ en ambos lados</div>
+      Pasamos $-2\sqrt{ab}$ al otro miembro. Sumar el mismo valor preserva el sentido.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{a + b \geq 2\sqrt{ab}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Propiedad de raíces</div>
+      $\sqrt{a}\sqrt{b} = \sqrt{ab}$ para $a, b \geq 0$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Como $(\sqrt{a}-\sqrt{b})^2 \geq 0$, expandiendo y sumando $2\sqrt{ab}$ a ambos lados:
+    $$\boxed{a + b \geq 2\sqrt{ab}}$$
+    La igualdad se alcanza si y solo si $a = b$. Dividiendo por $2$: $\dfrac{a+b}{2} \geq \sqrt{ab}$,
+    que es la desigualdad AM-GM clásica para dos términos.
+  </div>
+
+</body>
+</html>

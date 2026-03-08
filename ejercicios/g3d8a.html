@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>g3d8a</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "g3d8a",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["12", "Ejercicio 12", "ej12"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "Cauchy-Schwarz",
+        "producto interno",
+        "vectores unitarios"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "desigualdad Cauchy-Schwarz",
+        "ax+by+cz menor o igual 1",
+        "vectores unitarios desigualdad",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Si $a^2+b^2+c^2 = 1$ y $x^2+y^2+z^2 = 1$, entonces $1 \geq ax+by+cz$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Las condiciones dicen que los dos vectores $(a,b,c)$ y $(x,y,z)$ tienen norma $1$.
+      Lo que hay que demostrar es que su producto punto $ax+by+cz$ no supera $1$.
+      Pero no hace falta saber nada de vectores: alcanza con aplicar el ejercicio 7a
+      a los tres pares $(a,x)$, $(b,y)$, $(c,z)$ y sumar.
+    </p>
+    <div class="nota">
+      Del ejercicio 7a sabemos que $u^2+v^2+w^2 \geq uv+uw+vw$ para cualquier trío.
+      Aplicado a $(a,x)$, $(b,y)$, $(c,z)$ por separado y sumando, las hipótesis
+      colapsan todo en $2 \geq 2(ax+by+cz)$.
+    </div>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a^2 + x^2 \geq 2ax$$
+      $$b^2 + y^2 \geq 2by$$
+      $$c^2 + z^2 \geq 2cz$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 6 aplicado a tres pares</div>
+      Aplicamos $u^2+v^2 \geq 2uv$ a los pares $(a,x)$, $(b,y)$ y $(c,z)$.
+    </div>
+
+    <div class="paso-dev">
+      $$(a^2+b^2+c^2)+(x^2+y^2+z^2) \geq 2(ax+by+cz)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de las tres desigualdades</div>
+      Sumamos miembro a miembro. El sentido se conserva.
+    </div>
+
+    <div class="paso-dev">
+      $$1 + 1 \geq 2(ax+by+cz)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Sustituimos $a^2+b^2+c^2 = 1$ y $x^2+y^2+z^2 = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{1 \geq ax+by+cz}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">División por 2</div>
+      Dividimos $2 \geq 2(ax+by+cz)$ por $2 > 0$. El sentido se conserva.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Si $a^2+b^2+c^2=1$ y $x^2+y^2+z^2=1$, aplicando $u^2+v^2 \geq 2uv$ a tres pares y sumando:
+    $$\boxed{1 \geq ax+by+cz}$$
+    Este es un caso particular de la desigualdad de Cauchy-Schwarz:
+    $(a^2+b^2+c^2)(x^2+y^2+z^2) \geq (ax+by+cz)^2$.
+    Con ambos factores iguales a $1$, se obtiene directamente $1 \geq (ax+by+cz)^2$,
+    y como $1 \geq (ax+by+cz)^2$ implica $1 \geq ax+by+cz$ solo cuando el producto es no negativo,
+    la demostración por suma de desigualdades es más directa y no requiere esa distinción.
+  </div>
+
+</body>
+</html>

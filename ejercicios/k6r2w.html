@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>k6r2w</title>
+  <script>
+    window.EJERCICIO = {
+      id: "k6r2w",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "logica proposicional",
+        "valor de verdad",
+        "implicacion",
+        "conectivas logicas"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "logica proposicional",
+        "valor de verdad",
+        "conjuncion verdadera",
+        "conectivas logicas",
+        "deduccion"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>
+    Si $(P \to Q) \land R$ es verdadera, determine el valor de verdad de la proposición
+    $$[(\neg P \lor T) \lor Q] \land (\neg R \to S)$$
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    La condicion de partida es una conjuncion verdadera: $(P \to Q) \land R = V$.
+    Para que una conjuncion sea verdadera, <em>ambos</em> factores deben ser verdaderos.
+    Eso nos da dos hechos de una sola vez: $P \to Q = V$ y $R = V$.
+  </p>
+  <div class="nota">
+    A diferencia del ejercicio anterior, donde $P \to Q$ falsa fijaba $P$ y $Q$ completamente,
+    aqui $P \to Q$ verdadera deja varias posibilidades abiertas: puede ser que $P = F$,
+    o que $P = V$ y $Q = V$. No sabemos exactamente cuales son los valores de $P$ y $Q$,
+    solo que la implicacion entre ellos es verdadera.
+  </div>
+  <p>
+    La estrategia es evaluar la proposicion pedida usando solo lo que sabemos con certeza
+    ($R = V$ y $P \to Q = V$) y ver si eso alcanza para determinar el resultado,
+    sin necesidad de conocer los valores individuales de $P$, $Q$, $S$ y $T$.
+  </p>
+  <p class="chiste">(Sabemos que $R$ es verdadera y que $P$ implica $Q$. No es mucho, pero con la logica bien aplicada suele alcanzar.)</p>
+</div>
+
+<h2>Solución</h2>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <!-- Paso 1 -->
+  <div class="paso-dev">
+    $(P \to Q) \land R = V$<br><br>
+    $\Rightarrow P \to Q = V$ y $R = V$<br><br>
+    Valor derivado: $\neg R = F$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Extraccion de valores</div>
+    Una conjuncion es verdadera solo cuando los dos lados lo son. Asi que de un solo dato
+    sacamos dos: $P \to Q$ es verdadera y $R$ es verdadera. La negacion de $R$ es inmediata.
+  </div>
+
+  <!-- Paso 2 -->
+  <div class="paso-dev">
+    Evaluamos el segundo factor de la conjuncion principal:<br><br>
+    $\neg R \to S = F \to S = V$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Implicacion con antecedente falso</div>
+    Como $R = V$, tenemos $\neg R = F$. Una implicacion con antecedente falso es siempre
+    verdadera, sin importar el valor de $S$. Este factor queda resuelto de inmediato.
+  </div>
+
+  <!-- Paso 3 -->
+  <div class="paso-dev">
+    Evaluamos el primer factor de la conjuncion principal:<br><br>
+    $(\neg P \lor T) \lor Q$<br><br>
+    $P \to Q \equiv \neg P \lor Q = V$<br><br>
+    $(\neg P \lor Q) \lor T = V \lor T = V$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Primer factor</div>
+    Reorganizamos la disyuncion: $(\neg P \lor T) \lor Q = (\neg P \lor Q) \lor T$.
+    La disyuncion es asociativa y conmutativa, asi que el orden no importa.
+    Ahora bien, $\neg P \lor Q$ es exactamente la definicion alternativa de $P \to Q$,
+    que sabemos que es verdadera. Una disyuncion con un lado verdadero es siempre
+    verdadera, sin importar $T$. El primer factor es V.
+  </div>
+
+  <!-- Paso 4 -->
+  <div class="paso-dev">
+    Proposicion principal:<br><br>
+    $[(\neg P \lor T) \lor Q] \land (\neg R \to S)$<br><br>
+    $= V \land V = V$
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Resultado final</div>
+    Ambos factores de la conjuncion principal son verdaderos. La proposicion completa
+    es verdadera para cualquier valor de $P$, $Q$, $S$ y $T$, siempre que se cumpla
+    la condicion inicial. Las variables $S$ y $T$ nunca llegaron a importar.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> La proposicion
+  $$[(\neg P \lor T) \lor Q] \land (\neg R \to S)$$
+  es <strong>verdadera</strong>, para cualquier valor de $P$, $Q$, $S$ y $T$.
+  <br><br>
+  La condicion inicial fija $R = V$ y $P \to Q = V$. Con $R = V$ el segundo factor
+  colapsa a V. Con $P \to Q = V$ el primer factor tambien colapsa a V. La conjuncion
+  de dos verdaderos es verdadera.
+</div>
+
+</body>
+</html>

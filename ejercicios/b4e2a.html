@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b4e2a</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "b4e2a",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["1", "Ejercicio 1", "ej1"],
+      tema: [
+        "números reales",
+        "axiomas de cuerpo",
+        "ley de cancelación",
+        "adición",
+        "demostración algebraica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "ley de cancelación adición",
+        "demostración a+b=a+c implica b=c",
+        "axiomas números reales",
+        "cálculo 1 UMSA",
+        "guía práctica cálculo"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre la ley de cancelación para la adición: si $a + b = a + c$, entonces $b = c$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La idea es sencilla: si dos números producen el mismo resultado al sumarle un tercero,
+      entonces esos dos números deben ser iguales. Dicho así suena obvio, pero el punto es
+      demostrarlo usando solo los axiomas de los números reales, sin dar nada por sentado.
+    </p>
+    <div class="nota">
+      La clave es que todo número real tiene un único inverso aditivo. Si sumamos ese inverso
+      a ambos lados de la igualdad, el $a$ desaparece y queda $b = c$ solo.
+    </div>
+    <p>
+      Los axiomas que vamos a usar son exactamente tres: la existencia del inverso aditivo
+      $(-a)$ tal que $a + (-a) = 0$; la existencia del neutro aditivo $0$ tal que $0 + x = x$;
+      y la propiedad asociativa $(x + y) + z = x + (y + z)$.
+      No hace falta nada más.
+    </p>
+    <p class="chiste">Demostrar algo "obvio" desde cero es como construir una silla partiendo
+      de los átomos. Aburrido en apariencia, pero así se sabe que la silla no se va a romper.</p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Hipótesis -->
+    <div class="paso-dev">
+      $$a + b = a + c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Es la premisa que nos dan. A partir de aquí todo debe seguirse solo con axiomas.
+    </div>
+
+    <!-- Suma del inverso -->
+    <div class="paso-dev">
+      $$(-a) + (a + b) = (-a) + (a + c)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma del inverso aditivo de $a$</div>
+      Sumamos $(-a)$ a ambos lados. Como la igualdad se preserva al aplicar la misma
+      operación en ambos miembros, la igualdad sigue siendo válida.
+    </div>
+
+    <!-- Asociatividad -->
+    <div class="paso-dev">
+      $$((-a) + a) + b = ((-a) + a) + c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma asociativo</div>
+      Reagrupamos usando $(x + y) + z = x + (y + z)$. El paréntesis cambia de lugar,
+      nada más.
+    </div>
+
+    <!-- Inverso aditivo -->
+    <div class="paso-dev">
+      $$0 + b = 0 + c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso aditivo</div>
+      Por definición, $(-a) + a = 0$. Cada par $(-a) + a$ colapsa a cero.
+    </div>
+
+    <!-- Neutro aditivo -->
+    <div class="paso-dev">
+      $$b = c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del neutro aditivo</div>
+      Por definición, $0 + x = x$ para todo $x$. Entonces $0 + b = b$ y $0 + c = c$,
+      y concluimos directamente.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    Partiendo únicamente de los axiomas de cuerpo (inverso aditivo, neutro aditivo y
+    asociatividad), se concluye que si $a + b = a + c$, entonces $\boxed{b = c}$.
+    <br><br>
+    La cadena completa es:
+    $$a+b=a+c \;\Rightarrow\; (-a)+(a+b)=(-a)+(a+c) \;\Rightarrow\; 0+b=0+c \;\Rightarrow\; b=c.$$
+  </div>
+
+</body>
+</html>

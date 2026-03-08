@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f7c2b</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "f7c2b",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["11", "Ejercicio 11", "ej11"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "media aritmética geométrica",
+        "AM-GM",
+        "reales positivos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "desigualdad s-a s-b s-c s-d",
+        "AM-GM cuatro factores",
+        "desigualdad producto restos suma",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Si $a, b, c, d$ son reales positivos tales que $s = a+b+c+d$, demuestre que:
+    $$(s-a)(s-b)(s-c)(s-d) \geq 81\,abcd.$$</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Cada factor $(s-a)$, $(s-b)$, $(s-c)$, $(s-d)$ es la suma de los otros tres.
+      Por ejemplo $s - a = b+c+d$. Entonces el producto es
+      $(b+c+d)(a+c+d)(a+b+d)(a+b+c)$, y a cada factor de tres sumandos positivos
+      le aplicamos AM-GM para tres términos: $u+v+w \geq 3\sqrt[3]{uvw}$.
+    </p>
+    <div class="nota">
+      $s - a = b+c+d \geq 3\sqrt[3]{bcd}$. Aplicando esto a los cuatro factores
+      y multiplicando, el producto de las raíces cúbicas colapsa en $abcd$.
+    </div>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$s - a = b+c+d$$
+      $$s - b = a+c+d$$
+      $$s - c = a+b+d$$
+      $$s - d = a+b+c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución de $s$</div>
+      Como $s = a+b+c+d$, cada resto es simplemente la suma de los otros tres.
+      Todos son positivos porque $a,b,c,d > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$b+c+d \geq 3\sqrt[3]{bcd}$$
+      $$a+c+d \geq 3\sqrt[3]{acd}$$
+      $$a+b+d \geq 3\sqrt[3]{abd}$$
+      $$a+b+c \geq 3\sqrt[3]{abc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM para tres términos</div>
+      Para $u,v,w > 0$: $u+v+w \geq 3\sqrt[3]{uvw}$.
+      Se obtiene aplicando AM-GM dos veces:
+      primero $u+v \geq 2\sqrt{uv}$, luego al resultado con $w$.
+      Aplicamos a cada factor con los tres positivos correspondientes.
+    </div>
+
+    <div class="paso-dev">
+      $$(s-a)(s-b)(s-c)(s-d)$$
+      $$\geq 3\sqrt[3]{bcd}\cdot 3\sqrt[3]{acd}\cdot 3\sqrt[3]{abd}\cdot 3\sqrt[3]{abc}$$
+      $$= 81\sqrt[3]{bcd}\cdot\sqrt[3]{acd}\cdot\sqrt[3]{abd}\cdot\sqrt[3]{abc}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Producto de desigualdades</div>
+      Multiplicamos las cuatro desigualdades. Válido porque todos los miembros son positivos.
+      El coeficiente $3^4 = 81$ aparece al frente.
+    </div>
+
+    <div class="paso-dev">
+      $$\sqrt[3]{bcd}\cdot\sqrt[3]{acd}\cdot\sqrt[3]{abd}\cdot\sqrt[3]{abc}$$
+      $$= \sqrt[3]{a^3b^3c^3d^3} = abcd$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación del producto de raíces</div>
+      Cada variable aparece exactamente tres veces entre los cuatro productos:
+      $a$ aparece en $acd$, $abd$, $abc$; lo mismo para $b$, $c$, $d$.
+      Entonces el producto bajo la raíz es $a^3b^3c^3d^3$, y $\sqrt[3]{a^3b^3c^3d^3} = abcd$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{(s-a)(s-b)(s-c)(s-d) \geq 81\,abcd}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Encadenando. La igualdad se alcanza cuando $a = b = c = d$, es decir $s = 4a$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para $a,b,c,d > 0$ con $s = a+b+c+d$, aplicando AM-GM de tres términos a cada factor $(s-x) = $ suma de los otros tres:
+    $$\boxed{(s-a)(s-b)(s-c)(s-d) \geq 81\,abcd}$$
+    La igualdad se alcanza si y solo si $a = b = c = d$.
+  </div>
+
+</body>
+</html>

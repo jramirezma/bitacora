@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>cb3f2</title>
+  <script>
+    window.EJERCICIO = {
+      id: "cb3f2",
+      materia: [
+        "Programación Orientada a Objetos",
+        "POO",
+        "Programación II"
+      ],
+      tema: [
+        "Clases y objetos",
+        "Pseudocódigo",
+        "Atributos y métodos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "POO pseudocódigo",
+        "clases objetos Bolivia",
+        "comparar atributos método",
+        "carnavales Bolivia programación",
+        "instanciar objetos pseudocódigo"
+      ],
+      fecha: "2026-03-05",
+      autor: { nombre: "Estudiante", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    /* UML */
+    .uml-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .uml-box {
+      border: 1px solid #111;
+      width: calc(20% - 8px);
+      font-size: 8.5pt;
+      font-family: Georgia, serif;
+      min-width: 140px;
+    }
+    .uml-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 9pt;
+      border-bottom: 1px solid #111;
+      padding: 4px 6px;
+    }
+    .uml-attrs {
+      border-bottom: 1px solid #111;
+      padding: 5px 8px;
+      line-height: 1.6;
+    }
+    .uml-methods {
+      padding: 5px 8px;
+      line-height: 1.6;
+    }
+
+    /* Dos columnas — Solución */
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    pre {
+      font-family: 'Courier New', monospace;
+      font-size: 8.5pt;
+      line-height: 1.5;
+      white-space: pre;
+      border: 1px solid #aaa;
+      padding: 10px 16px;
+      margin: 0;
+    }
+
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+
+    .subtitulo-impl {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin: 18px 0 6px;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>a) Identificar 5 clases donde cada clase debe tener 5 atributos significativos.</p>
+    <p>b) Implementar dos clases definidas en el inciso a.</p>
+    <p style="margin-left:1.2rem;">b.1) Instanciar dos objetos para cada clase.</p>
+    <p style="margin-left:1.2rem;">b.2) Para los objetos definidos, comparar dos atributos de cada clase a través de un método.</p>
+    <p><em>Contexto: Carnavales de Bolivia.</em></p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>El ejercicio tiene dos partes. Primero hay que <em>modelar</em> el dominio: pensar qué entidades participan en los carnavales y qué datos las describen. Luego hay que <em>implementar</em> dos de esas entidades en pseudocódigo, creando objetos y comparando sus atributos mediante un método propio de la clase.</p>
+    <div class="nota">
+      La comparación de atributos debe hacerse desde dentro de la clase, usando un método <code>compararCon()</code> que recibe otro objeto del mismo tipo y accede a sus datos mediante getters.
+    </div>
+    <p>Para el inciso a se identifican cinco clases del mundo del carnaval boliviano: <strong>Bailarín</strong>, <strong>Comparsa</strong>, <strong>Banda Musical</strong>, <strong>Espectador</strong> y <strong>Disfraz</strong>. Cada una tiene cinco atributos que la describen de forma significativa. Para el inciso b se implementan <strong>Disfraz</strong> y <strong>Bailarín</strong>, comparando respectivamente precio/talla y edad/años de experiencia.</p>
+    <p class="chiste">Cinco clases, cinco atributos, dos implementaciones: parece el número de comparsas que entran por la misma calle al mismo tiempo en Oruro.</p>
+  </div>
+
+  <h2>a) Identificación de clases y atributos</h2>
+  <div class="bloque">
+    <div class="uml-container">
+
+      <div class="uml-box">
+        <div class="uml-title">Bailarín</div>
+        <div class="uml-attrs">
+          − String nombre<br>
+          − int edad<br>
+          − String disfraz<br>
+          − String grupo<br>
+          − int aniosExperiencia
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getNombre()<br>
+          + getEdad()<br>
+          + getExperiencia()<br>
+          + compararCon(Bailarin)
+        </div>
+      </div>
+
+      <div class="uml-box">
+        <div class="uml-title">Comparsa</div>
+        <div class="uml-attrs">
+          − String nombre<br>
+          − String ciudad<br>
+          − int cantIntegrantes<br>
+          − String ritmo<br>
+          − int anioFundacion
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getNombre()<br>
+          + getIntegrantes()<br>
+          + getAnio()<br>
+          + compararCon(Comparsa)
+        </div>
+      </div>
+
+      <div class="uml-box">
+        <div class="uml-title">Banda Musical</div>
+        <div class="uml-attrs">
+          − String nombre<br>
+          − String director<br>
+          − int cantMusicos<br>
+          − String genero<br>
+          − int aniosActiva
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getNombre()<br>
+          + getMusicos()<br>
+          + getAnios()<br>
+          + compararCon(BandaMusical)
+        </div>
+      </div>
+
+      <div class="uml-box">
+        <div class="uml-title">Espectador</div>
+        <div class="uml-attrs">
+          − String nombre<br>
+          − String ciudad<br>
+          − int edad<br>
+          − int entradas<br>
+          − float presupuesto
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getNombre()<br>
+          + getEntradas()<br>
+          + getPresupuesto()<br>
+          + compararCon(Espectador)
+        </div>
+      </div>
+
+      <div class="uml-box">
+        <div class="uml-title">Disfraz</div>
+        <div class="uml-attrs">
+          − String nombre<br>
+          − String color<br>
+          − String material<br>
+          − float precio<br>
+          − String talla
+        </div>
+        <div class="uml-methods">
+          + leer()<br>
+          + mostrar()<br>
+          + getNombre()<br>
+          + getPrecio()<br>
+          + getTalla()<br>
+          + compararCon(Disfraz)
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h2>b) Implementación</h2>
+
+  <!-- DISFRAZ -->
+  <div class="subtitulo-impl">Clase: Disfraz</div>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+<pre>class Disfraz
+{
+    String nombre, color, material, talla;
+    float  precio;</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Declaración de atributos</div>
+      Se declaran los cinco atributos significativos de la clase. <code>precio</code> es <code>float</code> porque puede tener decimales; los demás son cadenas de texto.
+    </div>
+
+    <div class="paso-dev">
+<pre>    public:
+
+    leer()
+    {
+        read(nombre, color, material,
+             talla, precio);
+    }
+
+    mostrar()
+    {
+        print(nombre, color, material,
+              talla, precio);
+    }</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Métodos de entrada/salida</div>
+      <code>leer()</code> carga los datos desde el usuario. <code>mostrar()</code> los imprime. Son la interfaz básica del objeto con el exterior.
+    </div>
+
+    <div class="paso-dev">
+<pre>    String getNombre() { return nombre; }
+    float  getPrecio() { return precio; }
+    String getTalla()  { return talla; }</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Getters</div>
+      Permiten que otros objetos accedan a los atributos sin romper el encapsulamiento. El método <code>compararCon()</code> los usará para leer los datos del objeto recibido como parámetro.
+    </div>
+
+    <div class="paso-dev">
+<pre>    // b.2) Compara precio y talla
+    compararCon(Disfraz otro)
+    {
+        if (precio > otro.getPrecio()) then
+            print(nombre + " es mas caro");
+        elseif (precio < otro.getPrecio()) then
+            print(otro.getNombre()
+                  + " es mas caro");
+        else
+            print("Mismo precio");
+
+        if (talla == otro.getTalla()) then
+            print("Misma talla");
+        else
+            print("Talla distinta");
+    }
+}</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Método compararCon()</div>
+      Compara los dos atributos solicitados: <strong>precio</strong> (numérico, tres casos: mayor, menor, igual) y <strong>talla</strong> (cadena, dos casos: igual o distinta). El objeto <code>otro</code> se consulta mediante sus getters.
+    </div>
+
+    <div class="paso-dev">
+<pre>Begin
+    d1 = creaobjeto Disfraz();
+    d2 = creaobjeto Disfraz();
+    d1.leer();
+    d2.leer();
+    d1.mostrar();
+    d2.mostrar();
+    d1.compararCon(d2);
+End</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Programa principal</div>
+      Se instancian dos objetos (b.1), se cargan y muestran sus datos, y luego <code>d1</code> invoca la comparación contra <code>d2</code> (b.2).
+    </div>
+
+  </div>
+
+  <!-- BAILARIN -->
+  <div class="subtitulo-impl" style="margin-top:28px;">Clase: Bailarín</div>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+<pre>class Bailarin
+{
+    String nombre, disfraz, grupo;
+    int    edad, aniosExperiencia;</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Declaración de atributos</div>
+      Cinco atributos: tres cadenas y dos enteros. <code>edad</code> y <code>aniosExperiencia</code> son enteros porque se miden en años completos; son también los atributos que se compararán.
+    </div>
+
+    <div class="paso-dev">
+<pre>    public:
+
+    leer()
+    {
+        read(nombre, edad, disfraz,
+             grupo, aniosExperiencia);
+    }
+
+    mostrar()
+    {
+        print(nombre, edad, disfraz,
+              grupo, aniosExperiencia);
+    }</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Métodos de entrada/salida</div>
+      Misma lógica que en <code>Disfraz</code>: <code>leer()</code> para capturar datos y <code>mostrar()</code> para imprimirlos.
+    </div>
+
+    <div class="paso-dev">
+<pre>    String getNombre()      { return nombre; }
+    int    getEdad()        { return edad; }
+    int    getExperiencia() { return aniosExperiencia; }</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Getters</div>
+      Los tres getters exponen los atributos que necesita el método <code>compararCon()</code>: nombre (para los mensajes) y los dos atributos numéricos a comparar.
+    </div>
+
+    <div class="paso-dev">
+<pre>    // b.2) Compara edad y aniosExperiencia
+    compararCon(Bailarin otro)
+    {
+        if (edad > otro.getEdad()) then
+            print(nombre + " es mayor");
+        elseif (edad < otro.getEdad()) then
+            print(otro.getNombre()
+                  + " es mayor");
+        else
+            print("Misma edad");
+
+        if (aniosExperiencia
+            > otro.getExperiencia()) then
+            print(nombre
+                  + " tiene mas experiencia");
+        elseif (aniosExperiencia
+            < otro.getExperiencia()) then
+            print(otro.getNombre()
+                  + " tiene mas experiencia");
+        else
+            print("Misma experiencia");
+    }
+}</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Método compararCon()</div>
+      Compara <strong>edad</strong> y <strong>años de experiencia</strong>, ambos enteros con tres casos posibles cada uno. La estructura es idéntica a la de <code>Disfraz</code>: mayor, menor o igual.
+    </div>
+
+    <div class="paso-dev">
+<pre>Begin
+    b1 = creaobjeto Bailarin();
+    b2 = creaobjeto Bailarin();
+    b1.leer();
+    b2.leer();
+    b1.mostrar();
+    b2.mostrar();
+    b1.compararCon(b2);
+End</pre>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Programa principal</div>
+      Dos objetos instanciados (b.1). Tras cargar y mostrar los datos, <code>b1</code> compara sus atributos contra los de <code>b2</code> (b.2).
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resumen.</strong> Se identificaron 5 clases del contexto de los Carnavales de Bolivia (<em>Bailarín, Comparsa, Banda Musical, Espectador, Disfraz</em>), cada una con 5 atributos. Se implementaron en pseudocódigo las clases <strong>Disfraz</strong> (comparando precio y talla) y <strong>Bailarín</strong> (comparando edad y años de experiencia), instanciando dos objetos por clase e invocando el método <code>compararCon()</code> desde el programa principal.
+  </div>
+
+</body>
+</html>

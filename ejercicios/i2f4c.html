@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>i2f4c</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "i2f4c",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["14", "Ejercicio 14", "ej14"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "mínimo de funciones",
+        "completar cuadrados",
+        "AM-GM",
+        "cota inferior"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "mínimo función cuadrática completar cuadrado",
+        "cota inferior función real",
+        "AM-GM mínimo",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Encuentre un número $m$ con la propiedad de que para todo $x \in \mathbb{R}$:</p>
+    <p>a) $x^2 + 6x + 15 \geq m$.</p>
+    <p>b) $x^2 - x + 1 \geq m$.</p>
+    <p>c) $x^6 + \dfrac{1}{x^2} \geq m$.</p>
+    <p>d) $x^{10} + \dfrac{1}{x^4} + \dfrac{1}{x^2} \geq m$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Encontrar $m$ significa encontrar el valor mínimo que puede tomar cada expresión.
+      Para las partes a) y b) la herramienta es completar el cuadrado: toda expresión
+      cuadrática $x^2 + px + q$ puede escribirse como $(x + p/2)^2 + (q - p^2/4)$,
+      y como el cuadrado es siempre $\geq 0$, el mínimo es $q - p^2/4$, alcanzado en $x = -p/2$.
+    </p>
+    <div class="nota">
+      Para c) y d) la herramienta es AM-GM: la suma de términos positivos es mínima
+      cuando todos son iguales. AM-GM dice exactamente cuánto vale ese mínimo.
+    </div>
+    <p>
+      En c) y d) hay que tener cuidado: $x \neq 0$ para que las fracciones estén definidas.
+      El mínimo se alcanza en algún $x > 0$ por simetría.
+    </p>
+    <p class="chiste">Completar el cuadrado es como acomodar una caja: siempre hay una forma
+      de dejarla perfectamente cuadrada, y lo que sobra es el mínimo.</p>
+  </div>
+
+  <h2>Solución — parte a) $\ x^2 + 6x + 15$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^2 + 6x + 15 = (x^2 + 6x + 9) + 6$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      Sumamos y restamos $9 = (6/2)^2$ para formar el cuadrado perfecto $(x+3)^2$.
+    </div>
+
+    <div class="paso-dev">
+      $$= (x+3)^2 + 6 \geq 0 + 6 = 6$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cuadrado no negativo</div>
+      $(x+3)^2 \geq 0$ para todo $x$. La igualdad se alcanza en $x = -3$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 6}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo alcanzado</div>
+      El valor $m = 6$ se alcanza efectivamente en $x = -3$, así que es el mínimo exacto.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ x^2 - x + 1$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^2 - x + 1 = \left(x^2 - x + \frac{1}{4}\right) + \frac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      Sumamos y restamos $\frac{1}{4} = (1/2)^2$ para formar $\left(x - \frac{1}{2}\right)^2$.
+    </div>
+
+    <div class="paso-dev">
+      $$= \left(x - \frac{1}{2}\right)^2 + \frac{3}{4} \geq 0 + \frac{3}{4} = \frac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cuadrado no negativo</div>
+      $\left(x-\frac{1}{2}\right)^2 \geq 0$. Igualdad en $x = \frac{1}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = \frac{3}{4}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo alcanzado</div>
+      El valor $\frac{3}{4}$ se alcanza en $x = \frac{1}{2}$.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ x^6 + \dfrac{1}{x^2}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^6 + \frac{1}{x^2} = x^6 + \frac{1}{2x^2} + \frac{1}{2x^2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Preparación para AM-GM de tres términos</div>
+      Dividimos $\frac{1}{x^2}$ en dos partes iguales para tener tres sumandos
+      cuyo producto sea un cubo perfecto.
+    </div>
+
+    <div class="paso-dev">
+      $$x^6 + \frac{1}{2x^2} + \frac{1}{2x^2} \geq 3\sqrt[3]{x^6 \cdot \frac{1}{2x^2} \cdot \frac{1}{2x^2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM de tres términos</div>
+      $u+v+w \geq 3\sqrt[3]{uvw}$ con $u = x^6$, $v = w = \frac{1}{2x^2}$.
+      Los tres términos son positivos para $x \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$3\sqrt[3]{x^6 \cdot \frac{1}{4x^4}} = 3\sqrt[3]{\frac{x^2}{4}} $$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $x^6 \cdot \frac{1}{2x^2} \cdot \frac{1}{2x^2} = \frac{x^6}{4x^4} = \frac{x^2}{4}$.
+      La raíz depende de $x$, así que esta división no da un mínimo fijo. Redividimos.
+    </div>
+
+    <div class="paso-dev">
+      $$x^6 + \frac{1}{x^2} = \frac{x^6}{3} + \frac{x^6}{3} + \frac{x^6}{3} + \frac{1}{x^2}$$
+      $$\geq 4\sqrt[4]{\frac{x^6}{3}\cdot\frac{x^6}{3}\cdot\frac{x^6}{3}\cdot\frac{1}{x^2}}$$
+      $$= 4\sqrt[4]{\frac{x^{16}}{27x^2}} = 4\sqrt[4]{\frac{x^{16}}{27x^2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Redivisión con AM-GM de 4 términos</div>
+      Dividimos $x^6$ en tres partes iguales. El producto bajo la raíz todavía
+      depende de $x$. Buscamos la división correcta para cancelar $x$.
+    </div>
+
+    <div class="paso-dev">
+      $$x^6 + \frac{1}{x^2}:\quad \text{queremos } (x^6)^a \cdot \left(\frac{1}{x^2}\right)^b = \text{cte}$$
+      $$6a - 2b = 0,\quad a + b = 1 \;\Rightarrow\; a = \tfrac{1}{4},\ b = \tfrac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Búsqueda del balance correcto</div>
+      Para que AM-GM dé un mínimo independiente de $x$, el producto de los términos
+      bajo la raíz debe ser constante. Igualamos los exponentes de $x$ a cero.
+      Necesitamos $\frac{1}{4}$ partes de $x^6$ y $\frac{3}{4}$ partes de $\frac{1}{x^2}$.
+      Con 4 términos: un término $x^6$ y tres términos $\frac{1}{3x^2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$x^6 + \frac{1}{x^2} = x^6 + \frac{1}{3x^2}+\frac{1}{3x^2}+\frac{1}{3x^2}$$
+      $$\geq 4\sqrt[4]{x^6 \cdot \frac{1}{3x^2}\cdot\frac{1}{3x^2}\cdot\frac{1}{3x^2}}$$
+      $$= 4\sqrt[4]{\frac{x^6}{27x^6}} = 4\sqrt[4]{\frac{1}{27}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM de 4 términos con balance correcto</div>
+      Ahora el producto es $\frac{x^6}{27x^6} = \frac{1}{27}$, constante.
+      El mínimo es $4\sqrt[4]{\frac{1}{27}} = \frac{4}{27^{1/4}}$.
+    </div>
+
+    <div class="paso-dev">
+      $$4\sqrt[4]{\frac{1}{27}} = \frac{4}{3^{3/4}} = 4 \cdot 3^{-3/4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      $27^{1/4} = (3^3)^{1/4} = 3^{3/4}$.
+      La igualdad en AM-GM se da cuando todos los términos son iguales:
+      $x^6 = \frac{1}{3x^2}$, es decir $x^8 = \frac{1}{3}$, $x = 3^{-1/8}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 4 \cdot 3^{-3/4} = \frac{4}{\sqrt[4]{27}}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo alcanzado</div>
+      El valor se alcanza en $x = 3^{-1/8}$.
+    </div>
+  </div>
+
+  <h2>Solución — parte d) $\ x^{10} + \dfrac{1}{x^4} + \dfrac{1}{x^2}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$10a - 4b - 2c = 0,\quad a+b+c=1$$
+      $$\text{con } b = c: \quad 10a - 6b = 0,\ a + 2b = 1$$
+      $$\Rightarrow a = \tfrac{3}{8},\ b = c = \tfrac{5}{16}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Balance de exponentes</div>
+      Para que el producto bajo la raíz sea constante en $x$, igualamos el exponente
+      total de $x$ a cero. Con $b = c$ por simetría entre $\frac{1}{x^4}$ y $\frac{1}{x^2}$
+      (aunque no son idénticos, elegimos pesos distintos). Tomamos la división más simple:
+      dividimos $x^{10}$ en $5$ partes y cada fracción en algunos términos.
+    </div>
+
+    <div class="paso-dev">
+      $$x^{10} + \frac{1}{x^4} + \frac{1}{x^2}$$
+      $$= \underbrace{\frac{x^{10}}{5}+\cdots+\frac{x^{10}}{5}}_{5} + \underbrace{\frac{1}{2x^4}+\frac{1}{2x^4}}_{2} + \underbrace{\frac{1}{2x^2}+\frac{1}{2x^2}}_{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">División en 9 términos</div>
+      Dividimos $x^{10}$ en 5 partes iguales, $\frac{1}{x^4}$ en 2, y $\frac{1}{x^2}$ en 2.
+      Total: 9 términos. Verificamos que el producto sea constante.
+    </div>
+
+    <div class="paso-dev">
+      $$\left(\frac{x^{10}}{5}\right)^5 \cdot \left(\frac{1}{2x^4}\right)^2 \cdot \left(\frac{1}{2x^2}\right)^2$$
+      $$= \frac{x^{50}}{5^5} \cdot \frac{1}{4x^8} \cdot \frac{1}{4x^4} = \frac{x^{50}}{5^5 \cdot 16 \cdot x^{12}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Verificación del producto</div>
+      El exponente de $x$ es $50 - 12 = 38 \neq 0$. Esta división no funciona.
+      Buscamos $5a - 4b - 2c = 0$ con enteros $a+b+c = n$ pequeño.
+    </div>
+
+    <div class="paso-dev">
+      $$5a = 4b + 2c.\quad \text{Con } a=2, b=1, c=3: \; 10 = 4+6\ ✓$$
+      $$\Rightarrow \text{6 términos: } \frac{x^{10}}{2},\frac{x^{10}}{2},\frac{1}{x^4},\frac{1}{3x^2},\frac{1}{3x^2},\frac{1}{3x^2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">División correcta en 6 términos</div>
+      $x^{10}$ en 2 partes, $\frac{1}{x^4}$ entero, $\frac{1}{x^2}$ en 3 partes.
+      Verificamos: exponente de $x$ en el producto es $10 - 4 - 2 = 4 \neq 0$. Aún no.
+      Usamos las ecuaciones: necesitamos $10\alpha - 4\beta - 2\gamma = 0$ con $\alpha+\beta+\gamma = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$10\alpha = 4\beta + 2\gamma, \quad \alpha+\beta+\gamma=1$$
+      $$\text{Con } \gamma = 1-\alpha-\beta:\; 10\alpha = 4\beta + 2 - 2\alpha - 2\beta$$
+      $$12\alpha = 2 + 2\beta \;\Rightarrow\; \beta = 6\alpha - 1$$
+      $$\text{Con } \alpha = \tfrac{1}{4}:\ \beta = \tfrac{1}{2},\ \gamma = \tfrac{1}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Pesos exactos</div>
+      Los pesos para AM-GM ponderado son $\alpha = \frac{1}{4}$ para $x^{10}$,
+      $\beta = \frac{1}{2}$ para $\frac{1}{x^4}$, $\gamma = \frac{1}{4}$ para $\frac{1}{x^2}$.
+      Con 4 términos: 1 copia de $x^{10}$, 2 de $\frac{1}{2x^4}$, 1 de $\frac{1}{x^2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$x^{10} + \frac{1}{x^4} + \frac{1}{x^2} = x^{10} + \frac{1}{2x^4}+\frac{1}{2x^4}+\frac{1}{x^2}$$
+      $$\geq 4\sqrt[4]{x^{10} \cdot \frac{1}{2x^4}\cdot\frac{1}{2x^4}\cdot\frac{1}{x^2}}$$
+      $$= 4\sqrt[4]{\frac{x^{10}}{4x^{10}}} = 4\sqrt[4]{\frac{1}{4}} = \frac{4}{\sqrt{2}} = 2\sqrt{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM de 4 términos</div>
+      El producto bajo la raíz es $\frac{x^{10}}{4x^{10}} = \frac{1}{4}$, constante.
+      La igualdad se da cuando $x^{10} = \frac{1}{2x^4}$, es decir $x^{14} = \frac{1}{2}$,
+      $x = 2^{-1/14}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 2\sqrt{2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo alcanzado</div>
+      $\frac{4}{\sqrt{2}} = \frac{4\sqrt{2}}{2} = 2\sqrt{2}$. El valor se alcanza en $x = 2^{-1/14}$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Los mínimos pedidos son:
+    $$\text{a)}\ m = 6 \qquad \text{b)}\ m = \frac{3}{4} \qquad \text{c)}\ m = \frac{4}{\sqrt[4]{27}} \qquad \text{d)}\ m = 2\sqrt{2}$$
+    Las partes a) y b) se resuelven completando el cuadrado. Las partes c) y d) con AM-GM,
+    eligiendo la división de términos que hace constante el producto bajo la raíz.
+  </div>
+
+</body>
+</html>

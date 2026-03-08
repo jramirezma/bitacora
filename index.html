@@ -6,7 +6,6 @@
   <title>Prácticas Universitarias</title>
   <link rel="stylesheet" href="assets/style.css">
 
-  <!-- Configuración MathJax -->
   <script>
     window.MathJax = {
       tex: {
@@ -16,8 +15,6 @@
       svg: { fontCache: 'global' }
     };
   </script>
-
-  <!-- MathJax v3 (más estable que v4 para contenido dinámico) -->
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
@@ -27,32 +24,12 @@
     <div class="buscador-contenido">
       <h2>Buscar</h2>
 
-      <div class="filtro-grupo">
-        <input type="text" id="filtro-busqueda" placeholder="Buscar...">
+      <div class="buscador-input-wrapper">
+        <input type="text" id="filtro-busqueda" placeholder="Escribe para buscar..." autocomplete="off">
+        <div class="sugerencias" id="sugerencias"></div>
       </div>
 
-      <div class="filtro-grupo">
-        <label for="filtro-materia">Materia</label>
-        <select id="filtro-materia">
-          <option value="">Todas</option>
-        </select>
-      </div>
-
-      <div class="filtro-grupo">
-        <label for="filtro-tema">Tema</label>
-        <select id="filtro-tema">
-          <option value="">Todos</option>
-        </select>
-      </div>
-
-      <div class="filtro-grupo">
-        <label>Dificultad</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="dificultad" value="basico"> Básico</label>
-          <label><input type="checkbox" name="dificultad" value="intermedio"> Intermedio</label>
-          <label><input type="checkbox" name="dificultad" value="avanzado"> Avanzado</label>
-        </div>
-      </div>
+      <div class="filtros-tags" id="filtros-tags"></div>
     </div>
     <button class="buscador-toggle" id="buscador-toggle"></button>
   </aside>
@@ -98,84 +75,276 @@
       }
     }
 
-    function obtenerParamsURL() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        materia: params.get('materia') || '',
-        tema: params.get('tema') || '',
-        busqueda: params.get('q') || '',
-        dificultades: params.get('d') ? params.get('d').split(',') : []
-      };
-    }
-
-    function actualizarURL(filtros) {
-      const params = new URLSearchParams();
-      if (filtros.materia) params.set('materia', filtros.materia);
-      if (filtros.tema) params.set('tema', filtros.tema);
-      if (filtros.busqueda) params.set('q', filtros.busqueda);
-      if (filtros.dificultades.length > 0) params.set('d', filtros.dificultades.join(','));
-      
-      const nuevaURL = params.toString() 
-        ? `${window.location.pathname}?${params.toString()}` 
-        : window.location.pathname;
-      window.history.replaceState({}, '', nuevaURL);
-    }
-
     function inicializarBuscadorPanel() {
-      const materias = new Set();
-      const temasPorMateria = {};
+      window.filtrosActivos = {};
+      window.indiceSugerencia = -1;
 
-      INDEX_DATA.forEach(ej => {
-        if (ej.materia) {
-          materias.add(ej.materia);
-          if (!temasPorMateria[ej.materia]) {
-            temasPorMateria[ej.materia] = new Set();
-          }
-          if (ej.tema) {
-            temasPorMateria[ej.materia].add(ej.tema);
-          }
+      const inputBusqueda = document.getElementById('filtro-busqueda');
+      const sugerencias = document.getElementById('sugerencias');
+
+      inputBusqueda.addEventListener('input', (e) => {
+        const raw  = e.target.value;
+        const texto = raw.toLowerCase().trim();
+
+        if (texto.length < 1) {
+          sugerencias.classList.remove('mostrar');
+          return;
         }
-      });
 
-      const selectMateria = document.getElementById('filtro-materia');
+        // Modo #campo: mostrar todos los valores disponibles de ese campo
+        if (raw.startsWith('#')) {
+          const query = quitarAcentos(texto.slice(1).trim());
+          const camposPosibles = INDEX_DATA.length > 0
+            ? Object.keys(INDEX_DATA[0]).filter(k => k !== 'enunciado' && k !== 'archivo')
+            : [];
 
-      Array.from(materias).sort().forEach(materia => {
-        const opt = document.createElement('option');
-        opt.value = materia;
-        opt.textContent = materia;
-        selectMateria.appendChild(opt);
-      });
+          // Buscar campos cuyo nombre coincida con lo escrito después del #
+          const camposCoincidentes = query.length === 0
+            ? camposPosibles
+            : camposPosibles.filter(c => quitarAcentos(c).includes(query));
 
-      window.temasPorMateria = temasPorMateria;
+          if (camposCoincidentes.length === 0) {
+            sugerencias.classList.remove('mostrar');
+            return;
+          }
 
-      function actualizarTemas() {
-        const materia = document.getElementById('filtro-materia').value;
-        const selectTema = document.getElementById('filtro-tema');
-        selectTema.innerHTML = '<option value="">Todos</option>';
-        
-        if (materia && temasPorMateria[materia]) {
-          Array.from(temasPorMateria[materia]).sort().forEach(tema => {
-            const opt = document.createElement('option');
-            opt.value = tema;
-            opt.textContent = tema;
-            selectTema.appendChild(opt);
+          sugerencias.innerHTML = '';
+          window.sugerenciasData = [];
+
+          camposCoincidentes.forEach((campo, i) => {
+
+            // Valores únicos de ese campo
+            const seen = new Set();
+            INDEX_DATA.forEach(ej => {
+              expandirValores(ej[campo]).forEach(v => {
+                if (v && !seen.has(v)) {
+                  seen.add(v);
+                  const idx = window.sugerenciasData.length;
+                  window.sugerenciasData.push({ campo, valor: String(v) });
+
+                  const div = document.createElement('div');
+                  div.className = 'sugerencia-item';
+                  div.dataset.index = idx;
+                  div.innerHTML = `<span class="campo">${campo}:</span> ${v}`;
+                  div.addEventListener('click', () => {
+                    agregarFiltro(campo, String(v));
+                    inputBusqueda.value = '';
+                    sugerencias.classList.remove('mostrar');
+                  });
+                  sugerencias.appendChild(div);
+                }
+              });
+            });
           });
+
+          window.indiceSugerencia = -1;
+          sugerencias.classList.add('mostrar');
+          return;
         }
-        
-        aplicarFiltrosPanel();
+
+        // Modo normal: buscar por valores y enunciado
+        const sugerencias_encontradas = obtenerSugerencias(texto);
+        const porEnunciado = buscarPorEnunciado(texto);
+
+        if (sugerencias_encontradas.length === 0 && porEnunciado.length === 0) {
+          sugerencias.classList.remove('mostrar');
+        } else {
+          window.sugerenciasData = sugerencias_encontradas;
+          window.indiceSugerencia = -1;
+          sugerencias.innerHTML = '';
+
+          sugerencias_encontradas.forEach((s, index) => {
+            const div = document.createElement('div');
+            div.className = 'sugerencia-item';
+            div.dataset.index = index;
+            const valorMostrar = s.valorFormateado || s.valor;
+            div.innerHTML = `<span class="campo">${s.campo}:</span> ${valorMostrar}`;
+            div.addEventListener('click', () => {
+              agregarFiltro(s.campo, s.valor);
+              inputBusqueda.value = '';
+              sugerencias.classList.remove('mostrar');
+            });
+            sugerencias.appendChild(div);
+          });
+
+          if (porEnunciado.length > 0) {
+            const sep = document.createElement('div');
+            sep.className = 'sugerencia-separador';
+            sep.textContent = `${porEnunciado.length} coincidencia${porEnunciado.length > 1 ? 's' : ''} en enunciados`;
+            sep.addEventListener('click', () => {
+              renderizarResultados(porEnunciado);
+              inputBusqueda.value = '';
+              sugerencias.classList.remove('mostrar');
+            });
+            sugerencias.appendChild(sep);
+          }
+
+          sugerencias.classList.add('mostrar');
+        }
+      });
+
+      inputBusqueda.addEventListener('keydown', (e) => {
+        const items = sugerencias.querySelectorAll('.sugerencia-item');
+        if (!items.length) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          window.indiceSugerencia = Math.min(window.indiceSugerencia + 1, items.length - 1);
+          actualizarSeleccionSugerencia(items);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          window.indiceSugerencia = Math.max(window.indiceSugerencia - 1, -1);
+          actualizarSeleccionSugerencia(items);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (window.indiceSugerencia >= 0 && window.sugerenciasData && window.sugerenciasData[window.indiceSugerencia]) {
+            const s = window.sugerenciasData[window.indiceSugerencia];
+            agregarFiltro(s.campo, s.valor);
+            inputBusqueda.value = '';
+            sugerencias.classList.remove('mostrar');
+          }
+        } else if (e.key === 'Escape') {
+          sugerencias.classList.remove('mostrar');
+        }
+      });
+
+      function actualizarSeleccionSugerencia(items) {
+        items.forEach((item, i) => {
+          item.style.background = i === window.indiceSugerencia ? 'var(--color-bg-alt)' : '';
+        });
+        if (window.indiceSugerencia >= 0 && items[window.indiceSugerencia]) {
+          items[window.indiceSugerencia].scrollIntoView({ block: 'nearest' });
+        }
       }
 
-      document.getElementById('filtro-materia').addEventListener('change', actualizarTemas);
-      document.getElementById('filtro-tema').addEventListener('change', aplicarFiltrosPanel);
-      document.getElementById('filtro-busqueda').addEventListener('input', aplicarFiltrosPanel);
-      document.querySelectorAll('#buscador-panel input[name="dificultad"]').forEach(cb =>
-        cb.addEventListener('change', aplicarFiltrosPanel)
-      );
+      inputBusqueda.addEventListener('blur', () => {
+        setTimeout(() => sugerencias.classList.remove('mostrar'), 200);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.buscador-input-wrapper')) {
+          sugerencias.classList.remove('mostrar');
+        }
+      });
 
       document.getElementById('buscador-toggle').addEventListener('click', () => {
         const panel = document.getElementById('buscador-panel');
         panel.classList.toggle('collapsed');
         actualizarURLSidebar(panel.classList.contains('collapsed'));
+      });
+    }
+
+    const quitarAcentos = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const formatearValor = (valor) => {
+      if (Array.isArray(valor)) return valor[0];
+      if (typeof valor === 'object' && valor !== null) {
+        if (valor.nombre) {
+          return valor.modelo ? `${valor.nombre} (${valor.modelo})` : valor.nombre;
+        }
+        return JSON.stringify(valor);
+      }
+      return valor;
+    };
+
+    const expandirValores = (valor) => {
+      if (Array.isArray(valor)) return valor;
+      if (valor === null || valor === undefined) return [];
+      return [valor];
+    };
+
+    function obtenerSugerencias(texto) {
+      const textoLower = texto.toLowerCase();
+      const textoSinAcentos = quitarAcentos(textoLower);
+
+      const camposPosibles = INDEX_DATA.length > 0
+        ? Object.keys(INDEX_DATA[0]).filter(k => k !== 'enunciado' && k !== 'archivo')
+        : [];
+
+      let sugerencias = [];
+
+      const getValorCampo = (ej, campo) => {
+        if (campo.includes('.')) {
+          const [obj, prop] = campo.split('.');
+          return ej[obj] ? ej[obj][prop] : null;
+        }
+        return ej[campo] ?? null;
+      };
+
+      const coincideConFiltros = (ej, ignorarCampo) => {
+        for (const [campo, valoresFiltro] of Object.entries(window.filtrosActivos || {})) {
+          if (campo === ignorarCampo) continue;
+          const valorEj = expandirValores(getValorCampo(ej, campo));
+          const coincide = [...valoresFiltro].some(vf => valorEj.includes(vf));
+          if (!coincide) return false;
+        }
+        return true;
+      };
+
+      const recolectarValores = (ejercicios, campo) => {
+        const seen = new Set();
+        const resultado = [];
+        ejercicios.forEach(ej => {
+          const vals = expandirValores(getValorCampo(ej, campo));
+          vals.forEach(v => {
+            if (v && !seen.has(v)) {
+              seen.add(v);
+              resultado.push(v);
+            }
+          });
+        });
+        return resultado;
+      };
+
+      camposPosibles.forEach(campo => {
+        const ejerciciosFiltrados = INDEX_DATA.filter(ej => coincideConFiltros(ej, campo));
+        const valores = recolectarValores(ejerciciosFiltrados, campo);
+
+        valores.forEach(valor => {
+          const valorStr = String(valor);
+          const valorSinAcentos = quitarAcentos(valorStr.toLowerCase());
+          if (valorSinAcentos.includes(textoSinAcentos)) {
+            sugerencias.push({ campo, valor: valorStr, valorFormateado: valorStr });
+          }
+        });
+      });
+
+      return sugerencias.slice(0, 10);
+    }
+
+    function agregarFiltro(campo, valor) {
+      if (!window.filtrosActivos[campo]) {
+        window.filtrosActivos[campo] = new Set();
+      }
+      window.filtrosActivos[campo].add(valor);
+      renderizarTags();
+      aplicarFiltrosPanel();
+    }
+
+    function quitarFiltro(campo, valor) {
+      if (window.filtrosActivos[campo]) {
+        window.filtrosActivos[campo].delete(valor);
+        if (window.filtrosActivos[campo].size === 0) {
+          delete window.filtrosActivos[campo];
+        }
+      }
+      renderizarTags();
+      aplicarFiltrosPanel();
+    }
+
+    function renderizarTags() {
+      const container = document.getElementById('filtros-tags');
+      container.innerHTML = '';
+
+      Object.entries(window.filtrosActivos).forEach(([campo, valores]) => {
+        valores.forEach(valor => {
+          const tag = document.createElement('span');
+          tag.className = 'filtro-tag';
+          const valorAMostrar = typeof valor === 'object' ? formatearValor(valor) : valor;
+          tag.innerHTML = `<span class="campo">${campo}:</span> ${valorAMostrar} <span class="quitar">×</span>`;
+          tag.querySelector('.quitar').addEventListener('click', () => quitarFiltro(campo, valor));
+          container.appendChild(tag);
+        });
       });
     }
 
@@ -186,27 +355,32 @@
       } else {
         params.delete('sidebar');
       }
-      const nuevaURL = params.toString() 
-        ? `${window.location.pathname}?${params.toString()}` 
+      const nuevaURL = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', nuevaURL);
+    }
+
+    function actualizarURL(filtros) {
+      const params = new URLSearchParams();
+
+      Object.entries(filtros).forEach(([campo, valores]) => {
+        if (valores instanceof Set && valores.size > 0) {
+          params.set(campo, Array.from(valores).join(','));
+        }
+      });
+
+      const nuevaURL = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
         : window.location.pathname;
       window.history.replaceState({}, '', nuevaURL);
     }
 
     function aplicarFiltrosPanel() {
-      const filtros = {
-        materia: document.getElementById('filtro-materia').value,
-        tema: document.getElementById('filtro-tema').value,
-        busqueda: document.getElementById('filtro-busqueda').value.toLowerCase(),
-        dificultades: Array.from(document.querySelectorAll('#buscador-panel input[name="dificultad"]:checked')).map(cb => cb.value)
-      };
+      actualizarURL(window.filtrosActivos || {});
 
-      actualizarURL(filtros);
-
-      const tieneFiltros =
-        filtros.materia ||
-        filtros.tema ||
-        filtros.busqueda ||
-        filtros.dificultades.length > 0;
+      const filtros = window.filtrosActivos || {};
+      const tieneFiltros = Object.keys(filtros).length > 0;
 
       if (!tieneFiltros) {
         renderizarEjerciciosAleatorios();
@@ -214,27 +388,37 @@
       }
 
       const resultados = INDEX_DATA.filter(ej => {
-        if (filtros.materia && ej.materia !== filtros.materia) return false;
-        if (filtros.tema && ej.tema !== filtros.tema) return false;
-
-        if (filtros.busqueda) {
-          const texto = (ej.enunciado + ' ' + ej.tema + ' ' + ej.seo_keywords.join(' '))
-            .toLowerCase();
-          if (!texto.includes(filtros.busqueda)) return false;
+        // Filtro por campos activos (insensible a mayúsculas y tildes)
+        for (const [campo, valoresFiltro] of Object.entries(filtros)) {
+          let valorEj;
+          if (campo.includes('.')) {
+            const [obj, prop] = campo.split('.');
+            valorEj = ej[obj] ? ej[obj][prop] : null;
+          } else {
+            valorEj = ej[campo];
+          }
+          const valoresEj = expandirValores(valorEj).map(v => quitarAcentos(String(v).toLowerCase()));
+          const coincide = [...valoresFiltro].some(vf => valoresEj.includes(quitarAcentos(vf.toLowerCase())));
+          if (!coincide) return false;
         }
-
-        if (filtros.dificultades.length > 0 && !filtros.dificultades.includes(ej.dificultad)) return false;
-
         return true;
       });
 
       renderizarResultados(resultados);
     }
 
+    function buscarPorEnunciado(texto) {
+      const textNorm = quitarAcentos(texto.toLowerCase());
+      return INDEX_DATA.filter(ej => {
+        const enunciado = quitarAcentos((ej.enunciado || '').toLowerCase());
+        return enunciado.includes(textNorm);
+      });
+    }
+
     function aplicarFiltrosDesdeURL() {
       const params = new URLSearchParams(window.location.search);
       const ejercicioId = params.get('ejercicio');
-      
+
       if (ejercicioId) {
         const ej = INDEX_DATA.find(e => e.id === ejercicioId);
         if (ej) {
@@ -242,11 +426,10 @@
           return;
         }
       }
-      
+
       const main = document.querySelector('main');
-      const container = document.getElementById('ejercicios-destacados');
-      
-      if (!container) {
+
+      if (!document.getElementById('ejercicios-destacados')) {
         main.innerHTML = `
           <section class="disclaimer">
             <h2>Aviso importante</h2>
@@ -255,37 +438,20 @@
           <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
         `;
       }
-      
-      const filtros = obtenerParamsURL();
-      
-      if (!filtros.materia && !filtros.tema && !filtros.busqueda && filtros.dificultades.length === 0) {
-        renderizarEjerciciosAleatorios();
-        return;
-      }
 
-      document.getElementById('filtro-busqueda').value = filtros.busqueda;
-      
-      document.querySelectorAll('#buscador-panel input[name="dificultad"]').forEach(cb => {
-        cb.checked = filtros.dificultades.includes(cb.value);
+      window.filtrosActivos = {};
+
+      params.forEach((valor, clave) => {
+        if (clave === 'ejercicio' || clave === 'sidebar') return;
+        valor.split(',').forEach(v => {
+          if (!window.filtrosActivos[clave]) {
+            window.filtrosActivos[clave] = new Set();
+          }
+          window.filtrosActivos[clave].add(v);
+        });
       });
 
-      const materiaSelect = document.getElementById('filtro-materia');
-      materiaSelect.value = filtros.materia;
-      
-      if (filtros.materia && window.temasPorMateria) {
-        const selectTema = document.getElementById('filtro-tema');
-        selectTema.innerHTML = '<option value="">Todos</option>';
-        if (window.temasPorMateria[filtros.materia]) {
-          Array.from(window.temasPorMateria[filtros.materia]).sort().forEach(tema => {
-            const opt = document.createElement('option');
-            opt.value = tema;
-            opt.textContent = tema;
-            selectTema.appendChild(opt);
-          });
-        }
-        selectTema.value = filtros.tema;
-      }
-
+      renderizarTags();
       aplicarFiltrosPanel();
     }
 
@@ -300,75 +466,75 @@
       container.innerHTML = '';
 
       ejercicios.forEach(ej => {
+        const temaFiltrado = window.filtrosActivos?.tema
+          ? [...window.filtrosActivos.tema][0]
+          : expandirValores(ej.tema)[0];
+
+        const materia    = expandirValores(ej.materia)[0]       || '';
+        const origen     = expandirValores(ej.origen)[0]        || '';
+        const nro        = expandirValores(ej.ejercicio_nro)[0] || '';
+        const dificultad = expandirValores(ej.dificultad)[0]    || '';
+
+        const meta = [materia, origen, nro ? `Ej. ${nro}` : '', dificultad, temaFiltrado]
+          .filter(Boolean)
+          .join(' · ');
+
         const btn = document.createElement('button');
         btn.className = 'tarjeta-ejercicio-link';
         btn.innerHTML = `
           <article class="tarjeta-ejercicio">
-            <div class="tarjeta-tema">${ej.tema}</div>
+            <div class="tarjeta-tema">${meta}</div>
             <div class="tarjeta-enunciado">${ej.enunciado}</div>
           </article>
         `;
         btn.addEventListener('click', () => cargarEjercicio(ej));
-
         container.appendChild(btn);
       });
 
       renderMath();
     }
 
-    async function cargarEjercicio(ej) {
+    function cargarEjercicio(ej) {
       const main = document.querySelector('main');
-      main.innerHTML = '<p>Cargando...</p>';
-      
+
       const params = new URLSearchParams(window.location.search);
       params.set('ejercicio', ej.id);
       window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
-      
-      try {
-        const response = await fetch(ej.archivo);
-        const html = await response.text();
-        
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        const enunciado = doc.querySelector('.enunciado')?.innerHTML || '';
-        const entendimiento = doc.querySelector('.entendimiento')?.innerHTML || '';
-        const solucion = doc.querySelector('.solucion')?.innerHTML || '';
-        const tieneSolucion = !!doc.querySelector('.solucion');
-        
-        main.innerHTML = `
+
+      document.body.classList.add('ejercicio-abierto');
+
+      main.innerHTML = `
+        <div class="ejercicio-nav">
           <button class="btn-volver">← Volver</button>
-          <h2>${ej.tema}</h2>
-          <h3>Enunciado</h3>
-          <div class="enunciado">${enunciado}</div>
-          ${entendimiento ? `<h3>Entendimiento</h3><div class="entendimiento">${entendimiento}</div>` : ''}
-          ${tieneSolucion ? `<h3>Solución</h3><div class="solucion">${solucion}</div>` : ''}
-        `;
-        
-        main.querySelector('.btn-volver').addEventListener('click', volverALista);
-        
-        window.ejercicioActual = { archivo: ej.archivo, materia: ej.materia, tema: ej.tema };
-        
-        renderMath();
-        
-        if (window.location.search.includes('mostrar=1')) {
-          const solucionEl = main.querySelector('.solucion');
-          if (solucionEl) solucionEl.hidden = false;
+        </div>
+        <iframe
+          class="ejercicio-iframe"
+          src="${ej.archivo}"
+          title="${ej.tema}"
+        ></iframe>
+      `;
+
+      main.querySelector('.btn-volver').addEventListener('click', volverALista);
+
+      const iframe = main.querySelector('.ejercicio-iframe');
+      iframe.addEventListener('load', () => {
+        try {
+          const altura = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.style.height = altura + 'px';
+        } catch(e) {
+          iframe.style.height = '2000px';
+          console.warn('No se pudo leer el alto del iframe:', e);
         }
-        
-      } catch (e) {
-        main.innerHTML = '<p>Error cargando ejercicio.</p>';
-        console.error(e);
-      }
+      });
     }
 
     function volverALista() {
+      document.body.classList.remove('ejercicio-abierto');
       window.history.back();
     }
 
     function renderMath() {
       if (!window.MathJax) return;
-
       requestAnimationFrame(() => {
         MathJax.typesetPromise()
           .catch(err => console.error('MathJax error:', err));
@@ -378,14 +544,11 @@
     function renderizarEjerciciosAleatorios() {
       const cantidad = Math.min(3, INDEX_DATA.length);
       const indices = [];
-
       while (indices.length < cantidad) {
         const idx = Math.floor(Math.random() * INDEX_DATA.length);
         if (!indices.includes(idx)) indices.push(idx);
       }
-
-      const aleatorios = indices.map(idx => INDEX_DATA[idx]);
-      renderizarResultados(aleatorios);
+      renderizarResultados(indices.map(idx => INDEX_DATA[idx]));
     }
 
     cargarIndice();

@@ -2,17 +2,116 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio — [tema breve]</title>
+  <!--
+    INSTRUCCIONES PARA LA IA:
+    - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres alfanuméricos, ej: "a3f7c").
+    - El id en window.EJERCICIO debe ser el mismo hash de 5 caracteres.
+    - El hash debe generarse de forma que sea único y reproducible para cada ejercicio.
+    - La redacción debe ser en español neutro (sin regionalismos).
+    - El enunciado del ejercicio debe copiarse textualmente, sin adiciones ni alteraciones.
+    - El humor y comentarios informales van en el Análisis o en la columna derecha de la Solución, nunca en el Enunciado.
+    - Estilo de redacción: natural, como Feynman explicando. Palabras sencillas, construir intuición antes de la fórmula.
+    - En la columna izquierda de Solución: SOLO desarrollo matemático puro (fórmulas, definiciones, ejemplos numéricos). Sin comentarios ni texto explicativo.
+    - En la columna derecha de Solución: justificación del paso, explicación sencilla del por qué, y ocasionalmente humor.
+    - Sin colores de fondo en ningún elemento (el documento debe ser apto para impresión sin gastar tinta).
+  -->
+  <title>[id de 5 caracteres]</title>
+
+  <!--
+    CSS EXTERNO:
+    - Todos los estilos base del ejercicio viven en assets/ejercicio.css.
+    - Ese archivo es compartido por todos los ejercicios: tipografía, grilla de
+      dos columnas, .nota, .chiste, .resultado-final, etc.
+    - NO copiar esos estilos acá. Cualquier cambio visual global se hace una
+      sola vez en ejercicio.css y se propaga a todos los archivos.
+    - Si este ejercicio necesita estilos específicos (por ejemplo, una tabla
+      especial, un diagrama, un layout distinto), agregarlos en el bloque
+      <style> de abajo, sin tocar ejercicio.css.
+    - Ajustar la ruta relativa según la ubicación del archivo:
+        mismo nivel que assets/  →  href="assets/ejercicio.css"
+        dentro de una subcarpeta →  href="../assets/ejercicio.css"
+  -->
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <!--
+    ESTILOS ESPECÍFICOS DE ESTE EJERCICIO:
+    - Solo incluir si este ejercicio necesita algo que ejercicio.css no cubre.
+    - Si no hay nada especial, eliminar este bloque <style> por completo.
+  -->
+  <style>
+    /* estilos propios de este ejercicio, si aplica */
+  </style>
+
   <script>
     window.EJERCICIO = {
-      // Campos obligatorios
-      id: "xxxxx",
-      materia: "",
-      tema: "",
-      dificultad: "basico, intermedio, avanzado",
-      fecha: "xxxx-xx-xx",
-      seo_keywords: [],
-      autor: ""
+
+      /*
+        REGLAS GENERALES DE LOS CAMPOS:
+        - Todos los campos excepto fecha y autor son arrays de strings.
+        - Cada array debe tener MINIMO 3 valores.
+        - Los valores deben ser sinonimos, variantes o palabras relacionadas que
+          un estudiante podria usar al buscar. Las busquedas se hacen sobre los
+          VALORES de los campos, no sobre los nombres. Por eso los alias importan:
+          un usuario escribe "calculo 1" y otro escribe "matematicas 1"; ambos
+          deben encontrar el mismo archivo.
+        - El objetivo es maxima cobertura de busqueda: incluir nombre formal,
+          nombre coloquial, abreviatura, terminos relacionados, etc.
+      */
+      id: "[hash de 5 caracteres, ej: a3f7c]",
+
+      // De lo general a lo especifico: materia → origen → nro → contenido.
+      materia: [
+        "[nombre formal de la materia]",
+        "[nombre coloquial o abreviatura]",
+        "[sinonimo o materia relacionada]"
+        // agregar mas si aplica
+      ],
+
+      /*
+        origen: de donde proviene el ejercicio.
+        Ejemplos:
+          practica universitaria → ["Práctica 1", "TP1", "Guía 1"]
+          examen                 → ["Parcial 1", "primer parcial", "parcial"]
+          libro                  → ["Stewart 8va edición", "Stewart", "libro"]
+          generado por IA        → ["IA", "generado", "ejercicio generado"]
+      */
+      origen: [
+        "[origen principal, ej: Práctica 1]",
+        "[alias o variante, ej: TP1]",
+        "[alias o variante, ej: Guía 1]"
+      ],
+
+      /*
+        ejercicio_nro: numero del ejercicio dentro de su origen.
+        Si el ejercicio no tiene numeracion (por ejemplo, fue generado por IA
+        o no pertenece a ninguna practica ni libro), usar:
+          ejercicio_nro: ["s/n", "sin número", "sin numeración"]
+      */
+      ejercicio_nro: [
+        "[numero, ej: 5]",
+        "[alias, ej: Ejercicio 5]",
+        "[alias, ej: ej5]"
+      ],
+
+      tema: [
+        "[nombre formal del tema]",
+        "[nombre alternativo o coloquial]",
+        "[concepto relacionado o subtema]"
+        // agregar mas si aplica
+      ],
+      dificultad: [
+        "[basico | intermedio | avanzado]",
+        "[sinonimo: elemental | medio | dificil]",
+        "[sinonimo: introductorio | moderado | complejo]"
+      ],
+      seo_keywords: [
+        "[keyword 1]",
+        "[keyword 2]",
+        "[keyword 3]"
+        // agregar mas si aplica
+      ],
+      fecha: "[yyyy-mm-dd]",
+      autor: { nombre: "[nombre]", modelo: "[modelo]" }
     };
   </script>
   <script>
@@ -26,11 +125,75 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
 </head>
 <body>
+
   <h2>Ejercicio</h2>
-  <div class="enunciado"></div>
-  <h2>Entendimiento</h2>
-  <div class="entendimiento"></div>
+  <!--
+    CRITICO: la clase de este div DEBE ser exactamente "ejercicio".
+    El script generar_index.py busca este div por esa clase para extraer el enunciado.
+    No usar "enunciado", "problema", "ejercicio-texto" ni ninguna otra variante.
+  -->
+  <div class="ejercicio">
+    <!--
+      Copiar el enunciado TEXTUALMENTE. No agregar nada.
+      Ejemplo: <p>Si se asume que el 70% de los hombres...</p>
+    -->
+    <p>[Enunciado textual del ejercicio]</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <!--
+      Explicar la idea central con palabras simples antes de entrar en fórmulas.
+      Usar .nota para destacar la idea clave o truco principal.
+      Se puede incluir humor aquí con la clase .chiste, al final de la sección.
+    -->
+    <p>[Explicación intuitiva del problema. ¿Qué se pide realmente? ¿Cómo conviene pensarlo?]</p>
+    <div class="nota">
+      [Idea clave o truco principal del ejercicio, en una o dos oraciones.]
+    </div>
+    <p>[Desarrollo de la idea, definiciones necesarias, planteo de la estrategia.]</p>
+    <p class="chiste">[Comentario humoristico opcional, al final del análisis.]</p>
+  </div>
+
   <h2>Solución</h2>
-  <div class="solucion" hidden></div>
+  <!--
+    REGLA ESTRICTA:
+    - .paso-dev: SOLO matemática pura. Fórmulas, cuentas, ejemplos numéricos. Cero texto explicativo.
+    - .paso-just: justificación del paso + explicación sencilla + humor si aplica.
+    - Cada .paso-dev debe tener exactamente un .paso-just correspondiente al lado derecho.
+    - Agregar o quitar pares de pasos según la longitud del ejercicio.
+  -->
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1 -->
+    <div class="paso-dev">
+      [Fórmula o cálculo del paso 1]
+    </div>
+    <div class="paso-just">
+      <div class="titulo">[Nombre del paso o ley usada]</div>
+      [Explicación de por qué este paso es válido o que significa.]
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="paso-dev">
+      [Fórmula o cálculo del paso 2]
+    </div>
+    <div class="paso-just">
+      <div class="titulo">[Nombre del paso o ley usada]</div>
+      [Explicación.]
+    </div>
+
+    <!-- Agregar más pares .paso-dev / .paso-just según sea necesario -->
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> [Enunciado claro y completo del resultado obtenido, con la respuesta destacada en \boxed{}.]
+    <br><br>
+    [Formula general o nota adicional si aplica.]
+  </div>
+
 </body>
 </html>

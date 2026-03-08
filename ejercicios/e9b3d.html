@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>e9b3d</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "e9b3d",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["3", "Ejercicio 3", "ej3"],
+      tema: [
+        "números reales",
+        "axiomas de cuerpo",
+        "ley de cancelación",
+        "multiplicación",
+        "inverso multiplicativo",
+        "demostración algebraica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "ley de cancelación multiplicación",
+        "demostración ab=ac implica b=c",
+        "inverso multiplicativo",
+        "axiomas números reales",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre la ley de cancelación para la multiplicación: si $ab = ac$ y $a \neq 0$, entonces $b = c$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La estructura es exactamente análoga a la del ejercicio 1, pero para la multiplicación.
+      Allá sumamos el inverso aditivo $(-a)$ para cancelar $a$; acá multiplicamos por el
+      inverso multiplicativo $a^{-1}$ para cancelar $a$. La condición $a \neq 0$ es
+      indispensable: el $0$ no tiene inverso multiplicativo, y si lo tuviera, podríamos
+      "demostrar" que $1 = 2$.
+    </p>
+    <div class="nota">
+      La hipótesis $a \neq 0$ no es un detalle menor: es lo que garantiza que $a^{-1}$ existe.
+      Sin ella la demostración no arranca.
+    </div>
+    <p>
+      Los axiomas usados son: existencia del inverso multiplicativo ($a \cdot a^{-1} = 1$
+      para $a \neq 0$), existencia del neutro multiplicativo ($1 \cdot x = x$) y
+      asociatividad de la multiplicación.
+    </p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$ab = ac$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Es la premisa. También se sabe que $a \neq 0$, lo que garantiza que $a^{-1}$ existe.
+    </div>
+
+    <div class="paso-dev">
+      $$a^{-1}(ab) = a^{-1}(ac)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Multiplicación por $a^{-1}$</div>
+      Multiplicamos ambos lados por $a^{-1}$. La igualdad se preserva al aplicar
+      la misma operación en ambos miembros.
+    </div>
+
+    <div class="paso-dev">
+      $$(a^{-1}a)b = (a^{-1}a)c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma asociativo</div>
+      $x(yz) = (xy)z$. Reagrupamos para juntar $a^{-1}$ con $a$.
+    </div>
+
+    <div class="paso-dev">
+      $$1 \cdot b = 1 \cdot c$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del inverso multiplicativo</div>
+      $a^{-1} \cdot a = 1$ por definición, dado que $a \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{b = c}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Axioma del neutro multiplicativo</div>
+      $1 \cdot x = x$ para todo $x$. Entonces $1\cdot b = b$ y $1\cdot c = c$, y concluimos.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Si $ab = ac$ y $a \neq 0$, entonces $\boxed{b = c}$.
+    <br><br>
+    La cadena completa es:
+    $$ab = ac \;\Rightarrow\; a^{-1}(ab) = a^{-1}(ac) \;\Rightarrow\; (a^{-1}a)b = (a^{-1}a)c \;\Rightarrow\; 1\cdot b = 1\cdot c \;\Rightarrow\; b = c.$$
+  </div>
+
+</body>
+</html>

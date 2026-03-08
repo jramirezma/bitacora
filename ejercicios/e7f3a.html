@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>e7f3a</title>
+  <script>
+    window.EJERCICIO = {
+      id: "e7f3a",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "logica proposicional",
+        "valor de verdad",
+        "conectivas logicas",
+        "tablas de verdad"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "logica proposicional",
+        "valor de verdad",
+        "conectivas logicas",
+        "implicacion",
+        "bicondicional",
+        "conjuncion",
+        "disyuncion",
+        "negacion"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo {
+      font-family: sans-serif;
+      font-size: .9rem;
+      font-weight: bold;
+      margin: 1.4rem 0 .4rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      Si $P$, $Q$, $R$ son verdaderas y $S$, $T$ son falsas, determine el valor de verdad de las proposiciones:
+    </p>
+    <p>
+      (a) $[P \to (R \to T)] \leftrightarrow [(\neg P \land S) \to (Q \to \neg T)]$
+    </p>
+    <p>
+      (b) $[(\neg T \lor \neg P) \leftrightarrow [T \to (R \lor S)]] \leftrightarrow [(P \land Q \land \neg T) \to (\neg Q \to \neg S)]$
+    </p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Este ejercicio es pura mecanica: no hay trampa conceptual, solo hay que sustituir los
+      valores conocidos y evaluar las conectivas de adentro hacia afuera, como cuando se
+      resuelve una expresion aritmetica respetando el orden de las operaciones.
+    </p>
+    <div class="nota">
+      Reglas que vamos a usar todo el tiempo:
+      $\neg V = F$, $\neg F = V$.
+      $A \land B$ es verdadera solo si ambas son verdaderas.
+      $A \lor B$ es falsa solo si ambas son falsas.
+      $A \to B$ es falsa solo cuando $A$ es verdadera y $B$ es falsa.
+      $A \leftrightarrow B$ es verdadera cuando $A$ y $B$ tienen el mismo valor.
+    </div>
+    <p>
+      Los valores de partida son: $P=V$, $Q=V$, $R=V$, $S=F$, $T=F$.
+      Entonces las negaciones inmediatas son: $\neg P=F$, $\neg Q=F$, $\neg R=F$, $\neg S=V$, $\neg T=V$.
+      Conviene tenerlas a mano desde el principio para no recalcularlas en cada paso.
+    </p>
+    <p class="chiste">(Dos proposiciones larguisimas para evaluar. El que las redacto claramente disfrutaba ver sufrir a la gente.)</p>
+  </div>
+
+  <h2>Solución</h2>
+
+  <p class="subtitulo">Inciso (a)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Valores de partida:<br>
+      $P=V,\ Q=V,\ R=V,\ S=F,\ T=F$<br>
+      $\neg P=F,\ \neg T=V$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Preparacion</div>
+      Antes de tocar la formula, calculamos todas las negaciones que aparecen en ella.
+      Asi no hay que interrumpir el flujo mas adelante.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Lado izquierdo:</strong> $P \to (R \to T)$<br><br>
+      Primero el parentesis interno:<br>
+      $R \to T = V \to F = F$<br><br>
+      Luego la implicacion exterior:<br>
+      $P \to F = V \to F = F$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Implicacion falsa</div>
+      La implicacion $A \to B$ es el conector mas traicionero: es falsa <em>unicamente</em>
+      cuando la hipotesis es verdadera y la conclusion es falsa. Aqui $R=V$ y $T=F$,
+      entonces $R \to T = F$. Luego $P=V$ implica algo falso, entonces $P \to F = F$.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Lado derecho:</strong> $(\neg P \land S) \to (Q \to \neg T)$<br><br>
+      Antecedente: $\neg P \land S = F \land F = F$<br><br>
+      Consecuente: $Q \to \neg T = V \to V = V$<br><br>
+      Implicacion: $F \to V = V$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Antecedente falso salva todo</div>
+      Cuando el antecedente de una implicacion es falso, la implicacion completa es
+      verdadera sin importar que diga el consecuente. Es como una promesa que nunca
+      se va a tener que cumplir: nadie puede acusarte de haberla roto.
+      Aqui $\neg P \land S = F$, entonces el lado derecho es verdadero directamente.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Bicondicional final:</strong><br><br>
+      Lado izquierdo $= F$<br>
+      Lado derecho $= V$<br><br>
+      $F \leftrightarrow V = \mathbf{F}$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Bicondicional</div>
+      El bicondicional es verdadero solo cuando ambos lados tienen el mismo valor.
+      Aqui uno es falso y el otro verdadero: valores distintos, resultado falso.
+    </div>
+  </div>
+
+  <p class="subtitulo">Inciso (b)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Valores de partida:<br>
+      $P=V,\ Q=V,\ R=V,\ S=F,\ T=F$<br>
+      $\neg P=F,\ \neg Q=F,\ \neg S=V,\ \neg T=V$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Preparacion</div>
+      Misma estrategia: calcular negaciones antes de entrar a la formula.
+      Esta vez aparecen $\neg Q$ y $\neg S$ tambien.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Bloque izquierdo del bicondicional externo:</strong><br>
+      $(\neg T \lor \neg P) \leftrightarrow [T \to (R \lor S)]$<br><br>
+      $\neg T \lor \neg P = V \lor F = V$<br><br>
+      $R \lor S = V \lor F = V$<br>
+      $T \to V = F \to V = V$<br><br>
+      $V \leftrightarrow V = V$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primer bloque</div>
+      El lado izquierdo del bicondicional interno resulta verdadero porque $\neg T = V$.
+      El lado derecho tambien: $T$ es falso, y una implicacion con antecedente falso
+      siempre es verdadera. Dos verdaderos en un bicondicional dan verdadero.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Bloque derecho del bicondicional externo:</strong><br>
+      $(P \land Q \land \neg T) \to (\neg Q \to \neg S)$<br><br>
+      Antecedente: $P \land Q \land \neg T = V \land V \land V = V$<br><br>
+      Consecuente: $\neg Q \to \neg S = F \to V = V$<br><br>
+      $V \to V = V$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segundo bloque</div>
+      El antecedente es verdadero (los tres factores son verdaderos), asi que hay que
+      evaluar el consecuente. $\neg Q = F$, entonces $\neg Q \to \neg S$ tiene antecedente
+      falso y es verdadera. La implicacion completa es $V \to V = V$.
+    </div>
+
+    <div class="paso-dev">
+      <strong>Bicondicional final:</strong><br><br>
+      Bloque izquierdo $= V$<br>
+      Bloque derecho $= V$<br><br>
+      $V \leftrightarrow V = \mathbf{V}$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Bicondicional</div>
+      Ambos bloques resultaron verdaderos. El bicondicional entre dos verdaderos
+      es verdadero. Fin.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultados.</strong><br><br>
+    (a) $[P \to (R \to T)] \leftrightarrow [(\neg P \land S) \to (Q \to \neg T)] = \mathbf{F}$<br><br>
+    (b) $[(\neg T \lor \neg P) \leftrightarrow [T \to (R \lor S)]] \leftrightarrow [(P \land Q \land \neg T) \to (\neg Q \to \neg S)] = \mathbf{V}$
+  </div>
+
+</body>
+</html>

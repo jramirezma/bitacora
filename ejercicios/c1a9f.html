@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c1a9f</title>
+  <script>
+    window.EJERCICIO = {
+      id: "c1a9f",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "logica proposicional",
+        "tablas de verdad",
+        "razonamiento logico",
+        "paradojas logicas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "logica proposicional",
+        "sincero mentiroso",
+        "vacilonio",
+        "razonamiento logico",
+        "implicacion",
+        "tablas de verdad"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: .93rem;
+      margin: 4px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    th {
+      font-family: sans-serif;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      Suponga que el vacilonio A dice: "yo soy un mentiroso o, en caso contrario, uno más uno
+      es igual a tres". ¿Qué se puede concluir?
+    </p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Recordemos el contexto: en Vacilonia, los sinceros siempre dicen la verdad y los mentirosos
+      siempre mienten. A dice una disyunción: "soy mentiroso <em>o</em> $1+1=3$". Llamemos
+      $P$ a la proposición "A es mentiroso" y $Q$ a "$1+1=3$". La afirmación de A es $P \lor Q$.
+    </p>
+    <div class="nota">
+      La trampa está en que $Q$ es claramente falsa. Entonces todo el peso del análisis
+      cae sobre $P$. Y ahí viene la parte interesante: lo que A dice sobre sí mismo
+      tiene consecuencias lógicas que no puede evitar.
+    </div>
+    <p>
+      La estrategia es analizar los dos casos posibles: que A sea sincero o que sea mentiroso,
+      y ver cuál de los dos es consistente con lo que dijo.
+    </p>
+    <p class="chiste">(A intentó ser tramposo. La logica no se lo va a permitir.)</p>
+  </div>
+
+  <h2>Solución</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Paso 1 -->
+    <div class="paso-dev">
+      Sea $P$: "A es mentiroso"<br>
+      Sea $Q$: "$1 + 1 = 3$"<br><br>
+      A afirma: $P \lor Q$<br><br>
+      $Q$ es falsa siempre.<br><br>
+      Por lo tanto, $P \lor Q$ tiene el mismo valor de verdad que $P$ sola:
+      $P \lor Q \equiv P \lor F \equiv P$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simbolización y simplificación</div>
+      Primero ponemos en símbolos lo que A dijo. Luego notamos que $Q$ ("1+1=3") es falsa
+      sin importar nada más: es aritmética básica. Una disyunción con un lado siempre falso
+      depende completamente del otro lado. Entonces la afirmación de A se reduce a:
+      A está diciendo "soy mentiroso". Nada más. El "$1+1=3$" era ruido.
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="paso-dev">
+      <strong>Caso 1: A es mentiroso.</strong><br><br>
+      Si A es mentiroso, todo lo que dice es falso.<br>
+      A dijo $P \lor Q$, entonces $P \lor Q$ es falsa.<br>
+      Una disyunción es falsa solo cuando <em>ambas</em> partes son falsas:<br><br>
+      $P \lor Q$ falsa $\Rightarrow$ $P$ falsa $\land$ $Q$ falsa.<br><br>
+      Pero $P$ falsa significa que A <em>no</em> es mentiroso.<br>
+      Contradicción: A es mentiroso y no es mentiroso al mismo tiempo. $\contradiction$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">El caso mentiroso se destruye solo</div>
+      Suponemos que A es mentiroso y vemos a donde nos lleva. Si es mentiroso, miente.
+      Si miente, lo que dijo es falso. Lo que dijo incluye "soy mentiroso". Para que
+      esa disyunción sea falsa, $P$ tiene que ser falsa, o sea, A <em>no</em> es mentiroso.
+      Pero empezamos suponiendo que sí lo era. Choque directo. Este caso no puede darse.
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="paso-dev">
+      <strong>Caso 2: A es sincero.</strong><br><br>
+      Si A es sincero, todo lo que dice es verdadero.<br>
+      A dijo $P \lor Q$, entonces $P \lor Q$ debe ser verdadera.<br><br>
+      Pero si A es sincero, entonces $P$ ("A es mentiroso") es falsa.<br>
+      Y $Q$ ("$1+1=3$") es falsa siempre.<br><br>
+      $P \lor Q = F \lor F = F$.<br><br>
+      Entonces $P \lor Q$ es falsa. Pero dijimos que debía ser verdadera. $\contradiction$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">El caso sincero tampoco funciona</div>
+      Ahora suponemos que A es sincero y vemos a donde lleva. Si es sincero, dice la verdad.
+      Si dice la verdad, lo que afirmó debe ser verdadero. Pero si A es sincero, entonces
+      no es mentiroso, o sea $P$ es falsa. Y $Q$ ya sabemos que es falsa. Dos cosas falsas
+      unidas con "o" dan falso. Pero un sincero no puede decir algo falso. Otro choque.
+      Este caso tampoco puede darse.
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="paso-dev">
+      Caso 1 (mentiroso): $\contradiction$<br>
+      Caso 2 (sincero): $\contradiction$<br><br>
+      No hay caso posible. La afirmación de A es una paradoja: no puede ser verdadera
+      ni falsa bajo las reglas de Vacilonia.
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión: paradoja inevitable</div>
+      Agotamos todas las posibilidades y ninguna funciona. Esto no significa que cometimos
+      un error: significa que la afirmación de A es intrínsecamente contradictoria.
+      Es la misma estructura que la paradoja del mentiroso clásica ("esta oración es falsa").
+      En Vacilonia, donde todo habitante debe ser sincero o mentiroso sin excepción,
+      A simplemente no puede existir diciendo eso. Las reglas del planeta no lo admiten.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> La afirmación de A es paradójica: ninguna asignación de
+    identidad (sincero o mentiroso) es consistente con lo que dijo.
+    <br><br>
+    Formalmente, si $S$ denota "A es sincero" ($\neg P$):
+    <br>
+    — Si $S$: A dice verdad $\Rightarrow P \lor Q$ verdadera. Pero $\neg P \land \neg Q \Rightarrow P \lor Q$ falsa. $\contradiction$<br>
+    — Si $\neg S$: A miente $\Rightarrow P \lor Q$ falsa. Pero $P$ verdadera $\Rightarrow P \lor Q$ verdadera. $\contradiction$
+    <br><br>
+    No se puede concluir nada sobre A porque el sistema de reglas de Vacilonia no puede
+    acomodar esta afirmación. Es una paradoja de autorreferencia.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f2c8d</title>
+  <script>
+    window.EJERCICIO = {
+      id: "f2c8d",
+      materia: [
+        "algebra",
+        "matematica discreta",
+        "logica matematica"
+      ],
+      tema: [
+        "tablas de verdad",
+        "tautologia contradiccion contingencia",
+        "logica proposicional",
+        "clasificacion de proposiciones"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "tabla de verdad",
+        "tautologia",
+        "contradiccion",
+        "contingencia",
+        "logica proposicional",
+        "conectivas logicas"
+      ],
+      fecha: "2026-02-28",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .subtitulo {
+      font-family: sans-serif;
+      font-size: .9rem;
+      font-weight: bold;
+      margin: 2rem 0 .6rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 16px;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .paso-just {
+      padding: 16px;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    svg { display: block; overflow: visible; }
+    text { font-family: Georgia, serif; font-size: 13px; fill: #111; }
+    text.val { font-family: sans-serif; font-size: 12px; font-weight: bold; }
+    text.label { font-family: sans-serif; font-size: 10px; fill: #555; }
+    line { stroke: #555; stroke-width: 1.2; }
+    .caption {
+      font-size: .82rem;
+      font-style: italic;
+      color: #555;
+      margin-top: 6px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Ejercicio</h2>
+<div class="ejercicio">
+  <p>Determine, utilizando tablas de verdad, si cada proposición compuesta es tautología, contradicción o contingencia.</p>
+  <p>
+    (a) $\neg(P \to Q) \leftrightarrow (P \land \neg Q)$<br>
+    (b) $R \to [(\neg P \lor Q) \land (P \land \neg Q)]$<br>
+    (c) $(P \lor Q) \to [Q \to (P \land Q)]$<br>
+    (d) $[(P \to Q) \to R] \leftrightarrow [(P \land \neg R) \to \neg Q]$<br>
+    (e) $[\neg(\neg P \land R) \lor Q] \leftrightarrow [(\neg P \lor R) \land Q]$
+  </p>
+</div>
+
+<h2>Análisis</h2>
+<div class="bloque">
+  <p>
+    Una proposicion es <strong>tautologia</strong> si es verdadera para toda combinacion posible de valores.
+    Es <strong>contradiccion</strong> si es siempre falsa. Es <strong>contingencia</strong> si a veces es
+    verdadera y a veces falsa.
+  </p>
+  <div class="nota">
+    El metodo es construir el arbol de evaluacion para cada combinacion de valores posible.
+    Las variables van arriba; cada conectiva combina sus operandos y produce un resultado debajo.
+    El resultado final queda en la raiz, al fondo del arbol.
+  </div>
+  <p>
+    Con dos variables hay $2^2 = 4$ combinaciones; con tres variables hay $2^3 = 8$.
+    Para no repetir ocho arboles identicos en estructura, mostramos un arbol por cada
+    combinacion de valores relevante y resumimos el patron observado.
+  </p>
+  <p class="chiste">(Cinco proposiciones. Cada una con su propio arbol. El bosque logico no se va a cortar solo.)</p>
+</div>
+
+<h2>Solución</h2>
+
+<!-- ==================== INCISO A ==================== -->
+<p class="subtitulo">Inciso (a): $\neg(P \to Q) \leftrightarrow (P \land \neg Q)$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    <p style="margin:0 0 8px; font-size:.88rem; text-align:center;">Se muestran las 4 combinaciones. El valor final siempre es <strong>V</strong>.</p>
+
+    <!-- Fila 1: P=V Q=V -->
+    <svg width="380" height="260" viewBox="0 0 380 260">
+      <text x="10" y="14" class="label">P=V, Q=V</text>
+      <!-- hojas -->
+      <text x="80"  y="40" text-anchor="middle">$P$</text><text x="80"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="160" y="40" text-anchor="middle">$Q$</text><text x="160" y="56" text-anchor="middle" class="val">V</text>
+      <!-- P→Q -->
+      <line x1="80"  y1="60" x2="80"  y2="84"/><line x1="160" y1="60" x2="160" y2="84"/>
+      <line x1="80"  y1="84" x2="160" y2="84"/><line x1="120" y1="84" x2="120" y2="100"/>
+      <text x="120" y="114" text-anchor="middle">$P \to Q$</text><text x="120" y="130" text-anchor="middle" class="val">V</text>
+      <!-- ¬(P→Q) -->
+      <line x1="120" y1="134" x2="120" y2="154"/>
+      <text x="120" y="168" text-anchor="middle">$\neg(P \to Q)$</text><text x="120" y="184" text-anchor="middle" class="val">F</text>
+
+      <!-- rama derecha: P y ¬Q -->
+      <text x="260" y="40" text-anchor="middle">$P$</text><text x="260" y="56" text-anchor="middle" class="val">V</text>
+      <text x="340" y="40" text-anchor="middle">$Q$</text><text x="340" y="56" text-anchor="middle" class="val">V</text>
+      <!-- ¬Q -->
+      <line x1="340" y1="60" x2="340" y2="84"/>
+      <text x="340" y="98" text-anchor="middle">$\neg Q$</text><text x="340" y="114" text-anchor="middle" class="val">F</text>
+      <!-- P∧¬Q -->
+      <line x1="260" y1="60" x2="260" y2="140"/><line x1="340" y1="118" x2="340" y2="140"/>
+      <line x1="260" y1="140" x2="340" y2="140"/><line x1="300" y1="140" x2="300" y2="154"/>
+      <text x="300" y="168" text-anchor="middle">$P \land \neg Q$</text><text x="300" y="184" text-anchor="middle" class="val">F</text>
+
+      <!-- bicondicional raiz -->
+      <line x1="120" y1="188" x2="120" y2="218"/><line x1="300" y1="188" x2="300" y2="218"/>
+      <line x1="120" y1="218" x2="300" y2="218"/><line x1="210" y1="218" x2="210" y2="232"/>
+      <text x="210" y="246" text-anchor="middle">$\neg(P{\to}Q) \leftrightarrow (P{\land}\neg Q)$</text>
+      <text x="210" y="262" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- Fila 2: P=V Q=F -->
+    <svg width="380" height="260" viewBox="0 0 380 260" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=V, Q=F</text>
+      <text x="80"  y="40" text-anchor="middle">$P$</text><text x="80"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="160" y="40" text-anchor="middle">$Q$</text><text x="160" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="80"  y1="60" x2="80"  y2="84"/><line x1="160" y1="60" x2="160" y2="84"/>
+      <line x1="80"  y1="84" x2="160" y2="84"/><line x1="120" y1="84" x2="120" y2="100"/>
+      <text x="120" y="114" text-anchor="middle">$P \to Q$</text><text x="120" y="130" text-anchor="middle" class="val">F</text>
+      <line x1="120" y1="134" x2="120" y2="154"/>
+      <text x="120" y="168" text-anchor="middle">$\neg(P \to Q)$</text><text x="120" y="184" text-anchor="middle" class="val">V</text>
+
+      <text x="260" y="40" text-anchor="middle">$P$</text><text x="260" y="56" text-anchor="middle" class="val">V</text>
+      <text x="340" y="40" text-anchor="middle">$Q$</text><text x="340" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="340" y1="60" x2="340" y2="84"/>
+      <text x="340" y="98" text-anchor="middle">$\neg Q$</text><text x="340" y="114" text-anchor="middle" class="val">V</text>
+      <line x1="260" y1="60" x2="260" y2="140"/><line x1="340" y1="118" x2="340" y2="140"/>
+      <line x1="260" y1="140" x2="340" y2="140"/><line x1="300" y1="140" x2="300" y2="154"/>
+      <text x="300" y="168" text-anchor="middle">$P \land \neg Q$</text><text x="300" y="184" text-anchor="middle" class="val">V</text>
+
+      <line x1="120" y1="188" x2="120" y2="218"/><line x1="300" y1="188" x2="300" y2="218"/>
+      <line x1="120" y1="218" x2="300" y2="218"/><line x1="210" y1="218" x2="210" y2="232"/>
+      <text x="210" y="246" text-anchor="middle">$\neg(P{\to}Q) \leftrightarrow (P{\land}\neg Q)$</text>
+      <text x="210" y="262" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- Fila 3: P=F Q=V -->
+    <svg width="380" height="260" viewBox="0 0 380 260" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=F, Q=V</text>
+      <text x="80"  y="40" text-anchor="middle">$P$</text><text x="80"  y="56" text-anchor="middle" class="val">F</text>
+      <text x="160" y="40" text-anchor="middle">$Q$</text><text x="160" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="80"  y1="60" x2="80"  y2="84"/><line x1="160" y1="60" x2="160" y2="84"/>
+      <line x1="80"  y1="84" x2="160" y2="84"/><line x1="120" y1="84" x2="120" y2="100"/>
+      <text x="120" y="114" text-anchor="middle">$P \to Q$</text><text x="120" y="130" text-anchor="middle" class="val">V</text>
+      <line x1="120" y1="134" x2="120" y2="154"/>
+      <text x="120" y="168" text-anchor="middle">$\neg(P \to Q)$</text><text x="120" y="184" text-anchor="middle" class="val">F</text>
+
+      <text x="260" y="40" text-anchor="middle">$P$</text><text x="260" y="56" text-anchor="middle" class="val">F</text>
+      <text x="340" y="40" text-anchor="middle">$Q$</text><text x="340" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="340" y1="60" x2="340" y2="84"/>
+      <text x="340" y="98" text-anchor="middle">$\neg Q$</text><text x="340" y="114" text-anchor="middle" class="val">F</text>
+      <line x1="260" y1="60" x2="260" y2="140"/><line x1="340" y1="118" x2="340" y2="140"/>
+      <line x1="260" y1="140" x2="340" y2="140"/><line x1="300" y1="140" x2="300" y2="154"/>
+      <text x="300" y="168" text-anchor="middle">$P \land \neg Q$</text><text x="300" y="184" text-anchor="middle" class="val">F</text>
+
+      <line x1="120" y1="188" x2="120" y2="218"/><line x1="300" y1="188" x2="300" y2="218"/>
+      <line x1="120" y1="218" x2="300" y2="218"/><line x1="210" y1="218" x2="210" y2="232"/>
+      <text x="210" y="246" text-anchor="middle">$\neg(P{\to}Q) \leftrightarrow (P{\land}\neg Q)$</text>
+      <text x="210" y="262" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- Fila 4: P=F Q=F -->
+    <svg width="380" height="260" viewBox="0 0 380 260" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=F, Q=F</text>
+      <text x="80"  y="40" text-anchor="middle">$P$</text><text x="80"  y="56" text-anchor="middle" class="val">F</text>
+      <text x="160" y="40" text-anchor="middle">$Q$</text><text x="160" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="80"  y1="60" x2="80"  y2="84"/><line x1="160" y1="60" x2="160" y2="84"/>
+      <line x1="80"  y1="84" x2="160" y2="84"/><line x1="120" y1="84" x2="120" y2="100"/>
+      <text x="120" y="114" text-anchor="middle">$P \to Q$</text><text x="120" y="130" text-anchor="middle" class="val">V</text>
+      <line x1="120" y1="134" x2="120" y2="154"/>
+      <text x="120" y="168" text-anchor="middle">$\neg(P \to Q)$</text><text x="120" y="184" text-anchor="middle" class="val">F</text>
+
+      <text x="260" y="40" text-anchor="middle">$P$</text><text x="260" y="56" text-anchor="middle" class="val">F</text>
+      <text x="340" y="40" text-anchor="middle">$Q$</text><text x="340" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="340" y1="60" x2="340" y2="84"/>
+      <text x="340" y="98" text-anchor="middle">$\neg Q$</text><text x="340" y="114" text-anchor="middle" class="val">V</text>
+      <line x1="260" y1="60" x2="260" y2="140"/><line x1="340" y1="118" x2="340" y2="140"/>
+      <line x1="260" y1="140" x2="340" y2="140"/><line x1="300" y1="140" x2="300" y2="154"/>
+      <text x="300" y="168" text-anchor="middle">$P \land \neg Q$</text><text x="300" y="184" text-anchor="middle" class="val">F</text>
+
+      <line x1="120" y1="188" x2="120" y2="218"/><line x1="300" y1="188" x2="300" y2="218"/>
+      <line x1="120" y1="218" x2="300" y2="218"/><line x1="210" y1="218" x2="210" y2="232"/>
+      <text x="210" y="246" text-anchor="middle">$\neg(P{\to}Q) \leftrightarrow (P{\land}\neg Q)$</text>
+      <text x="210" y="262" text-anchor="middle" class="val">V</text>
+    </svg>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Tautologia</div>
+    <p>En las cuatro combinaciones el resultado final es V. Tiene sentido: $\neg(P \to Q)$ es verdadera exactamente cuando $P$ es verdadera y $Q$ es falsa, que es exactamente cuando $P \land \neg Q$ es verdadera. Son dos formas de decir lo mismo.</p>
+  </div>
+</div>
+
+<!-- ==================== INCISO B ==================== -->
+<p class="subtitulo">Inciso (b): $R \to [(\neg P \lor Q) \land (P \land \neg Q)]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    <p style="margin:0 0 8px; font-size:.88rem; text-align:center;">El consecuente es siempre F. Se muestran dos casos representativos: $R=V$ y $R=F$.</p>
+
+    <!-- R=V, P=V, Q=V (representativo) -->
+    <svg width="420" height="310" viewBox="0 0 420 310">
+      <text x="10" y="14" class="label">R=V (caso representativo: P=V, Q=V)</text>
+
+      <!-- rama ¬P∨Q -->
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="60"  y1="60" x2="60"  y2="80"/>
+      <text x="60"  y="94" text-anchor="middle">$\neg P$</text><text x="60" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="60"  y1="114" x2="60"  y2="136"/><line x1="130" y1="60"  x2="130" y2="136"/>
+      <line x1="60"  y1="136" x2="130" y2="136"/><line x1="95" y1="136" x2="95" y2="152"/>
+      <text x="95"  y="166" text-anchor="middle">$\neg P \lor Q$</text><text x="95" y="182" text-anchor="middle" class="val">V</text>
+
+      <!-- rama P∧¬Q -->
+      <text x="250" y="40" text-anchor="middle">$P$</text><text x="250" y="56" text-anchor="middle" class="val">V</text>
+      <text x="320" y="40" text-anchor="middle">$Q$</text><text x="320" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="320" y1="60" x2="320" y2="80"/>
+      <text x="320" y="94" text-anchor="middle">$\neg Q$</text><text x="320" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="250" y1="60" x2="250" y2="136"/><line x1="320" y1="114" x2="320" y2="136"/>
+      <line x1="250" y1="136" x2="320" y2="136"/><line x1="285" y1="136" x2="285" y2="152"/>
+      <text x="285" y="166" text-anchor="middle">$P \land \neg Q$</text><text x="285" y="182" text-anchor="middle" class="val">F</text>
+
+      <!-- conjuncion del consecuente -->
+      <line x1="95"  y1="186" x2="95"  y2="212"/><line x1="285" y1="186" x2="285" y2="212"/>
+      <line x1="95"  y1="212" x2="285" y2="212"/><line x1="190" y1="212" x2="190" y2="228"/>
+      <text x="190" y="242" text-anchor="middle">$(\neg P \lor Q) \land (P \land \neg Q)$</text>
+      <text x="190" y="258" text-anchor="middle" class="val">F</text>
+
+      <!-- R y raiz -->
+      <text x="390" y="40" text-anchor="middle">$R$</text><text x="390" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="190" y1="262" x2="190" y2="284"/><line x1="390" y1="60"  x2="390" y2="284"/>
+      <line x1="190" y1="284" x2="390" y2="284"/><line x1="290" y1="284" x2="290" y2="298"/>
+      <text x="290" y="312" text-anchor="middle" class="val">F</text>
+    </svg>
+
+    <!-- R=F -->
+    <svg width="420" height="310" viewBox="0 0 420 310" style="margin-top:16px;">
+      <text x="10" y="14" class="label">R=F (cualquier P, Q)</text>
+
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">?</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">?</text>
+      <line x1="60"  y1="60" x2="60"  y2="80"/>
+      <text x="60"  y="94" text-anchor="middle">$\neg P$</text><text x="60" y="110" text-anchor="middle" class="val">?</text>
+      <line x1="60"  y1="114" x2="60"  y2="136"/><line x1="130" y1="60"  x2="130" y2="136"/>
+      <line x1="60"  y1="136" x2="130" y2="136"/><line x1="95" y1="136" x2="95" y2="152"/>
+      <text x="95"  y="166" text-anchor="middle">$\neg P \lor Q$</text><text x="95" y="182" text-anchor="middle" class="val">?</text>
+
+      <text x="250" y="40" text-anchor="middle">$P$</text><text x="250" y="56" text-anchor="middle" class="val">?</text>
+      <text x="320" y="40" text-anchor="middle">$Q$</text><text x="320" y="56" text-anchor="middle" class="val">?</text>
+      <line x1="320" y1="60" x2="320" y2="80"/>
+      <text x="320" y="94" text-anchor="middle">$\neg Q$</text><text x="320" y="110" text-anchor="middle" class="val">?</text>
+      <line x1="250" y1="60" x2="250" y2="136"/><line x1="320" y1="114" x2="320" y2="136"/>
+      <line x1="250" y1="136" x2="320" y2="136"/><line x1="285" y1="136" x2="285" y2="152"/>
+      <text x="285" y="166" text-anchor="middle">$P \land \neg Q$</text><text x="285" y="182" text-anchor="middle" class="val">?</text>
+
+      <line x1="95"  y1="186" x2="95"  y2="212"/><line x1="285" y1="186" x2="285" y2="212"/>
+      <line x1="95"  y1="212" x2="285" y2="212"/><line x1="190" y1="212" x2="190" y2="228"/>
+      <text x="190" y="242" text-anchor="middle">$(\neg P \lor Q) \land (P \land \neg Q)$</text>
+      <text x="190" y="258" text-anchor="middle" class="val">F</text>
+
+      <text x="390" y="40" text-anchor="middle">$R$</text><text x="390" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="190" y1="262" x2="190" y2="284"/><line x1="390" y1="60"  x2="390" y2="284"/>
+      <line x1="190" y1="284" x2="390" y2="284"/><line x1="290" y1="284" x2="290" y2="298"/>
+      <text x="290" y="312" text-anchor="middle" class="val">V</text>
+    </svg>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Contingencia</div>
+    <p>El consecuente $(\neg P \lor Q) \land (P \land \neg Q)$ es siempre F: es la conjuncion de una proposicion con su propia negacion, lo cual nunca puede ser verdadero.</p>
+    <p>Con el consecuente siempre F, el resultado depende solo de $R$: si $R=V$ la proposicion es F; si $R=F$ es V. Hay mezcla de valores: contingencia.</p>
+    <p>En el arbol con $R=F$ se usan "?" para los valores de $P$ y $Q$ porque no importan: el consecuente siempre da F de todas formas, y con antecedente F la implicacion es siempre V.</p>
+  </div>
+</div>
+
+<!-- ==================== INCISO C ==================== -->
+<p class="subtitulo">Inciso (c): $(P \lor Q) \to [Q \to (P \land Q)]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    <p style="margin:0 0 8px; font-size:.88rem; text-align:center;">Se muestran las 4 combinaciones.</p>
+
+    <!-- P=V Q=V -->
+    <svg width="380" height="280" viewBox="0 0 380 280">
+      <text x="10" y="14" class="label">P=V, Q=V</text>
+      <!-- P∨Q -->
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="60" y1="60" x2="60" y2="84"/><line x1="130" y1="60" x2="130" y2="84"/>
+      <line x1="60" y1="84" x2="130" y2="84"/><line x1="95" y1="84" x2="95" y2="100"/>
+      <text x="95" y="114" text-anchor="middle">$P \lor Q$</text><text x="95" y="130" text-anchor="middle" class="val">V</text>
+
+      <!-- Q→(P∧Q): rama derecha -->
+      <text x="240" y="40" text-anchor="middle">$Q$</text><text x="240" y="56" text-anchor="middle" class="val">V</text>
+      <!-- P∧Q -->
+      <text x="310" y="40" text-anchor="middle">$P$</text><text x="310" y="56" text-anchor="middle" class="val">V</text>
+      <text x="370" y="40" text-anchor="middle">$Q$</text><text x="370" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="310" y1="60" x2="310" y2="84"/><line x1="370" y1="60" x2="370" y2="84"/>
+      <line x1="310" y1="84" x2="370" y2="84"/><line x1="340" y1="84" x2="340" y2="100"/>
+      <text x="340" y="114" text-anchor="middle">$P \land Q$</text><text x="340" y="130" text-anchor="middle" class="val">V</text>
+      <!-- Q→(P∧Q) -->
+      <line x1="240" y1="60" x2="240" y2="156"/><line x1="340" y1="134" x2="340" y2="156"/>
+      <line x1="240" y1="156" x2="340" y2="156"/><line x1="290" y1="156" x2="290" y2="172"/>
+      <text x="290" y="186" text-anchor="middle">$Q \to (P \land Q)$</text><text x="290" y="202" text-anchor="middle" class="val">V</text>
+
+      <!-- raiz -->
+      <line x1="95"  y1="134" x2="95"  y2="228"/><line x1="290" y1="206" x2="290" y2="228"/>
+      <line x1="95"  y1="228" x2="290" y2="228"/><line x1="192" y1="228" x2="192" y2="244"/>
+      <text x="192" y="258" text-anchor="middle">$(P \lor Q) \to [Q \to (P \land Q)]$</text>
+      <text x="192" y="274" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- P=V Q=F -->
+    <svg width="380" height="280" viewBox="0 0 380 280" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=V, Q=F</text>
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="60" y1="60" x2="60" y2="84"/><line x1="130" y1="60" x2="130" y2="84"/>
+      <line x1="60" y1="84" x2="130" y2="84"/><line x1="95" y1="84" x2="95" y2="100"/>
+      <text x="95" y="114" text-anchor="middle">$P \lor Q$</text><text x="95" y="130" text-anchor="middle" class="val">V</text>
+
+      <text x="240" y="40" text-anchor="middle">$Q$</text><text x="240" y="56" text-anchor="middle" class="val">F</text>
+      <text x="310" y="40" text-anchor="middle">$P$</text><text x="310" y="56" text-anchor="middle" class="val">V</text>
+      <text x="370" y="40" text-anchor="middle">$Q$</text><text x="370" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="310" y1="60" x2="310" y2="84"/><line x1="370" y1="60" x2="370" y2="84"/>
+      <line x1="310" y1="84" x2="370" y2="84"/><line x1="340" y1="84" x2="340" y2="100"/>
+      <text x="340" y="114" text-anchor="middle">$P \land Q$</text><text x="340" y="130" text-anchor="middle" class="val">F</text>
+      <line x1="240" y1="60" x2="240" y2="156"/><line x1="340" y1="134" x2="340" y2="156"/>
+      <line x1="240" y1="156" x2="340" y2="156"/><line x1="290" y1="156" x2="290" y2="172"/>
+      <text x="290" y="186" text-anchor="middle">$Q \to (P \land Q)$</text><text x="290" y="202" text-anchor="middle" class="val">V</text>
+
+      <line x1="95"  y1="134" x2="95"  y2="228"/><line x1="290" y1="206" x2="290" y2="228"/>
+      <line x1="95"  y1="228" x2="290" y2="228"/><line x1="192" y1="228" x2="192" y2="244"/>
+      <text x="192" y="258" text-anchor="middle">$(P \lor Q) \to [Q \to (P \land Q)]$</text>
+      <text x="192" y="274" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- P=F Q=V -->
+    <svg width="380" height="280" viewBox="0 0 380 280" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=F, Q=V  ← caso falso</text>
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">F</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="60" y1="60" x2="60" y2="84"/><line x1="130" y1="60" x2="130" y2="84"/>
+      <line x1="60" y1="84" x2="130" y2="84"/><line x1="95" y1="84" x2="95" y2="100"/>
+      <text x="95" y="114" text-anchor="middle">$P \lor Q$</text><text x="95" y="130" text-anchor="middle" class="val">V</text>
+
+      <text x="240" y="40" text-anchor="middle">$Q$</text><text x="240" y="56" text-anchor="middle" class="val">V</text>
+      <text x="310" y="40" text-anchor="middle">$P$</text><text x="310" y="56" text-anchor="middle" class="val">F</text>
+      <text x="370" y="40" text-anchor="middle">$Q$</text><text x="370" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="310" y1="60" x2="310" y2="84"/><line x1="370" y1="60" x2="370" y2="84"/>
+      <line x1="310" y1="84" x2="370" y2="84"/><line x1="340" y1="84" x2="340" y2="100"/>
+      <text x="340" y="114" text-anchor="middle">$P \land Q$</text><text x="340" y="130" text-anchor="middle" class="val">F</text>
+      <line x1="240" y1="60" x2="240" y2="156"/><line x1="340" y1="134" x2="340" y2="156"/>
+      <line x1="240" y1="156" x2="340" y2="156"/><line x1="290" y1="156" x2="290" y2="172"/>
+      <text x="290" y="186" text-anchor="middle">$Q \to (P \land Q)$</text><text x="290" y="202" text-anchor="middle" class="val">F</text>
+
+      <line x1="95"  y1="134" x2="95"  y2="228"/><line x1="290" y1="206" x2="290" y2="228"/>
+      <line x1="95"  y1="228" x2="290" y2="228"/><line x1="192" y1="228" x2="192" y2="244"/>
+      <text x="192" y="258" text-anchor="middle">$(P \lor Q) \to [Q \to (P \land Q)]$</text>
+      <text x="192" y="274" text-anchor="middle" class="val">F</text>
+    </svg>
+
+    <!-- P=F Q=F -->
+    <svg width="380" height="280" viewBox="0 0 380 280" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=F, Q=F</text>
+      <text x="60"  y="40" text-anchor="middle">$P$</text><text x="60"  y="56" text-anchor="middle" class="val">F</text>
+      <text x="130" y="40" text-anchor="middle">$Q$</text><text x="130" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="60" y1="60" x2="60" y2="84"/><line x1="130" y1="60" x2="130" y2="84"/>
+      <line x1="60" y1="84" x2="130" y2="84"/><line x1="95" y1="84" x2="95" y2="100"/>
+      <text x="95" y="114" text-anchor="middle">$P \lor Q$</text><text x="95" y="130" text-anchor="middle" class="val">F</text>
+
+      <text x="240" y="40" text-anchor="middle">$Q$</text><text x="240" y="56" text-anchor="middle" class="val">F</text>
+      <text x="310" y="40" text-anchor="middle">$P$</text><text x="310" y="56" text-anchor="middle" class="val">F</text>
+      <text x="370" y="40" text-anchor="middle">$Q$</text><text x="370" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="310" y1="60" x2="310" y2="84"/><line x1="370" y1="60" x2="370" y2="84"/>
+      <line x1="310" y1="84" x2="370" y2="84"/><line x1="340" y1="84" x2="340" y2="100"/>
+      <text x="340" y="114" text-anchor="middle">$P \land Q$</text><text x="340" y="130" text-anchor="middle" class="val">F</text>
+      <line x1="240" y1="60" x2="240" y2="156"/><line x1="340" y1="134" x2="340" y2="156"/>
+      <line x1="240" y1="156" x2="340" y2="156"/><line x1="290" y1="156" x2="290" y2="172"/>
+      <text x="290" y="186" text-anchor="middle">$Q \to (P \land Q)$</text><text x="290" y="202" text-anchor="middle" class="val">V</text>
+
+      <line x1="95"  y1="134" x2="95"  y2="228"/><line x1="290" y1="206" x2="290" y2="228"/>
+      <line x1="95"  y1="228" x2="290" y2="228"/><line x1="192" y1="228" x2="192" y2="244"/>
+      <text x="192" y="258" text-anchor="middle">$(P \lor Q) \to [Q \to (P \land Q)]$</text>
+      <text x="192" y="274" text-anchor="middle" class="val">V</text>
+    </svg>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Contingencia</div>
+    <p>El caso $P=F, Q=V$ produce F: el antecedente $P \lor Q$ es V, pero el consecuente $Q \to (P \land Q) = V \to F = F$. Una implicacion con antecedente verdadero y consecuente falso es falsa.</p>
+    <p>Los demas casos dan V. Como hay mezcla, es contingencia.</p>
+  </div>
+</div>
+
+<!-- ==================== INCISO D ==================== -->
+<p class="subtitulo">Inciso (d): $[(P \to Q) \to R] \leftrightarrow [(P \land \neg R) \to \neg Q]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    <p style="margin:0 0 8px; font-size:.88rem; text-align:center;">Con 3 variables hay 8 combinaciones. Se muestran dos casos extremos y se resume el patron.</p>
+
+    <!-- P=V Q=V R=V -->
+    <svg width="420" height="300" viewBox="0 0 420 300">
+      <text x="10" y="14" class="label">P=V, Q=V, R=V</text>
+      <!-- rama izquierda: (P→Q)→R -->
+      <text x="50"  y="40" text-anchor="middle">$P$</text><text x="50"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="110" y="40" text-anchor="middle">$Q$</text><text x="110" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="50" y1="60" x2="50" y2="84"/><line x1="110" y1="60" x2="110" y2="84"/>
+      <line x1="50" y1="84" x2="110" y2="84"/><line x1="80" y1="84" x2="80" y2="100"/>
+      <text x="80" y="114" text-anchor="middle">$P \to Q$</text><text x="80" y="130" text-anchor="middle" class="val">V</text>
+      <text x="140" y="40" text-anchor="middle">$R$</text><text x="140" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="80"  y1="134" x2="80"  y2="172"/><line x1="140" y1="60"  x2="140" y2="172"/>
+      <line x1="80"  y1="172" x2="140" y2="172"/><line x1="110" y1="172" x2="110" y2="188"/>
+      <text x="110" y="202" text-anchor="middle">$(P{\to}Q){\to}R$</text><text x="110" y="218" text-anchor="middle" class="val">V</text>
+
+      <!-- rama derecha: (P∧¬R)→¬Q -->
+      <text x="250" y="40" text-anchor="middle">$P$</text><text x="250" y="56" text-anchor="middle" class="val">V</text>
+      <text x="310" y="40" text-anchor="middle">$R$</text><text x="310" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="310" y1="60" x2="310" y2="80"/>
+      <text x="310" y="94" text-anchor="middle">$\neg R$</text><text x="310" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="250" y1="60" x2="250" y2="136"/><line x1="310" y1="114" x2="310" y2="136"/>
+      <line x1="250" y1="136" x2="310" y2="136"/><line x1="280" y1="136" x2="280" y2="152"/>
+      <text x="280" y="166" text-anchor="middle">$P \land \neg R$</text><text x="280" y="182" text-anchor="middle" class="val">F</text>
+      <text x="380" y="40" text-anchor="middle">$Q$</text><text x="380" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="380" y1="60" x2="380" y2="80"/>
+      <text x="380" y="94" text-anchor="middle">$\neg Q$</text><text x="380" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="280" y1="186" x2="280" y2="208"/><line x1="380" y1="114" x2="380" y2="208"/>
+      <line x1="280" y1="208" x2="380" y2="208"/><line x1="330" y1="208" x2="330" y2="224"/>
+      <text x="330" y="238" text-anchor="middle">$(P{\land}\neg R){\to}\neg Q$</text><text x="330" y="254" text-anchor="middle" class="val">V</text>
+
+      <!-- raiz -->
+      <line x1="110" y1="222" x2="110" y2="274"/><line x1="330" y1="258" x2="330" y2="274"/>
+      <line x1="110" y1="274" x2="330" y2="274"/><line x1="220" y1="274" x2="220" y2="288"/>
+      <text x="220" y="300" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- P=V Q=V R=F -->
+    <svg width="420" height="300" viewBox="0 0 420 300" style="margin-top:12px;">
+      <text x="10" y="14" class="label">P=V, Q=V, R=F</text>
+      <text x="50"  y="40" text-anchor="middle">$P$</text><text x="50"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="110" y="40" text-anchor="middle">$Q$</text><text x="110" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="50" y1="60" x2="50" y2="84"/><line x1="110" y1="60" x2="110" y2="84"/>
+      <line x1="50" y1="84" x2="110" y2="84"/><line x1="80" y1="84" x2="80" y2="100"/>
+      <text x="80" y="114" text-anchor="middle">$P \to Q$</text><text x="80" y="130" text-anchor="middle" class="val">V</text>
+      <text x="140" y="40" text-anchor="middle">$R$</text><text x="140" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="80"  y1="134" x2="80"  y2="172"/><line x1="140" y1="60"  x2="140" y2="172"/>
+      <line x1="80"  y1="172" x2="140" y2="172"/><line x1="110" y1="172" x2="110" y2="188"/>
+      <text x="110" y="202" text-anchor="middle">$(P{\to}Q){\to}R$</text><text x="110" y="218" text-anchor="middle" class="val">F</text>
+
+      <text x="250" y="40" text-anchor="middle">$P$</text><text x="250" y="56" text-anchor="middle" class="val">V</text>
+      <text x="310" y="40" text-anchor="middle">$R$</text><text x="310" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="310" y1="60" x2="310" y2="80"/>
+      <text x="310" y="94" text-anchor="middle">$\neg R$</text><text x="310" y="110" text-anchor="middle" class="val">V</text>
+      <line x1="250" y1="60" x2="250" y2="136"/><line x1="310" y1="114" x2="310" y2="136"/>
+      <line x1="250" y1="136" x2="310" y2="136"/><line x1="280" y1="136" x2="280" y2="152"/>
+      <text x="280" y="166" text-anchor="middle">$P \land \neg R$</text><text x="280" y="182" text-anchor="middle" class="val">V</text>
+      <text x="380" y="40" text-anchor="middle">$Q$</text><text x="380" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="380" y1="60" x2="380" y2="80"/>
+      <text x="380" y="94" text-anchor="middle">$\neg Q$</text><text x="380" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="280" y1="186" x2="280" y2="208"/><line x1="380" y1="114" x2="380" y2="208"/>
+      <line x1="280" y1="208" x2="380" y2="208"/><line x1="330" y1="208" x2="330" y2="224"/>
+      <text x="330" y="238" text-anchor="middle">$(P{\land}\neg R){\to}\neg Q$</text><text x="330" y="254" text-anchor="middle" class="val">F</text>
+
+      <line x1="110" y1="222" x2="110" y2="274"/><line x1="330" y1="258" x2="330" y2="274"/>
+      <line x1="110" y1="274" x2="330" y2="274"/><line x1="220" y1="274" x2="220" y2="288"/>
+      <text x="220" y="300" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <p style="font-size:.85rem; margin-top:10px; text-align:center;">Las 8 combinaciones producen siempre <strong>V</strong>.</p>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Tautologia</div>
+    <p>En todas las combinaciones los dos lados del bicondicional coinciden en su valor de verdad, por eso el resultado es siempre V. Las dos expresiones son logicamente equivalentes aunque se vean muy diferentes.</p>
+    <p>Se muestran dos casos representativos. Las 6 combinaciones restantes siguen el mismo patron.</p>
+  </div>
+</div>
+
+<!-- ==================== INCISO E ==================== -->
+<p class="subtitulo">Inciso (e): $[\neg(\neg P \land R) \lor Q] \leftrightarrow [(\neg P \lor R) \land Q]$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+  <div class="paso-dev">
+    <p style="margin:0 0 8px; font-size:.88rem; text-align:center;">Se simplifica el lado izquierdo y se muestran dos casos: uno verdadero y uno falso.</p>
+
+    <!-- P=V Q=V R=V -->
+    <svg width="440" height="330" viewBox="0 0 440 330">
+      <text x="10" y="14" class="label">P=V, Q=V, R=V</text>
+
+      <!-- lado izq: ¬(¬P∧R)∨Q → simplificado a P∨¬R∨Q -->
+      <text x="40"  y="40" text-anchor="middle">$P$</text><text x="40"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="100" y="40" text-anchor="middle">$R$</text><text x="100" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="40" y1="60" x2="40" y2="80"/>
+      <text x="40" y="94" text-anchor="middle">$\neg P$</text><text x="40" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="40" y1="114" x2="40" y2="136"/><line x1="100" y1="60" x2="100" y2="136"/>
+      <line x1="40" y1="136" x2="100" y2="136"/><line x1="70" y1="136" x2="70" y2="152"/>
+      <text x="70" y="166" text-anchor="middle">$\neg P \land R$</text><text x="70" y="182" text-anchor="middle" class="val">F</text>
+      <line x1="70" y1="186" x2="70" y2="202"/>
+      <text x="70" y="216" text-anchor="middle">$\neg(\neg P \land R)$</text><text x="70" y="232" text-anchor="middle" class="val">V</text>
+      <text x="140" y="40" text-anchor="middle">$Q$</text><text x="140" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="70" y1="236" x2="70" y2="258"/><line x1="140" y1="60" x2="140" y2="258"/>
+      <line x1="70" y1="258" x2="140" y2="258"/><line x1="105" y1="258" x2="105" y2="274"/>
+      <text x="105" y="288" text-anchor="middle">$\neg(\neg P{\land}R){\lor}Q$</text><text x="105" y="304" text-anchor="middle" class="val">V</text>
+
+      <!-- lado der: (¬P∨R)∧Q -->
+      <text x="270" y="40" text-anchor="middle">$P$</text><text x="270" y="56" text-anchor="middle" class="val">V</text>
+      <text x="330" y="40" text-anchor="middle">$R$</text><text x="330" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="270" y1="60" x2="270" y2="80"/>
+      <text x="270" y="94" text-anchor="middle">$\neg P$</text><text x="270" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="270" y1="114" x2="270" y2="136"/><line x1="330" y1="60" x2="330" y2="136"/>
+      <line x1="270" y1="136" x2="330" y2="136"/><line x1="300" y1="136" x2="300" y2="152"/>
+      <text x="300" y="166" text-anchor="middle">$\neg P \lor R$</text><text x="300" y="182" text-anchor="middle" class="val">V</text>
+      <text x="400" y="40" text-anchor="middle">$Q$</text><text x="400" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="300" y1="186" x2="300" y2="230"/><line x1="400" y1="60" x2="400" y2="230"/>
+      <line x1="300" y1="230" x2="400" y2="230"/><line x1="350" y1="230" x2="350" y2="246"/>
+      <text x="350" y="260" text-anchor="middle">$(\neg P{\lor}R){\land}Q$</text><text x="350" y="276" text-anchor="middle" class="val">V</text>
+
+      <!-- raiz -->
+      <line x1="105" y1="308" x2="105" y2="318"/><line x1="350" y1="280" x2="350" y2="318"/>
+      <line x1="105" y1="318" x2="350" y2="318"/><line x1="228" y1="318" x2="228" y2="330"/>
+      <text x="228" y="342" text-anchor="middle" class="val">V</text>
+    </svg>
+
+    <!-- P=V Q=F R=V (caso falso) -->
+    <svg width="440" height="330" viewBox="0 0 440 330" style="margin-top:16px;">
+      <text x="10" y="14" class="label">P=V, Q=F, R=V  ← caso falso</text>
+
+      <text x="40"  y="40" text-anchor="middle">$P$</text><text x="40"  y="56" text-anchor="middle" class="val">V</text>
+      <text x="100" y="40" text-anchor="middle">$R$</text><text x="100" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="40" y1="60" x2="40" y2="80"/>
+      <text x="40" y="94" text-anchor="middle">$\neg P$</text><text x="40" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="40" y1="114" x2="40" y2="136"/><line x1="100" y1="60" x2="100" y2="136"/>
+      <line x1="40" y1="136" x2="100" y2="136"/><line x1="70" y1="136" x2="70" y2="152"/>
+      <text x="70" y="166" text-anchor="middle">$\neg P \land R$</text><text x="70" y="182" text-anchor="middle" class="val">F</text>
+      <line x1="70" y1="186" x2="70" y2="202"/>
+      <text x="70" y="216" text-anchor="middle">$\neg(\neg P \land R)$</text><text x="70" y="232" text-anchor="middle" class="val">V</text>
+      <text x="140" y="40" text-anchor="middle">$Q$</text><text x="140" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="70" y1="236" x2="70" y2="258"/><line x1="140" y1="60" x2="140" y2="258"/>
+      <line x1="70" y1="258" x2="140" y2="258"/><line x1="105" y1="258" x2="105" y2="274"/>
+      <text x="105" y="288" text-anchor="middle">$\neg(\neg P{\land}R){\lor}Q$</text><text x="105" y="304" text-anchor="middle" class="val">V</text>
+
+      <text x="270" y="40" text-anchor="middle">$P$</text><text x="270" y="56" text-anchor="middle" class="val">V</text>
+      <text x="330" y="40" text-anchor="middle">$R$</text><text x="330" y="56" text-anchor="middle" class="val">V</text>
+      <line x1="270" y1="60" x2="270" y2="80"/>
+      <text x="270" y="94" text-anchor="middle">$\neg P$</text><text x="270" y="110" text-anchor="middle" class="val">F</text>
+      <line x1="270" y1="114" x2="270" y2="136"/><line x1="330" y1="60" x2="330" y2="136"/>
+      <line x1="270" y1="136" x2="330" y2="136"/><line x1="300" y1="136" x2="300" y2="152"/>
+      <text x="300" y="166" text-anchor="middle">$\neg P \lor R$</text><text x="300" y="182" text-anchor="middle" class="val">V</text>
+      <text x="400" y="40" text-anchor="middle">$Q$</text><text x="400" y="56" text-anchor="middle" class="val">F</text>
+      <line x1="300" y1="186" x2="300" y2="230"/><line x1="400" y1="60" x2="400" y2="230"/>
+      <line x1="300" y1="230" x2="400" y2="230"/><line x1="350" y1="230" x2="350" y2="246"/>
+      <text x="350" y="260" text-anchor="middle">$(\neg P{\lor}R){\land}Q$</text><text x="350" y="276" text-anchor="middle" class="val">F</text>
+
+      <line x1="105" y1="308" x2="105" y2="318"/><line x1="350" y1="280" x2="350" y2="318"/>
+      <line x1="105" y1="318" x2="350" y2="318"/><line x1="228" y1="318" x2="228" y2="330"/>
+      <text x="228" y="342" text-anchor="middle" class="val">F</text>
+    </svg>
+  </div>
+  <div class="paso-just">
+    <div class="titulo">Contingencia</div>
+    <p>El lado izquierdo incluye $P$ y $\neg R$ en una disyuncion, lo que lo hace verdadero en muchos casos donde $Q$ es falsa. El lado derecho exige $Q$ verdadera porque es una conjuncion con $Q$.</p>
+    <p>Cuando $Q=F$, el lado derecho es siempre F, pero el lado izquierdo puede ser V. Esa diferencia genera filas falsas en el bicondicional. Como hay mezcla de V y F, es contingencia.</p>
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultados.</strong><br><br>
+  (a) $\neg(P \to Q) \leftrightarrow (P \land \neg Q)$: <strong>Tautologia</strong><br>
+  (b) $R \to [(\neg P \lor Q) \land (P \land \neg Q)]$: <strong>Contingencia</strong><br>
+  (c) $(P \lor Q) \to [Q \to (P \land Q)]$: <strong>Contingencia</strong><br>
+  (d) $[(P \to Q) \to R] \leftrightarrow [(P \land \neg R) \to \neg Q]$: <strong>Tautologia</strong><br>
+  (e) $[\neg(\neg P \land R) \lor Q] \leftrightarrow [(\neg P \lor R) \land Q]$: <strong>Contingencia</strong>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>a8f1b</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "a8f1b",
+      materia: ["Cálculo I", "MAT-132", "INF-115", "Análisis matemático", "Cálculo 1"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["6", "Ejercicio 6", "ej6"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "cuadrado no negativo",
+        "demostración de desigualdad",
+        "media aritmética geométrica"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "a cuadrado más b cuadrado mayor o igual 2ab",
+        "desigualdad cuadrados demostración",
+        "cuadrado diferencia no negativo",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre que $(a-b)^2 \geq 0$ implica $a^2 + b^2 \geq 2ab$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La hipótesis ya nos da un hecho gratuito: cualquier cuadrado es no negativo.
+      Lo que hay que hacer es expandir $(a-b)^2$ y reorganizar la desigualdad hasta
+      que aparezca la forma $a^2 + b^2 \geq 2ab$ del lado que corresponde.
+    </p>
+    <div class="nota">
+      La desigualdad $a^2 + b^2 \geq 2ab$ es equivalente a $(a-b)^2 \geq 0$.
+      Demostrarla es simplemente expandir y pasar términos de lado.
+    </div>
+    <p>
+      Este resultado es la forma más simple de la desigualdad entre la media aritmética
+      y la media geométrica: $\frac{a+b}{2} \geq \sqrt{ab}$ (para $a,b \geq 0$).
+      Todo parte de que un cuadrado nunca es negativo.
+    </p>
+    <p class="chiste">Un cuadrado siempre es no negativo. Como los impuestos, pero al revés.</p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$(a - b)^2 \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis</div>
+      Es la premisa dada. Todo cuadrado real es no negativo.
+    </div>
+
+    <div class="paso-dev">
+      $$a^2 - 2ab + b^2 \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Expansión del cuadrado</div>
+      $(a-b)^2 = a^2 - 2ab + b^2$ por la regla del binomio (distributividad aplicada dos veces).
+    </div>
+
+    <div class="paso-dev">
+      $$a^2 + b^2 \geq 2ab$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de $2ab$ en ambos lados</div>
+      Sumamos $2ab$ a ambos miembros de la desigualdad. Sumar el mismo valor preserva
+      el sentido de la desigualdad.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Como $(a-b)^2 \geq 0$, expandiendo y sumando $2ab$ a ambos lados se obtiene:
+    $$\boxed{a^2 + b^2 \geq 2ab}$$
+    La igualdad se alcanza si y solo si $a = b$.
+  </div>
+
+</body>
+</html>
