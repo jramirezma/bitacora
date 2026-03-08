@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>d6c2e</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "d6c2e",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["33"],
+      tema: [
+        "números reales",
+        "supremo",
+        "ínfimo",
+        "naturales",
+        "verdadero o falso"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "supremo ínfimo naturales verdadero falso",
+        "inf N sup N",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Diga si las siguientes afirmaciones son ciertas o falsas:</p>
+    <p>a) $\inf\mathbb{N} = 1$.</p>
+    <p>b) $\sup[1;3) = 3$.</p>
+    <p>c) $\inf(\mathbb{N}\cap(1;6)) = 2$.</p>
+    <p>d) $\sup\mathbb{N} = +\infty$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Recordamos las definiciones. El <em>ínfimo</em> de un conjunto $S$ es la mayor de
+      sus cotas inferiores. El <em>supremo</em> es la menor de sus cotas superiores.
+      Si el conjunto no está acotado superiormente, se dice que su supremo es $+\infty$
+      (con la convención de la recta extendida).
+    </p>
+    <div class="nota">
+      El ínfimo pertenece al conjunto si y solo si es el mínimo.
+      El supremo pertenece al conjunto si y solo si es el máximo.
+      $\mathbb{N} = \{1, 2, 3, \ldots\}$ no tiene cota superior en $\mathbb{R}$.
+    </div>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>a) $\inf\mathbb{N} = 1$.</strong></p>
+      $$\mathbb{N} = \{1,2,3,\ldots\}$$
+      $$1 \in \mathbb{N}, \quad n \geq 1 \text{ para todo } n\in\mathbb{N}$$
+      $$\Rightarrow \inf\mathbb{N} = \min\mathbb{N} = 1$$
+      $$\textbf{VERDADERO}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ínfimo de $\mathbb{N}$</div>
+      $1$ es cota inferior de $\mathbb{N}$ porque $n \geq 1$ para todo natural.
+      Además $1 \in \mathbb{N}$, así que es la mayor cota inferior, es decir el ínfimo.
+      Y como pertenece al conjunto, es también el mínimo.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>b) $\sup[1;3) = 3$.</strong></p>
+      $$[1,3) = \{x\in\mathbb{R}: 1\leq x < 3\}$$
+      $$x < 3 \text{ para todo } x\in[1,3)$$
+      $$\text{Para todo } \varepsilon>0:\; 3-\varepsilon \in [1,3) \text{ si } \varepsilon < 2$$
+      $$\Rightarrow \sup[1,3) = 3$$
+      $$\textbf{VERDADERO}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Supremo de $[1,3)$</div>
+      $3$ es cota superior porque $x < 3$ para todo $x \in [1,3)$.
+      Es la menor cota superior: cualquier $M < 3$ no es cota superior
+      porque $\max(1, M) < 3$ y podemos encontrar elementos del conjunto entre $M$ y $3$.
+      Como $3 \notin [1,3)$, no es máximo.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>c) $\inf(\mathbb{N}\cap(1;6)) = 2$.</strong></p>
+      $$\mathbb{N}\cap(1,6) = \{2,3,4,5\}$$
+      $$\min\{2,3,4,5\} = 2$$
+      $$\Rightarrow \inf(\mathbb{N}\cap(1,6)) = 2$$
+      $$\textbf{VERDADERO}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ínfimo de $\mathbb{N}\cap(1,6)$</div>
+      El intervalo $(1,6)$ contiene los naturales $2,3,4,5$.
+      El conjunto es finito, así que tiene mínimo: $2$.
+      El ínfimo de un conjunto finito es su mínimo.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>d) $\sup\mathbb{N} = +\infty$.</strong></p>
+      $$\text{Para todo } M\in\mathbb{R},\; \exists\, n\in\mathbb{N}: n > M$$
+      $$\Rightarrow \mathbb{N} \text{ no está acotado superiormente}$$
+      $$\Rightarrow \sup\mathbb{N} = +\infty$$
+      $$\textbf{VERDADERO}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Supremo de $\mathbb{N}$</div>
+      Por el principio arquimediano, para todo real $M$ existe un natural mayor que $M$.
+      Entonces $\mathbb{N}$ no tiene cota superior en $\mathbb{R}$.
+      Con la convención de la recta extendida $\overline{\mathbb{R}}$, se escribe $\sup\mathbb{N} = +\infty$.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Las cuatro afirmaciones son <strong>verdaderas</strong>:
+    <br><br>
+    a) $\inf\mathbb{N} = \min\mathbb{N} = 1$. ✓
+    <br>
+    b) $\sup[1,3) = 3$ (no es máximo pues $3\notin[1,3)$). ✓
+    <br>
+    c) $\mathbb{N}\cap(1,6) = \{2,3,4,5\}$, $\inf = \min = 2$. ✓
+    <br>
+    d) $\mathbb{N}$ no está acotado superiormente, $\sup\mathbb{N} = +\infty$. ✓
+  </div>
+
+</body>
+</html>

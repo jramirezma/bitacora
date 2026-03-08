@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>u6s3v</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "u6s3v",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["24"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "inecuaciones con cocientes",
+        "prueba por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuaciones valor absoluto cociente",
+        "módulo fracción desigualdad",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $\left|\dfrac{x+2}{2x-3}\right| < 4$. &nbsp;&nbsp; b) $\left|\dfrac{6-5x}{3+x}\right| \leq \dfrac{1}{2}$. &nbsp;&nbsp; c) $\left|\dfrac{x+3}{x+16}\right| > \dfrac{3}{x-4}$. &nbsp;&nbsp; d) $\left|\dfrac{x}{1+x}\right| \geq \dfrac{1}{x}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La clave con $\left|\frac{A}{B}\right|$ es usar $\left|\frac{A}{B}\right| = \frac{|A|}{|B|}$
+      (ejercicio 19), lo que permite trabajar con numerador y denominador por separado.
+      Alternativamente, $|E| < F$ (con $F > 0$) equivale a $-F < E < F$, que lleva a
+      dos inecuaciones racionales estándar.
+      En c) y d) el lado derecho depende de $x$, así que hay que analizar su signo antes de operar.
+    </p>
+    <div class="nota">
+      Nunca multiplicar por el denominador sin saber su signo. Siempre pasar todo
+      al mismo lado y analizar el cociente resultante con tabla de signos.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ \left|\dfrac{x+2}{2x-3}\right| < 4$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-4 < \frac{x+2}{2x-3} < 4$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia $|E| < F$</div>
+      Con $F = 4 > 0$. Dominio: $x \neq \frac{3}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad derecha:</strong> $\dfrac{x+2}{2x-3} - 4 < 0$</p>
+      $$\frac{x+2 - 4(2x-3)}{2x-3} < 0 \;\Rightarrow\; \frac{-7x+14}{2x-3} < 0 \;\Rightarrow\; \frac{7(2-x)}{2x-3} < 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x=2$, $x=\frac{3}{2}$.</p>
+      $$x < \tfrac{3}{2} \text{ o } x > 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primera inecuación</div>
+      Pasamos $4$ al mismo lado y simplificamos. Tabla de signos:
+      para $x < \frac{3}{2}$: $(+)/(-)= -$ ✓; para $\frac{3}{2}<x<2$: $(+)/(+)=+$ ✗;
+      para $x>2$: $(-)/(+)=-$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad izquierda:</strong> $\dfrac{x+2}{2x-3} + 4 > 0$</p>
+      $$\frac{x+2+4(2x-3)}{2x-3} > 0 \;\Rightarrow\; \frac{9x-10}{2x-3} > 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x=\frac{10}{9}$, $x=\frac{3}{2}$.</p>
+      $$x < \tfrac{10}{9} \text{ o } x > \tfrac{3}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda inecuación</div>
+      Tabla de signos: para $x<\frac{10}{9}$: $(-)/(-)=+$ ✓;
+      para $\frac{10}{9}<x<\frac{3}{2}$: $(+)/(-)=-$ ✗; para $x>\frac{3}{2}$: $(+)/(+)=+$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$\left(x<\tfrac{3}{2}\text{ o }x>2\right)\cap\left(x<\tfrac{10}{9}\text{ o }x>\tfrac{3}{2}\right)$$
+      $$= \left(-\infty,\tfrac{10}{9}\right)\cup\left(\tfrac{3}{2},2\right)\cup\left(2,+\infty\right)$$
+      $$= \left(-\infty,\tfrac{10}{9}\right)\cup\left(\tfrac{3}{2},+\infty\right)\setminus\{2\}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección</div>
+      Cruzamos ambas condiciones por tramos. $x=2$ satisface ambas inecuaciones
+      (cociente $= 0$ en la derecha y $> 0$ en la izquierda), verificamos:
+      $\left|\frac{4}{1}\right| = 4$, no cumple la estricta. Lo excluimos.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left(-\infty,\,\tfrac{10}{9}\right)\cup\left(\tfrac{3}{2},\,2\right)\cup\left(2,\,+\infty\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      $x = \frac{3}{2}$ excluido por dominio; $x=2$ excluido porque da igualdad, no desigualdad estricta.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ \left|\dfrac{6-5x}{3+x}\right| \leq \dfrac{1}{2}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-\frac{1}{2} \leq \frac{6-5x}{3+x} \leq \frac{1}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia $|E| \leq F$</div>
+      Con $F = \frac{1}{2} > 0$. Dominio: $x \neq -3$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad derecha:</strong> $\dfrac{6-5x}{3+x} - \dfrac{1}{2} \leq 0$</p>
+      $$\frac{2(6-5x)-(3+x)}{2(3+x)} \leq 0 \;\Rightarrow\; \frac{9-11x}{2(3+x)} \leq 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x = \frac{9}{11}$, $x=-3$.</p>
+      $$x \leq -3 \text{ (excluido) o } x \geq \tfrac{9}{11}$$
+      $$\Rightarrow x \in (-\infty,-3)\cup\left[\tfrac{9}{11},+\infty\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primera inecuación</div>
+      El cociente es $\leq 0$ cuando numerador y denominador tienen signos opuestos,
+      o el numerador es $0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad izquierda:</strong> $\dfrac{6-5x}{3+x} + \dfrac{1}{2} \geq 0$</p>
+      $$\frac{2(6-5x)+(3+x)}{2(3+x)} \geq 0 \;\Rightarrow\; \frac{15-9x}{2(3+x)} \geq 0 \;\Rightarrow\; \frac{3(5-3x)}{2(3+x)} \geq 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x=\frac{5}{3}$, $x=-3$.</p>
+      $$x \in (-3, \tfrac{5}{3}]\cup \text{ imposible para } x<-3$$
+      $$\Rightarrow x\in(-3,\tfrac{5}{3}]$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda inecuación</div>
+      El cociente es $\geq 0$ cuando ambos tienen el mismo signo o el numerador es $0$.
+      Para $x < -3$: numerador $+$, denominador $-$: cociente $-$ ✗.
+      Para $-3 < x \leq \frac{5}{3}$: ambos $+$ ✓. Para $x > \frac{5}{3}$: num $-$, den $+$: $-$ ✗.
+    </div>
+
+    <div class="paso-dev">
+      $$\left[(-\infty,-3)\cup[\tfrac{9}{11},+\infty)\right] \cap (-3,\tfrac{5}{3}]$$
+      $$= \left[\tfrac{9}{11},\,\tfrac{5}{3}\right]$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección</div>
+      $(-\infty,-3) \cap (-3,\frac{5}{3}] = \emptyset$.
+      $[\frac{9}{11},+\infty) \cap (-3,\frac{5}{3}] = [\frac{9}{11},\frac{5}{3}]$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left[\tfrac{9}{11},\,\tfrac{5}{3}\right]}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Ambos extremos incluidos por desigualdad no estricta.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ \left|\dfrac{x+3}{x+16}\right| > \dfrac{3}{x-4}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{|x+3|}{|x+16|} > \frac{3}{x-4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 19</div>
+      $\left|\frac{A}{B}\right| = \frac{|A|}{|B|}$. Dominio: $x \neq -16$, $x \neq 4$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso A:</strong> $x > 4$ (lado derecho positivo).</p>
+      $$|x+3|\cdot(x-4) > 3|x+16|$$
+      <p style="margin:6px 0 4px">Para $x > 4$: $x+16 > 0$ y $x+3 > 0$, así:</p>
+      $$(x+3)(x-4) > 3(x+16)$$
+      $$x^2-x-12 > 3x+48 \;\Rightarrow\; x^2-4x-60 > 0$$
+      $$(x-10)(x+6) > 0 \;\Rightarrow\; x < -6 \text{ o } x > 10$$
+      <p style="margin:6px 0 0">Intersección con $x>4$: $x > 10$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x > 4$</div>
+      El lado derecho es positivo. Multiplicamos por $|x+16|(x-4) > 0$, el sentido se conserva.
+      Para $x > 4$, ambos $x+3 > 0$ y $x+16 > 0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso B:</strong> $x < 4$ (lado derecho negativo o nulo).</p>
+      <p style="margin:0">El lado izquierdo $\frac{|x+3|}{|x+16|} \geq 0$ siempre.</p>
+      <p style="margin:4px 0">Si $\frac{3}{x-4} < 0$ (es decir $x < 4$, $x\neq-16$):
+      la desigualdad $(\geq 0) > (\text{negativo})$ se cumple siempre,
+      excepto cuando el lado izquierdo es $0$, es decir $x = -3$.</p>
+      <p style="margin:4px 0">En $x=-3$: izq $= 0$ y der $= \frac{3}{-7} < 0$, así $0 > \frac{3}{-7}$ ✓.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x < 4$</div>
+      Todo no negativo supera a cualquier negativo. La inecuación se cumple
+      para todo $x < 4$ excepto $x = -16$ (denominador nulo).
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty,-16)\cup(-16,4)\cup(10,+\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Unión de casos</div>
+      Caso B da $x < 4$, $x\neq -16$. Caso A agrega $x > 10$.
+      $x = 4$ excluido por dominio.
+    </div>
+  </div>
+
+  <h2>Solución — d) $\ \left|\dfrac{x}{1+x}\right| \geq \dfrac{1}{x}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{|x|}{|1+x|} \geq \frac{1}{x}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ejercicio 19 + dominio</div>
+      Dominio: $x \neq 0$, $x \neq -1$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso A:</strong> $x > 0$.</p>
+      $$\frac{x}{1+x} \geq \frac{1}{x} \;\Rightarrow\; \frac{x}{1+x} - \frac{1}{x} \geq 0$$
+      $$\frac{x^2-(1+x)}{x(1+x)} \geq 0 \;\Rightarrow\; \frac{x^2-x-1}{x(1+x)} \geq 0$$
+      <p style="margin:6px 0 2px">Raíces de $x^2-x-1=0$: $x=\frac{1\pm\sqrt5}{2}$.</p>
+      <p style="margin:0">Para $x>0$: $x+1>0$ y $x>0$, así el signo depende de $x^2-x-1$.</p>
+      <p style="margin:4px 0 0">$x^2-x-1\geq 0$ para $x \geq \frac{1+\sqrt5}{2}$.</p>
+      <p style="margin:4px 0 0">Intersección con $x>0$: $x \geq \frac{1+\sqrt5}{2}$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x > 0$</div>
+      Para $x>0$: $|x|=x$ y $|1+x|=1+x$. Pasamos todo al mismo lado y analizamos signos.
+      La raíz positiva de $x^2-x-1$ es $\frac{1+\sqrt5}{2} \approx 1.618$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso B:</strong> $-1 < x < 0$.</p>
+      $$\frac{-x}{1+x} \geq \frac{1}{x}$$
+      <p style="margin:4px 0">$\frac{1}{x} < 0$ y $\frac{-x}{1+x} > 0$, así la desigualdad se cumple siempre.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $-1 < x < 0$</div>
+      $|x|=-x>0$ y $|1+x|=1+x>0$, así izq $> 0$. Der $= \frac{1}{x} < 0$.
+      Positivo $\geq$ negativo: siempre verdadero.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso C:</strong> $x < -1$.</p>
+      $$\frac{-x}{-(1+x)} = \frac{x}{1+x} \geq \frac{1}{x}$$
+      $$\frac{x}{1+x} - \frac{1}{x} \geq 0 \;\Rightarrow\; \frac{x^2-x-1}{x(1+x)} \geq 0$$
+      <p style="margin:6px 0 2px">Para $x<-1$: $x<0$ y $1+x<0$, así $x(1+x)>0$.</p>
+      <p style="margin:0">Signo del cociente = signo de $x^2-x-1$.</p>
+      <p style="margin:4px 0 0">Para $x<-1$: $x^2-x-1 > 0$ siempre (raíz negativa $\frac{1-\sqrt5}{2}\approx -0.618 > -1$).</p>
+      <p style="margin:4px 0 0">Intersección: todo $x < -1$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x < -1$</div>
+      $|x|=-x$ y $|1+x|=-(1+x)$. Para $x < -1$ la raíz negativa $\frac{1-\sqrt5}{2} \approx -0.618$
+      es mayor que $-1$, así que $x^2-x-1>0$ en todo el intervalo.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty,-1)\cup(-1,0)\cup\left[\tfrac{1+\sqrt5}{2},+\infty\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Unión de los tres casos</div>
+      Casos B y C dan $x\in(-\infty,-1)\cup(-1,0)$. Caso A agrega $x\geq\frac{1+\sqrt5}{2}$.
+      $x=0$ y $x=-1$ excluidos por dominio.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $x \in \left(-\infty,\,\dfrac{10}{9}\right)\cup\left(\dfrac{3}{2},\,2\right)\cup\left(2,\,+\infty\right)$.
+    <br><br>b) $x \in \left[\dfrac{9}{11},\,\dfrac{5}{3}\right]$.
+    <br><br>c) $x \in (-\infty,-16)\cup(-16,4)\cup(10,+\infty)$.
+    <br><br>d) $x \in (-\infty,-1)\cup(-1,0)\cup\left[\dfrac{1+\sqrt{5}}{2},\,+\infty\right)$.
+  </div>
+
+</body>
+</html>

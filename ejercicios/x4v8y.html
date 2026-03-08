@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>x4v8y</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "x4v8y",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["27"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "suma de valores absolutos",
+        "punto medio",
+        "intervalos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "suma valores absolutos intervalo",
+        "punto medio valor absoluto",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Aplicando el ejercicio anterior, resuelva:</p>
+    <p>a) $|x|+|x-1| < 2$.</p>
+    <p>b) $|x-2|+|x+2| \leq 6$.</p>
+    <p>c) $|x|+|x+1| > 3$.</p>
+    <p>d) $|x-1|+|x-3| \geq 4$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      El ejercicio 26 nos dice que $|x-a|+|x-b| < r$ equivale a
+      $\left|x-\frac{a+b}{2}\right| < \frac{r}{2}$, bajo la condición $|a-b| < r$.
+      Para los casos con $\leq$, $>$ o $\geq$ la misma idea aplica con la desigualdad correspondiente.
+      El trabajo es identificar $a$, $b$ y $r$ en cada inciso, verificar la condición,
+      y leer la solución directamente.
+    </p>
+    <div class="nota">
+      La equivalencia del ejercicio 26 convierte una suma de dos valores absolutos
+      en una sola condición sobre el punto medio. Es un atajo poderoso.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ |x|+|x-1| < 2$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-0|+|x-1| < 2$$
+      $$a=0,\quad b=1,\quad r=2$$
+      $$|a-b|=1 < 2=r \;\checkmark$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Identificación de parámetros</div>
+      Reescribimos $|x| = |x-0|$. Verificamos la condición del ejercicio 26.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|x - \frac{0+1}{2}\right| < \frac{2}{2}$$
+      $$\left|x - \frac{1}{2}\right| < 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Aplicación del ejercicio 26</div>
+      Punto medio $\frac{a+b}{2} = \frac{1}{2}$, radio $\frac{r}{2} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$-1 < x - \frac{1}{2} < 1$$
+      $$\boxed{x \in \left(-\tfrac{1}{2},\, \tfrac{3}{2}\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución</div>
+      Sumamos $\frac{1}{2}$ en toda la cadena.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ |x-2|+|x+2| \leq 6$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-2|+|x-(-2)| \leq 6$$
+      $$a=2,\quad b=-2,\quad r=6$$
+      $$|a-b|=4 < 6=r \;\checkmark$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Identificación de parámetros</div>
+      $|x+2|=|x-(-2)|$. Condición verificada.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|x - \frac{2+(-2)}{2}\right| \leq \frac{6}{2}$$
+      $$|x - 0| \leq 3$$
+      $$|x| \leq 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Aplicación del ejercicio 26</div>
+      Punto medio $= 0$, radio $= 3$. La desigualdad es $\leq$, mismo sentido.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in [-3,\, 3]}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución</div>
+      $|x| \leq 3$ equivale a $-3 \leq x \leq 3$. Extremos incluidos.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ |x|+|x+1| > 3$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-0|+|x-(-1)| > 3$$
+      $$a=0,\quad b=-1,\quad r=3$$
+      $$|a-b|=1 < 3=r \;\checkmark$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Identificación de parámetros</div>
+      La desigualdad es $>$, así que aplicamos el ejercicio 26 con sentido invertido:
+      $|x-a|+|x-b| > r \Leftrightarrow \left|x-\frac{a+b}{2}\right| > \frac{r}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|x - \frac{0+(-1)}{2}\right| > \frac{3}{2}$$
+      $$\left|x + \frac{1}{2}\right| > \frac{3}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Aplicación del ejercicio 26 (sentido $>$)</div>
+      Punto medio $\frac{-1}{2}$, radio $\frac{3}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$x + \frac{1}{2} > \frac{3}{2} \quad\text{o}\quad x+\frac{1}{2} < -\frac{3}{2}$$
+      $$x > 1 \quad\text{o}\quad x < -2$$
+      $$\boxed{x \in (-\infty,-2)\cup(1,+\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución</div>
+      $|E| > c$ equivale a $E > c$ o $E < -c$. Extremos excluidos.
+    </div>
+  </div>
+
+  <h2>Solución — d) $\ |x-1|+|x-3| \geq 4$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a=1,\quad b=3,\quad r=4$$
+      $$|a-b|=2 < 4=r \;\checkmark$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Identificación de parámetros</div>
+      Desigualdad $\geq$: aplicamos el ejercicio 26 con sentido $\geq$.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|x - \frac{1+3}{2}\right| \geq \frac{4}{2}$$
+      $$|x-2| \geq 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Aplicación del ejercicio 26</div>
+      Punto medio $= 2$, radio $= 2$.
+    </div>
+
+    <div class="paso-dev">
+      $$x-2 \geq 2 \quad\text{o}\quad x-2 \leq -2$$
+      $$x \geq 4 \quad\text{o}\quad x \leq 0$$
+      $$\boxed{x \in (-\infty,\,0]\cup[4,\,+\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución</div>
+      $|x-2| \geq 2$ equivale a estar a distancia $\geq 2$ del punto $2$.
+      Extremos incluidos por $\geq$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $x \in \left(-\dfrac{1}{2},\, \dfrac{3}{2}\right)$.
+    <br>b) $x \in [-3,\, 3]$.
+    <br>c) $x \in (-\infty,-2)\cup(1,+\infty)$.
+    <br>d) $x \in (-\infty,\,0]\cup[4,\,+\infty)$.
+    <br><br>
+    En todos los casos el ejercicio 26 reduce la suma de dos valores absolutos
+    a una sola condición sobre el punto medio $\frac{a+b}{2}$ con radio $\frac{r}{2}$.
+  </div>
+
+</body>
+</html>

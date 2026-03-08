@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>v2t5w</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "v2t5w",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["25"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "valor absoluto anidado",
+        "inecuaciones",
+        "prueba por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "valor absoluto anidado",
+        "inecuaciones módulo dentro de módulo",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $\big||x-1|-5\big| < 2$.</p>
+    <p>b) $\big|||x|-3\big|-2\big| < 1$.</p>
+    <p>c) $\left|\dfrac{1}{x}-1\right| < 3$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Los valores absolutos anidados se resuelven de afuera hacia adentro.
+      Cada capa $|E| < F$ se convierte en $-F < E < F$, y el argumento $E$
+      del siguiente nivel vuelve a ser una inecuación con valor absoluto
+      que se resuelve igual. Así se va pelando la cebolla capa por capa.
+    </p>
+    <div class="nota">
+      Estrategia: $|A| < r \Leftrightarrow -r < A < r$.
+      Aplicar repetidamente hacia adentro. Al final, reunir todos los intervalos.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ \big||x-1|-5\big| < 2$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-2 < |x-1| - 5 < 2$$
+      $$3 < |x-1| < 7$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Capa exterior</div>
+      $|E| < 2$ equivale a $-2 < E < 2$ con $E = |x-1|-5$. Sumamos $5$ en toda la cadena.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>$|x-1| > 3$:</strong></p>
+      $$x-1 > 3 \text{ o } x-1 < -3$$
+      $$x > 4 \text{ o } x < -2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Capa interior — cota inferior</div>
+      $|x-1| > 3$ significa que $x$ está a distancia $> 3$ de $1$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>$|x-1| < 7$:</strong></p>
+      $$-7 < x-1 < 7$$
+      $$-6 < x < 8$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Capa interior — cota superior</div>
+      $|x-1| < 7$ equivale a $-7 < x-1 < 7$.
+    </div>
+
+    <div class="paso-dev">
+      $$(x < -2 \text{ o } x > 4) \cap (-6 < x < 8)$$
+      $$= (-6,-2) \cup (4,8)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección</div>
+      Cruzamos las dos condiciones. Todos los extremos son estrictos.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-6,-2)\cup(4,8)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Cuatro extremos excluidos por desigualdades estrictas.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ \big|||x|-3\big|-2\big| < 1$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-1 < ||x|-3| - 2 < 1$$
+      $$1 < ||x|-3| < 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Capa exterior</div>
+      $|E|<1$ con $E=||x|-3|-2$. Sumamos $2$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>$||x|-3| > 1$:</strong></p>
+      $$|x|-3 > 1 \text{ o } |x|-3 < -1$$
+      $$|x| > 4 \text{ o } |x| < 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda capa — cota inferior</div>
+      $|E| > 1$ con $E = |x|-3$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>$||x|-3| < 3$:</strong></p>
+      $$-3 < |x|-3 < 3$$
+      $$0 < |x| < 6 \;\Rightarrow\; 0 < |x| < 6$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda capa — cota superior</div>
+      Sumamos $3$. $|x| \geq 0$ siempre, así que $|x|>0$ equivale a $x\neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px">Condición combinada en $|x|$:</p>
+      $$(|x|>4 \text{ o } |x|<2) \cap (0<|x|<6)$$
+      $$= (4<|x|<6) \cup (0<|x|<2)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección en $|x|$</div>
+      $|x|>4$ intersectado con $|x|<6$ da $4<|x|<6$.
+      $|x|<2$ intersectado con $|x|>0$ da $0<|x|<2$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px">$4<|x|<6 \Rightarrow x\in(-6,-4)\cup(4,6)$.</p>
+      <p style="margin:0 0 4px">$0<|x|<2 \Rightarrow x\in(-2,0)\cup(0,2)$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Traducción a intervalos en $x$</div>
+      $|x| \in (a,b)$ con $0 < a < b$ equivale a $x\in(-b,-a)\cup(a,b)$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-6,-4)\cup(-2,0)\cup(0,2)\cup(4,6)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Todos los extremos excluidos. $x=0$ excluido por $|x|>0$.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ \left|\dfrac{1}{x}-1\right| < 3$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-3 < \frac{1}{x}-1 < 3$$
+      $$-2 < \frac{1}{x} < 4$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia + suma de 1</div>
+      $|E|<3$ con $E=\frac{1}{x}-1$. Sumamos $1$. Dominio: $x\neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad derecha:</strong> $\dfrac{1}{x} < 4$</p>
+      $$\frac{1}{x}-4 < 0 \;\Rightarrow\; \frac{1-4x}{x} < 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x=0$, $x=\frac{1}{4}$.</p>
+      $$x < 0 \text{ o } x > \tfrac{1}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primera inecuación</div>
+      Pasamos $4$ al mismo lado. Tabla de signos:
+      $x<0$: $(+)/(-)=-$ ✓; $0<x<\frac{1}{4}$: $(+)/(+)=+$ ✗; $x>\frac{1}{4}$: $(-)/(+)=-$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad izquierda:</strong> $\dfrac{1}{x} > -2$</p>
+      $$\frac{1}{x}+2 > 0 \;\Rightarrow\; \frac{1+2x}{x} > 0$$
+      <p style="margin:6px 0 2px">Puntos críticos: $x=0$, $x=-\frac{1}{2}$.</p>
+      $$x < -\tfrac{1}{2} \text{ o } x > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda inecuación</div>
+      Tabla de signos: $x<-\frac{1}{2}$: $(-)/(-)=+$ ✓; $-\frac{1}{2}<x<0$: $(+)/(-)=-$ ✗;
+      $x>0$: $(+)/(+)=+$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$(x<0\text{ o }x>\tfrac{1}{4})\cap(x<-\tfrac{1}{2}\text{ o }x>0)$$
+      $$= \left(-\infty,-\tfrac{1}{2}\right)\cup\left(\tfrac{1}{4},+\infty\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección</div>
+      $x<0$ intersectado con $x<-\frac{1}{2}$ da $x<-\frac{1}{2}$.
+      $x>\frac{1}{4}$ intersectado con $x>0$ da $x>\frac{1}{4}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left(-\infty,-\tfrac{1}{2}\right)\cup\left(\tfrac{1}{4},+\infty\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Extremos excluidos. $x=0$ ya excluido por dominio.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $x \in (-6,-2)\cup(4,8)$.
+    <br>b) $x \in (-6,-4)\cup(-2,0)\cup(0,2)\cup(4,6)$.
+    <br>c) $x \in \left(-\infty,-\dfrac{1}{2}\right)\cup\left(\dfrac{1}{4},+\infty\right)$.
+    <br><br>
+    La técnica de afuera hacia adentro permite reducir cualquier anidamiento a inecuaciones simples.
+  </div>
+
+</body>
+</html>

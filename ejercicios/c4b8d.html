@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c4b8d</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "c4b8d",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["32"],
+      tema: [
+        "números reales",
+        "supremo",
+        "ínfimo",
+        "máximo",
+        "mínimo",
+        "sucesiones",
+        "conjuntos acotados"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "supremo ínfimo máximo mínimo conjunto",
+        "sucesión acotada supremo",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Encuentre (si existe) el supremo, ínfimo, máximo y mínimo de los conjuntos:</p>
+    <p>a) $A = \left\{\dfrac{1}{n}+1 : n\in\mathbb{N}\right\}$.</p>
+    <p>b) $B = \left\{\dfrac{2n+1}{n+1} : n\in\mathbb{N}\right\}$.</p>
+    <p>c) $C = \left\{\dfrac{3n^2-n+3}{n^2+1} : n\in\mathbb{N}\right\}$.</p>
+    <p>d) $D = \left\{1+\dfrac{2}{3}+\dfrac{2^2}{3^2}+\cdots+\dfrac{2^{n-1}}{3^{n-1}} : n\in\mathbb{N}\right\}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Para cada conjunto hay que estudiar el comportamiento de la sucesión que lo define:
+      si es creciente o decreciente, y hacia dónde tiende cuando $n \to \infty$.
+      El mínimo o máximo existe si la sucesión alcanza su extremo en algún $n$ concreto.
+      El supremo o ínfimo existe si el conjunto está acotado, aunque no se alcance.
+    </p>
+    <div class="nota">
+      Si $f(n)$ es decreciente: $\min = \lim_{n\to\infty} f(n)$ (si se alcanza) o ínfimo,
+      y $\max = f(1)$. Si es creciente: al revés.
+      Verificar si el límite pertenece al conjunto.
+    </div>
+    <p>Usamos $\mathbb{N} = \{1, 2, 3, \ldots\}$.</p>
+  </div>
+
+  <h2>Solución — a) $\ A = \left\{\dfrac{1}{n}+1\right\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$a_n = \frac{1}{n}+1$$
+      $$a_1 = 2,\quad a_2 = \tfrac{3}{2},\quad a_3 = \tfrac{4}{3},\quad \ldots$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primeros valores</div>
+      La sucesión empieza en $2$ y decrece hacia $1$.
+    </div>
+
+    <div class="paso-dev">
+      $$a_{n+1} - a_n = \frac{1}{n+1} - \frac{1}{n} = \frac{-1}{n(n+1)} < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Monotonía</div>
+      $a_{n+1} < a_n$ para todo $n$: la sucesión es estrictamente decreciente.
+    </div>
+
+    <div class="paso-dev">
+      $$\lim_{n\to\infty} \left(\frac{1}{n}+1\right) = 1$$
+      $$1 \notin A \quad(\text{nunca se alcanza})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Límite</div>
+      $\frac{1}{n} \to 0$, pero $\frac{1}{n} > 0$ para todo $n \in \mathbb{N}$,
+      así que $a_n > 1$ siempre: el valor $1$ no pertenece a $A$.
+    </div>
+
+    <div class="paso-dev">
+      $$\sup A = \max A = 2 = a_1$$
+      $$\inf A = 1, \quad \min A \text{ no existe}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      El máximo $2$ se alcanza en $n=1$. El ínfimo $1$ no se alcanza.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ B = \left\{\dfrac{2n+1}{n+1}\right\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$b_n = \frac{2n+1}{n+1} = 2 - \frac{1}{n+1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reescritura</div>
+      División: $\frac{2n+1}{n+1} = \frac{2(n+1)-1}{n+1} = 2 - \frac{1}{n+1}$.
+      Esto muestra claramente la monotonía.
+    </div>
+
+    <div class="paso-dev">
+      $$b_1 = \tfrac{3}{2},\quad b_2 = \tfrac{5}{3},\quad b_3 = \tfrac{7}{4},\quad \ldots$$
+      $$b_{n+1} - b_n = \frac{1}{n+1} - \frac{1}{n+2} > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Monotonía</div>
+      $b_{n+1} > b_n$: la sucesión es estrictamente creciente.
+    </div>
+
+    <div class="paso-dev">
+      $$\lim_{n\to\infty} \left(2-\frac{1}{n+1}\right) = 2$$
+      $$2 \notin B \quad(\text{nunca se alcanza})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Límite</div>
+      $b_n < 2$ para todo $n$ (pues $\frac{1}{n+1} > 0$). El valor $2$ no pertenece a $B$.
+    </div>
+
+    <div class="paso-dev">
+      $$\inf B = \min B = \frac{3}{2} = b_1$$
+      $$\sup B = 2, \quad \max B \text{ no existe}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      El mínimo $\frac{3}{2}$ se alcanza en $n=1$. El supremo $2$ no se alcanza.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ C = \left\{\dfrac{3n^2-n+3}{n^2+1}\right\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$c_n = \frac{3n^2-n+3}{n^2+1} = 3 - \frac{n}{n^2+1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reescritura</div>
+      $\frac{3n^2-n+3}{n^2+1} = \frac{3(n^2+1)-n}{n^2+1} = 3 - \frac{n}{n^2+1}$.
+    </div>
+
+    <div class="paso-dev">
+      $$c_1 = \tfrac{5}{2},\quad c_2 = \tfrac{13}{5},\quad c_3 = \tfrac{27}{10},\quad c_4 = \tfrac{47}{17}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primeros valores</div>
+      $c_1 = 2.5$, $c_2 = 2.6$, $c_3 = 2.7$, $c_4 \approx 2.76$. Parece creciente al inicio.
+    </div>
+
+    <div class="paso-dev">
+      $$g(n) = \frac{n}{n^2+1}: \quad g'(x) = \frac{1-x^2}{(x^2+1)^2}$$
+      $$g'(x) < 0 \text{ para } x > 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Monotonía de $g(n) = \frac{n}{n^2+1}$</div>
+      Tratamos $n$ como variable continua. $g$ crece en $(0,1)$ y decrece en $(1,\infty)$.
+      Para $n \geq 2$ entero, $g$ es decreciente, así que $c_n = 3-g(n)$ es creciente para $n \geq 2$.
+    </div>
+
+    <div class="paso-dev">
+      $$g(1) = \frac{1}{2},\quad g(2) = \frac{2}{5},\quad g(3)=\frac{3}{10},\ldots$$
+      $$g(1) > g(2) > g(3) > \cdots \to 0$$
+      $$\Rightarrow c_1 < c_2 < c_3 < \cdots \to 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Comportamiento global</div>
+      $g(n)$ decrece para $n \geq 1$ (verificando: $g(1)=0.5 > g(2)=0.4$).
+      Entonces $c_n$ es creciente para todo $n \geq 1$.
+      El mínimo es $c_1$ y el supremo es $3$.
+    </div>
+
+    <div class="paso-dev">
+      $$\lim_{n\to\infty} c_n = 3, \quad 3 \notin C$$
+      $$\inf C = \min C = c_1 = \frac{5}{2}$$
+      $$\sup C = 3, \quad \max C \text{ no existe}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      $c_n < 3$ para todo $n$ (pues $g(n) > 0$). El mínimo $\frac{5}{2}$ se alcanza en $n=1$.
+    </div>
+  </div>
+
+  <h2>Solución — d) $\ D = \left\{1+\dfrac{2}{3}+\cdots+\dfrac{2^{n-1}}{3^{n-1}}\right\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$d_n = \sum_{k=0}^{n-1}\left(\frac{2}{3}\right)^k = \frac{1-\left(\frac{2}{3}\right)^n}{1-\frac{2}{3}} = 3\left(1-\left(\frac{2}{3}\right)^n\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de progresión geométrica</div>
+      Razón $r = \frac{2}{3}$, primer término $1$, $n$ términos.
+      Fórmula: $S_n = \frac{1-r^n}{1-r}$.
+    </div>
+
+    <div class="paso-dev">
+      $$d_1 = 1,\quad d_2 = \tfrac{5}{3},\quad d_3 = \tfrac{19}{9},\quad \ldots$$
+      $$d_{n+1} - d_n = \left(\frac{2}{3}\right)^n > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Monotonía</div>
+      Cada término agrega $\left(\frac{2}{3}\right)^n > 0$: la sucesión es estrictamente creciente.
+    </div>
+
+    <div class="paso-dev">
+      $$\lim_{n\to\infty} d_n = 3\left(1 - 0\right) = 3$$
+      $$d_n < 3 \text{ para todo } n \quad(\text{pues } \left(\tfrac{2}{3}\right)^n > 0)$$
+      $$3 \notin D$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Límite</div>
+      $\left(\frac{2}{3}\right)^n \to 0$ pero nunca vale $0$, así que $d_n < 3$ siempre.
+    </div>
+
+    <div class="paso-dev">
+      $$\inf D = \min D = d_1 = 1$$
+      $$\sup D = 3, \quad \max D \text{ no existe}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      El mínimo $1$ se alcanza en $n=1$. El supremo $3$ no se alcanza.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br><br>
+    a) $\sup A = \max A = 2$; $\quad\inf A = 1$, $\min A$ no existe.
+    <br><br>
+    b) $\inf B = \min B = \dfrac{3}{2}$; $\quad\sup B = 2$, $\max B$ no existe.
+    <br><br>
+    c) $\inf C = \min C = \dfrac{5}{2}$; $\quad\sup C = 3$, $\max C$ no existe.
+    <br><br>
+    d) $\inf D = \min D = 1$; $\quad\sup D = 3$, $\max D$ no existe.
+  </div>
+
+</body>
+</html>

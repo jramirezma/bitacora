@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>w9u6x</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "w9u6x",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["26"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "desigualdad triangular",
+        "demostración de equivalencia",
+        "punto medio"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "suma valores absolutos equivalencia intervalo",
+        "distancia punto medio valor absoluto",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Suponga que $|a-b| < r$. Demuestre que
+    $$|x-a|+|x-b| < r \;\Longleftrightarrow\; \left|x - \frac{a+b}{2}\right| < \frac{r}{2}.$$</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Es una equivalencia ($\Leftrightarrow$), así que hay que demostrar los dos sentidos.
+      La idea geométrica es clara: $|x-a|+|x-b|$ es la suma de distancias de $x$ a los
+      puntos $a$ y $b$. Esa suma es menor que $r$ exactamente cuando $x$ está cerca
+      del punto medio $\frac{a+b}{2}$, a distancia menor que $\frac{r}{2}$.
+    </p>
+    <div class="nota">
+      El truco algebraico es escribir $x-a$ y $x-b$ en términos de
+      $x - \frac{a+b}{2}$ y $\frac{a-b}{2}$. Esa sustitución hace que todo encaje.
+    </div>
+    <p>
+      Definimos $m = \frac{a+b}{2}$ (punto medio) y $h = \frac{a-b}{2}$ (semidistancia).
+      Entonces $x-a = (x-m)-h$ y $x-b = (x-m)+h$.
+    </p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$m = \frac{a+b}{2}, \quad h = \frac{a-b}{2}$$
+      $$x-a = (x-m) - h$$
+      $$x-b = (x-m) + h$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cambio de variables</div>
+      Centramos todo alrededor del punto medio $m$. Verificamos:
+      $(x-m)-h = x - \frac{a+b}{2} - \frac{a-b}{2} = x-a$ ✓.
+      $(x-m)+h = x - \frac{a+b}{2} + \frac{a-b}{2} = x-b$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$|a-b| = 2|h| < r \;\Rightarrow\; |h| < \frac{r}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis reescrita</div>
+      $|a-b| = |2h| = 2|h|$. La hipótesis $|a-b|<r$ equivale a $|h| < \frac{r}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 8px">Sea $u = x - m$. La equivalencia a demostrar es:</p>
+      $$|u-h|+|u+h| < r \;\Longleftrightarrow\; |u| < \frac{r}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reformulación</div>
+      Sustituimos $x-a = u-h$ y $x-b = u+h$. La equivalencia queda en términos de $u$ y $h$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>($\Rightarrow$) Supongamos $|u-h|+|u+h| < r$.</strong></p>
+      $$2|u| = |(u+h)+(u-h)| \leq |u+h|+|u-h| < r$$
+      $$\Rightarrow |u| < \frac{r}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Implicación directa</div>
+      Por la desigualdad triangular: $|A+B| \leq |A|+|B|$.
+      Con $A = u+h$ y $B = u-h$: $|(u+h)+(u-h)| = |2u| = 2|u|$.
+      Como la suma es $< r$, concluimos $|u| < \frac{r}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>($\Leftarrow$) Supongamos $|u| < \dfrac{r}{2}$.</strong></p>
+      $$|u-h|+|u+h| \leq (|u|+|h|)+(|u|+|h|) = 2|u|+2|h|$$
+      $$< 2\cdot\frac{r}{2} + 2\cdot\frac{r}{2} = 2r$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Implicación recíproca — primer intento</div>
+      Aplicamos triangular a cada término. Pero obtenemos $< 2r$, no $< r$.
+      Necesitamos una cota más ajustada.
+    </div>
+
+    <div class="paso-dev">
+      $$|u+h|+|u-h|$$
+      \text{Caso 1: } |u| \geq |h|.\\
+      $$= |(u+h)|+|(u-h)| \geq |u+h-(u-h)| = 2|h|$$
+      $$\text{y también } \leq 2|u|+2|h|.$$
+      \text{Usamos la identidad:}
+      $$|u+h|+|u-h| = 2\max(|u|,|h|)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Identidad útil</div>
+      Para todo $u, h$ reales: $|u+h|+|u-h| = 2\max(|u|,|h|)$.
+      Se verifica abriendo los cuatro casos de signos de $u$ y $h$.
+    </div>
+
+    <div class="paso-dev">
+      $$|u+h|+|u-h| = 2\max(|u|,|h|)$$
+      $$|u| < \frac{r}{2} \text{ y } |h| < \frac{r}{2}$$
+      $$\Rightarrow \max(|u|,|h|) < \frac{r}{2}$$
+      $$\Rightarrow |u+h|+|u-h| < r$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión del recíproco</div>
+      Ambas hipótesis ($|u| < \frac{r}{2}$ e $|h| < \frac{r}{2}$) implican que
+      el máximo es $< \frac{r}{2}$, y por la identidad el resultado es $< r$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{|x-a|+|x-b| < r \;\Longleftrightarrow\; \left|x-\frac{a+b}{2}\right| < \frac{r}{2}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Ambas implicaciones quedan demostradas. La hipótesis $|a-b|<r$ se usó
+      en el recíproco para garantizar $|h| < \frac{r}{2}$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Bajo la hipótesis $|a-b| < r$, usando el cambio $u = x - \frac{a+b}{2}$
+    y la identidad $|u+h|+|u-h| = 2\max(|u|,|h|)$:
+    $$\boxed{|x-a|+|x-b| < r \;\Longleftrightarrow\; \left|x-\frac{a+b}{2}\right| < \frac{r}{2}.}$$
+    Geométricamente: la suma de distancias de $x$ a $a$ y $b$ es menor que $r$
+    si y solo si $x$ está a menos de $\frac{r}{2}$ del punto medio entre $a$ y $b$.
+  </div>
+
+</body>
+</html>

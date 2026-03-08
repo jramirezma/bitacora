@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>a2z5b</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "a2z5b",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["30"],
+      tema: [
+        "números reales",
+        "cotas superiores",
+        "conjuntos acotados",
+        "máximo de funciones",
+        "supremo"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "cota superior conjunto",
+        "supremo conjunto real",
+        "máximo función acotada",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Halle una cota superior para:</p>
+    <p>a) $A = \{x - 2x^2 : x \in \mathbb{R}\}$.</p>
+    <p>b) $B = \{|x+3| - |x| + 2 : x \in \mathbb{R}\}$.</p>
+    <p>c) $C = \{x : \sqrt{x+2} < 2\}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Una cota superior de un conjunto $S$ es cualquier número $M$ tal que $s \leq M$
+      para todo $s \in S$. No tiene que ser el mínimo de tales cotas (eso sería el supremo);
+      basta con encontrar alguna. Para a) completamos el cuadrado. Para b) usamos la
+      desigualdad triangular. Para c) resolvemos la inecuación y leemos el extremo superior.
+    </p>
+    <div class="nota">
+      No se pide el supremo exacto, sino cualquier cota superior válida.
+      Dicho eso, lo más natural es encontrar la cota más ajustada posible, que coincide con el supremo.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ A = \{x-2x^2 : x\in\mathbb{R}\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x - 2x^2 = -2\!\left(x^2 - \frac{x}{2}\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factor $-2$</div>
+      Factorizamos para preparar el cuadrado completo.
+    </div>
+
+    <div class="paso-dev">
+      $$= -2\!\left(x^2 - \frac{x}{2} + \frac{1}{16} - \frac{1}{16}\right)$$
+      $$= -2\!\left(x - \frac{1}{4}\right)^2 + \frac{1}{8}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      Sumamos y restamos $\left(\frac{1}{4}\right)^2 = \frac{1}{16}$.
+      $-2 \cdot (-\frac{1}{16}) = \frac{1}{8}$.
+    </div>
+
+    <div class="paso-dev">
+      $$-2\!\left(x-\tfrac{1}{4}\right)^2 + \frac{1}{8} \leq \frac{1}{8}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cuadrado no negativo</div>
+      $-2(x-\frac{1}{4})^2 \leq 0$ para todo $x$. El máximo se alcanza en $x = \frac{1}{4}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{M = \frac{1}{8} \text{ es cota superior de } A}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Es además el supremo y máximo de $A$, alcanzado en $x = \frac{1}{4}$.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ B = \{|x+3|-|x|+2 : x\in\mathbb{R}\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x+3| - |x| \leq |x+3-x| = |3| = 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Desigualdad triangular inversa</div>
+      $|A| - |B| \leq |A - B|$. Con $A = x+3$ y $B = x$:
+      $|x+3| - |x| \leq |(x+3)-x| = 3$.
+    </div>
+
+    <div class="paso-dev">
+      $$|x+3| - |x| + 2 \leq 3 + 2 = 5$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de 2</div>
+      Sumamos $2$ a ambos lados. La igualdad se alcanza cuando $x \geq 0$
+      (ahí $|x+3|-|x| = x+3-x = 3$). Por ejemplo $x=0$: $|3|-|0|+2 = 5$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{M = 5 \text{ es cota superior de } B}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Es además el supremo y máximo de $B$.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ C = \{x : \sqrt{x+2} < 2\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\text{Dominio: } x+2 \geq 0 \;\Rightarrow\; x \geq -2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Dominio de la raíz</div>
+      El radicando debe ser no negativo.
+    </div>
+
+    <div class="paso-dev">
+      $$\sqrt{x+2} < 2 \;\Leftrightarrow\; x+2 < 4 \;\Rightarrow\; x < 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Elevar al cuadrado</div>
+      Ambos lados no negativos. $(\sqrt{x+2})^2 = x+2$ y $2^2 = 4$.
+    </div>
+
+    <div class="paso-dev">
+      $$C = [-2,\, 2)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Descripción del conjunto</div>
+      Combinamos dominio ($x \geq -2$) con la inecuación ($x < 2$).
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{M = 2 \text{ es cota superior de } C}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Todo $x \in C$ satisface $x < 2$, así que $2$ es cota superior.
+      Es el supremo de $C$ pero no el máximo (no pertenece a $C$).
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $M = \dfrac{1}{8}$ es cota superior (y máximo) de $A$. Se alcanza en $x = \dfrac{1}{4}$.
+    <br><br>
+    b) $M = 5$ es cota superior (y máximo) de $B$. Se alcanza para todo $x \geq 0$.
+    <br><br>
+    c) $M = 2$ es cota superior (y supremo) de $C = [-2,2)$. No es máximo pues $2 \notin C$.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b7a3c</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "b7a3c",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["31"],
+      tema: [
+        "números reales",
+        "cotas inferiores",
+        "conjuntos acotados",
+        "ínfimo",
+        "mínimo de funciones"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "cota inferior conjunto",
+        "ínfimo conjunto real",
+        "mínimo función acotada",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Halle una cota inferior para:</p>
+    <p>a) $A = \{x^4+3x^2+3 : x\in\mathbb{R}\}$.</p>
+    <p>b) $B = \left\{|x|^3 + \dfrac{1}{|x|} : x\in\mathbb{R},\, x\neq 0\right\}$.</p>
+    <p>c) $C = \{x\in\mathbb{R} : x^2 < 3x\}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Una cota inferior de $S$ es cualquier $m$ tal que $m \leq s$ para todo $s \in S$.
+      Para a) buscamos el mínimo de la función evaluando en el punto crítico.
+      Para b) usamos AM-GM. Para c) resolvemos la inecuación y leemos el extremo inferior.
+    </p>
+    <div class="nota">
+      Como en el ejercicio 30, la cota más natural es el ínfimo. Si el ínfimo
+      pertenece al conjunto, es también mínimo.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ A = \{x^4+3x^2+3 : x\in\mathbb{R}\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^4+3x^2+3 = (x^2)^2+3(x^2)+3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución $t = x^2 \geq 0$</div>
+      La expresión es $f(t) = t^2+3t+3$ con $t \geq 0$.
+      Como $t \geq 0$, el mínimo de $f$ en $[0,+\infty)$ se analiza en ese dominio.
+    </div>
+
+    <div class="paso-dev">
+      $$f(t) = t^2+3t+3 = \left(t+\frac{3}{2}\right)^2+\frac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      El vértice de la parábola está en $t = -\frac{3}{2} < 0$, fuera del dominio $t \geq 0$.
+      Como la parábola abre hacia arriba y el vértice está a la izquierda de $0$,
+      $f$ es creciente en $[0,+\infty)$.
+    </div>
+
+    <div class="paso-dev">
+      $$f(0) = 0+0+3 = 3$$
+      $$f(t) \geq f(0) = 3 \quad \text{para todo } t \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo en $t=0$</div>
+      El mínimo se alcanza en $t = 0$, es decir $x = 0$.
+      Verificamos: $0+0+3 = 3$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 3 \text{ es cota inferior de } A}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Es el ínfimo y mínimo de $A$, alcanzado en $x=0$.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ B = \left\{|x|^3+\dfrac{1}{|x|} : x\neq 0\right\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$t = |x| > 0, \quad f(t) = t^3 + \frac{1}{t}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución $t = |x| > 0$</div>
+      Por simetría en $x$, basta analizar $t > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$t^3 + \frac{1}{t} = \frac{t^3}{3}+\frac{t^3}{3}+\frac{t^3}{3}+\frac{1}{t}$$
+      $$\geq 4\sqrt[4]{\frac{t^3}{3}\cdot\frac{t^3}{3}\cdot\frac{t^3}{3}\cdot\frac{1}{t}}$$
+      $$= 4\sqrt[4]{\frac{t^9}{27t}} = 4\sqrt[4]{\frac{t^8}{27}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">AM-GM de 4 términos — primer intento</div>
+      El producto todavía depende de $t$. Necesitamos balancear los exponentes.
+      Buscamos $\alpha$ tal que $3\alpha - (1-\alpha) = 0$, es decir $4\alpha = 1$, $\alpha = \frac{1}{4}$.
+      Con 4 términos: 3 copias de $\frac{t^3}{3}$ y 1 de $\frac{1}{t}$ no balancea.
+      Buscamos la división correcta.
+    </div>
+
+    <div class="paso-dev">
+      $$3\alpha = 1-\alpha \;\Rightarrow\; \alpha = \frac{1}{4}$$
+      \text{4 términos: 3 de } \frac{t^3}{3} \text{ y 1 de } \frac{1}{t}:
+      $$\text{producto} = \left(\frac{t^3}{3}\right)^3 \cdot \frac{1}{t} = \frac{t^9}{27t} = \frac{t^8}{27}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">El balance requiere diferente número de términos</div>
+      Con 3 copias de $t^3$ y 1 de $\frac{1}{t}$: exponente neto $= 9-1=8 \neq 0$.
+      Probamos con 3 copias de $\frac{t^3}{3}$ y 3 copias de $\frac{1}{3t}$:
+      exponente neto $= 9-3=6 \neq 0$.
+      Necesitamos: $3\cdot p - 1\cdot q = 0$ con $p+q = n$ términos.
+    </div>
+
+    <div class="paso-dev">
+      \text{Con } p=1, q=3: \text{ 1 copia de }t^3\text{ y 3 de }\frac{1}{3t}:
+      $$t^3 + \frac{1}{3t}+\frac{1}{3t}+\frac{1}{3t} \geq 4\sqrt[4]{t^3\cdot\frac{1}{3t}\cdot\frac{1}{3t}\cdot\frac{1}{3t}}$$
+      $$= 4\sqrt[4]{\frac{t^3}{27t^3}} = 4\sqrt[4]{\frac{1}{27}} = \frac{4}{3^{3/4}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Balance correcto</div>
+      1 copia de $t^3$ y 3 de $\frac{1}{3t}$: producto $= \frac{t^3}{27t^3} = \frac{1}{27}$, constante.
+      Pero necesitamos $\frac{1}{3t}+\frac{1}{3t}+\frac{1}{3t} = \frac{1}{t}$, que sí es lo que tenemos. ✓
+    </div>
+
+    <div class="paso-dev">
+      $$t^3+\frac{1}{t} \geq \frac{4}{3^{3/4}} = 4\cdot 3^{-3/4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cota inferior</div>
+      La igualdad en AM-GM se da cuando todos los términos son iguales:
+      $t^3 = \frac{1}{3t}$, es decir $t^4 = \frac{1}{3}$, $t = 3^{-1/4}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = \frac{4}{\sqrt[4]{27}} = 4\cdot 3^{-3/4} \text{ es cota inferior de } B}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Es el ínfimo y mínimo de $B$, alcanzado en $|x| = 3^{-1/4}$.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ C = \{x\in\mathbb{R} : x^2 < 3x\}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^2 < 3x \;\Rightarrow\; x^2-3x < 0 \;\Rightarrow\; x(x-3) < 0$$
+      $$0 < x < 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución de la inecuación</div>
+      $x(x-3)<0$ cuando $x$ está entre las raíces $0$ y $3$.
+      Ambos extremos excluidos (desigualdad estricta).
+    </div>
+
+    <div class="paso-dev">
+      $$C = (0, 3)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Descripción del conjunto</div>
+      $C$ es el intervalo abierto $(0,3)$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 0 \text{ es cota inferior de } C}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Todo $x \in C$ satisface $x > 0$, así que $0$ es cota inferior.
+      Es el ínfimo de $C$ pero no el mínimo ($0 \notin C$).
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $m = 3$ es cota inferior (y mínimo) de $A$. Se alcanza en $x = 0$.
+    <br><br>
+    b) $m = \dfrac{4}{\sqrt[4]{27}}$ es cota inferior (y mínimo) de $B$. Se alcanza en $|x| = 3^{-1/4}$.
+    <br><br>
+    c) $m = 0$ es cota inferior (e ínfimo) de $C = (0,3)$. No es mínimo pues $0 \notin C$.
+  </div>
+
+</body>
+</html>

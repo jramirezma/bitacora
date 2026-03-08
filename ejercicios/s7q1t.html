@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>s7q1t</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "s7q1t",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["22"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "desigualdad triangular",
+        "cota inferior",
+        "mínimo de función"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "mínimo suma valores absolutos",
+        "cota inferior valor absoluto",
+        "desigualdad triangular aplicación",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.right.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Encuentre un número $m > 0$ con la propiedad de que para todo $x \in \mathbb{R}$:</p>
+    <p>a) $|x-5| + |x-1| \geq m$.</p>
+    <p>b) $|2x-2| + |x-4| + |x-1| \geq m$.</p>
+    <p>c) $|x^2-x^3| + |x-x^3-1| \geq m$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Buscar $m$ significa encontrar el ínfimo de cada expresión: el valor más bajo que
+      puede tomar. La herramienta es la desigualdad triangular en su forma
+      $|u| + |v| \geq |u \pm v|$: combinando los términos adecuadamente, la suma
+      colapsa en algo constante que no depende de $x$.
+    </p>
+    <div class="nota">
+      La idea central: $|x - a| + |x - b| \geq |(x-a) - (x-b)| = |b-a|$.
+      El mínimo de la suma de distancias a dos puntos es la distancia entre esos puntos,
+      y se alcanza cuando $x$ está entre ellos.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ |x-5|+|x-1| \geq m$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-5|+|x-1| \geq |(x-5)-(x-1)|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Desigualdad triangular</div>
+      $|u|+|v| \geq |u-v|$ con $u = x-5$, $v = x-1$.
+    </div>
+
+    <div class="paso-dev">
+      $$|(x-5)-(x-1)| = |-4| = 4$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Simplificación</div>
+      Los términos en $x$ se cancelan. La cota es constante.
+    </div>
+
+    <div class="paso-dev">
+      $$|x-5|+|x-1| \geq 4$$
+      <p style="margin:8px 0 0">Igualdad en $x \in [1, 5]$: p. ej. $x=3$ da $2+2=4$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo alcanzado</div>
+      La igualdad se da cuando $x$ está entre $1$ y $5$, pues ahí los dos
+      valores absolutos "apuntan" en sentidos opuestos y su suma es exactamente $|5-1|=4$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{m = 4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Es el mínimo exacto, no solo una cota.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ |2x-2|+|x-4|+|x-1| \geq m$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|2x-2| = 2|x-1|$$
+      $$2|x-1|+|x-4|+|x-1| = 3|x-1|+|x-4|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reescritura</div>
+      Factorizamos $2$ de $|2x-2|$ y agrupamos los términos con $|x-1|$.
+    </div>
+
+    <div class="paso-dev">
+      $$3|x-1|+|x-4| \geq 3|x-1| - |x-4|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Observación</div>
+      No es directo aplicar la triangular aquí. Analizamos por casos según la posición de $x$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $x \leq 1$:</strong></p>
+      $$3(1-x)+(4-x) = 7-4x \geq 7-4(1) = 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x \leq 1$</div>
+      $|x-1|=1-x$ y $|x-4|=4-x$. La función $7-4x$ es decreciente, mínimo en $x=1$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $1 \leq x \leq 4$:</strong></p>
+      $$3(x-1)+(4-x) = 2x+1 \geq 2(1)+1 = 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $1 \leq x \leq 4$</div>
+      $|x-1|=x-1$ y $|x-4|=4-x$. La función $2x+1$ es creciente, mínimo en $x=1$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $x \geq 4$:</strong></p>
+      $$3(x-1)+(x-4) = 4x-7 \geq 4(4)-7 = 9$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $x \geq 4$</div>
+      $|x-1|=x-1$ y $|x-4|=x-4$. La función $4x-7$ es creciente, mínimo en $x=4$.
+    </div>
+
+    <div class="paso-dev">
+      $$\min = 3, \text{ alcanzado en } x = 1$$
+      $$\boxed{m = 3}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      El mínimo global es $3$, alcanzado en $x=1$:
+      $|2(1)-2|+|1-4|+|1-1| = 0+3+0 = 3$ ✓.
+    </div>
+  </div>
+
+  <h2>Solución — parte c) $\ |x^2-x^3|+|x-x^3-1| \geq m$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x^2-x^3|+|x-x^3-1| \geq |(x^2-x^3)+(x-x^3-1)|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Desigualdad triangular</div>
+      $|u|+|v| \geq |u+v|$ con $u = x^2-x^3$ y $v = x-x^3-1$.
+    </div>
+
+    <div class="paso-dev">
+      $$(x^2-x^3)+(x-x^3-1) = x^2+x-2x^3-1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de los argumentos</div>
+      Expandimos para ver si el resultado simplifica.
+    </div>
+
+    <div class="paso-dev">
+      $$|x^2-x^3|+|x-x^3-1| \geq |(x^2-x^3)-(x-x^3-1)|$$
+      $$= |x^2-x^3-x+x^3+1| = |x^2-x+1|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Prueba con la diferencia</div>
+      Intentamos con $|u-v|$ en lugar de $|u+v|$: $u-v = x^2-x^3-(x-x^3-1) = x^2-x+1$.
+      Esto simplifica mucho mejor.
+    </div>
+
+    <div class="paso-dev">
+      $$x^2-x+1 = \left(x-\tfrac{1}{2}\right)^2+\tfrac{3}{4} \geq \tfrac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Mínimo de $x^2-x+1$ (completar cuadrado)</div>
+      El discriminante es $1-4 = -3 < 0$, así que $x^2-x+1 > 0$ siempre.
+      El mínimo es $\frac{3}{4}$, alcanzado en $x = \frac{1}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$|x^2-x+1| = x^2-x+1 \geq \frac{3}{4}$$
+      $$\boxed{m = \frac{3}{4}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Como $x^2-x+1 > 0$ siempre, el valor absoluto no cambia nada.
+      El mínimo $\frac{3}{4}$ se alcanza en $x = \frac{1}{2}$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\text{a)}\ m = 4 \qquad \text{b)}\ m = 3 \qquad \text{c)}\ m = \frac{3}{4}$$
+    En a) y c) la clave es la desigualdad triangular con la combinación correcta de signos.
+    En b) el análisis por casos muestra que el mínimo se alcanza en $x = 1$.
+  </div>
+
+</body>
+</html>

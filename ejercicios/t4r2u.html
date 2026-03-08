@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>t4r2u</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "t4r2u",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["23"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "inecuaciones con valor absoluto",
+        "prueba por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuaciones valor absoluto",
+        "resolver módulo desigualdad",
+        "casos valor absoluto",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $x^2 - 2|x| - 3 \geq 0$.</p>
+    <p>b) $|2x+1| \geq 2+x$.</p>
+    <p>c) $|x^2-4| < -2x+4$.</p>
+    <p>d) $3 + |x^2+x| < \dfrac{15}{4}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La estrategia general es abrir casos según el signo del argumento del valor absoluto.
+      Una vez eliminado el valor absoluto en cada caso, se resuelve la inecuación
+      resultante y se intersecta con la condición del caso.
+      Para las partes simétricas en $x$ (como a), conviene sustituir $t = |x| \geq 0$.
+    </p>
+    <div class="nota">
+      $|E| \geq F$ se cumple cuando $E \geq F$ o $E \leq -F$.
+      $|E| < F$ (con $F > 0$) equivale a $-F < E < F$.
+      Estas equivalencias evitan abrir casos manualmente.
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ x^2 - 2|x| - 3 \geq 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$t = |x| \geq 0$$
+      $$t^2 - 2t - 3 \geq 0$$
+      $$(t-3)(t+1) \geq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución $t = |x|$</div>
+      Como $x^2 = |x|^2 = t^2$, la expresión se convierte en cuadrática en $t$.
+      Factorizamos: raíces $t = 3$ y $t = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $$t \leq -1 \quad \text{o} \quad t \geq 3$$
+      $$\text{Como } t \geq 0: \quad t \geq 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución en $t$</div>
+      El producto es $\geq 0$ fuera de las raíces. $t \leq -1$ es imposible con $t \geq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$|x| \geq 3 \;\Leftrightarrow\; x \leq -3 \text{ o } x \geq 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Deshacer la sustitución</div>
+      $|x| \geq 3$ significa que $x$ está a distancia $\geq 3$ del origen.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty, -3] \cup [3, +\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Los extremos se incluyen por la desigualdad no estricta.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ |2x+1| \geq 2+x$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso 1:</strong> $2x+1 \geq 0$, es decir $x \geq -\frac{1}{2}$.</p>
+      $$2x+1 \geq 2+x \;\Rightarrow\; x \geq 1$$
+      $$\text{Intersección: } x \geq 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $2x+1 \geq 0$</div>
+      El valor absoluto no cambia el signo. Despejamos y tomamos la intersección
+      con la condición del caso.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso 2:</strong> $2x+1 < 0$, es decir $x < -\frac{1}{2}$.</p>
+      $$-(2x+1) \geq 2+x \;\Rightarrow\; -2x-1 \geq 2+x \;\Rightarrow\; -3x \geq 3 \;\Rightarrow\; x \leq -1$$
+      $$\text{Intersección: } x \leq -1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $2x+1 < 0$</div>
+      El valor absoluto invierte el signo. Despejamos (dividir por $-3$ invierte la desigualdad)
+      y tomamos la intersección con $x < -\frac{1}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty, -1] \cup [1, +\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Unión de los dos casos</div>
+      Reunimos ambas soluciones. Los extremos se incluyen.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ |x^2-4| < -2x+4$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$-2x+4 > 0 \;\Rightarrow\; x < 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Condición necesaria</div>
+      El lado derecho debe ser positivo para que $|E| < F$ tenga solución.
+    </div>
+
+    <div class="paso-dev">
+      $$-(- 2x+4) < x^2-4 < -2x+4$$
+      $$2x-4 < x^2-4 < -2x+4$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia de $|E| < F$</div>
+      $|E| < F$ con $F > 0$ equivale a $-F < E < F$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad izquierda:</strong> $2x-4 < x^2-4$</p>
+      $$0 < x^2-2x = x(x-2)$$
+      $$x < 0 \text{ o } x > 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primera inecuación</div>
+      $x(x-2) > 0$: producto positivo fuera de las raíces $0$ y $2$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad derecha:</strong> $x^2-4 < -2x+4$</p>
+      $$x^2+2x-8 < 0 \;\Rightarrow\; (x+4)(x-2) < 0$$
+      $$-4 < x < 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda inecuación</div>
+      Factorizamos y aplicamos análisis de signos. Producto negativo entre las raíces.
+    </div>
+
+    <div class="paso-dev">
+      $$(x < 0 \text{ o } x > 2) \cap (-4 < x < 2) \cap (x < 2)$$
+      $$= -4 < x < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección</div>
+      Cruzamos las tres condiciones. $x > 2$ queda eliminado por $x < 2$.
+      De $x < 0$ intersectado con $-4 < x < 2$ queda $-4 < x < 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-4, 0)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Extremos excluidos por desigualdades estrictas.
+    </div>
+  </div>
+
+  <h2>Solución — d) $\ 3 + |x^2+x| < \dfrac{15}{4}$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x^2+x| < \frac{15}{4} - 3 = \frac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Despeje</div>
+      Restamos $3$ a ambos lados.
+    </div>
+
+    <div class="paso-dev">
+      $$-\frac{3}{4} < x^2+x < \frac{3}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Equivalencia de $|E| < F$</div>
+      Con $F = \frac{3}{4} > 0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad derecha:</strong> $x^2+x < \frac{3}{4}$</p>
+      $$x^2+x-\frac{3}{4} < 0 \;\Rightarrow\; \left(x+\frac{3}{2}\right)\!\left(x-\frac{1}{2}\right) < 0$$
+      $$-\frac{3}{2} < x < \frac{1}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Primera inecuación</div>
+      Raíces de $x^2+x-\frac{3}{4}=0$: $x = \frac{-1\pm\sqrt{1+3}}{2} = \frac{-1\pm 2}{2}$,
+      es decir $x = \frac{1}{2}$ y $x = -\frac{3}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Desigualdad izquierda:</strong> $x^2+x > -\frac{3}{4}$</p>
+      $$x^2+x+\frac{3}{4} > 0 \;\Rightarrow\; \left(x+\frac{1}{2}\right)^2+\frac{1}{2} > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Segunda inecuación</div>
+      Completamos el cuadrado: $\left(x+\frac{1}{2}\right)^2 + \frac{1}{2} > 0$ es verdadero
+      para todo $x \in \mathbb{R}$. No agrega restricción.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left(-\tfrac{3}{2},\, \tfrac{1}{2}\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Solo la primera inecuación restringe. Extremos excluidos.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $x \in (-\infty, -3] \cup [3, +\infty)$.
+    <br>b) $x \in (-\infty, -1] \cup [1, +\infty)$.
+    <br>c) $x \in (-4, 0)$.
+    <br>d) $x \in \left(-\dfrac{3}{2},\, \dfrac{1}{2}\right)$.
+  </div>
+
+</body>
+</html>

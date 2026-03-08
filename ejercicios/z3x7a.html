@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>z3x7a</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "z3x7a",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["29"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "acotamiento",
+        "implicaciones",
+        "demostración por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "demostración acotamiento valor absoluto",
+        "implicaciones valor absoluto",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre que:</p>
+    <p>a) Si $|x+2| < 10$ y $x > 0$, entonces $|x-5| < 5$.</p>
+    <p>b) Si $|x-1| < 1$, entonces $3 < x+4 < 8$.</p>
+    <p>c) Si $|x-4| < 1$, entonces $\dfrac{1}{3} < \dfrac{1}{x-2} < 1$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Cada inciso es una implicación: dadas ciertas hipótesis sobre $x$,
+      hay que concluir una cota. La estrategia es manipular algebraicamente
+      la hipótesis hasta obtener exactamente la forma pedida en la conclusión.
+      La desigualdad triangular $|A+B| \leq |A|+|B|$ y su variante
+      $|A|-|B| \leq |A-B|$ son los instrumentos principales.
+    </p>
+    <div class="nota">
+      Variante útil de la triangular: $|x-c| = |(x-a)+(a-c)| \leq |x-a|+|a-c|$.
+      Si controlamos $|x-a|$, podemos acotar $|x-c|$.
+    </div>
+  </div>
+
+  <h2>Solución — parte a)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x+2| < 10 \;\Rightarrow\; -10 < x+2 < 10 \;\Rightarrow\; -12 < x < 8$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis 1 desarrollada</div>
+      $|E| < 10$ equivale a $-10 < E < 10$. Restamos $2$.
+    </div>
+
+    <div class="paso-dev">
+      $$x > 0 \quad\text{(hipótesis 2)}$$
+      $$\Rightarrow\; 0 < x < 8$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección de hipótesis</div>
+      Combinamos $-12 < x < 8$ con $x > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$0 < x < 8 \;\Rightarrow\; -5 < x-5 < 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Restar 5</div>
+      Restamos $5$ en toda la cadena para obtener $x-5$.
+    </div>
+
+    <div class="paso-dev">
+      $$-5 < x-5 < 3 \;\Rightarrow\; |x-5| < 5$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Si $-5 < x-5 < 3$, entonces en particular $|x-5| < 5$
+      (porque $-5 < x-5$ y $x-5 < 3 < 5$, así $|x-5| = \max(x-5, -(x-5)) < 5$).
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{|x-5| < 5}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Demostrado</div>
+      Ambas hipótesis fueron usadas: $x > 0$ eliminó la parte negativa,
+      $|x+2|<10$ acotó superiormente.
+    </div>
+  </div>
+
+  <h2>Solución — parte b)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-1| < 1 \;\Rightarrow\; -1 < x-1 < 1 \;\Rightarrow\; 0 < x < 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis desarrollada</div>
+      Sumamos $1$ en toda la cadena.
+    </div>
+
+    <div class="paso-dev">
+      $$0 < x < 2 \;\Rightarrow\; 4 < x+4 < 6$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Suma de 4</div>
+      Sumamos $4$ en toda la cadena.
+    </div>
+
+    <div class="paso-dev">
+      $$4 < x+4 < 6 \;\Rightarrow\; 3 < x+4 < 8$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Ampliar la cota</div>
+      Como $3 < 4$ y $6 < 8$, la cota $3 < x+4 < 8$ es más débil pero igualmente válida.
+      El enunciado pide exactamente esta forma más amplia.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{3 < x+4 < 8}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Demostrado</div>
+      Directamente de la hipótesis, sumando $4$ y ampliando la cota.
+    </div>
+  </div>
+
+  <h2>Solución — parte c)</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$|x-4| < 1 \;\Rightarrow\; -1 < x-4 < 1 \;\Rightarrow\; 3 < x < 5$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Hipótesis desarrollada</div>
+      Sumamos $4$ en toda la cadena.
+    </div>
+
+    <div class="paso-dev">
+      $$3 < x < 5 \;\Rightarrow\; 1 < x-2 < 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Restar 2</div>
+      Restamos $2$. Notar que $x-2 > 1 > 0$, así que $x-2$ es positivo en todo el intervalo.
+    </div>
+
+    <div class="paso-dev">
+      $$1 < x-2 < 3$$
+      $$\Rightarrow \frac{1}{3} < \frac{1}{x-2} < \frac{1}{1} = 1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Tomar recíprocos</div>
+      Como $0 < 1 < x-2 < 3$, al tomar recíprocos el orden se invierte:
+      $\frac{1}{3} < \frac{1}{x-2} < 1$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\frac{1}{3} < \frac{1}{x-2} < 1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Demostrado</div>
+      La cadena es directa una vez que se establece que $x-2 \in (1,3)$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Las tres implicaciones se demuestran manipulando algebraicamente
+    las hipótesis hasta llegar a la forma pedida:
+    <br><br>
+    a) $|x+2|<10$ y $x>0$ $\Rightarrow$ $0 < x < 8$ $\Rightarrow$ $\boxed{|x-5|<5}$.
+    <br><br>
+    b) $|x-1|<1$ $\Rightarrow$ $0 < x < 2$ $\Rightarrow$ $4 < x+4 < 6$ $\Rightarrow$ $\boxed{3 < x+4 < 8}$.
+    <br><br>
+    c) $|x-4|<1$ $\Rightarrow$ $1 < x-2 < 3$ $\Rightarrow$ $\boxed{\dfrac{1}{3} < \dfrac{1}{x-2} < 1}$.
+  </div>
+
+</body>
+</html>

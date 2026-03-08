@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>y1w4z</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "y1w4z",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["28"],
+      tema: [
+        "números reales",
+        "inecuaciones con raíces",
+        "dominio de funciones",
+        "elevar al cuadrado"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuaciones con raíz cuadrada",
+        "elevar al cuadrado desigualdad",
+        "dominio raíz cuadrada",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $\sqrt{x-2} < 3$. &nbsp;&nbsp; b) $\sqrt{10x-x^2} < 3$. &nbsp;&nbsp; c) $\sqrt{x^2-10x} \geq 3$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Al trabajar con raíces hay dos pasos obligatorios: primero establecer el dominio
+      (el radicando debe ser $\geq 0$), y luego resolver la inecuación. Para elevar
+      al cuadrado y preservar el sentido, ambos lados deben ser no negativos.
+    </p>
+    <div class="nota">
+      $\sqrt{E} < c$ con $c > 0$ equivale a $0 \leq E < c^2$.
+      $\sqrt{E} \geq c$ con $c \geq 0$ equivale a $E \geq c^2$ (y $E \geq 0$, que ya está garantizado).
+    </div>
+  </div>
+
+  <h2>Solución — a) $\ \sqrt{x-2} < 3$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\text{Dominio: } x - 2 \geq 0 \;\Rightarrow\; x \geq 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Dominio</div>
+      El radicando debe ser no negativo para que la raíz esté definida.
+    </div>
+
+    <div class="paso-dev">
+      $$\sqrt{x-2} < 3 \;\Leftrightarrow\; x-2 < 9$$
+      $$x < 11$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Elevar al cuadrado</div>
+      Como $\sqrt{x-2} \geq 0$ y $3 > 0$, elevar al cuadrado preserva el sentido.
+      $\sqrt{x-2} < 3 \Leftrightarrow x-2 < 9$.
+    </div>
+
+    <div class="paso-dev">
+      $$x \geq 2 \cap x < 11$$
+      $$\boxed{x \in [2,\, 11)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección con dominio</div>
+      Combinamos la condición de dominio con la solución de la inecuación.
+    </div>
+  </div>
+
+  <h2>Solución — b) $\ \sqrt{10x-x^2} < 3$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$10x - x^2 \geq 0 \;\Rightarrow\; x(10-x) \geq 0$$
+      $$0 \leq x \leq 10$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Dominio</div>
+      $x(10-x) \geq 0$ cuando ambos factores tienen el mismo signo.
+      Esto ocurre para $x \in [0,10]$.
+    </div>
+
+    <div class="paso-dev">
+      $$\sqrt{10x-x^2} < 3 \;\Leftrightarrow\; 10x-x^2 < 9$$
+      $$x^2-10x+9 > 0 \;\Rightarrow\; (x-1)(x-9) > 0$$
+      $$x < 1 \text{ o } x > 9$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Elevar al cuadrado</div>
+      Ambos lados no negativos en el dominio. Reorganizamos y factorizamos.
+      El producto $(x-1)(x-9) > 0$ fuera de las raíces $1$ y $9$.
+    </div>
+
+    <div class="paso-dev">
+      $$[0,10] \cap (x<1 \text{ o } x>9)$$
+      $$= [0,1)\cup(9,10]$$
+      $$\boxed{x \in [0,1)\cup(9,10]}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección con dominio</div>
+      Cruzamos con $[0,10]$. En $x=0$ y $x=10$ la raíz vale $0 < 3$, se incluyen.
+      En $x=1$ y $x=9$ la raíz vale $3$, no satisface la estricta, se excluyen.
+    </div>
+  </div>
+
+  <h2>Solución — c) $\ \sqrt{x^2-10x} \geq 3$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^2-10x \geq 0 \;\Rightarrow\; x(x-10) \geq 0$$
+      $$x \leq 0 \text{ o } x \geq 10$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Dominio</div>
+      $x(x-10) \geq 0$ fuera del intervalo $(0,10)$.
+    </div>
+
+    <div class="paso-dev">
+      $$\sqrt{x^2-10x} \geq 3 \;\Leftrightarrow\; x^2-10x \geq 9$$
+      $$x^2-10x-9 \geq 0$$
+      $$x = \frac{10\pm\sqrt{100+36}}{2} = 5\pm\sqrt{34}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Elevar al cuadrado</div>
+      $\sqrt{E} \geq 3 \Leftrightarrow E \geq 9$. Resolvemos $x^2-10x-9 \geq 0$.
+      Raíces: $x = 5\pm\sqrt{34}$ ($\sqrt{34}\approx 5.83$).
+    </div>
+
+    <div class="paso-dev">
+      $$x \leq 5-\sqrt{34} \text{ o } x \geq 5+\sqrt{34}$$
+      <p style="margin:6px 0 2px">$5-\sqrt{34} \approx -0.83$ y $5+\sqrt{34}\approx 10.83$.</p>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución de la inecuación cuadrática</div>
+      El cuadrado abre hacia arriba, es $\geq 0$ fuera de las raíces.
+    </div>
+
+    <div class="paso-dev">
+      $$(x\leq 0\text{ o }x\geq 10)\cap(x\leq 5-\sqrt{34}\text{ o }x\geq 5+\sqrt{34})$$
+      $$= (-\infty,\,5-\sqrt{34}\,]\cup[\,5+\sqrt{34},\,+\infty)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección con dominio</div>
+      Como $5-\sqrt{34}<0$ y $5+\sqrt{34}>10$, las condiciones del dominio
+      quedan automáticamente cubiertas por la inecuación cuadrática.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left(-\infty,\,5-\sqrt{34}\,\right]\cup\left[\,5+\sqrt{34},\,+\infty\right)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Extremos incluidos por $\geq$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) $x \in [2,\,11)$.
+    <br>b) $x \in [0,1)\cup(9,10]$.
+    <br>c) $x \in \left(-\infty,\,5-\sqrt{34}\right]\cup\left[5+\sqrt{34},\,+\infty\right)$.
+    <br><br>
+    En todos los casos: primero dominio, luego elevar al cuadrado, finalmente intersectar.
+  </div>
+
+</body>
+</html>

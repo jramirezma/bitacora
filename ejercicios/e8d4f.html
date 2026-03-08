@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>e8d4f</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "e8d4f",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["34"],
+      tema: [
+        "números reales",
+        "inecuaciones",
+        "problemas de aplicación",
+        "modelado algebraico",
+        "optimización elemental"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "problemas inecuaciones aplicación",
+        "modelado algebraico inecuaciones",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="/bitacora/assets/analytics.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva los siguientes problemas:</p>
+    <p>a) La suma de tres números pares consecutivos es inferior a 48 pero superior a 36. ¿Cuál es el mayor de los tres números?</p>
+    <p>b) Un padre decide ir a un concierto con sus hijos y tiene Bs. 150.- Si compra entradas de Bs. 30.-, le falta dinero, pero si compra entradas de Bs. 22.-, le sobra. ¿Cuántos hijos tiene?</p>
+    <p>c) Un arquitecto desea delimitar un terreno rectangular y tiene 450 m de cerca disponible. Encuentre las dimensiones del terreno si el área delimitada debe ser al menos 3.150 m².</p>
+    <p>d) Se tiene un presupuesto de Bs. 300.- para comprar dos tipos de cuadernos. El cuaderno tipo A cuesta Bs. 7.- la unidad, y el cuaderno tipo B cuesta Bs. 4.- ¿Cuántos cuadernos como máximo hay que comprar del tipo A para no exceder el presupuesto, si además se impone la condición de que la cantidad a comprar del cuaderno del tipo B sea el doble que la cantidad a comprar del tipo A?</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Cada problema se traduce a una o dos inecuaciones. El paso clave es definir
+      bien la variable, expresar todas las condiciones en términos de esa variable,
+      y resolver el sistema de inecuaciones resultante. Al final hay que interpretar
+      la solución en el contexto del problema (números enteros, positivos, etc.).
+    </p>
+    <div class="nota">
+      Modelar bien es la mitad del trabajo: una vez que las condiciones están escritas
+      como inecuaciones, el resto es álgebra mecánica.
+    </div>
+  </div>
+
+  <h2>Solución — a) Tres números pares consecutivos</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$n,\; n+2,\; n+4 \quad (n \text{ par})$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de variables</div>
+      Tres números pares consecutivos se expresan como $n$, $n+2$, $n+4$
+      con $n$ par.
+    </div>
+
+    <div class="paso-dev">
+      $$36 < n+(n+2)+(n+4) < 48$$
+      $$36 < 3n+6 < 48$$
+      $$30 < 3n < 42$$
+      $$10 < n < 14$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Planteamiento y resolución</div>
+      Sumamos los tres números y aplicamos la doble inecuación.
+      Restamos $6$ y dividimos por $3$.
+    </div>
+
+    <div class="paso-dev">
+      $$n \text{ par}, \quad 10 < n < 14 \;\Rightarrow\; n = 12$$
+      $$\text{Mayor número: } n+4 = 16$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución entera</div>
+      El único número par entre $10$ y $14$ (exclusivos) es $12$.
+      Los tres números son $12, 14, 16$. Verificamos: $12+14+16=42$, y $36 < 42 < 48$ ✓.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\text{El mayor es } 16}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Respuesta</div>
+      El mayor de los tres números pares consecutivos es $16$.
+    </div>
+  </div>
+
+  <h2>Solución — b) El padre y los hijos en el concierto</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$h = \text{número de hijos}$$
+      $$\text{Total de personas: } h+1$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de variables</div>
+      El padre va con sus hijos: en total $h+1$ personas necesitan entrada.
+    </div>
+
+    <div class="paso-dev">
+      $$30(h+1) > 150 \quad\text{(le falta con Bs. 30)}$$
+      $$22(h+1) < 150 \quad\text{(le sobra con Bs. 22)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Planteamiento</div>
+      "Le falta" significa que el costo supera el presupuesto.
+      "Le sobra" significa que el costo es menor al presupuesto.
+    </div>
+
+    <div class="paso-dev">
+      $$30(h+1) > 150 \;\Rightarrow\; h+1 > 5 \;\Rightarrow\; h > 4$$
+      $$22(h+1) < 150 \;\Rightarrow\; h+1 < \frac{150}{22} \approx 6.82 \;\Rightarrow\; h < 5.82$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Resolución de cada inecuación</div>
+      Dividimos por $30$ y por $22$ respectivamente.
+    </div>
+
+    <div class="paso-dev">
+      $$4 < h < 5.82, \quad h \in \mathbb{N}$$
+      $$\Rightarrow h = 5$$
+      $$\boxed{\text{El padre tiene 5 hijos}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución entera</div>
+      El único entero en $(4, 5.82)$ es $5$.
+      Verificamos: $6 \times 30 = 180 > 150$ ✓ y $6 \times 22 = 132 < 150$ ✓.
+    </div>
+  </div>
+
+  <h2>Solución — c) El terreno rectangular</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$2l + 2a = 450 \;\Rightarrow\; l + a = 225$$
+      $$\Rightarrow a = 225 - l$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Restricción del perímetro</div>
+      $l$ = largo, $a$ = ancho. El perímetro total disponible es $450$ m.
+    </div>
+
+    <div class="paso-dev">
+      $$A = l \cdot a = l(225-l) \geq 3150$$
+      $$225l - l^2 \geq 3150$$
+      $$l^2 - 225l + 3150 \leq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Condición de área mínima</div>
+      El área debe ser al menos $3150$ m². Reorganizamos como inecuación cuadrática.
+    </div>
+
+    <div class="paso-dev">
+      $$l = \frac{225 \pm \sqrt{225^2 - 4\cdot3150}}{2} = \frac{225\pm\sqrt{50625-12600}}{2}$$
+      $$= \frac{225\pm\sqrt{38025}}{2} = \frac{225\pm195}{2}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Raíces de la cuadrática</div>
+      $\sqrt{38025} = 195$ (verificamos: $195^2 = 38025$ ✓).
+    </div>
+
+    <div class="paso-dev">
+      $$l_1 = \frac{225-195}{2} = 15, \quad l_2 = \frac{225+195}{2} = 210$$
+      $$l^2-225l+3150 \leq 0 \;\Leftrightarrow\; 15 \leq l \leq 210$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución de la inecuación</div>
+      La cuadrática es $\leq 0$ entre sus raíces.
+    </div>
+
+    <div class="paso-dev">
+      $$l \in [15, 210], \quad a = 225-l \in [15, 210]$$
+      $$\boxed{\text{Dimensiones: } l \in [15\text{ m}, 210\text{ m}], \; a = 225-l}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Respuesta</div>
+      Cualquier par $(l, 225-l)$ con $15 \leq l \leq 210$ satisface las condiciones.
+      Por ejemplo $l=a=112.5$ m (cuadrado) da el área máxima $= 112.5^2 \approx 12656$ m².
+      El caso extremo $l=210$, $a=15$ da área $= 3150$ m² exacto.
+    </div>
+  </div>
+
+  <h2>Solución — d) Los cuadernos</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x = \text{cantidad de cuadernos tipo A}$$
+      $$2x = \text{cantidad de cuadernos tipo B}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de variables</div>
+      La condición impuesta es que se compra el doble de tipo B que de tipo A.
+    </div>
+
+    <div class="paso-dev">
+      $$7x + 4(2x) \leq 300$$
+      $$7x + 8x \leq 300$$
+      $$15x \leq 300$$
+      $$x \leq 20$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Restricción de presupuesto</div>
+      El costo total no debe exceder Bs. 300.
+      $7x$ por los de tipo A y $4 \cdot 2x = 8x$ por los de tipo B.
+    </div>
+
+    <div class="paso-dev">
+      $$x \in \mathbb{N}, \quad x \leq 20$$
+      $$\boxed{x_{\max} = 20 \text{ cuadernos tipo A}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Respuesta</div>
+      El máximo es $x = 20$: se compran $20$ cuadernos tipo A y $40$ tipo B.
+      Costo total: $7(20)+4(40) = 140+160 = 300$ Bs. ✓ (exactamente el presupuesto).
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br>a) El mayor de los tres números pares consecutivos es $\boxed{16}$.
+    <br><br>
+    b) El padre tiene $\boxed{5}$ hijos.
+    <br><br>
+    c) Las dimensiones válidas son $l \in [15\text{ m},\, 210\text{ m}]$ y $a = 225-l$,
+    con área $\geq 3150\text{ m}^2$.
+    <br><br>
+    d) Se pueden comprar como máximo $\boxed{20}$ cuadernos tipo A (y $40$ de tipo B),
+    gastando exactamente Bs. 300.
+  </div>
+
+</body>
+</html>
