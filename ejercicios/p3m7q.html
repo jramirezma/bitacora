@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>p3m7q</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "p3m7q",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["19"],
+      tema: [
+        "números reales",
+        "valor absoluto",
+        "tricotomía",
+        "demostración por casos",
+        "propiedades del valor absoluto"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "valor absoluto cociente demostración",
+        "módulo fracción",
+        "tricotomía valor absoluto",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      Aplicando la ley de tricotomía (y la prueba por casos), demuestre que,
+      si $a, b \in \mathbb{R}$, entonces
+      $$\left|\frac{a}{b}\right| = \frac{|a|}{|b|}.$$
+    </p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La ley de tricotomía dice que para cualquier real $x$, exactamente una de estas
+      tres opciones se cumple: $x > 0$, $x = 0$, $x < 0$. Aplicamos eso a $a$ y a $b$
+      por separado, lo que genera nueve combinaciones posibles. Pero muchas se reducen
+      por simetría, y el caso $b = 0$ queda excluido porque $\frac{a}{b}$ no está definido.
+    </p>
+    <div class="nota">
+      Recordar la definición: $|x| = x$ si $x \geq 0$, y $|x| = -x$ si $x < 0$.
+      También: $\frac{a}{b} = ab^{-1}$ y $|ab| = |a||b|$ (que puede darse por conocido
+      o demostrarse aparte con el mismo método de casos).
+    </div>
+    <p>
+      La demostración más limpia usa $\left|\frac{a}{b}\right| = |ab^{-1}| = |a||b^{-1}|$
+      y luego muestra que $|b^{-1}| = |b|^{-1}$, lo que reduce todo a la propiedad
+      multiplicativa del valor absoluto.
+    </p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\left|\frac{a}{b}\right| = \left|ab^{-1}\right|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Definición de división</div>
+      $\frac{a}{b} = ab^{-1}$, con $b \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|ab^{-1}\right| = |a|\cdot|b^{-1}|$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Propiedad multiplicativa del valor absoluto</div>
+      $|xy| = |x||y|$ para todo $x, y \in \mathbb{R}$. Se demuestra por casos con tricotomía
+      sobre los signos de $x$ e $y$ (cuatro casos: $++$, $+-$, $-+$, $--$).
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 8px">Demostramos que $|b^{-1}| = |b|^{-1}$.</p>
+      <p style="margin:0 0 4px"><strong>Caso 1:</strong> $b > 0$.</p>
+      $$b^{-1} > 0 \;\Rightarrow\; |b^{-1}| = b^{-1} = \frac{1}{b} = \frac{1}{|b|} = |b|^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Tricotomía — caso $b > 0$</div>
+      Si $b > 0$ entonces $b^{-1} > 0$, así que el valor absoluto no cambia el signo.
+      Y $|b| = b$ por la misma razón.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 4px"><strong>Caso 2:</strong> $b < 0$.</p>
+      $$b^{-1} < 0 \;\Rightarrow\; |b^{-1}| = -b^{-1} = \frac{1}{-b} = \frac{1}{|b|} = |b|^{-1}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Tricotomía — caso $b < 0$</div>
+      Si $b < 0$ entonces $b^{-1} < 0$, así que $|b^{-1}| = -b^{-1}$.
+      Y $|b| = -b$, entonces $|b|^{-1} = \frac{1}{-b} = -b^{-1}$. Coinciden.
+    </div>
+
+    <div class="paso-dev">
+      $$\therefore\quad |b^{-1}| = |b|^{-1} \quad \text{para todo } b \neq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión del lema</div>
+      Los dos únicos casos posibles ($b > 0$ y $b < 0$, por tricotomía con $b \neq 0$)
+      dan el mismo resultado.
+    </div>
+
+    <div class="paso-dev">
+      $$\left|\frac{a}{b}\right| = |a|\cdot|b^{-1}| = |a|\cdot|b|^{-1} = \frac{|a|}{|b|}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Encadenamiento final</div>
+      Sustituimos $|b^{-1}| = |b|^{-1}$ y usamos la definición de división
+      $|a| \cdot |b|^{-1} = \frac{|a|}{|b|}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{\left|\frac{a}{b}\right| = \frac{|a|}{|b|}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Conclusión</div>
+      Válido para todo $a \in \mathbb{R}$ y $b \neq 0$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Usando la definición $\frac{a}{b} = ab^{-1}$, la propiedad
+    multiplicativa del valor absoluto, y la prueba por casos (tricotomía) sobre el signo de $b$:
+    $$\boxed{\left|\frac{a}{b}\right| = \frac{|a|}{|b|}}, \quad b \neq 0.$$
+    El caso $b = 0$ queda excluido porque $\frac{a}{b}$ no está definido.
+  </div>
+
+</body>
+</html>

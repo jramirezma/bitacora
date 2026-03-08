@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>n6j2p</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "n6j2p",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["18"],
+      tema: [
+        "números reales",
+        "inecuaciones con parámetro",
+        "desigualdades polinomiales",
+        "análisis por casos"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuaciones con parámetro",
+        "x^3 < a^4 x",
+        "desigualdad con parámetro real",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $x^3 < a^4 x$. &nbsp;&nbsp;&nbsp; b) $\dfrac{x^2 - a^4}{x^2 - 4a^4} > 0$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      El parámetro $a$ es un número real fijo. La solución depende del valor de $a$,
+      así que hay que abrir casos. La estrategia es la de siempre: pasar todo al mismo lado,
+      factorizar, y analizar signos. Pero ahora los puntos críticos dependen de $a$,
+      y según el signo o magnitud de $a$ los intervalos cambian.
+    </p>
+    <div class="nota">
+      Notar que $a^4 \geq 0$ siempre. Si $a = 0$ la inecuación degenera.
+      Para $a \neq 0$, $a^4 > 0$ y aparecen raíces reales no triviales.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ x^3 < a^4 x$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$x^3 - a^4 x < 0$$
+      $$x(x^2 - a^4) < 0$$
+      $$x(x-a^2)(x+a^2) < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Pasar al mismo lado y factorizar</div>
+      Factorizamos $x$ y luego $x^2 - a^4 = (x-a^2)(x+a^2)$.
+      Como $a^4 \geq 0$, las raíces son $x = 0$, $x = a^2$, $x = -a^2$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $a = 0$:</strong></p>
+      $$x \cdot x \cdot x = x^3 < 0 \;\Rightarrow\; x < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $a = 0$</div>
+      Las tres raíces colapsan en $0$. El producto es $x^3$, negativo solo para $x < 0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $a \neq 0$:</strong> $a^2 > 0$, raíces $-a^2 < 0 < a^2$.</p>
+      <p style="margin:0 0 4px">Análisis de $x(x+a^2)(x-a^2)$:</p>
+      <ul style="margin:0; padding-left:18px;">
+        <li>$x < -a^2$: $(-)(-)(-) = -$ ✓</li>
+        <li>$-a^2 < x < 0$: $(-)(+)(-) = +$ ✗</li>
+        <li>$0 < x < a^2$: $(+)(+)(-) = -$ ✓</li>
+        <li>$x > a^2$: $(+)(+)(+) = +$ ✗</li>
+      </ul>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Análisis de signos para $a \neq 0$</div>
+      Tres raíces distintas dividen la recta en cuatro intervalos.
+      Evaluamos el signo del producto en cada uno.
+      Los extremos se excluyen (desigualdad estricta).
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty, -a^2) \cup (0, a^2)} \quad (a \neq 0)$$
+      $$\boxed{x \in (-\infty, 0)} \quad (a = 0)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Los intervalos donde el producto es negativo.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ \dfrac{x^2 - a^4}{x^2 - 4a^4} > 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$\frac{(x-a^2)(x+a^2)}{(x-2a^2)(x+2a^2)} > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factorización</div>
+      $x^2 - a^4 = (x-a^2)(x+a^2)$ y $x^2 - 4a^4 = (x-2a^2)(x+2a^2)$.
+      Puntos críticos: $\pm a^2$ (numerador) y $\pm 2a^2$ (denominador).
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $a = 0$:</strong></p>
+      $$\frac{x^2}{x^2} = 1 > 0 \quad \text{para todo } x \neq 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Caso $a = 0$</div>
+      Numerador y denominador colapsan a $x^2$. El cociente es $1$ excepto en $x=0$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px"><strong>Caso $a \neq 0$:</strong> orden de raíces:</p>
+      $$-2a^2 < -a^2 < 0 < a^2 < 2a^2$$
+      <p style="margin:6px 0 4px">Análisis de signos del cociente:</p>
+      <ul style="margin:0; padding-left:18px;">
+        <li>$x < -2a^2$: $\frac{(-)(-)}{(-)(-))} = +$ ✓</li>
+        <li>$-2a^2 < x < -a^2$: $\frac{(-)(-)}{(+)(-)} = -$ ✗</li>
+        <li>$-a^2 < x < a^2$: $\frac{(-)(+)}{(+)(-)} = +$ ✓</li>
+        <li>$a^2 < x < 2a^2$: $\frac{(+)(+)}{(+)(-)} = -$ ✗</li>
+        <li>$x > 2a^2$: $\frac{(+)(+)}{(+)(+)} = +$ ✓</li>
+      </ul>
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Análisis de signos para $a \neq 0$</div>
+      Cuatro puntos críticos dividen la recta en cinco intervalos.
+      $\pm 2a^2$ excluidos (denominador nulo). $\pm a^2$ excluidos (desigualdad estricta, cociente $= 0$).
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (-\infty,-2a^2)\cup(-a^2,a^2)\cup(2a^2,+\infty)} \quad (a\neq 0)$$
+      $$\boxed{x \in \mathbb{R}\setminus\{0\}} \quad (a = 0)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución</div>
+      Intervalos donde el cociente es positivo. Todos los extremos excluidos.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    <br><br>
+    a) $x^3 < a^4 x$:
+    $$\text{Si } a=0:\ x\in(-\infty,0). \qquad \text{Si } a\neq 0:\ x\in(-\infty,-a^2)\cup(0,a^2).$$
+    b) $\dfrac{x^2-a^4}{x^2-4a^4}>0$:
+    $$\text{Si } a=0:\ x\in\mathbb{R}\setminus\{0\}. \qquad \text{Si } a\neq 0:\ x\in(-\infty,-2a^2)\cup(-a^2,a^2)\cup(2a^2,+\infty).$$
+  </div>
+
+</body>
+</html>

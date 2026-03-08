@@ -698,6 +698,192 @@
     "enunciado": "Encuentre un número $m$ con la propiedad de que para todo $x \\in \\mathbb{R}$: a) $x^2 + 6x + 15 \\geq m$. b) $x^2 - x + 1 \\geq m$. c) $x^6 + \\dfrac{1}{x^2} \\geq m$. d) $x^{10} + \\dfrac{1}{x^4} + \\dfrac"
   },
   {
+    "id": "j4g6h",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Guía de prácticas",
+      "Guía 1",
+      "Práctica 1",
+      "TP1"
+    ],
+    "ejercicio_nro": [
+      "15",
+      "Ejercicio 15",
+      "ej15"
+    ],
+    "tema": [
+      "números reales",
+      "desigualdades",
+      "máximo de funciones",
+      "completar cuadrados",
+      "cota superior"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "máximo función cuadrática completar cuadrado",
+      "cota superior función real",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/j4g6h.html",
+    "enunciado": "Encuentre un número $M$ con la propiedad de que para todo $x \\in \\mathbb{R}$: a) $3x - x^2 \\leq M$. b) $1 + 6x - x^2 \\leq M$."
+  },
+  {
+    "id": "m2k8n",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "17"
+    ],
+    "tema": [
+      "números reales",
+      "inecuaciones exponenciales",
+      "función exponencial",
+      "sustitución algebraica"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuaciones exponenciales",
+      "e^2x - 5e^x + 6",
+      "sustitución exponencial",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/m2k8n.html",
+    "enunciado": "Resuelva: a) $e^{2x} - 5e^x + 6 0$."
+  },
+  {
+    "id": "n6j2p",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "18"
+    ],
+    "tema": [
+      "números reales",
+      "inecuaciones con parámetro",
+      "desigualdades polinomiales",
+      "análisis por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuaciones con parámetro",
+      "x^3 < a^4 x",
+      "desigualdad con parámetro real",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/n6j2p.html",
+    "enunciado": "Resuelva: a) $x^3 0$."
+  },
+  {
+    "id": "p3m7q",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "19"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "tricotomía",
+      "demostración por casos",
+      "propiedades del valor absoluto"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "valor absoluto cociente demostración",
+      "módulo fracción",
+      "tricotomía valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/p3m7q.html",
+    "enunciado": "Aplicando la ley de tricotomía (y la prueba por casos), demuestre que, si $a, b \\in \\mathbb{R}$, entonces $$\\left|\\frac{a}{b}\\right| = \\frac{|a|}{|b|}.$$"
+  },
+  {
+    "id": "q8n4r",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "20"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "ecuaciones con valor absoluto",
+      "prueba por casos"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "ecuaciones valor absoluto",
+      "resolver módulo",
+      "casos valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/q8n4r.html",
+    "enunciado": "Resuelva: a) $|4x+3| = 7$. &nbsp;&nbsp; b) $|4x+5| = 2x+3$. &nbsp;&nbsp; c) $|x^2-4| = -2x+4$. &nbsp;&nbsp; d) $|3x-4| = -4$."
+  },
+  {
     "id": "cb3f2",
     "materia": [
       "Programación Orientada a Objetos",

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>j4g6h</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "j4g6h",
+      materia: ["CALCULO I"],
+      origen: ["Guía de prácticas", "Guía 1", "Práctica 1", "TP1"],
+      ejercicio_nro: ["15", "Ejercicio 15", "ej15"],
+      tema: [
+        "números reales",
+        "desigualdades",
+        "máximo de funciones",
+        "completar cuadrados",
+        "cota superior"
+      ],
+      dificultad: ["básico", "elemental", "introductorio"],
+      seo_keywords: [
+        "máximo función cuadrática completar cuadrado",
+        "cota superior función real",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Encuentre un número $M$ con la propiedad de que para todo $x \in \mathbb{R}$:</p>
+    <p>a) $3x - x^2 \leq M$.</p>
+    <p>b) $1 + 6x - x^2 \leq M$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Ahora buscamos el máximo en lugar del mínimo. La función es una parábola con rama
+      hacia abajo (coeficiente de $x^2$ negativo), así que sí tiene máximo.
+      La herramienta es la misma que en el ejercicio 14: completar el cuadrado,
+      pero esta vez lo que queda fijo es un techo en lugar de un piso.
+    </p>
+    <div class="nota">
+      Si $f(x) = -(x - h)^2 + k$, entonces $f(x) \leq k$ para todo $x$,
+      con igualdad en $x = h$. El máximo es exactamente $k$.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ 3x - x^2$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$3x - x^2 = -(x^2 - 3x)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factor $-1$</div>
+      Factorizamos el signo negativo para trabajar con una expresión con $x^2$ positivo.
+    </div>
+
+    <div class="paso-dev">
+      $$-(x^2 - 3x) = -\!\left(x^2 - 3x + \frac{9}{4} - \frac{9}{4}\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      Sumamos y restamos $\left(\frac{3}{2}\right)^2 = \frac{9}{4}$ dentro del paréntesis.
+    </div>
+
+    <div class="paso-dev">
+      $$= -\!\left(x - \frac{3}{2}\right)^2 + \frac{9}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reescritura</div>
+      $x^2 - 3x + \frac{9}{4} = \left(x-\frac{3}{2}\right)^2$. Distribuimos el $-1$.
+    </div>
+
+    <div class="paso-dev">
+      $$-\!\left(x-\frac{3}{2}\right)^2 + \frac{9}{4} \leq 0 + \frac{9}{4} = \frac{9}{4}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cuadrado no negativo</div>
+      $\left(x-\frac{3}{2}\right)^2 \geq 0$, entonces $-\left(x-\frac{3}{2}\right)^2 \leq 0$.
+      La igualdad se alcanza en $x = \frac{3}{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{M = \frac{9}{4}}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Máximo alcanzado</div>
+      El valor $\frac{9}{4}$ se alcanza en $x = \frac{3}{2}$, así que es el máximo exacto.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ 1 + 6x - x^2$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$1 + 6x - x^2 = -(x^2 - 6x - 1)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factor $-1$</div>
+      Factorizamos el signo para trabajar con $x^2$ positivo.
+    </div>
+
+    <div class="paso-dev">
+      $$-(x^2 - 6x - 1) = -\!\left(x^2 - 6x + 9 - 9 - 1\right)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Completar el cuadrado</div>
+      Sumamos y restamos $\left(\frac{6}{2}\right)^2 = 9$.
+    </div>
+
+    <div class="paso-dev">
+      $$= -\!\left(x - 3\right)^2 + 10$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Reescritura</div>
+      $x^2 - 6x + 9 = (x-3)^2$. Los términos $-9-1 = -10$ cambian de signo al salir: $+10$.
+    </div>
+
+    <div class="paso-dev">
+      $$-(x-3)^2 + 10 \leq 0 + 10 = 10$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Cuadrado no negativo</div>
+      $-(x-3)^2 \leq 0$. La igualdad se alcanza en $x = 3$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{M = 10}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Máximo alcanzado</div>
+      El valor $10$ se alcanza en $x = 3$.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Completando el cuadrado en cada caso:
+    $$\text{a)}\ 3x - x^2 = -\!\left(x-\tfrac{3}{2}\right)^2 + \tfrac{9}{4} \leq \tfrac{9}{4} \quad\Rightarrow\quad M = \boxed{\tfrac{9}{4}}$$
+    $$\text{b)}\ 1+6x-x^2 = -(x-3)^2 + 10 \leq 10 \quad\Rightarrow\quad M = \boxed{10}$$
+    En ambos casos el máximo se alcanza en el vértice de la parábola.
+  </div>
+
+</body>
+</html>

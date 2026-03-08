@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>m2k8n</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script>
+    window.EJERCICIO = {
+      id: "m2k8n",
+      materia: ["CALCULO I"],
+      origen: ["Práctica 1"],
+      ejercicio_nro: ["17"],
+      tema: [
+        "números reales",
+        "inecuaciones exponenciales",
+        "función exponencial",
+        "sustitución algebraica"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuaciones exponenciales",
+        "e^2x - 5e^x + 6",
+        "sustitución exponencial",
+        "cálculo 1 UMSA"
+      ],
+      fecha: "2026-03-06",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Resuelva:</p>
+    <p>a) $e^{2x} - 5e^x + 6 < 0$. &nbsp;&nbsp;&nbsp; b) $e^{3x} - 2e^{2x} - 2e^x + 4 > 0$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      Estas inecuaciones parecen complicadas pero esconden una inecuación polinomial disfrazada.
+      La clave es la sustitución $t = e^x$. Como $e^x > 0$ para todo $x$ real,
+      la variable $t$ siempre es positiva, lo que simplifica el análisis de signos.
+      Una vez resuelta la inecuación en $t$, se deshace la sustitución aplicando logaritmo.
+    </p>
+    <div class="nota">
+      $t = e^x > 0$ siempre. La sustitución convierte la inecuación exponencial en polinomial,
+      y al volver atrás se usa que $\ln$ es creciente: $e^x < c \Leftrightarrow x < \ln c$.
+    </div>
+  </div>
+
+  <h2>Solución — parte a) $\ e^{2x} - 5e^x + 6 < 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$t = e^x > 0$$
+      $$t^2 - 5t + 6 < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución $t = e^x$</div>
+      $e^{2x} = (e^x)^2 = t^2$. La inecuación se convierte en cuadrática en $t$.
+    </div>
+
+    <div class="paso-dev">
+      $$(t-2)(t-3) < 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factorización</div>
+      Raíces: $t = 2$ y $t = 3$. El producto es negativo entre las raíces.
+    </div>
+
+    <div class="paso-dev">
+      $$2 < t < 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución en $t$</div>
+      El producto $(t-2)(t-3) < 0$ cuando $t$ está estrictamente entre $2$ y $3$.
+      Ambos valores son positivos, compatibles con $t > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$2 < e^x < 3$$
+      $$\ln 2 < x < \ln 3$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Deshacer la sustitución</div>
+      Aplicamos $\ln$ (creciente) a toda la cadena de desigualdades. $\ln(e^x) = x$.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in (\ln 2,\, \ln 3)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución final</div>
+      Intervalo abierto porque las desigualdades son estrictas.
+    </div>
+  </div>
+
+  <h2>Solución — parte b) $\ e^{3x} - 2e^{2x} - 2e^x + 4 > 0$</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$t = e^x > 0$$
+      $$t^3 - 2t^2 - 2t + 4 > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Sustitución $t = e^x$</div>
+      Reemplazamos $e^{3x} = t^3$, $e^{2x} = t^2$, $e^x = t$.
+    </div>
+
+    <div class="paso-dev">
+      $$t^2(t-2) - 2(t-2) > 0$$
+      $$(t^2-2)(t-2) > 0$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Factorización por agrupación</div>
+      Agrupamos los primeros dos y los últimos dos términos y factorizamos $(t-2)$.
+    </div>
+
+    <div class="paso-dev">
+      $$t^2 - 2 = 0 \Rightarrow t = \sqrt{2} \quad (\text{solo } t>0)$$
+      $$\text{Raíces relevantes: } t = \sqrt{2},\; t = 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Raíces positivas</div>
+      $t^2-2=0$ da $t = \pm\sqrt{2}$, pero $t > 0$ así que solo $t = \sqrt{2}$.
+      $t-2=0$ da $t=2$. Orden: $\sqrt{2} < 2$.
+    </div>
+
+    <div class="paso-dev">
+      <p style="margin:0 0 6px">Para $t > 0$, puntos críticos: $\sqrt{2}$ y $2$.</p>
+      <ul style="margin:0 0 6px; padding-left:18px;">
+        <li>$0 < t < \sqrt{2}$: $(t^2-2)<0$, $(t-2)<0$ → producto $+$ ✓</li>
+        <li>$\sqrt{2} < t < 2$: $(t^2-2)>0$, $(t-2)<0$ → producto $-$ ✗</li>
+        <li>$t > 2$: $(t^2-2)>0$, $(t-2)>0$ → producto $+$ ✓</li>
+      </ul>
+      $$t \in (0, \sqrt{2}) \cup (2, +\infty)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Análisis de signos para $t > 0$</div>
+      Evaluamos el signo de cada factor en los tres intervalos definidos por
+      $\sqrt{2}$ y $2$. Solo nos interesan $t > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$0 < e^x < \sqrt{2} \;\Rightarrow\; x < \tfrac{1}{2}\ln 2$$
+      $$e^x > 2 \;\Rightarrow\; x > \ln 2$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Deshacer la sustitución</div>
+      $e^x < \sqrt{2} = 2^{1/2}$ implica $x < \frac{1}{2}\ln 2$.
+      $e^x > 2$ implica $x > \ln 2$. El caso $e^x > 0$ siempre se cumple.
+    </div>
+
+    <div class="paso-dev">
+      $$\boxed{x \in \left(-\infty,\, \tfrac{\ln 2}{2}\right) \cup (\ln 2,\, +\infty)}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Solución final</div>
+      Extremos excluidos por ser desigualdad estricta.
+    </div>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Con la sustitución $t = e^x > 0$:
+    $$\text{a)}\ x \in (\ln 2,\, \ln 3)$$
+    $$\text{b)}\ x \in \left(-\infty,\, \tfrac{\ln 2}{2}\right) \cup (\ln 2,\, +\infty)$$
+  </div>
+
+</body>
+</html>
