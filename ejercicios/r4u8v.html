@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>r4u8v</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "r4u8v",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "15b",
+      tema: ["funciones crecientes y decrecientes", "monotonía", "función con raíz cuadrada"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["función creciente raíz cuadrada", "monotonía raíz", "demostrar creciente cálculo 1"],
+      fecha: "2026-03-17",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Determine si la función es creciente o decreciente en su dominio:
+  $$g(x) = \sqrt{x - 5}$$</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>El esquema es el mismo que el inciso anterior: tomamos $x_1 < x_2$ y analizamos el signo de $g(x_1) - g(x_2)$. La diferencia es que acá tenemos raíces cuadradas, y restar raíces no es tan directo como restar polinomios.</p>
+
+  <p>El truco para manejar diferencias de raíces es multiplicar y dividir por el conjugado: $\sqrt{A} - \sqrt{B} = \dfrac{A - B}{\sqrt{A} + \sqrt{B}}$. Eso convierte la diferencia de raíces en una fracción donde el numerador ya no tiene raíces.</p>
+
+  <div class="nota">
+    El dominio de $g$ es $[5, +\infty)$, ya que necesitamos $x - 5 \geq 0$. La demostración solo vale dentro de ese dominio.
+  </div>
+
+  <p class="chiste">Las raíces no se restan bien de frente. Hay que usar el conjugado para que cedan.</p>
+</div>
+
+<h2>Ahora sí, a calcular</h2>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    Sean $x_1, x_2 \in [5, +\infty)$ con $x_1 < x_2$
+  </div>
+  <div class="paso-just">
+    Se toman dos valores arbitrarios del dominio con $x_1 < x_2$.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) - g(x_2) = \sqrt{x_1 - 5} - \sqrt{x_2 - 5}$
+  </div>
+  <div class="paso-just">
+    Se sustituye la definición de $g$.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{(\sqrt{x_1-5} - \sqrt{x_2-5})(\sqrt{x_1-5} + \sqrt{x_2-5})}{\sqrt{x_1-5} + \sqrt{x_2-5}}$
+  </div>
+  <div class="paso-just">
+    Se multiplica y divide por el conjugado $\sqrt{x_1-5} + \sqrt{x_2-5}$, que es positivo en el dominio.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{(x_1 - 5) - (x_2 - 5)}{\sqrt{x_1-5} + \sqrt{x_2-5}}$
+  </div>
+  <div class="paso-just">
+    El producto de conjugados es diferencia de cuadrados: $(\sqrt{A}-\sqrt{B})(\sqrt{A}+\sqrt{B}) = A - B$.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{x_1 - x_2}{\sqrt{x_1-5} + \sqrt{x_2-5}}$
+  </div>
+  <div class="paso-just">
+    Se cancelan los $-5$ del numerador.
+  </div>
+
+  <div class="paso-dev">
+    $x_1 < x_2 \Rightarrow x_1 - x_2 < 0$
+  </div>
+  <div class="paso-just">
+    El numerador es negativo por hipótesis.
+  </div>
+
+  <div class="paso-dev">
+    $\sqrt{x_1-5} + \sqrt{x_2-5} > 0$
+  </div>
+  <div class="paso-just">
+    El denominador es suma de raíces, siempre positivo en el dominio.
+  </div>
+
+  <div class="paso-dev">
+    $\dfrac{x_1 - x_2}{\sqrt{x_1-5} + \sqrt{x_2-5}} < 0$
+  </div>
+  <div class="paso-just">
+    Negativo sobre positivo da negativo.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) - g(x_2) < 0$
+  </div>
+  <div class="paso-just">
+    Equivalente a lo anterior.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) < g(x_2)$
+  </div>
+  <div class="paso-just">
+    Cuando $x_1 < x_2$, el valor de $g$ sube. Por definición, $g$ es creciente.
+  </div>
+</div>
+
+<h2>Comprobemos con un ejemplo</h2>
+<div class="bloque">
+  <p>Tomamos $x_1 = 6 < x_2 = 14$ y evaluamos:</p>
+  <p>$g(6) = \sqrt{6-5} = \sqrt{1} = 1$</p>
+  <p>$g(14) = \sqrt{14-5} = \sqrt{9} = 3$</p>
+  <p>$g(6) = 1 < 3 = g(14)$ ✓: cuando $x$ subió, $g$ también subió.</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> $g(x) = \sqrt{x-5}$ es $\boxed{\text{estrictamente creciente}}$ en su dominio $[5, +\infty)$.
+  <br><br>
+  Para todo $x_1, x_2 \in [5,+\infty)$ con $x_1 < x_2$ se tiene $g(x_1) < g(x_2)$.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>El truco del conjugado que usamos acá, convertir una diferencia de raíces en una fracción sin raíces en el numerador, es la misma idea que aplican los algoritmos de precisión numérica para evitar la cancelación catastrófica. Cuando una computadora resta dos números muy parecidos, los dígitos significativos se cancelan y el error relativo explota. La solución estándar es exactamente esta: reformular la expresión algebraicamente antes de calcularla, igual que hicimos acá, para que la resta no aparezca en el numerador. Es matemática al servicio de la estabilidad numérica.</p>
+</div>
+
+</body>
+</html>

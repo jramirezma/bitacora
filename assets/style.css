@@ -60,7 +60,7 @@ a:hover {
 main {
   margin-left: 280px;
   padding: var(--spacing-4);
-  max-width: calc(100% - 280px - var(--spacing-4) * 2);
+  max-width: calc(100% - 280px);
   transition: margin-left 0.3s ease, max-width 0.3s ease;
 }
 

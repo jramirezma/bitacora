@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c2d8e</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "c2d8e",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "15e",
+      tema: ["funciones crecientes y decrecientes", "monotonía", "función exponencial"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: ["función creciente exponencial", "monotonía x más e a la x", "demostrar creciente cálculo 1"],
+      fecha: "2026-03-17",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Determine si la función es creciente o decreciente en su dominio:
+  $$g(x) = x + 2^x + e^x$$</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>Esta función es una suma de tres partes: $x$, $2^x$ y $e^x$. El truco acá es que si cada una de esas partes es creciente por sí sola, entonces la suma también lo es. No hace falta analizar la expresión entera de un golpe: alcanza con ver que cada sumando crece cuando $x$ crece.</p>
+
+  <div class="nota">
+    Si $f$ y $g$ son funciones crecientes, entonces $f + g$ también es creciente. La demostración lo usa directamente: la diferencia de la suma es la suma de las diferencias, y cada diferencia es negativa.
+  </div>
+
+  <p>Las propiedades de $2^x$ y $e^x$ que necesitamos son: ambas son estrictamente positivas para todo $x$, y si $x_1 < x_2$ entonces $2^{x_1} < 2^{x_2}$ y $e^{x_1} < e^{x_2}$. Eso es una propiedad conocida de las exponenciales con base mayor que 1.</p>
+
+  <p class="chiste">Tres funciones crecientes se juntan. El resultado no podía ser otra cosa.</p>
+</div>
+
+<h2>Ahora sí, a calcular</h2>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    Sean $x_1, x_2 \in \mathbb{R}$ con $x_1 < x_2$
+  </div>
+  <div class="paso-just">
+    Se toman dos valores arbitrarios con $x_1 < x_2$. El dominio es todo $\mathbb{R}$.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) - g(x_2)$
+    $= (x_1 + 2^{x_1} + e^{x_1}) - (x_2 + 2^{x_2} + e^{x_2})$
+  </div>
+  <div class="paso-just">
+    Se sustituye la definición de $g$.
+  </div>
+
+  <div class="paso-dev">
+    $= (x_1 - x_2) + (2^{x_1} - 2^{x_2}) + (e^{x_1} - e^{x_2})$
+  </div>
+  <div class="paso-just">
+    Se reagrupan los términos por tipo.
+  </div>
+
+  <div class="paso-dev">
+    $x_1 - x_2 < 0$
+  </div>
+  <div class="paso-just">
+    Por hipótesis: $x_1 < x_2$.
+  </div>
+
+  <div class="paso-dev">
+    $2^{x_1} - 2^{x_2} < 0$
+  </div>
+  <div class="paso-just">
+    La función $2^x$ es creciente (base $2 > 1$): $x_1 < x_2 \Rightarrow 2^{x_1} < 2^{x_2}$.
+  </div>
+
+  <div class="paso-dev">
+    $e^{x_1} - e^{x_2} < 0$
+  </div>
+  <div class="paso-just">
+    La función $e^x$ es creciente (base $e > 1$): $x_1 < x_2 \Rightarrow e^{x_1} < e^{x_2}$.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) - g(x_2) < 0$
+  </div>
+  <div class="paso-just">
+    Suma de tres términos negativos: el resultado es negativo.
+  </div>
+
+  <div class="paso-dev">
+    $g(x_1) < g(x_2)$
+  </div>
+  <div class="paso-just">
+    Cuando $x_1 < x_2$, el valor de $g$ sube. Por definición, $g$ es creciente.
+  </div>
+</div>
+
+<h2>¿El resultado aguanta?</h2>
+<div class="bloque">
+  <p>Tomamos $x_1 = 0 < x_2 = 1$:</p>
+  <p>$g(0) = 0 + 2^0 + e^0 = 0 + 1 + 1 = 2$</p>
+  <p>$g(1) = 1 + 2^1 + e^1 = 1 + 2 + e \approx 1 + 2 + 2.718 = 5.718$</p>
+  <p>$g(0) = 2 < 5.718 \approx g(1)$ ✓</p>
+  <p>Tomamos también $x_1 = -2 < x_2 = -1$ para verificar en valores negativos:</p>
+  <p>$g(-2) = -2 + 2^{-2} + e^{-2} \approx -2 + 0.25 + 0.135 = -1.615$</p>
+  <p>$g(-1) = -1 + 2^{-1} + e^{-1} \approx -1 + 0.5 + 0.368 = -0.132$</p>
+  <p>$g(-2) \approx -1.615 < -0.132 \approx g(-1)$ ✓</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> $g(x) = x + 2^x + e^x$ es $\boxed{\text{estrictamente creciente}}$ en todo $\mathbb{R}$.
+  <br><br>
+  Para todo $x_1, x_2 \in \mathbb{R}$ con $x_1 < x_2$ se tiene $g(x_1) < g(x_2)$.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>La idea de que la suma de funciones crecientes es creciente aparece directamente en el diseño de funciones de costo en machine learning. Muchas funciones de pérdida se construyen sumando varios términos, cada uno penalizando un tipo distinto de error. Si cada término por separado crece cuando el modelo empeora, la suma también crece, lo que garantiza que minimizar la suma total equivale a mejorar en todos los frentes a la vez. Sin esa propiedad, podría pasar que mejorar en un término empeore otro sin que la suma lo refleje, y el entrenamiento perdería su dirección.</p>
+</div>
+
+</body>
+</html>

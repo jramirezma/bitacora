@@ -1,5 +1,747 @@
 [
   {
+    "id": "c2d8e",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15e",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función exponencial"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "función creciente exponencial",
+      "monotonía x más e a la x",
+      "demostrar creciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c2d8e.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$g(x) = x + 2^x + e^x$$"
+  },
+  {
+    "id": "f9g3h",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15f",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función hiperbólica racional"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "función decreciente racional 1 sobre x",
+      "monotonía función hipérbola",
+      "demostrar decreciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f9g3h.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$f(x) = \\frac{1}{x-2}$$"
+  },
+  {
+    "id": "h6j2m",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "9",
+    "tema": [
+      "composición de funciones",
+      "función lineal",
+      "identificación de coeficientes"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "composición función lineal f(f(x))",
+      "identificar coeficientes función compuesta",
+      "calcular a+b cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/h6j2m.html",
+    "enunciado": "Sea $f(x) = ax + b$, y suponga que para todo $x \\in \\mathbb{R}$ se tiene que $f(f(x)) = bx + a$. Calcule el valor de $a + b$."
+  },
+  {
+    "id": "j4k8l",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "17",
+    "tema": [
+      "composición de funciones",
+      "función lineal",
+      "función cuadrática"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "composición funciones f∘g g∘f",
+      "función lineal cuadrática compuesta",
+      "conmutatividad composición cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/j4k8l.html",
+    "enunciado": "Sean $f, g : \\mathbb{R} \\to \\mathbb{R}$ dadas por $f(x) = kx$ y $g(x) = x^2 + x + 1$. a) Calcule $f \\circ g$ y $g \\circ f$. b) ¿Para qué valor(es) de $k \\in \\mathbb{R}$ se tiene que $f \\circ g = g \\ci"
+  },
+  {
+    "id": "k3n7p",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "11",
+    "tema": [
+      "composición de funciones",
+      "función lineal iterada",
+      "identificación de coeficientes"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "composición triple función lineal",
+      "f(f(f(x))) función lineal",
+      "calcular a+b cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/k3n7p.html",
+    "enunciado": "Suponga que $f(x) = ax + b$ y que $f(f(f(x))) = 8x + 21$ para todo $x \\in \\mathbb{R}$. Calcule el valor de $a + b$."
+  },
+  {
+    "id": "m5q9r",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "13",
+    "tema": [
+      "composición iterada de funciones",
+      "función lineal",
+      "suma geométrica"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "composición n veces función lineal",
+      "f compuesta n veces",
+      "suma geométrica cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/m5q9r.html",
+    "enunciado": "Sea $f(x) = 2x + 1$. Calcule $(\\underbrace{f \\circ \\cdots \\circ f}_{n \\text{ veces}})(x)$."
+  },
+  {
+    "id": "p2s6t",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15a",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función lineal"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "función creciente decreciente",
+      "monotonía función lineal",
+      "demostrar creciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/p2s6t.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$f(x) = 3 - 2x$$"
+  },
+  {
+    "id": "r4u8v",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15b",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función con raíz cuadrada"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "función creciente raíz cuadrada",
+      "monotonía raíz",
+      "demostrar creciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/r4u8v.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$g(x) = \\sqrt{x - 5}$$"
+  },
+  {
+    "id": "w1x5y",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15c",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función con raíz cuadrada negativa"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "función creciente decreciente raíz negativa",
+      "monotonía raíz de menos x",
+      "demostrar creciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/w1x5y.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$h(x) = -\\sqrt{-x}$$"
+  },
+  {
+    "id": "z3a7b",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "15d",
+    "tema": [
+      "funciones crecientes y decrecientes",
+      "monotonía",
+      "función cúbica"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "función creciente cúbica x al cubo",
+      "monotonía x³",
+      "demostrar creciente cálculo 1"
+    ],
+    "fecha": "2026-03-17",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/z3a7b.html",
+    "enunciado": "Determine si la función es creciente o decreciente en su dominio: $$h(x) = x^3$$"
+  },
+  {
+    "id": "a2c7d",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "7b",
+    "tema": [
+      "signo de una función",
+      "intervalos de positividad y negatividad",
+      "función con raíz cuadrada"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "intervalos positiva negativa raíz cuadrada",
+      "signo función con raíz",
+      "calcular intervalos cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/a2c7d.html",
+    "enunciado": "Calcule los intervalos donde la función es positiva o negativa: $$g(x) = 3 - \\sqrt{x-1}$$"
+  },
+  {
+    "id": "b2e1f",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1f",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "logaritmo de un cociente"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio logaritmo cociente",
+      "dominio función racional logaritmo",
+      "calcular dominio cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1f.html",
+    "enunciado": "Calcule el dominio de: $$h(x) = \\ln\\frac{2-x}{x^2-4x-21}$$"
+  },
+  {
+    "id": "c4d8f",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "3",
+    "tema": [
+      "función definida implícitamente",
+      "cambio de variable",
+      "expresión de una función"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "hallar f(x) dado f(3x-5)",
+      "cambio de variable función",
+      "calcular f(x) cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c4d8f.html",
+    "enunciado": "Si $f(3x - 5) = 6x + 1$, calcule $f(x)$ y $f(0)$."
+  },
+  {
+    "id": "d5f1a",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "7c",
+    "tema": [
+      "signo de una función",
+      "intervalos de positividad y negatividad",
+      "función racional suma de fracciones"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "intervalos positiva negativa función racional",
+      "signo suma fracciones",
+      "calcular intervalos cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d5f1a.html",
+    "enunciado": "Calcule los intervalos donde la función es positiva o negativa: $$h(x) = \\frac{1}{x} + \\frac{1}{x-1}$$"
+  },
+  {
+    "id": "e1a9b",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "5",
+    "tema": [
+      "función definida implícitamente",
+      "sistema de ecuaciones funcionales",
+      "sustitución de variable"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "ecuación funcional sistema",
+      "f(2-x) f(x) calcular",
+      "función implícita cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/e1a9b.html",
+    "enunciado": "Sea $f$ una función tal que, para $x \\in \\mathbb{R}$, $$3f(2-x) + 2f(x) = x^2.$$ Calcule $f(0)$, $f(1)$ y $f(2)$."
+  },
+  {
+    "id": "f3b2e",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "7a",
+    "tema": [
+      "signo de una función",
+      "intervalos de positividad y negatividad",
+      "factorización"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "intervalos positiva negativa función",
+      "signo función cuadrática",
+      "calcular intervalos cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f3b2e.html",
+    "enunciado": "Calcule los intervalos donde la función es positiva o negativa: $$f(x) = x^2 - 5x$$"
+  },
+  {
+    "id": "g8h4k",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "7d",
+    "tema": [
+      "signo de una función",
+      "intervalos de positividad y negatividad",
+      "función con valor absoluto"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "intervalos positiva negativa valor absoluto",
+      "signo función valor absoluto",
+      "calcular intervalos cálculo 1"
+    ],
+    "fecha": "2026-03-15",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/g8h4k.html",
+    "enunciado": "Calcule los intervalos donde la función es positiva o negativa: $$h(x) = \\frac{1}{2 - |x|} + 1$$"
+  },
+  {
+    "id": "b2e1d",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1d",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "función compuesta con raíz y logaritmo"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio función raíz logaritmo",
+      "dominio valor absoluto",
+      "calcular dominio cálculo 1"
+    ],
+    "fecha": "2026-03-14",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1d.html",
+    "enunciado": "Calcule el dominio de: $$f(x) = \\sqrt{\\sqrt{|x|-1}} - \\ln(|x-1|-1)$$"
+  },
+  {
+    "id": "b2e1c",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1c",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "radicales anidados",
+      "valor absoluto",
+      "función real"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio raíz anidada",
+      "valor absoluto dominio",
+      "Cálculo I UMSA",
+      "MAT-132",
+      "INF-115"
+    ],
+    "fecha": "2026-03-13",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1c.html",
+    "enunciado": "Calcule el dominio de $h(x) = \\sqrt{\\sqrt{3 - |x-1|} - \\sqrt{x}}$."
+  },
+  {
+    "id": "b2r9k",
+    "materia": [
+      "Programación I"
+    ],
+    "origen": "CL",
+    "ejercicio_nro": null,
+    "paradigma": [
+      "POO"
+    ],
+    "tema": [
+      "Programación orientada a objetos",
+      "Clases y objetos",
+      "Métodos de instancia"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "clase rectangulo pseudocodigo",
+      "POO diagrama de clases",
+      "metodos area perimetro cuadrado"
+    ],
+    "fecha": "2026-03-11",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2r9k.html",
+    "enunciado": "a. Instanciar 2 objetos de la clase Rectangulo. b. Crear un método que retorne si es cuadrado o no. c. Crear un método que imprima área y perímetro. d. Crear un método que retorne un booleano si un re"
+  },
+  {
+    "id": "f7k3p",
+    "materia": [
+      "Programación II"
+    ],
+    "origen": "CL",
+    "ejercicio_nro": null,
+    "paradigma": [
+      "POO"
+    ],
+    "tema": [
+      "Clases y objetos",
+      "Atributos y métodos",
+      "Instanciación"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "clases POO Bolivia",
+      "instanciar objetos pseudocodigo",
+      "comparar atributos metodo"
+    ],
+    "fecha": "2026-03-11",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f7k3p.html",
+    "enunciado": "a) Identificar 5 clases donde cada clase debe tener 5 atributos significativos. b) Implementar dos clases definidas en el inciso a. &nbsp;&nbsp;&nbsp;b.1) Instanciar dos objetos para cada clase. &nbsp"
+  },
+  {
+    "id": "b2e1b",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1b",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "valor absoluto",
+      "cociente de raíces",
+      "función real"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio cociente raíces cuadradas",
+      "valor absoluto dominio",
+      "Cálculo I UMSA",
+      "MAT-132",
+      "INF-115"
+    ],
+    "fecha": "2026-03-10",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1b.html",
+    "enunciado": "Calcule el dominio de $g(x) = \\dfrac{\\sqrt{10|x| - x^2 - 21}}{\\sqrt{20 + x - x^2}}$."
+  },
+  {
+    "id": "b2e1e",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1e",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "logaritmo natural",
+      "raíz cuadrada",
+      "función real"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio logaritmo raíz cuadrada",
+      "dominio cociente funciones",
+      "Cálculo I UMSA",
+      "MAT-132",
+      "INF-115"
+    ],
+    "fecha": "2026-03-10",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1e.html",
+    "enunciado": "Calcule el dominio de $g(x) = \\dfrac{\\ln(x - x^3)}{\\sqrt{x^2 - 4x - 12}}$."
+  },
+  {
+    "id": "b2e1a",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1a",
+    "tema": [
+      "dominio de una función",
+      "dominio",
+      "radicales anidados",
+      "valor absoluto",
+      "función real"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "dominio función raíz cuadrada",
+      "raíz anidada valor absoluto",
+      "Cálculo I UMSA",
+      "MAT-132",
+      "INF-115"
+    ],
+    "fecha": "2026-03-09",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b2e1a.html",
+    "enunciado": "Calcule el dominio de $f(x) = \\sqrt{2x + 8 - x^2} + \\sqrt{2 - \\sqrt{|x| - 1}}$."
+  },
+  {
     "id": "b7k2f",
     "materia": [
       "Álgebra",
@@ -42,6 +784,43 @@
     },
     "archivo": "ejercicios/b7k2f.html",
     "enunciado": "En cada caso, utilice las reglas de inferencia y las leyes de la lógica para demostrar la proposición indicada a partir de las premisas dadas. Justifique cada paso."
+  },
+  {
+    "id": "a2z5b",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "30"
+    ],
+    "tema": [
+      "números reales",
+      "cotas superiores",
+      "conjuntos acotados",
+      "máximo de funciones",
+      "supremo"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cota superior conjunto",
+      "supremo conjunto real",
+      "máximo función acotada",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/a2z5b.html",
+    "enunciado": "Halle una cota superior para: a) $A = \\{x - 2x^2 : x \\in \\mathbb{R}\\}$. b) $B = \\{|x+3| - |x| + 2 : x \\in \\mathbb{R}\\}$. c) $C = \\{x : \\sqrt{x+2}"
   },
   {
     "id": "a8f1b",
@@ -183,6 +962,43 @@
     "enunciado": "Demuestre la ley de cancelación para la adición: si $a + b = a + c$, entonces $b = c$."
   },
   {
+    "id": "b7a3c",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "31"
+    ],
+    "tema": [
+      "números reales",
+      "cotas inferiores",
+      "conjuntos acotados",
+      "ínfimo",
+      "mínimo de funciones"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cota inferior conjunto",
+      "ínfimo conjunto real",
+      "mínimo función acotada",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b7a3c.html",
+    "enunciado": "Halle una cota inferior para: a) $A = \\{x^4+3x^2+3 : x\\in\\mathbb{R}\\}$. b) $B = \\left\\{|x|^3 + \\dfrac{1}{|x|} : x\\in\\mathbb{R},\\, x\\neq 0\\right\\}$. c) $C = \\{x\\in\\mathbb{R} : x^2"
+  },
+  {
     "id": "c2e7f",
     "materia": [
       "Cálculo I",
@@ -228,6 +1044,44 @@
     },
     "archivo": "ejercicios/c2e7f.html",
     "enunciado": "Demuestre que $\\left(\\sqrt{a} - \\sqrt{b}\\right)^2 \\geq 0$ implica que $a + b \\geq 2\\sqrt{ab}$."
+  },
+  {
+    "id": "c4b8d",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "32"
+    ],
+    "tema": [
+      "números reales",
+      "supremo",
+      "ínfimo",
+      "máximo",
+      "mínimo",
+      "sucesiones",
+      "conjuntos acotados"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "supremo ínfimo máximo mínimo conjunto",
+      "sucesión acotada supremo",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/c4b8d.html",
+    "enunciado": "Encuentre (si existe) el supremo, ínfimo, máximo y mínimo de los conjuntos: a) $A = \\left\\{\\dfrac{1}{n}+1 : n\\in\\mathbb{N}\\right\\}$. b) $B = \\left\\{\\dfrac{2n+1}{n+1} : n\\in\\mathbb{N}\\right\\}$. c) $C ="
   },
   {
     "id": "c7d1f",
@@ -324,6 +1178,42 @@
     "enunciado": "Sean $a, b, c, d$ reales positivos, demuestre que: a) $\\dfrac{a}{b} + \\dfrac{b}{a} \\geq 2$. b) $(a+b)(a+c)(b+c) \\geq 8abc$. c) $\\dfrac{a}{b} + \\dfrac{b}{c} + \\dfrac{c}{d} + \\dfrac{d}{a} \\geq 4$. d) $a"
   },
   {
+    "id": "d6c2e",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "33"
+    ],
+    "tema": [
+      "números reales",
+      "supremo",
+      "ínfimo",
+      "naturales",
+      "verdadero o falso"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "supremo ínfimo naturales verdadero falso",
+      "inf N sup N",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/d6c2e.html",
+    "enunciado": "Diga si las siguientes afirmaciones son ciertas o falsas: a) $\\inf\\mathbb{N} = 1$. b) $\\sup[1;3) = 3$. c) $\\inf(\\mathbb{N}\\cap(1;6)) = 2$. d) $\\sup\\mathbb{N} = +\\infty$."
+  },
+  {
     "id": "d6c4e",
     "materia": [
       "Cálculo I",
@@ -416,6 +1306,42 @@
     },
     "archivo": "ejercicios/e4b6c.html",
     "enunciado": "Demuestre que para $a, b, x, y$ reales positivos cualesquiera: $$(ab + xy)(ax + by) \\geq 4abxy.$$"
+  },
+  {
+    "id": "e8d4f",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "34"
+    ],
+    "tema": [
+      "números reales",
+      "inecuaciones",
+      "problemas de aplicación",
+      "modelado algebraico",
+      "optimización elemental"
+    ],
+    "dificultad": [
+      "básico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "problemas inecuaciones aplicación",
+      "modelado algebraico inecuaciones",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/e8d4f.html",
+    "enunciado": "Resuelva los siguientes problemas: a) La suma de tres números pares consecutivos es inferior a 48 pero superior a 36. ¿Cuál es el mayor de los tres números? b) Un padre decide ir a un concierto con su"
   },
   {
     "id": "e9b3d",
@@ -884,6 +1810,329 @@
     "enunciado": "Resuelva: a) $|4x+3| = 7$. &nbsp;&nbsp; b) $|4x+5| = 2x+3$. &nbsp;&nbsp; c) $|x^2-4| = -2x+4$. &nbsp;&nbsp; d) $|3x-4| = -4$."
   },
   {
+    "id": "r5p9s",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "21"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "desigualdad triangular",
+      "demostración por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "desigualdad valor absoluto tres términos",
+      "desigualdad triangular demostración",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/r5p9s.html",
+    "enunciado": "Si $a > b > c$, demuestre que $$|x-a| + |x-b| + |x-c| \\geq a - c.$$"
+  },
+  {
+    "id": "s7q1t",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "22"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "desigualdad triangular",
+      "cota inferior",
+      "mínimo de función"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "mínimo suma valores absolutos",
+      "cota inferior valor absoluto",
+      "desigualdad triangular aplicación",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/s7q1t.html",
+    "enunciado": "Encuentre un número $m > 0$ con la propiedad de que para todo $x \\in \\mathbb{R}$: a) $|x-5| + |x-1| \\geq m$. b) $|2x-2| + |x-4| + |x-1| \\geq m$. c) $|x^2-x^3| + |x-x^3-1| \\geq m$."
+  },
+  {
+    "id": "t4r2u",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "23"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "inecuaciones con valor absoluto",
+      "prueba por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuaciones valor absoluto",
+      "resolver módulo desigualdad",
+      "casos valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/t4r2u.html",
+    "enunciado": "Resuelva: a) $x^2 - 2|x| - 3 \\geq 0$. b) $|2x+1| \\geq 2+x$. c) $|x^2-4| d) $3 + |x^2+x|"
+  },
+  {
+    "id": "u6s3v",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "24"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "inecuaciones con cocientes",
+      "prueba por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuaciones valor absoluto cociente",
+      "módulo fracción desigualdad",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/u6s3v.html",
+    "enunciado": "Resuelva: a) $\\left|\\dfrac{x+2}{2x-3}\\right| \\dfrac{3}{x-4}$. &nbsp;&nbsp; d) $\\left|\\dfrac{x}{1+x}\\right| \\geq \\dfrac{1}{x}$."
+  },
+  {
+    "id": "v2t5w",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "25"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "valor absoluto anidado",
+      "inecuaciones",
+      "prueba por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "valor absoluto anidado",
+      "inecuaciones módulo dentro de módulo",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/v2t5w.html",
+    "enunciado": "Resuelva: a) $\\big||x-1|-5\\big| b) $\\big|||x|-3\\big|-2\\big| c) $\\left|\\dfrac{1}{x}-1\\right|"
+  },
+  {
+    "id": "w9u6x",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "26"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "desigualdad triangular",
+      "demostración de equivalencia",
+      "punto medio"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "suma valores absolutos equivalencia intervalo",
+      "distancia punto medio valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/w9u6x.html",
+    "enunciado": "Suponga que $|a-b|"
+  },
+  {
+    "id": "x4v8y",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "27"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "suma de valores absolutos",
+      "punto medio",
+      "intervalos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "suma valores absolutos intervalo",
+      "punto medio valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/x4v8y.html",
+    "enunciado": "Aplicando el ejercicio anterior, resuelva: a) $|x|+|x-1| b) $|x-2|+|x+2| \\leq 6$. c) $|x|+|x+1| > 3$. d) $|x-1|+|x-3| \\geq 4$."
+  },
+  {
+    "id": "y1w4z",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "28"
+    ],
+    "tema": [
+      "números reales",
+      "inecuaciones con raíces",
+      "dominio de funciones",
+      "elevar al cuadrado"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuaciones con raíz cuadrada",
+      "elevar al cuadrado desigualdad",
+      "dominio raíz cuadrada",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/y1w4z.html",
+    "enunciado": "Resuelva: a) $\\sqrt{x-2}"
+  },
+  {
+    "id": "z3x7a",
+    "materia": [
+      "CALCULO I"
+    ],
+    "origen": [
+      "Práctica 1"
+    ],
+    "ejercicio_nro": [
+      "29"
+    ],
+    "tema": [
+      "números reales",
+      "valor absoluto",
+      "acotamiento",
+      "implicaciones",
+      "demostración por casos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "demostración acotamiento valor absoluto",
+      "implicaciones valor absoluto",
+      "cálculo 1 UMSA"
+    ],
+    "fecha": "2026-03-06",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/z3x7a.html",
+    "enunciado": "Demuestre que: a) Si $|x+2| 0$, entonces $|x-5| b) Si $|x-1| c) Si $|x-4|"
+  },
+  {
     "id": "cb3f2",
     "materia": [
       "Programación Orientada a Objetos",
@@ -976,7 +2225,7 @@
       "nombre": "Claude",
       "modelo": "claude-sonnet-4-6"
     },
-    "archivo": "ejercicios/b7eda.html",
+    "archivo": "ejercicios/b7e2a.html",
     "enunciado": "Resolver la inecuación: $\\left|\\dfrac{x-1}{x-3}\\right| \\leq \\left|\\dfrac{x}{x+2}\\right|$"
   },
   {

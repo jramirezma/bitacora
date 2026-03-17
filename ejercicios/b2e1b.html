@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2e1b</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "b2e1b",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "1b",
+      tema: [
+        "dominio de una función",
+        "dominio",
+        "valor absoluto",
+        "cociente de raíces",
+        "función real"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "dominio cociente raíces cuadradas",
+        "valor absoluto dominio",
+        "Cálculo I UMSA",
+        "MAT-132",
+        "INF-115"
+      ],
+      fecha: "2026-03-10",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Calcule el dominio de $g(x) = \dfrac{\sqrt{10|x| - x^2 - 21}}{\sqrt{20 + x - x^2}}$.</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Tenemos una fracción donde arriba y abajo hay raíces cuadradas. El problema es que
+      las raíces cuadradas no aceptan números negativos adentro, y además no podemos
+      dividir por cero. Entonces hay dos reglas que cumplir al mismo tiempo:
+      lo de adentro de arriba tiene que ser mayor o igual a cero, y lo de adentro
+      de abajo tiene que ser estrictamente mayor que cero.
+    </p>
+    <div class="nota">
+      Numerador: lo de adentro $\geq 0$. Denominador: lo de adentro $> 0$ (el cero no vale porque dividiríamos por cero). El dominio es donde se cumplen las dos a la vez.
+    </div>
+    <p>
+      Lo complicado es el numerador: tiene $|x|$ adentro, que se comporta distinto
+      según si $x$ es positivo o negativo. Hay que separar en dos casos y resolver
+      cada uno por separado, como si fueran dos problemas distintos. Al final se juntan
+      los resultados.
+    </p>
+    <p class="chiste">El denominador es como ese portero de boliche que no deja entrar ni al cero. El numerador en cambio es más relajado: el cero puede pasar.</p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      <strong>C1.</strong> Radicando del numerador $\geq 0$:
+      $$10|x| - x^2 - 21 \geq 0$$
+    </div>
+    <div class="paso-just">
+      Lo de adentro de la raíz de arriba no puede ser negativo.
+    </div>
+
+    <div class="paso-dev">
+      <em>Caso $x \geq 0$:</em> $|x| = x$
+      $$10x - x^2 - 21 \geq 0$$
+    </div>
+    <div class="paso-just">
+      Cuando $x$ es positivo, $|x|$ es simplemente $x$.
+    </div>
+
+    <div class="paso-dev">
+      $$x^2 - 10x + 21 \leq 0$$
+    </div>
+    <div class="paso-just">
+      Multiplico por $-1$, invierto la desigualdad.
+    </div>
+
+    <div class="paso-dev">
+      $$(x-3)(x-7) \leq 0$$
+    </div>
+    <div class="paso-just">
+      Factorizo: raíces $x = 3$ y $x = 7$.
+    </div>
+
+    <div class="paso-dev">
+      $$3 \leq x \leq 7$$
+    </div>
+    <div class="paso-just">
+      El producto es $\leq 0$ entre las dos raíces. Este rango ya cumple $x \geq 0$.
+    </div>
+
+    <div class="paso-dev">
+      <em>Caso $x < 0$:</em> $|x| = -x$
+      $$-10x - x^2 - 21 \geq 0$$
+    </div>
+    <div class="paso-just">
+      Cuando $x$ es negativo, $|x| = -x$ (que resulta positivo). Reemplazo.
+    </div>
+
+    <div class="paso-dev">
+      $$x^2 + 10x + 21 \leq 0$$
+    </div>
+    <div class="paso-just">
+      Multiplico por $-1$, invierto la desigualdad.
+    </div>
+
+    <div class="paso-dev">
+      $$(x+3)(x+7) \leq 0$$
+    </div>
+    <div class="paso-just">
+      Factorizo: raíces $x = -3$ y $x = -7$.
+    </div>
+
+    <div class="paso-dev">
+      $$-7 \leq x \leq -3$$
+    </div>
+    <div class="paso-just">
+      El producto es $\leq 0$ entre las dos raíces. Este rango ya cumple $x < 0$.
+    </div>
+
+    <div class="paso-dev">
+      $$C_1 = [-7,-3] \cup [3,7]$$
+    </div>
+    <div class="paso-just">
+      Uno los dos casos: los $x$ que sobreviven del lado positivo y del negativo.
+    </div>
+
+    <div class="paso-dev">
+      <strong>C2.</strong> Radicando del denominador $> 0$:
+      $$20 + x - x^2 > 0$$
+    </div>
+    <div class="paso-just">
+      Lo de adentro de la raíz de abajo tiene que ser positivo estricto. El cero no vale.
+    </div>
+
+    <div class="paso-dev">
+      $$x^2 - x - 20 < 0$$
+    </div>
+    <div class="paso-just">
+      Multiplico por $-1$, invierto la desigualdad.
+    </div>
+
+    <div class="paso-dev">
+      $$(x-5)(x+4) < 0$$
+    </div>
+    <div class="paso-just">
+      Factorizo: raíces $x = 5$ y $x = -4$.
+    </div>
+
+    <div class="paso-dev">
+      $$C_2 = (-4,\ 5)$$
+    </div>
+    <div class="paso-just">
+      El producto es $< 0$ estricto entre las raíces. Los extremos quedan afuera.
+    </div>
+
+    <div class="paso-dev">
+      $\text{Dom}(g) = C_1 \cap C_2$
+      $$= \bigl([-7,-3]\cup[3,7]\bigr) \cap (-4,5)$$
+    </div>
+    <div class="paso-just">
+      Las dos condiciones tienen que cumplirse al mismo tiempo.
+    </div>
+
+    <div class="paso-dev">
+      $[-7,-3] \cap (-4,5) = (-4,-3]$
+      <br>
+      $[3,7] \cap (-4,5) = [3,5)$
+    </div>
+    <div class="paso-just">
+      Recorto cada trozo de $C_1$ con $(-4,5)$. Los extremos $-4$ y $5$ quedan afuera porque ahí el denominador se anula.
+    </div>
+
+    <div class="paso-dev">
+      $$\text{Dom}(g) = (-4,-3] \cup [3,5)$$
+    </div>
+    <div class="paso-just">
+      Uno los dos trozos que sobrevivieron.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El dominio de $g$ es
+    $$\boxed{\text{Dom}(g) = (-4,\,-3] \cup [3,\,5)}$$
+  </div>
+
+  <h2>¿Y esto para qué me sirve?</h2>
+  <div class="bloque">
+    <p>
+      Calcular el dominio es exactamente lo mismo que decidir qué valores puede recibir
+      una función en un programa sin que todo explote. Cuando un programador escribe
+      una función que toma un número y hace operaciones con él, en algún lugar del código
+      tiene que responder la pregunta: ¿para qué valores de entrada esto funciona bien?
+      Eso es el dominio.
+    </p>
+    <p>
+      En este ejercicio hay dos restricciones que deben cumplirse al mismo tiempo.
+      En programación, eso se llama validación de entrada con múltiples condiciones:
+      antes de ejecutar la operación, el programa verifica cada restricción y solo
+      procede si todas se cumplen. Si alguna falla, la función no corre, igual que
+      aquí: si $x$ no está en el dominio, $g(x)$ simplemente no existe.
+    </p>
+    <p>
+      La separación en casos según el signo de $x$ que hicimos para resolver $|x|$
+      también aparece todo el tiempo en programación. Muchos algoritmos tienen que
+      tratar de forma distinta los números positivos y negativos, o los casos borde
+      como el cero. Esa lógica de "si $x \geq 0$ hago esto, si no hago aquello"
+      es directamente una estructura condicional, el <em>if-else</em> más básico de
+      cualquier lenguaje.
+    </p>
+  </div>
+
+</body>
+</html>

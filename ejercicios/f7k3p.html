@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f7k3p</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* Diagrama de clases */
+    .class-box  { display: inline-block; border: 2px solid #111; min-width: 340px; margin: 12px 0; font-family: monospace; vertical-align: top; }
+    .class-name { text-align: center; font-weight: bold; padding: 8px; border-bottom: 2px solid #111; font-size: 14px; }
+    .section    { padding: 8px 14px; font-size: 13px; line-height: 1.9; }
+    .section + .section { border-top: 1px solid #111; }
+    .clases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 12px 0; }
+
+    /* Pseudocódigo con columna de comentarios */
+    .pseudo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 0;
+      border-left: 3px solid #111;
+      margin: 0 0 20px 0;
+    }
+    .pseudo-wrap pre {
+      margin: 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+      border: none;
+      overflow-x: auto;
+    }
+    .pseudo-comments {
+      border-left: 1px dashed #aaa;
+      padding: 14px 14px;
+      font-family: sans-serif;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+    }
+    .pseudo-comments span { display: block; }
+
+    .pseudo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 4px 0;
+    }
+    .block-title { font-weight: bold; font-size: 13px; font-family: monospace; }
+    .copy-btn {
+      font-family: monospace;
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid #111;
+      background: #fff;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #111; color: #fff; }
+
+    hr { border: none; border-top: 1px solid #111; margin: 28px 0; }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "f7k3p",
+      materia: "Programación II",
+      origen: "CL",
+      ejercicio_nro: null,
+      paradigma: ["POO"],
+      tema: ["Clases y objetos", "Atributos y métodos", "Instanciación"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["clases POO Bolivia", "instanciar objetos pseudocodigo", "comparar atributos metodo"],
+      fecha: "2026-03-11",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>
+    a) Identificar 5 clases donde cada clase debe tener 5 atributos significativos.<br>
+    b) Implementar dos clases definidas en el inciso a.<br>
+    &nbsp;&nbsp;&nbsp;b.1) Instanciar dos objetos para cada clase.<br>
+    &nbsp;&nbsp;&nbsp;b.2) Para los objetos definidos, comparar dos atributos de cada clase a través de un método.<br>
+    <strong>Contexto:</strong> Carnavales de Bolivia.
+  </p>
+</div>
+
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>
+    El ejercicio tiene dos partes. Primero hay que pensar: ¿qué "cosas" existen en los carnavales de Bolivia
+    que se puedan modelar como objetos? Una comparsa, un disfraz, un músico, una reina, una entrada
+    folklórica — todas son candidatas. Cada una tiene características propias: eso son los atributos.
+  </p>
+  <div class="nota">
+    Identificar clases es como hacerle una ficha a cada cosa del mundo real que queremos representar en el programa.
+    Los atributos son los campos de esa ficha.
+  </div>
+  <p>
+    En la segunda parte tomamos dos de esas clases, las implementamos en pseudocódigo, creamos dos objetos
+    de cada una y escribimos un método que compare dos de sus atributos. Comparar puede significar
+    decir cuál es mayor, cuál tiene más, o si son iguales — depende del atributo.
+  </p>
+  <p class="chiste">Modelar los carnavales de Oruro en una clase es casi tan difícil como llegar a un asiento en la tribuna.</p>
+</div>
+
+
+<h2>Inciso a) — Las 5 clases</h2>
+<div class="bloque">
+  <p>Cinco entidades del mundo de los carnavales bolivianos, cada una con cinco atributos significativos.</p>
+</div>
+
+<div class="clases-grid">
+
+  <div class="class-box">
+    <div class="class-name">Comparsa</div>
+    <div class="section">
+      - String nombre<br>
+      - String danza<br>
+      - int cantidadIntegrantes<br>
+      - String ciudadOrigen<br>
+      - int añoFundacion
+    </div>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">Musico</div>
+    <div class="section">
+      - String nombre<br>
+      - String instrumento<br>
+      - int añosExperiencia<br>
+      - String comparsa<br>
+      - boolean esDirector
+    </div>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">Disfraz</div>
+    <div class="section">
+      - String personaje<br>
+      - String materialPrincipal<br>
+      - float pesоKg<br>
+      - float precioBolivares<br>
+      - String artesano
+    </div>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">ReinaDelCarnaval</div>
+    <div class="section">
+      - String nombre<br>
+      - int edad<br>
+      - String ciudad<br>
+      - int añoCoronacion<br>
+      - String comparsa
+    </div>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">EntradaFolklorica</div>
+    <div class="section">
+      - String nombre<br>
+      - String ciudad<br>
+      - int cantidadComparsas<br>
+      - int duracionHoras<br>
+      - String declaratoria
+    </div>
+  </div>
+
+</div>
+
+
+<h2>Inciso b) — Implementación</h2>
+<div class="bloque">
+  <p>
+    Se implementan las clases <strong>Comparsa</strong> y <strong>Musico</strong>.
+    Para cada una se definen dos objetos y un método que compara dos de sus atributos.
+    En <strong>Comparsa</strong> se compara la cantidad de integrantes.
+    En <strong>Musico</strong> se comparan los años de experiencia.
+  </p>
+</div>
+
+<hr>
+
+<!-- CLASE Comparsa -->
+<div class="pseudo-header">
+  <span class="block-title">CLASE Comparsa</span>
+  <button class="copy-btn" onclick="copiar('pseudo-comparsa', this)">Copiar</button>
+</div>
+<div class="pseudo-wrap">
+  <pre id="pseudo-comparsa">// Constructor
+Comparsa(String nombre, String danza,
+         int cantidadIntegrantes,
+         String ciudadOrigen, int añoFundacion) {
+    self.nombre               = nombre
+    self.danza                = danza
+    self.cantidadIntegrantes  = cantidadIntegrantes
+    self.ciudadOrigen         = ciudadOrigen
+    self.añoFundacion         = añoFundacion
+}
+
+// b.2) Compara cantidad de integrantes con otra comparsa
+String compararIntegrantes(Comparsa otra) {
+    SI self.cantidadIntegrantes > otra.cantidadIntegrantes
+        retornar self.nombre + " tiene más integrantes"
+    SINO SI self.cantidadIntegrantes < otra.cantidadIntegrantes
+        retornar otra.nombre + " tiene más integrantes"
+    SINO
+        retornar "Ambas comparsas tienen la misma cantidad"
+}</pre>
+  <div class="pseudo-comments">
+    <span>&nbsp;</span>
+    <span>Parámetros en varias líneas por legibilidad.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Guarda el nombre de la comparsa.</span>
+    <span>Tipo de danza que representa.</span>
+    <span>Cuántos bailarines y músicos la forman.</span>
+    <span>De qué ciudad es originaria.</span>
+    <span>Cuándo fue fundada.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Recibe otra Comparsa para comparar.</span>
+    <span>Si esta tiene más, ella gana.</span>
+    <span>&nbsp;</span>
+    <span>Si la otra tiene más, la otra gana.</span>
+    <span>&nbsp;</span>
+    <span>Si son iguales, empate.</span>
+    <span>&nbsp;</span>
+  </div>
+</div>
+
+<!-- CLASE Musico -->
+<div class="pseudo-header">
+  <span class="block-title">CLASE Musico</span>
+  <button class="copy-btn" onclick="copiar('pseudo-musico', this)">Copiar</button>
+</div>
+<div class="pseudo-wrap">
+  <pre id="pseudo-musico">// Constructor
+Musico(String nombre, String instrumento,
+       int añosExperiencia,
+       String comparsa, boolean esDirector) {
+    self.nombre           = nombre
+    self.instrumento      = instrumento
+    self.añosExperiencia  = añosExperiencia
+    self.comparsa         = comparsa
+    self.esDirector       = esDirector
+}
+
+// b.2) Compara años de experiencia con otro músico
+String compararExperiencia(Musico otro) {
+    SI self.añosExperiencia > otro.añosExperiencia
+        retornar self.nombre + " tiene más experiencia"
+    SINO SI self.añosExperiencia < otro.añosExperiencia
+        retornar otro.nombre + " tiene más experiencia"
+    SINO
+        retornar "Ambos músicos tienen la misma experiencia"
+}</pre>
+  <div class="pseudo-comments">
+    <span>&nbsp;</span>
+    <span>Parámetros en varias líneas por legibilidad.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Nombre del músico.</span>
+    <span>Instrumento que toca.</span>
+    <span>Cuántos años lleva tocando.</span>
+    <span>A qué comparsa pertenece.</span>
+    <span>true si dirige la banda.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Recibe otro Musico para comparar.</span>
+    <span>Si este tiene más años, él gana.</span>
+    <span>&nbsp;</span>
+    <span>Si el otro tiene más, el otro gana.</span>
+    <span>&nbsp;</span>
+    <span>Si son iguales, empate.</span>
+    <span>&nbsp;</span>
+  </div>
+</div>
+
+<!-- PROGRAMA PRINCIPAL -->
+<div class="pseudo-header">
+  <span class="block-title">PROGRAMA PRINCIPAL</span>
+  <button class="copy-btn" onclick="copiar('pseudo-main', this)">Copiar</button>
+</div>
+<div class="pseudo-wrap">
+  <pre id="pseudo-main">// b.1) Instanciar dos objetos de Comparsa
+Comparsa c1 = nuevo Comparsa(
+    "Los Caporales del Sur", "Caporales",
+    120, "Oruro", 1998)
+Comparsa c2 = nuevo Comparsa(
+    "Morenada Central", "Morenada",
+    95, "La Paz", 2003)
+
+// b.2) Comparar atributo: cantidadIntegrantes
+IMPRIMIR c1.compararIntegrantes(c2)
+
+// b.1) Instanciar dos objetos de Musico
+Musico m1 = nuevo Musico(
+    "Don Rufino", "Bombo",
+    15, "Los Caporales del Sur", verdadero)
+Musico m2 = nuevo Musico(
+    "Jhonny Quispe", "Trompeta",
+    8, "Morenada Central", falso)
+
+// b.2) Comparar atributo: añosExperiencia
+IMPRIMIR m1.compararExperiencia(m2)</pre>
+  <div class="pseudo-comments">
+    <span>&nbsp;</span>
+    <span>Comparsa con 120 integrantes.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Comparsa con 95 integrantes.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Resultado: "Los Caporales del Sur tiene más integrantes"</span>
+    <span>&nbsp;</span>
+    <span>Director de banda, 15 años.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Músico con 8 años, no es director.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Resultado: "Don Rufino tiene más experiencia"</span>
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> Se identificaron 5 clases del contexto carnavalero boliviano: <strong>Comparsa</strong>, <strong>Musico</strong>, <strong>Disfraz</strong>, <strong>ReinaDelCarnaval</strong> y <strong>EntradaFolklorica</strong>, cada una con 5 atributos significativos. Se implementaron <strong>Comparsa</strong> y <strong>Musico</strong>: se instanciaron dos objetos de cada clase y se compararon los atributos <code>cantidadIntegrantes</code> y <code>añosExperiencia</code> respectivamente a través del método <code>compararIntegrantes()</code> y <code>compararExperiencia()</code>.
+</div>
+
+<h2>¿Y esto para qué me sirve?</h2>
+<div class="bloque">
+  <p>
+    Identificar clases a partir del mundo real es la habilidad central del diseño orientado a objetos.
+    En aplicaciones reales — una app de gestión de eventos, un sistema de acreditación para un festival,
+    una plataforma de venta de entradas — el primer paso siempre es exactamente este: ¿qué entidades
+    existen en este dominio y qué datos las describen?
+  </p>
+  <p>
+    El método de comparación que se implementó acá es la base de funcionalidades como ordenar listas,
+    filtrar resultados o determinar rankings. Cuando una app muestra "las 10 comparsas más grandes del carnaval",
+    por atrás está corriendo exactamente esta lógica: comparar el atributo de un objeto contra el de otro.
+  </p>
+</div>
+
+<script>
+  function copiar(id, btn) {
+    const texto = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(texto).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = "¡Copiado!";
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>

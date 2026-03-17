@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2e1f</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "b2e1f",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "1f",
+      tema: ["dominio de una función", "dominio", "logaritmo de un cociente"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: ["dominio logaritmo cociente", "dominio función racional logaritmo", "calcular dominio cálculo 1"],
+      fecha: "2026-03-15",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Calcule el dominio de:
+  $$h(x) = \ln\frac{2-x}{x^2-4x-21}$$</p>
+</div>
+
+<h2>Antes de calcular</h2>
+<div class="bloque">
+  <p>Tenemos un logaritmo cuyo argumento es una fracción. Para que $h(x)$ exista hacen falta dos cosas al mismo tiempo: que la fracción esté definida, y que su valor sea positivo.</p>
+
+  <p>La fracción no está definida cuando el denominador vale cero, así que primero hay que encontrar para qué valores de $x$ eso ocurre y excluirlos. Después hay que pedir que el cociente sea estrictamente mayor que cero, porque el logaritmo no acepta cero ni negativos.</p>
+
+  <div class="nota">
+    Un cociente es positivo cuando numerador y denominador tienen el mismo signo: los dos positivos, o los dos negativos. Esa es la clave para resolver la condición principal.
+  </div>
+
+  <p>La estrategia es: factorizar el denominador, identificar los puntos críticos donde alguna de las dos partes se anula, y luego analizar el signo del cociente en cada intervalo que esos puntos generan.</p>
+
+  <p class="chiste">El logaritmo es exigente: no acepta cero, no acepta negativos, y si el denominador es cero directamente se va. Hay que encontrar el lugar exacto donde está dispuesto a existir.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<p class="subtitulo-seccion">Paso previo: factorizar el denominador</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x^2 - 4x - 21$
+  </div>
+  <div class="paso-just">
+    Buscamos dos números que multiplicados den $-21$ y sumados den $-4$.
+  </div>
+
+  <div class="paso-dev">
+    $(x-7)(x+3)$
+  </div>
+  <div class="paso-just">
+    $(-7) \cdot 3 = -21$ y $(-7) + 3 = -4$. Factorización correcta.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Condición: el argumento del logaritmo debe ser positivo</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $\dfrac{2-x}{(x-7)(x+3)} > 0$
+  </div>
+  <div class="paso-just">
+    El logaritmo existe $\iff$ su argumento es estrictamente positivo.
+  </div>
+
+  <div class="paso-dev">
+    Puntos críticos: $x = -3,\quad x = 2,\quad x = 7$
+  </div>
+  <div class="paso-just">
+    Son los valores donde numerador o denominador se anulan. Dividen la recta en intervalos donde el signo del cociente es constante.
+  </div>
+
+  <div class="paso-dev">
+    \[
+    \begin{array}{c|cccc}
+      & (-\infty,-3) & (-3,2) & (2,7) & (7,+\infty) \\\hline
+      2-x       & + & + & - & - \\
+      x-7       & - & - & - & + \\
+      x+3       & - & + & + & + \\\hline
+      \text{cociente} & + & - & + & -
+    \end{array}
+    \]
+  </div>
+  <div class="paso-just">
+    Se evalúa el signo de cada factor en un punto representativo de cada intervalo. El signo del cociente es el producto de los tres signos.
+  </div>
+
+  <div class="paso-dev">
+    $x \in (-\infty,\,-3) \cup (2,\,7)$
+  </div>
+  <div class="paso-just">
+    Son los intervalos donde el cociente es positivo. Se excluyen $x = -3$ y $x = 7$ porque anulan el denominador, y $x = 2$ porque anula el numerador (el logaritmo no acepta cero).
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> El dominio de $h$ es:
+  $\boxed{\text{Dom}(h) = (-\infty,\,-3) \cup (2,\,7)}$
+  Es decir, todos los $x$ menores que $-3$, y todos los $x$ entre $2$ y $7$, con ambos extremos excluidos.
+</div>
+
+<h2>¿Ya usé esto sin saberlo?</h2>
+<div class="bloque">
+  <p>Cualquier programador que haya trabajado con permisos de acceso ya aplicó esta lógica. Un usuario puede ver un recurso solo si se cumplen ciertas condiciones al mismo tiempo: que tenga sesión activa, que su rol lo permita, y que el recurso exista. Si alguna de esas condiciones falla, el acceso no existe, igual que $h(x)$ no existe fuera de su dominio. Lo que resolvimos acá, analizar intervalo por intervalo cuándo una expresión tiene el signo correcto, es exactamente lo que hace un sistema de permisos cuando evalúa si una combinación de condiciones es válida o no. El resultado no es un número: es un conjunto de situaciones donde todo encaja.</p>
+</div>
+
+</body>
+</html>

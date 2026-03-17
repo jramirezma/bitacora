@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>m5q9r</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "m5q9r",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "13",
+      tema: ["composición iterada de funciones", "función lineal", "suma geométrica"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: ["composición n veces función lineal", "f compuesta n veces", "suma geométrica cálculo 1"],
+      fecha: "2026-03-17",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Sea $f(x) = 2x + 1$. Calcule $(\underbrace{f \circ \cdots \circ f}_{n \text{ veces}})(x)$.</p>
+</div>
+
+<h2>Entendamos el problema</h2>
+<div class="bloque">
+  <p>Nos piden aplicar $f$ exactamente $n$ veces seguidas y encontrar una fórmula general. Para descubrirla, la mejor estrategia es calcular los primeros casos a mano, observar el patrón que aparece, y luego escribir la fórmula general.</p>
+
+  <div class="nota">
+    Cada vez que se aplica $f$, el coeficiente de $x$ se duplica y se suma 1 al término independiente acumulado. El patrón en el término independiente es una suma de potencias de 2, que tiene una fórmula cerrada conocida.
+  </div>
+
+  <p>Una suma de la forma $1 + 2 + 4 + \cdots + 2^{n-1}$ se llama suma geométrica y vale $2^n - 1$. Esa es la clave para escribir la fórmula compacta.</p>
+
+  <p class="chiste">La función se aplica a sí misma una y otra vez. Cada pasada duplica todo y agrega 1. Al final hay que sumar todos esos "1" que se fueron acumulando.</p>
+</div>
+
+<h2>Vamos por partes</h2>
+
+<p class="subtitulo-seccion">Paso 1: calcular los primeros casos</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $f^1(x) = 2x + 1$
+  </div>
+  <div class="paso-just">
+    Una sola aplicación: la función original.
+  </div>
+
+  <div class="paso-dev">
+    $f^2(x) = 2(2x+1)+1 = 4x + 3$
+  </div>
+  <div class="paso-just">
+    Se aplica $f$ al resultado anterior.
+  </div>
+
+  <div class="paso-dev">
+    $f^3(x) = 2(4x+3)+1 = 8x + 7$
+  </div>
+  <div class="paso-just">
+    Una aplicación más.
+  </div>
+
+  <div class="paso-dev">
+    $f^4(x) = 2(8x+7)+1 = 16x + 15$
+  </div>
+  <div class="paso-just">
+    Una aplicación más.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 2: observar el patrón</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    \[
+    \begin{array}{c|cc}
+      n & \text{coef. de } x & \text{término independiente} \\\hline
+      1 & 2 & 1 \\
+      2 & 4 & 3 \\
+      3 & 8 & 7 \\
+      4 & 16 & 15
+    \end{array}
+    \]
+  </div>
+  <div class="paso-just">
+    El coeficiente de $x$ es siempre $2^n$. El término independiente es siempre $2^n - 1$.
+  </div>
+
+  <div class="paso-dev">
+    $f^n(x) = 2^n x + (2^n - 1)$
+  </div>
+  <div class="paso-just">
+    Fórmula general deducida del patrón.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 3: justificar el término independiente</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $1 + 2 + 4 + \cdots + 2^{n-1}$
+  </div>
+  <div class="paso-just">
+    Cada aplicación de $f$ aporta un $1$ que luego se duplica con cada aplicación siguiente. El último $1$ agregado no se duplica más.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{2^n - 1}{2 - 1} = 2^n - 1$
+  </div>
+  <div class="paso-just">
+    Fórmula de la suma geométrica: $\sum_{k=0}^{n-1} r^k = \dfrac{r^n - 1}{r - 1}$ con $r = 2$.
+  </div>
+</div>
+
+<h2>¿Tiene sentido lo que obtuvimos?</h2>
+<div class="bloque">
+  <p>Verificamos con $n = 3$: la fórmula da $f^3(x) = 2^3 x + (2^3 - 1) = 8x + 7$.</p>
+  <p>Calculamos directamente: $f(f(f(x))) = f(f(2x+1)) = f(4x+3) = 8x+7$ ✓</p>
+  <p>Verificamos con $n = 1$: $f^1(x) = 2^1 x + (2^1 - 1) = 2x + 1$ ✓</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> La composición de $f$ aplicada $n$ veces es:
+  $$\boxed{f^n(x) = 2^n x + (2^n - 1)}$$
+  O equivalentemente: $f^n(x) = 2^n(x+1) - 1$.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>Este ejercicio describe exactamente cómo crece una variable en un bucle que en cada iteración la duplica y le suma 1. En programación, ese tipo de recurrencia aparece todo el tiempo: en algoritmos que duplican el tamaño del problema en cada paso, en estructuras de datos como los árboles binarios donde cada nivel tiene el doble de nodos que el anterior, y en el análisis de complejidad computacional donde entender cuánto crece una expresión tras $n$ pasos es la pregunta central. La fórmula $2^n - 1$, que acá apareció como el término independiente, es la misma que describe la cantidad de nodos en un árbol binario completo de profundidad $n$, y la cantidad mínima de movimientos para resolver las Torres de Hanói con $n$ discos.</p>
+</div>
+
+</body>
+</html>

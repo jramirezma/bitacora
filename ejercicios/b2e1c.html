@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2e1c</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "b2e1c",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "1c",
+      tema: [
+        "dominio de una función",
+        "dominio",
+        "radicales anidados",
+        "valor absoluto",
+        "función real"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "dominio raíz anidada",
+        "valor absoluto dominio",
+        "Cálculo I UMSA",
+        "MAT-132",
+        "INF-115"
+      ],
+      fecha: "2026-03-13",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Calcule el dominio de $h(x) = \sqrt{\sqrt{3 - |x-1|} - \sqrt{x}}$.</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>
+      Hay tres raíces cuadradas: dos interiores ($\sqrt{3-|x-1|}$ y $\sqrt{x}$) y una exterior
+      que las envuelve a ambas. La estrategia natural es trabajar de adentro hacia afuera:
+      primero garantizar que existan las raíces interiores, y luego exigir que el radicando
+      de la raíz exterior sea $\geq 0$.
+    </p>
+    <div class="nota">
+      Las raíces interiores imponen condiciones independientes sobre $x$.
+      La raíz exterior impone una condición que las relaciona: exige que
+      $\sqrt{3-|x-1|} \geq \sqrt{x}$, lo que equivale a comparar sus radicandos.
+    </div>
+    <p>
+      La desigualdad de la raíz exterior se resuelve por casos según el signo de $x - 1$,
+      porque ahí aparece el valor absoluto. Una vez resueltos los casos, el dominio es
+      la intersección de todas las condiciones.
+    </p>
+    <p class="chiste">Tres raíces en una sola función. El autor del ejercicio claramente disfrutó escribiéndolo.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <!-- Condición 1 -->
+    <div class="paso-dev">
+      <strong>C1:</strong> $x \geq 0$
+      $$C_1 = [0,+\infty)$$
+    </div>
+    <div class="paso-just">
+      $\sqrt{x}$ exige radicando $\geq 0$.
+    </div>
+
+    <!-- Condición 2 -->
+    <div class="paso-dev">
+      <strong>C2:</strong> $3 - |x-1| \geq 0$
+      $$|x-1| \leq 3$$
+      $$-3 \leq x-1 \leq 3$$
+      $$C_2 = [-2,\ 4]$$
+    </div>
+    <div class="paso-just">
+      $\sqrt{3-|x-1|}$ exige radicando $\geq 0$. La desigualdad $|x-1| \leq 3$ da un intervalo centrado en $x=1$.
+    </div>
+
+    <!-- Condición 3: planteo -->
+    <div class="paso-dev">
+      <strong>C3:</strong> $\sqrt{3-|x-1|} - \sqrt{x} \geq 0$
+      $$\sqrt{3-|x-1|} \geq \sqrt{x}$$
+      $$3 - |x-1| \geq x \qquad (x \geq 0)$$
+    </div>
+    <div class="paso-just">
+      La raíz exterior exige radicando $\geq 0$. Como ambos lados son $\geq 0$, se eleva al cuadrado sin cambiar el sentido.
+    </div>
+
+    <!-- Condición 3: caso x >= 1 -->
+    <div class="paso-dev">
+      <em>Caso $x \geq 1$: $|x-1| = x-1$</em>
+      $$3-(x-1) \geq x$$
+      $$4 \geq 2x$$
+      $$x \leq 2$$
+      $$\Rightarrow 1 \leq x \leq 2$$
+    </div>
+    <div class="paso-just">
+      En este caso el valor absoluto se abre con signo positivo. La desigualdad resulta lineal y se despeja directamente.
+    </div>
+
+    <!-- Condición 3: caso 0 <= x < 1 -->
+    <div class="paso-dev">
+      <em>Caso $0 \leq x < 1$: $|x-1| = 1-x$</em>
+      $$3-(1-x) \geq x$$
+      $$2+x \geq x \quad \checkmark \ \text{siempre}$$
+      $$\Rightarrow 0 \leq x < 1$$
+    </div>
+    <div class="paso-just">
+      Las $x$ se cancelan: la desigualdad $2 \geq 0$ se cumple para todo $x$ en el rango. Todo el intervalo queda incluido.
+    </div>
+
+    <!-- Condición 3: unión de casos -->
+    <div class="paso-dev">
+      $$C_3 = [0,1) \cup [1,2] = [0,\ 2]$$
+    </div>
+    <div class="paso-just">
+      Los dos casos son complementarios y contiguos; su unión es el intervalo cerrado $[0,2]$.
+    </div>
+
+    <!-- Intersección final -->
+    <div class="paso-dev">
+      $\text{Dom}(h) = C_1 \cap C_2 \cap C_3$
+      $$= [0,+\infty) \cap [-2,4] \cap [0,2]$$
+      $$= [0,\ 2]$$
+    </div>
+    <div class="paso-just">
+      $C_3 = [0,2]$ ya está contenido en $C_1 \cap C_2 = [0,4]$, así que el resultado es simplemente $C_3$.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El dominio de $h$ es
+    $$\boxed{\text{Dom}(h) = [0,\ 2]}$$
+  </div>
+
+  <h2>¿Y esto para qué me sirve?</h2>
+  <div class="bloque">
+    <p>
+      La idea de trabajar de adentro hacia afuera es exactamente lo que hace un compilador
+      o intérprete cuando evalúa una expresión anidada. Antes de calcular el resultado de
+      una operación exterior, el sistema verifica que sus operandos sean válidos. Si alguna
+      condición interna falla —división por cero, raíz de negativo, índice fuera de rango—
+      la evaluación se detiene ahí. El dominio de una función anidada es, en ese sentido,
+      el conjunto de entradas que no provocan ningún error en ninguna capa del cómputo.
+      Determinar ese conjunto con anticipación es exactamente lo que hace la validación de
+      datos antes de ejecutar un proceso: filtrar entradas inválidas antes de que causen
+      problemas más adentro.
+    </p>
+  </div>
+
+</body>
+</html>

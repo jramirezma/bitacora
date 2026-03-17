@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2e1e</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just .titulo {
+      font-family: sans-serif;
+      font-size: .78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "b2e1e",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "1e",
+      tema: [
+        "dominio de una función",
+        "dominio",
+        "logaritmo natural",
+        "raíz cuadrada",
+        "función real"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "dominio logaritmo raíz cuadrada",
+        "dominio cociente funciones",
+        "Cálculo I UMSA",
+        "MAT-132",
+        "INF-115"
+      ],
+      fecha: "2026-03-10",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+
+</head>
+<body>
+
+  <h2>Ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el dominio de $g(x) = \dfrac{\ln(x - x^3)}{\sqrt{x^2 - 4x - 12}}$.</p>
+  </div>
+
+  <h2>Análisis</h2>
+  <div class="bloque">
+    <p>
+      La función es un cociente: el numerador tiene un logaritmo y el denominador una raíz cuadrada.
+      Cada uno impone su restricción: el logaritmo exige argumento estrictamente positivo,
+      y el denominador exige radicando estrictamente positivo (no puede anularse).
+      El dominio es la intersección de ambas condiciones.
+    </p>
+    <div class="nota">
+      Logaritmo → argumento $> 0$. Denominador con raíz → radicando $> 0$.
+      Ambas condiciones son estrictas: ninguna admite el cero.
+    </div>
+    <p>
+      El argumento del logaritmo es $x - x^3 = x(1-x^2) = x(1-x)(1+x)$.
+      Tiene tres raíces ($x = -1, 0, 1$) que dividen la recta en cuatro intervalos;
+      hay que determinar en cuáles el producto es positivo.
+    </p>
+    <p class="chiste">El logaritmo y la raíz del denominador compiten por eliminar puntos del dominio. Al final casi no queda nada.</p>
+  </div>
+
+  <h2>Solución</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      <strong>C1:</strong> $x - x^3 > 0$
+      $$x(1-x)(1+x) > 0$$
+      <br>
+      Raíces: $x = -1,\ 0,\ 1$.
+      <br><br>
+      $(-\infty,-1)$: $(-)(+)(-) = (+) > 0\ \checkmark$<br>
+      $(-1,\ 0)$:\ \ \ $(-)(+)(+) = (-) < 0\ \times$<br>
+      $(0,\ 1)$:\ \ \ \ \ $(+)(+)(+) = (+) > 0\ \checkmark$<br>
+      $(1,+\infty)$:\ \ $(+)(-)(+) = (-) < 0\ \times$
+      <br><br>
+      $$C_1 = (-\infty,-1) \cup (0,1)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Argumento del logaritmo</div>
+      $\ln$ exige argumento estrictamente $> 0$.
+      Se factoriza $x - x^3$ y se analiza el signo del producto en cada intervalo
+      delimitado por sus raíces. Los extremos $-1$, $0$ y $1$ quedan excluidos
+      porque ahí el argumento vale cero y $\ln 0$ no existe.
+    </div>
+
+    <div class="paso-dev">
+      <strong>C2:</strong> $x^2 - 4x - 12 > 0$
+      $$(x-6)(x+2) > 0$$
+      <br>
+      $(-\infty,-2)$: $(-)(-) > 0\ \checkmark$<br>
+      $(-2,\ 6)$:\ \ \ $(-)(+) < 0\ \times$<br>
+      $(6,+\infty)$:\ \ $(+)(+) > 0\ \checkmark$
+      <br><br>
+      $$C_2 = (-\infty,-2) \cup (6,+\infty)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Radicando del denominador</div>
+      El denominador es una raíz cuadrada que no puede ser cero ni negativa,
+      así que su radicando debe ser estrictamente $> 0$.
+      Se factoriza la cuadrática y se analiza el signo.
+    </div>
+
+    <div class="paso-dev">
+      $\text{Dom}(g) = C_1 \cap C_2$
+      $$= \bigl[(-\infty,-1)\cup(0,1)\bigr] \cap \bigl[(-\infty,-2)\cup(6,+\infty)\bigr]$$
+      $$= (-\infty,-2)$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Intersección final</div>
+      El tramo $(0,1)$ no intersecta a $C_2$ en absoluto.
+      De $(-\infty,-1)$ solo sobrevive la parte que también está en $(-\infty,-2)$,
+      que es precisamente $(-\infty,-2)$.
+    </div>
+
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El dominio de $g$ es
+    $$\boxed{\text{Dom}(g) = (-\infty,\,-2)}$$
+  </div>
+
+</body>
+</html>

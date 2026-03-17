@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>g8h4k</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "g8h4k",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "7d",
+      tema: ["signo de una función", "intervalos de positividad y negatividad", "función con valor absoluto"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: ["intervalos positiva negativa valor absoluto", "signo función valor absoluto", "calcular intervalos cálculo 1"],
+      fecha: "2026-03-15",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Calcule los intervalos donde la función es positiva o negativa:
+  $$h(x) = \frac{1}{2 - |x|} + 1$$</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>La novedad acá es el valor absoluto. Como $|x|$ siempre es positivo, la expresión $2 - |x|$ se comporta de forma simétrica: vale lo mismo para $x = 3$ que para $x = -3$. Eso significa que la función es simétrica respecto al eje vertical, y los intervalos que encontremos también van a serlo.</p>
+
+  <p>La estrategia es la misma de siempre: unir en una sola fracción, encontrar los puntos críticos, y hacer la tabla de signos. El valor absoluto solo agrega que los puntos críticos aparecen en pares simétricos.</p>
+
+  <div class="nota">
+    $|x| = 2$ tiene dos soluciones: $x = 2$ y $x = -2$. Ambas anulan el denominador y son puntos críticos.
+  </div>
+
+  <p class="chiste">El valor absoluto es un espejo. Todo lo que pasa a la derecha del cero, pasa igual a la izquierda.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<p class="subtitulo-seccion">Paso 1: unir en una sola fracción</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $\dfrac{1}{2-|x|} + 1$
+  </div>
+  <div class="paso-just">
+    Expresión original.
+  </div>
+
+  <div class="paso-dev">
+    $\dfrac{1 + (2 - |x|)}{2 - |x|}$
+  </div>
+  <div class="paso-just">
+    Se lleva a denominador común $2 - |x|$.
+  </div>
+
+  <div class="paso-dev">
+    $\dfrac{3 - |x|}{2 - |x|}$
+  </div>
+  <div class="paso-just">
+    Se simplifica el numerador.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 2: puntos críticos</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $3 - |x| = 0 \Rightarrow |x| = 3 \Rightarrow x = \pm 3$
+  </div>
+  <div class="paso-just">
+    El numerador se anula: $h(x) = 0$.
+  </div>
+
+  <div class="paso-dev">
+    $2 - |x| = 0 \Rightarrow |x| = 2 \Rightarrow x = \pm 2$
+  </div>
+  <div class="paso-just">
+    El denominador se anula: $h(x)$ no existe.
+  </div>
+
+  <div class="paso-dev">
+    Puntos críticos: $x = -3,\ -2,\ 2,\ 3$
+  </div>
+  <div class="paso-just">
+    Dividen la recta en cinco intervalos. Simétricos respecto al origen, como se esperaba.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 3: tabla de signos</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    \[
+    \begin{array}{c|ccccc}
+      & \!\!(-\infty,-3)\!\! & \!\!(-3,-2)\!\! & \!\!(-2,2)\!\! & \!\!(2,3)\!\! & \!\!(3,+\infty)\!\! \\\hline
+      3-|x| & - & + & + & + & - \\
+      2-|x| & - & - & + & - & - \\\hline
+      h(x)  & + & - & + & - & +
+    \end{array}
+    \]
+  </div>
+  <div class="paso-just">
+    Se evalúa $|x|$ en un punto representativo de cada intervalo y se determina el signo de cada factor. Por ejemplo, en $(-\infty,-3)$ tomo $x=-4$: $|{-4}|=4$, entonces $3-4=-1<0$ y $2-4=-2<0$.
+  </div>
+
+  <div class="paso-dev">
+    $h(x) > 0 \iff x \in (-\infty,-3) \cup (-2,\,2) \cup (3,+\infty)$
+  </div>
+  <div class="paso-just">
+    Intervalos donde la tabla da positivo.
+  </div>
+
+  <div class="paso-dev">
+    $h(x) < 0 \iff x \in (-3,-2) \cup (2,\,3)$
+  </div>
+  <div class="paso-just">
+    Intervalos donde la tabla da negativo.
+  </div>
+</div>
+
+<h2>Comprobemos con un ejemplo</h2>
+<div class="bloque">
+  <p>Un punto de cada intervalo:</p>
+  <p>$x = -4$: $\quad h(-4) = \dfrac{3-4}{2-4} = \dfrac{-1}{-2} = \dfrac{1}{2} > 0$ ✓</p>
+  <p>$x = -2.5$: $\quad h(-2.5) = \dfrac{3-2.5}{2-2.5} = \dfrac{0.5}{-0.5} = -1 < 0$ ✓</p>
+  <p>$x = 0$: $\quad h(0) = \dfrac{3-0}{2-0} = \dfrac{3}{2} > 0$ ✓</p>
+  <p>$x = 2.5$: $\quad h(2.5) = \dfrac{3-2.5}{2-2.5} = \dfrac{0.5}{-0.5} = -1 < 0$ ✓</p>
+  <p>$x = 4$: $\quad h(4) = \dfrac{3-4}{2-4} = \dfrac{-1}{-2} = \dfrac{1}{2} > 0$ ✓</p>
+  <p>La simetría es visible: los valores en $x = -4$ y $x = 4$ coinciden, igual que en $x = -2.5$ y $x = 2.5$.</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  $$h(x) > 0 \text{ en } \boxed{(-\infty,-3) \cup (-2,\,2) \cup (3,+\infty)}$$
+  $$h(x) < 0 \text{ en } \boxed{(-3,-2) \cup (2,\,3)}$$
+  En $x = \pm 3$ la función vale cero. En $x = \pm 2$ no existe.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>La simetría que aparece acá por culpa del valor absoluto es la misma razón por la que muchas estructuras de datos y algoritmos trabajan con distancias en lugar de coordenadas con signo. Una función de distancia, como la distancia Manhattan o la distancia euclidiana, usa internamente un valor absoluto para que no importe si el punto está a la izquierda o a la derecha, arriba o abajo. El resultado es simétrico, igual que acá: lo que pasa a una distancia $d$ del origen pasa igual al otro lado. Los motores de búsqueda de similitud en bases de datos vectoriales, que hoy están en el corazón de los sistemas de inteligencia artificial, explotan exactamente esa simetría para hacer búsquedas eficientes.</p>
+</div>
+
+</body>
+</html>

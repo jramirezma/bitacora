@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>a2c7d</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "a2c7d",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "7b",
+      tema: ["signo de una función", "intervalos de positividad y negatividad", "función con raíz cuadrada"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["intervalos positiva negativa raíz cuadrada", "signo función con raíz", "calcular intervalos cálculo 1"],
+      fecha: "2026-03-15",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Calcule los intervalos donde la función es positiva o negativa:
+  $$g(x) = 3 - \sqrt{x-1}$$</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>Esta función tiene una raíz cuadrada, así que lo primero que hay que notar es que no existe para todo $x$: necesita $x \geq 1$. Dentro de ese dominio, queremos saber cuándo $g(x)$ es positiva y cuándo es negativa.</p>
+
+  <p>La idea es la misma que siempre: encontrar dónde se anula la función, y eso divide el dominio en intervalos donde el signo es constante. Acá no hace falta tabla de signos porque la función tiene un solo factor y no hay producto: basta con despejar directamente.</p>
+
+  <div class="nota">
+    La raíz cuadrada siempre es mayor o igual a cero, así que $g(x) = 3 - \sqrt{x-1}$ es positiva cuando la raíz es chica, y negativa cuando la raíz es grande. El punto de quiebre es donde la raíz vale exactamente 3.
+  </div>
+
+  <p class="chiste">La raíz crece sin parar. En algún momento supera al 3 y ahí la función se hunde.</p>
+</div>
+
+<h2>Vamos por partes</h2>
+
+<p class="subtitulo-seccion">Paso 1: dominio de g</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x - 1 \geq 0$
+  </div>
+  <div class="paso-just">
+    La raíz cuadrada existe solo si el radicando es $\geq 0$.
+  </div>
+
+  <div class="paso-dev">
+    $x \geq 1$
+  </div>
+  <div class="paso-just">
+    Dominio de $g$: $[1, +\infty)$.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 2: encontrar la raíz de g</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $3 - \sqrt{x-1} = 0$
+  </div>
+  <div class="paso-just">
+    Se iguala a cero para encontrar dónde cambia el signo.
+  </div>
+
+  <div class="paso-dev">
+    $\sqrt{x-1} = 3$
+  </div>
+  <div class="paso-just">
+    Se despeja la raíz.
+  </div>
+
+  <div class="paso-dev">
+    $x - 1 = 9$
+  </div>
+  <div class="paso-just">
+    Se eleva al cuadrado ambos lados. Vale porque $3 \geq 0$.
+  </div>
+
+  <div class="paso-dev">
+    $x = 10$
+  </div>
+  <div class="paso-just">
+    Única raíz de $g$ en su dominio.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 3: analizar el signo en cada intervalo</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    En $[1, 10)$: pruebo $x = 1$<br>
+    $g(1) = 3 - \sqrt{0} = 3 > 0$
+  </div>
+  <div class="paso-just">
+    La raíz vale 0 en el extremo izquierdo y crece hasta 3. Mientras no llegue a 3, la función es positiva.
+  </div>
+
+  <div class="paso-dev">
+    En $(10, +\infty)$: pruebo $x = 26$<br>
+    $g(26) = 3 - \sqrt{25} = 3 - 5 = -2 < 0$
+  </div>
+  <div class="paso-just">
+    Pasado $x = 10$ la raíz supera a 3 y la función se vuelve negativa.
+  </div>
+
+  <div class="paso-dev">
+    $g(x) > 0 \iff x \in [1,\, 10)$
+  </div>
+  <div class="paso-just">
+    Se incluye $x = 1$ porque $g(1) = 3 > 0$. Se excluye $x = 10$ porque $g(10) = 0$.
+  </div>
+
+  <div class="paso-dev">
+    $g(x) < 0 \iff x \in (10,\, +\infty)$
+  </div>
+  <div class="paso-just">
+    Se excluye $x = 10$ porque $g(10) = 0$.
+  </div>
+</div>
+
+<h2>¿Tiene sentido lo que obtuvimos?</h2>
+<div class="bloque">
+  <p>Tomamos un punto cerca del borde de cada intervalo para ver si el signo es el esperado:</p>
+  <p>$x = 5$: $\quad g(5) = 3 - \sqrt{4} = 3 - 2 = 1 > 0$ ✓</p>
+  <p>$x = 10$: $\quad g(10) = 3 - \sqrt{9} = 3 - 3 = 0$ ✓ (el punto de quiebre)</p>
+  <p>$x = 50$: $\quad g(50) = 3 - \sqrt{49} = 3 - 7 = -4 < 0$ ✓</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  $$g(x) > 0 \text{ en } \boxed{[\,1,\, 10\,)}$$
+  $$g(x) < 0 \text{ en } \boxed{(10,\, +\infty)}$$
+  En $x = 10$ la función vale cero. Para $x < 1$ la función no existe.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>Lo que hicimos acá tiene una lectura directa en el mundo del monitoreo de sistemas. Imaginá que $g(x)$ representa el margen disponible de un servidor: cuando $g(x) > 0$ hay recursos de sobra, cuando $g(x) = 0$ el sistema está al límite, y cuando $g(x) < 0$ hay un problema. El valor $x = 10$ es el umbral que dispara la alerta. Encontrar ese umbral algebraicamente, antes de que el sistema entre en producción, es exactamente lo que hace un ingeniero cuando define los límites operativos de un servicio. La matemática no describe el problema después de que ocurre: lo anticipa.</p>
+</div>
+
+</body>
+</html>

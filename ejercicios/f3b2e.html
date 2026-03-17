@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f3b2e</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "f3b2e",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "7a",
+      tema: ["signo de una función", "intervalos de positividad y negatividad", "factorización"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["intervalos positiva negativa función", "signo función cuadrática", "calcular intervalos cálculo 1"],
+      fecha: "2026-03-15",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Calcule los intervalos donde la función es positiva o negativa:
+  $$f(x) = x^2 - 5x$$</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>Queremos saber en qué partes de la recta numérica $f(x)$ vale más que cero, y en cuáles vale menos que cero. La función no tiene el mismo signo en todos lados: en algunos intervalos es positiva, en otros es negativa, y en los puntos donde se anula cambia de uno a otro.</p>
+
+  <p>Esos puntos donde $f(x) = 0$ son los que dividen la recta en intervalos. Dentro de cada intervalo el signo no cambia, así que basta con evaluar un punto representativo en cada uno para saber si toda esa región es positiva o negativa.</p>
+
+  <div class="nota">
+    Primero encontrar las raíces de $f$, luego analizar el signo en cada intervalo que generan.
+  </div>
+
+  <p class="chiste">La función es como una montaña rusa: sube, baja, cruza el cero. Queremos saber exactamente dónde está arriba y dónde está abajo.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<p class="subtitulo-seccion">Paso 1: encontrar las raíces</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x^2 - 5x = 0$
+  </div>
+  <div class="paso-just">
+    Se iguala a cero para encontrar dónde la función cruza el eje $x$.
+  </div>
+
+  <div class="paso-dev">
+    $x(x - 5) = 0$
+  </div>
+  <div class="paso-just">
+    Se factoriza sacando $x$ como factor común.
+  </div>
+
+  <div class="paso-dev">
+    $x = 0 \qquad x = 5$
+  </div>
+  <div class="paso-just">
+    Un producto es cero cuando alguno de sus factores es cero.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Paso 2: analizar el signo en cada intervalo</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    \[
+    \begin{array}{c|ccc}
+      & (-\infty, 0) & (0, 5) & (5, +\infty) \\\hline
+      x     & - & + & + \\
+      x - 5 & - & - & + \\\hline
+      f(x)  & + & - & +
+    \end{array}
+    \]
+  </div>
+  <div class="paso-just">
+    Se evalúa el signo de cada factor en un punto representativo de cada intervalo. El signo de $f(x) = x(x-5)$ es el producto de los dos signos.
+  </div>
+
+  <div class="paso-dev">
+    $f(x) > 0 \iff x \in (-\infty, 0) \cup (5, +\infty)$
+  </div>
+  <div class="paso-just">
+    Son los intervalos donde la tabla da signo positivo.
+  </div>
+
+  <div class="paso-dev">
+    $f(x) < 0 \iff x \in (0, 5)$
+  </div>
+  <div class="paso-just">
+    Es el intervalo donde la tabla da signo negativo.
+  </div>
+</div>
+
+<h2>Chequeemos que esto tiene sentido</h2>
+<div class="bloque">
+  <p>Tomamos un punto de cada intervalo y evaluamos:</p>
+  <p>$x = -1$: $\quad f(-1) = 1 + 5 = 6 > 0$ ✓ (debería ser positivo)</p>
+  <p>$x = 1$: $\quad f(1) = 1 - 5 = -4 < 0$ ✓ (debería ser negativo)</p>
+  <p>$x = 6$: $\quad f(6) = 36 - 30 = 6 > 0$ ✓ (debería ser positivo)</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong>
+  $$f(x) > 0 \text{ en } \boxed{(-\infty,\, 0) \cup (5,\, +\infty)}$$
+  $$f(x) < 0 \text{ en } \boxed{(0,\, 5)}$$
+  En $x = 0$ y $x = 5$ la función vale cero.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>Analizar el signo de una función por intervalos es exactamente lo que hace un algoritmo de búsqueda binaria cuando decide en qué mitad del espacio seguir buscando. El algoritmo no evalúa todos los puntos: identifica en qué región está la respuesta y descarta el resto. Lo que cambia entre región y región no es un signo algebraico sino una condición lógica, pero la estructura es la misma: puntos críticos que dividen el espacio, y dentro de cada región el comportamiento es uniforme. Esa uniformidad es la que hace eficiente tanto a la búsqueda binaria como al análisis de signos.</p>
+</div>
+
+</body>
+</html>

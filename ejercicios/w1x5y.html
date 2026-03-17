@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>w1x5y</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "w1x5y",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "15c",
+      tema: ["funciones crecientes y decrecientes", "monotonía", "función con raíz cuadrada negativa"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["función creciente decreciente raíz negativa", "monotonía raíz de menos x", "demostrar creciente cálculo 1"],
+      fecha: "2026-03-17",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Determine si la función es creciente o decreciente en su dominio:
+  $$h(x) = -\sqrt{-x}$$</p>
+</div>
+
+<h2>Antes de calcular</h2>
+<div class="bloque">
+  <p>Esta función tiene dos negativos que conviene entender antes de arrancar. El $-x$ adentro de la raíz hace que el dominio sea $(-\infty, 0]$: necesitamos $-x \geq 0$, es decir $x \leq 0$. El $-$ de afuera invierte el signo de la raíz, que siempre es positiva, haciendo que $h(x)$ sea siempre negativa o cero.</p>
+
+  <p>El esquema de demostración es el mismo: tomamos $x_1 < x_2$ en el dominio y analizamos el signo de $h(x_1) - h(x_2)$. Volvemos a necesitar el truco del conjugado para manejar la diferencia de raíces.</p>
+
+  <div class="nota">
+    Acá hay un detalle fino: como el dominio es $(-\infty, 0]$, los valores de $x$ son negativos. Eso afecta el signo de $x_1 - x_2$ de una forma que hay que seguir con cuidado.
+  </div>
+
+  <p class="chiste">Dos negativos en la misma función. Hay que llevar bien la cuenta de los signos o todo se da vuelta.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    Sean $x_1, x_2 \in (-\infty, 0]$ con $x_1 < x_2$
+  </div>
+  <div class="paso-just">
+    Se toman dos valores arbitrarios del dominio con $x_1 < x_2$.
+  </div>
+
+  <div class="paso-dev">
+    $h(x_1) - h(x_2) = -\sqrt{-x_1} - (-\sqrt{-x_2})$
+  </div>
+  <div class="paso-just">
+    Se sustituye la definición de $h$ en ambos términos.
+  </div>
+
+  <div class="paso-dev">
+    $= \sqrt{-x_2} - \sqrt{-x_1}$
+  </div>
+  <div class="paso-just">
+    Se simplifica el doble negativo.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{(\sqrt{-x_2} - \sqrt{-x_1})(\sqrt{-x_2} + \sqrt{-x_1})}{\sqrt{-x_2} + \sqrt{-x_1}}$
+  </div>
+  <div class="paso-just">
+    Se multiplica y divide por el conjugado.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{(-x_2) - (-x_1)}{\sqrt{-x_2} + \sqrt{-x_1}}$
+  </div>
+  <div class="paso-just">
+    Producto de conjugados: $(\sqrt{A} - \sqrt{B})(\sqrt{A}+\sqrt{B}) = A - B$.
+  </div>
+
+  <div class="paso-dev">
+    $= \dfrac{x_1 - x_2}{\sqrt{-x_2} + \sqrt{-x_1}}$
+  </div>
+  <div class="paso-just">
+    Se simplifica $-x_2 + x_1 = x_1 - x_2$.
+  </div>
+
+  <div class="paso-dev">
+    $x_1 < x_2 \Rightarrow x_1 - x_2 < 0$
+  </div>
+  <div class="paso-just">
+    El numerador es negativo por hipótesis.
+  </div>
+
+  <div class="paso-dev">
+    $\sqrt{-x_2} + \sqrt{-x_1} > 0$
+  </div>
+  <div class="paso-just">
+    El denominador es suma de raíces, siempre positivo en el dominio.
+  </div>
+
+  <div class="paso-dev">
+    $h(x_1) - h(x_2) = \dfrac{x_1 - x_2}{\sqrt{-x_2}+\sqrt{-x_1}} < 0$
+  </div>
+  <div class="paso-just">
+    Negativo sobre positivo da negativo.
+  </div>
+
+  <div class="paso-dev">
+    $h(x_1) < h(x_2)$
+  </div>
+  <div class="paso-just">
+    Cuando $x_1 < x_2$, el valor de $h$ sube. Por definición, $h$ es creciente.
+  </div>
+</div>
+
+<h2>Una prueba rápida</h2>
+<div class="bloque">
+  <p>Tomamos $x_1 = -9 < x_2 = -4$, ambos en el dominio $(-\infty, 0]$:</p>
+  <p>$h(-9) = -\sqrt{9} = -3$</p>
+  <p>$h(-4) = -\sqrt{4} = -2$</p>
+  <p>$h(-9) = -3 < -2 = h(-4)$ ✓: cuando $x$ subió de $-9$ a $-4$, $h$ también subió de $-3$ a $-2$.</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> $h(x) = -\sqrt{-x}$ es $\boxed{\text{estrictamente creciente}}$ en su dominio $(-\infty, 0]$.
+  <br><br>
+  Para todo $x_1, x_2 \in (-\infty, 0]$ con $x_1 < x_2$ se tiene $h(x_1) < h(x_2)$.
+</div>
+
+<h2>¿Dónde ya existe esto?</h2>
+<div class="bloque">
+  <p>Que una función sea creciente en un dominio de valores negativos puede parecer raro al principio, pero es algo que aparece con naturalidad en programación cuando se trabaja con escalas invertidas. Por ejemplo, en sistemas de prioridad donde un número más negativo significa mayor urgencia, una función que asigna prioridades de forma creciente en ese rango garantiza que el orden se preserva. Más concretamente, las funciones de pérdida en machine learning suelen tener esta forma: son negativas, crecen a medida que el error disminuye, y el objetivo del entrenamiento es llevarlas hacia cero desde abajo. Entender la monotonía en dominios no convencionales es parte de saber leer esas funciones correctamente.</p>
+</div>
+
+</body>
+</html>

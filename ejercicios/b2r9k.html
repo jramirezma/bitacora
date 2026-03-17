@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2r9k</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* Diagrama de clases */
+    .class-box  { display: inline-block; border: 2px solid #111; min-width: 340px; margin: 12px 0; font-family: monospace; }
+    .class-name { text-align: center; font-weight: bold; padding: 8px; border-bottom: 2px solid #111; font-size: 14px; }
+    .section    { padding: 8px 14px; font-size: 13px; line-height: 1.9; }
+    .section + .section { border-top: 1px solid #111; }
+
+    /* Pseudocódigo con columna de comentarios */
+    .pseudo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 0;
+      border-left: 3px solid #111;
+      margin: 0 0 20px 0;
+    }
+    .pseudo-wrap pre {
+      margin: 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+      border: none;
+      overflow-x: auto;
+    }
+    .pseudo-comments {
+      border-left: 1px dashed #aaa;
+      padding: 14px 14px;
+      font-family: sans-serif;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+    }
+    .pseudo-comments span { display: block; }
+
+    .pseudo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 4px 0;
+    }
+    .block-title { font-weight: bold; font-size: 13px; font-family: monospace; }
+    .copy-btn {
+      font-family: monospace;
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid #111;
+      background: #fff;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #111; color: #fff; }
+
+    hr { border: none; border-top: 1px solid #111; margin: 28px 0; }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "b2r9k", materia: "Programación I", origen: "CL", ejercicio_nro: null,
+      paradigma: ["POO"],
+      tema: ["Programación orientada a objetos","Clases y objetos","Métodos de instancia"],
+      dificultad: ["basico","elemental","introductorio"],
+      seo_keywords: ["clase rectangulo pseudocodigo","POO diagrama de clases","metodos area perimetro cuadrado"],
+      fecha: "2026-03-11",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>
+    a. Instanciar 2 objetos de la clase Rectangulo.<br>
+    b. Crear un método que retorne si es cuadrado o no.<br>
+    c. Crear un método que imprima área y perímetro.<br>
+    d. Crear un método que retorne un booleano si un rectángulo puede contener a otro.
+  </p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>La idea es modelar un rectángulo como un objeto. Un objeto es simplemente algo que tiene datos propios (ancho y alto) y que sabe hacer cosas con esos datos. Primero diseñamos el molde — la clase — y después lo usamos para fabricar rectángulos concretos.</p>
+  <div class="nota">Todo rectángulo queda completamente descripto con dos valores: ancho y alto. Con eso solo ya podemos responder todas las preguntas del ejercicio.</div>
+  <p>La clase va a tener cuatro responsabilidades: guardar las medidas, detectar si es cuadrado, mostrar área y perímetro, y compararse con otro rectángulo para saber si lo contiene. Cada responsabilidad es un método distinto.</p>
+  <p class="chiste">Un cuadrado es un rectángulo que se esforzó por ser simétrico. No lo discriminemos, merece su propio método.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<div class="bloque">
+  <p>El diagrama muestra el molde completo: los atributos son privados (solo el objeto los conoce) y los métodos son públicos (cualquiera los puede llamar desde afuera).</p>
+</div>
+
+<div class="class-box">
+  <div class="class-name">Rectangulo</div>
+  <div class="section">
+    - float ancho<br>
+    - float alto
+  </div>
+  <div class="section">
+    + Rectangulo(float ancho, float alto)<br>
+    + boolean esCuadrado()<br>
+    + void mostrarDimensiones()<br>
+    + boolean puedeContener(Rectangulo otro)
+  </div>
+</div>
+
+<div class="bloque" style="margin-top:14px;">
+  <p>Los atributos llevan <strong>-</strong> porque son privados. Los métodos llevan <strong>+</strong> porque son la interfaz pública. <code>puedeContener</code> recibe un objeto del mismo tipo, lo que muestra que una clase puede relacionarse consigo misma.</p>
+</div>
+
+<hr>
+
+<!-- CLASE COMPLETA -->
+<div class="pseudo-header">
+  <span class="block-title">CLASE Rectangulo</span>
+  <button class="copy-btn" onclick="copiar('pseudo-clase', this)">Copiar</button>
+</div>
+<div class="pseudo-wrap">
+  <pre id="pseudo-clase">// Constructor
+Rectangulo(float ancho, float alto) {
+    self.ancho = ancho
+    self.alto  = alto
+}
+
+// b. ¿Es cuadrado?
+boolean esCuadrado() {
+    SI self.ancho == self.alto
+        retornar verdadero
+    SINO
+        retornar falso
+}
+
+// c. Área y perímetro
+void mostrarDimensiones() {
+    float area      = self.ancho * self.alto
+    float perimetro = 2 * (self.ancho + self.alto)
+    IMPRIMIR "Área:      " + area
+    IMPRIMIR "Perímetro: " + perimetro
+}
+
+// d. ¿Puede contener a otro?
+boolean puedeContener(Rectangulo otro) {
+    SI self.ancho > otro.ancho Y self.alto > otro.alto
+        retornar verdadero
+    SINO
+        retornar falso
+}</pre>
+  <div class="pseudo-comments">
+    <span>&nbsp;</span>
+    <span>Recibe las medidas al crear el objeto.</span>
+    <span>Guarda el ancho en el atributo propio.</span>
+    <span>Guarda el alto en el atributo propio.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Devuelve verdadero o falso.</span>
+    <span>Cuadrado = todos los lados iguales.</span>
+    <span>Si se cumple, confirmamos.</span>
+    <span>Si no, descartamos.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>No devuelve nada (void).</span>
+    <span>Cuántos cuadraditos entran adentro.</span>
+    <span>La longitud del borde completo.</span>
+    <span>Muestra el resultado en pantalla.</span>
+    <span>Ídem para el perímetro.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Recibe el rectángulo a comparar.</span>
+    <span>Las dos condiciones deben cumplirse.</span>
+    <span>Entra: ambas medidas son menores.</span>
+    <span>No entra: al menos una no cumple.</span>
+    <span>&nbsp;</span>
+  </div>
+</div>
+
+<!-- PROGRAMA PRINCIPAL -->
+<div class="pseudo-header">
+  <span class="block-title">PROGRAMA PRINCIPAL</span>
+  <button class="copy-btn" onclick="copiar('pseudo-main', this)">Copiar</button>
+</div>
+<div class="pseudo-wrap">
+  <pre id="pseudo-main">// Instanciar 2 objetos
+Rectangulo rect1 = nuevo Rectangulo(10, 10)
+Rectangulo rect2 = nuevo Rectangulo(5, 8)
+
+// b. ¿Es cuadrado?
+SI rect1.esCuadrado()
+    IMPRIMIR "rect1 ES un cuadrado"
+SINO
+    IMPRIMIR "rect1 NO es un cuadrado"
+
+// c. Área y perímetro
+rect1.mostrarDimensiones()
+rect2.mostrarDimensiones()
+
+// d. ¿Puede contener al otro?
+SI rect1.puedeContener(rect2)
+    IMPRIMIR "rect1 puede contener a rect2"
+SINO
+    IMPRIMIR "rect1 NO puede contener a rect2"</pre>
+  <div class="pseudo-comments">
+    <span>&nbsp;</span>
+    <span>10×10 → será cuadrado.</span>
+    <span>5×8 → rectángulo común.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>esCuadrado() devuelve boolean.</span>
+    <span>Resultado: ES cuadrado.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>Área: 100 | Perímetro: 40</span>
+    <span>Área: 40  | Perímetro: 26</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+    <span>10 &gt; 5 Y 10 &gt; 8 → verdadero.</span>
+    <span>Resultado: puede contener.</span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> Se modeló la clase <strong>Rectangulo</strong> con dos atributos privados (ancho y alto) y cuatro métodos públicos: el constructor inicializa el objeto; <code>esCuadrado()</code> compara los dos lados; <code>mostrarDimensiones()</code> imprime área y perímetro; y <code>puedeContener()</code> compara ambas dimensiones contra las de otro rectángulo. Se instanciaron dos objetos y se verificó el comportamiento de cada método.
+</div>
+
+<h2>¿Y esto para qué me sirve?</h2>
+<div class="bloque">
+  <p>Modelar figuras geométricas como objetos no es solo un ejercicio académico. En motores de videojuegos y aplicaciones gráficas, los rectángulos son la base de la detección de colisiones: antes de calcular si dos personajes chocaron, el motor pregunta si sus rectángulos delimitadores se superponen. El método <code>puedeContener()</code> de este ejercicio es exactamente esa lógica.</p>
+  <p>Además, la idea de encapsular datos (ancho y alto privados) y exponer solo comportamiento (los métodos públicos) es el principio detrás de cualquier librería de interfaz gráfica: uno no manipula los píxeles directamente, sino que le dice al objeto "mostrá tu área" o "¿cabés dentro de esta ventana?".</p>
+</div>
+
+<script>
+  function copiar(id, btn) {
+    const texto = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(texto).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = "¡Copiado!";
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>

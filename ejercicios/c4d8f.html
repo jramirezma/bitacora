@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>c4d8f</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+    .subtitulo-seccion {
+      margin-top: 20px;
+      font-family: sans-serif;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "c4d8f",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "3",
+      tema: ["función definida implícitamente", "cambio de variable", "expresión de una función"],
+      dificultad: ["basico", "elemental", "introductorio"],
+      seo_keywords: ["hallar f(x) dado f(3x-5)", "cambio de variable función", "calcular f(x) cálculo 1"],
+      fecha: "2026-03-15",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Si $f(3x - 5) = 6x + 1$, calcule $f(x)$ y $f(0)$.</p>
+</div>
+
+<h2>¿De qué se trata esto?</h2>
+<div class="bloque">
+  <p>Nos dan la función con un argumento raro: en vez de $f(x)$, nos dan $f(3x-5)$. La función ya existe, solo que está siendo evaluada en $3x - 5$ en lugar de en $x$. Lo que se pide es descubrir cuál es la regla general de esa función, es decir, qué hace cuando le entra cualquier valor.</p>
+
+  <div class="nota">
+    La idea es hacer un cambio de variable: llamar $u = 3x - 5$ y despejar $x$ en función de $u$. Así podemos reescribir el lado derecho en términos de $u$, y obtenemos $f(u)$, que es lo mismo que $f(x)$.
+  </div>
+
+  <p>Es como si alguien te dijera "cuando le doy a la máquina el valor $3x-5$, me devuelve $6x+1$". Vos querés saber qué devuelve la máquina cuando le das cualquier número. Para eso, tenés que traducir todo en términos de lo que entra.</p>
+
+  <p class="chiste">La función no cambió, solo estaba disfrazada. Hay que sacarle el disfraz.</p>
+</div>
+
+<h2>Vamos por partes</h2>
+
+<p class="subtitulo-seccion">Parte 1: encontrar f(x)</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $u = 3x - 5$
+  </div>
+  <div class="paso-just">
+    Llamamos $u$ a lo que entra en $f$. Queremos expresar todo en términos de $u$.
+  </div>
+
+  <div class="paso-dev">
+    $x = \dfrac{u + 5}{3}$
+  </div>
+  <div class="paso-just">
+    Se despeja $x$ de la ecuación anterior.
+  </div>
+
+  <div class="paso-dev">
+    $f(u) = 6 \cdot \dfrac{u+5}{3} + 1$
+  </div>
+  <div class="paso-just">
+    Se sustituye $x$ en el lado derecho $6x + 1$.
+  </div>
+
+  <div class="paso-dev">
+    $f(u) = 2(u + 5) + 1$
+  </div>
+  <div class="paso-just">
+    Se simplifica $\frac{6}{3} = 2$.
+  </div>
+
+  <div class="paso-dev">
+    $f(u) = 2u + 11$
+  </div>
+  <div class="paso-just">
+    Se distribuye y se suman los términos independientes.
+  </div>
+
+  <div class="paso-dev">
+    $f(x) = 2x + 11$
+  </div>
+  <div class="paso-just">
+    $u$ era solo un nombre. Se renombra como $x$ para expresar la función en la variable habitual.
+  </div>
+</div>
+
+<p class="subtitulo-seccion">Parte 2: calcular f(0)</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $f(0) = 2(0) + 11$
+  </div>
+  <div class="paso-just">
+    Se sustituye $x = 0$ en la fórmula recién obtenida.
+  </div>
+
+  <div class="paso-dev">
+    $f(0) = 11$
+  </div>
+  <div class="paso-just">
+    Resultado directo.
+  </div>
+</div>
+
+<h2>Chequeemos que esto tiene sentido</h2>
+<div class="bloque">
+  <p>Verificamos que $f(3x - 5) = 6x + 1$ se cumple con la fórmula obtenida. Sustituimos $3x - 5$ en $f(x) = 2x + 11$:</p>
+  <p>$$f(3x-5) = 2(3x-5) + 11 = 6x - 10 + 11 = 6x + 1 \checkmark$$</p>
+  <p>El resultado coincide exactamente con lo que nos dio el enunciado.</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> La función es $\boxed{f(x) = 2x + 11}$ y su valor en cero es $\boxed{f(0) = 11}$.
+</div>
+
+<h2>¿Ya usé esto sin saberlo?</h2>
+<div class="bloque">
+  <p>En programación, cuando una función recibe un parámetro que ya viene transformado, como <code>f(2*x + 1)</code>, no siempre es fácil saber qué hace la función con un valor directo. Lo que hicimos acá, despejar la variable original para entender la regla general, es exactamente lo que hace un programador cuando necesita invertir una transformación: si sé lo que produce la función con una entrada procesada, puedo deducir qué produciría con cualquier entrada. Esa idea está en el corazón de conceptos como la normalización de datos en machine learning, donde las entradas se transforman antes de pasarlas al modelo y luego hay que interpretar las salidas en términos de los valores originales.</p>
+</div>
+
+</body>
+</html>

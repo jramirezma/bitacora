@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!--
+    INSTRUCCIONES PARA LA IA:
+    - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres alfanuméricos, ej: "a3f7c").
+    - El id en window.EJERCICIO debe ser el mismo hash de 5 caracteres.
+    - La redacción debe ser en español neutro (sin regionalismos).
+    - El enunciado del ejercicio debe copiarse textualmente, sin adiciones ni alteraciones.
+    - El humor y comentarios informales van en el Análisis, nunca en el Enunciado.
+    - Estilo de redacción: palabras simples, como explicándole a alguien que recién empieza.
+      Construir intuición antes del diagrama o el pseudocódigo.
+    - Diagrama de clases: solo nombre, atributos y métodos. Sin colores de fondo.
+      Tipo primero: "float ancho", "boolean esCuadrado()". Visibilidad: - privado, + público.
+    - Pseudocódigo: usar llaves { } para delimitar bloques. Comentarios con //.
+      Columna derecha: una línea de comentario por cada línea de código.
+      Líneas en blanco del código → span con &nbsp; en la columna derecha.
+      No incluir párrafos de texto sueltos entre el encabezado y el bloque de pseudocódigo.
+    - Sin colores de fondo en ningún elemento (apto para impresión sin gastar tinta).
+  -->
+  <title>[id de 5 caracteres]</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* Diagrama de clases */
+    .class-box  { display: inline-block; border: 2px solid #111; min-width: 340px; margin: 12px 0; font-family: monospace; }
+    .class-name { text-align: center; font-weight: bold; padding: 8px; border-bottom: 2px solid #111; font-size: 14px; }
+    .section    { padding: 8px 14px; font-size: 13px; line-height: 1.9; }
+    .section + .section { border-top: 1px solid #111; }
+
+    /* Pseudocódigo con columna de comentarios */
+    .pseudo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 0;
+      border-left: 3px solid #111;
+      margin: 0 0 20px 0;
+    }
+    .pseudo-wrap pre {
+      margin: 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+      border: none;
+      overflow-x: auto;
+    }
+    .pseudo-comments {
+      border-left: 1px dashed #aaa;
+      padding: 14px 14px;
+      font-family: sans-serif;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+    }
+    .pseudo-comments span { display: block; }
+
+    .pseudo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 4px 0;
+    }
+    .block-title { font-weight: bold; font-size: 13px; font-family: monospace; }
+    .copy-btn {
+      font-family: monospace;
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid #111;
+      background: #fff;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #111; color: #fff; }
+
+    hr { border: none; border-top: 1px solid #111; margin: 28px 0; }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      /*
+        CAMPOS Y REGLAS:
+
+        id
+          Hash de 5 caracteres alfanuméricos. Único y reproducible para cada ejercicio.
+
+        materia
+          Un único string con el nombre de la materia.
+          Ejemplos: "Programación I", "Algoritmos y Estructuras de Datos", "POO"
+
+        origen
+          Un único string. Valores posibles:
+            "PR{n}"  → práctica de la cátedra (ej: "PR1", "PR2")
+            "EX"     → examen
+            "CL"     → ejercicio trabajado en clase
+            "IA"     → ejercicio generado por IA
+
+        ejercicio_nro
+          String que identifica el ejercicio dentro de su origen.
+          Sin incisos: "1" | Con inciso: "1a", "3c" | Sin numeración: null
+
+        paradigma
+          Array de strings. Paradigma(s) involucrado(s).
+          Ejemplos: ["POO"], ["POO", "funcional"], ["estructurado"]
+
+        tema, dificultad, seo_keywords
+          Arrays de strings con mínimo 3 valores cada uno.
+
+        fecha
+          String en formato "yyyy-mm-dd".
+
+        autor
+          Objeto con nombre y modelo.
+      */
+
+      id:            "[hash de 5 caracteres]",
+      materia:       "[nombre de la materia]",
+      origen:        "[PR{n} | EX | CL | IA]",
+      ejercicio_nro: "[ej: 1 | 1a | null]",
+
+      paradigma: ["[POO | estructurado | funcional]"],
+      tema: [
+        "[nombre formal del tema]",
+        "[nombre alternativo o coloquial]",
+        "[concepto relacionado]"
+      ],
+      dificultad: ["[basico | intermedio | avanzado]", "[sinonimo]", "[sinonimo]"],
+      seo_keywords: ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
+      fecha:  "[yyyy-mm-dd]",
+      autor:  { nombre: "[nombre]", modelo: "[modelo]" }
+    };
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       ENUNCIADO
+       Copiar textualmente. Sin alteraciones.
+  ════════════════════════════════════════════════ -->
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>[Enunciado textual del ejercicio, copiado sin cambios.]</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ANÁLISIS
+       Explicar la idea antes de mostrar código o diagrama.
+       Usar .nota para el concepto clave.
+       Usar .chiste para humor opcional al final.
+       Los h2 no son fijos; elegir el que mejor suene.
+       Ejemplos: "¿De qué se trata esto?", "Antes de codear", "Entendamos el problema"
+  ════════════════════════════════════════════════ -->
+  <h2>[¿De qué se trata esto? | Antes de codear | Entendamos el problema]</h2>
+  <div class="bloque">
+    <p>[Explicación intuitiva. ¿Qué pide el ejercicio? ¿Cómo conviene pensarlo?]</p>
+    <div class="nota">
+      [Idea clave del ejercicio en una o dos oraciones.]
+    </div>
+    <p>[Estrategia: qué clases hacen falta, qué responsabilidad tiene cada una, qué relaciones hay entre ellas.]</p>
+    <p class="chiste">[Comentario humorístico opcional.]</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       DIAGRAMA DE CLASES
+       Una .class-box por cada clase del ejercicio.
+       Repetir el bloque .class-box si hay más de una clase.
+  ════════════════════════════════════════════════ -->
+  <h2>[Manos a la obra | El diseño | Diagrama y solución]</h2>
+
+  <div class="bloque">
+    <p>[Breve introducción al diagrama: qué clases se modelan y por qué.]</p>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">[NombreClase]</div>
+    <div class="section">
+      - [tipo] [atributo1]<br>
+      - [tipo] [atributo2]
+    </div>
+    <div class="section">
+      + [NombreClase]([tipo] param1, [tipo] param2)<br>
+      + [tipoRetorno] [metodo1]()<br>
+      + [tipoRetorno] [metodo2]([tipo] param)<br>
+      + [tipoRetorno] [metodo3]([NombreClase] otro)
+    </div>
+  </div>
+
+  <div class="bloque" style="margin-top:14px;">
+    <p>[Explicación del diagrama: visibilidad, encapsulamiento, relaciones entre clases si las hay.]</p>
+  </div>
+
+  <hr>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PSEUDOCÓDIGO
+       Dos bloques fijos: CLASE y PROGRAMA PRINCIPAL.
+       Cada bloque tiene su propio botón Copiar.
+       Columna derecha: una línea de comentario por cada línea de código.
+       Líneas en blanco del código → <span>&nbsp;</span> en la columna derecha.
+       No agregar párrafos de texto entre el .pseudo-header y el .pseudo-wrap.
+  ════════════════════════════════════════════════ -->
+
+  <!-- Bloque 1: Clase completa -->
+  <div class="pseudo-header">
+    <span class="block-title">CLASE [NombreClase]</span>
+    <button class="copy-btn" onclick="copiar('pseudo-clase', this)">Copiar</button>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-clase">// Constructor
+[NombreClase]([tipo] param1, [tipo] param2) {
+    self.[atrib1] = param1
+    self.[atrib2] = param2
+}
+
+// [Descripción método 1]
+[tipoRetorno] [metodo1]() {
+    SI [condicion]
+        retornar [valor]
+    SINO
+        retornar [valor]
+}
+
+// [Descripción método 2]
+[tipoRetorno] [metodo2]() {
+    [tipo] [var] = [expresion]
+    IMPRIMIR "[etiqueta]" + [var]
+}
+
+// [Descripción método 3]
+[tipoRetorno] [metodo3]([NombreClase] otro) {
+    SI [condicion con otro]
+        retornar [valor]
+    SINO
+        retornar [valor]
+}</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>[comentario línea 2]</span>
+      <span>[comentario línea 3]</span>
+      <span>[comentario línea 4]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario línea 8]</span>
+      <span>[comentario línea 9]</span>
+      <span>[comentario línea 10]</span>
+      <span>[comentario línea 11]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario línea 15]</span>
+      <span>[comentario línea 16]</span>
+      <span>[comentario línea 17]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario línea 21]</span>
+      <span>[comentario línea 22]</span>
+      <span>[comentario línea 23]</span>
+      <span>[comentario línea 24]</span>
+      <span>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Bloque 2: Programa principal -->
+  <div class="pseudo-header">
+    <span class="block-title">PROGRAMA PRINCIPAL</span>
+    <button class="copy-btn" onclick="copiar('pseudo-main', this)">Copiar</button>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-main">// Instanciar objetos
+[NombreClase] obj1 = nuevo [NombreClase]([val1], [val2])
+[NombreClase] obj2 = nuevo [NombreClase]([val1], [val2])
+
+// [Llamada método 1]
+SI obj1.[metodo1]()
+    IMPRIMIR "[mensaje verdadero]"
+SINO
+    IMPRIMIR "[mensaje falso]"
+
+// [Llamada método 2]
+obj1.[metodo2]()
+obj2.[metodo2]()
+
+// [Llamada método 3]
+SI obj1.[metodo3](obj2)
+    IMPRIMIR "[mensaje verdadero]"
+SINO
+    IMPRIMIR "[mensaje falso]"</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>[comentario obj1]</span>
+      <span>[comentario obj2]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario condición]</span>
+      <span>[comentario resultado true]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario resultado obj1]</span>
+      <span>[comentario resultado obj2]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>[comentario condición]</span>
+      <span>[comentario resultado true]</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       RESULTADO FINAL
+       Síntesis clara de lo que se obtuvo/implementó.
+  ════════════════════════════════════════════════ -->
+  <div class="resultado-final">
+    <strong>Resultado.</strong> [Descripción clara de lo que se modeló: clases, atributos, métodos y comportamiento esperado.]
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ¿Y ESTO PARA QUÉ ME SIRVE?
+       Conexión entre el ejercicio y la programación real.
+       Sin código. Solo texto narrativo.
+       h2 flexible: "¿Y esto para qué me sirve?", "En el mundo real", "¿Por qué me hacen aprender esto?"
+  ════════════════════════════════════════════════ -->
+  <h2>[¿Y esto para qué me sirve? | En el mundo real | ¿Por qué me hacen aprender esto?]</h2>
+  <div class="bloque">
+    <p>[Conexión entre el concepto del ejercicio y su uso real en programación o en la industria.]</p>
+  </div>
+
+
+  <script>
+    function copiar(id, btn) {
+      const texto = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(texto).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = "¡Copiado!";
+        setTimeout(() => btn.textContent = orig, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -132,83 +132,96 @@
   </div>
 
   <h2>Solución — parte c)</h2>
+  <div class="bloque">
+    <p>Determinamos primero qué condición sobre $n$ hace válida la desigualdad,
+    siguiendo la misma lógica de las partes anteriores.</p>
+  </div>
+
   <div class="dos-col">
     <div class="col-header col-desarrollo">Desarrollo</div>
     <div class="col-header">Justificación</div>
 
     <div class="paso-dev">
-      $$n \geq 8$$
+      $$\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{n+18}}$$
     </div>
     <div class="paso-just">
-      <div class="titulo">Hipótesis</div>
-      Punto de partida.
+      <div class="titulo">Enunciado a demostrar</div>
+      Ambos radicales son positivos para $n \geq 8$, así que los recíprocos están bien definidos.
     </div>
 
     <div class="paso-dev">
-      $$n \geq 8 \;\Rightarrow\; n - 8 \geq 0 \;\Rightarrow\; 2n - 7 \geq n + 9$$
-      $$\;\Rightarrow\; 2n + 7 \geq n + 16 > n + 18 - 2$$
+      $$\iff \sqrt{n+18} \leq \sqrt{2n+7}$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Recíprocos de positivos</div>
+      Al tomar recíprocos de cantidades positivas el orden se invierte.
+    </div>
+
+    <div class="paso-dev">
+      $$\iff n+18 \leq 2n+7$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Elevar al cuadrado</div>
+      Ambos lados son positivos, por lo que elevar al cuadrado preserva el orden.
+    </div>
+
+    <div class="paso-dev">
+      $$\iff n \geq 11$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Despeje</div>
+      $n + 18 \leq 2n + 7 \iff 11 \leq n$.
+    </div>
+  </div>
+
+  <div class="nota">
+    <strong>Observación.</strong> La cadena de equivalencias muestra que la desigualdad
+    del enunciado es válida <em>si y solo si</em> $n \geq 11$.
+    La hipótesis dada, $n \geq 8$, <strong>no es suficiente</strong>.
+    Contraejemplo: para $n = 8$,
+    $$\frac{1}{\sqrt{23}} \approx 0{,}208 \;>\; \frac{1}{\sqrt{26}} \approx 0{,}196,$$
+    por lo que la desigualdad es falsa. Lo mismo ocurre para $n = 9$ y $n = 10$.
+    La condición mínima correcta es $n \geq 11$; la hipótesis del enunciado parece contener una errata.
+  </div>
+
+  <div class="bloque">
+    <p>Bajo la condición correcta $n \geq 11$, la demostración es:</p>
+  </div>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $$n \geq 11$$
+    </div>
+    <div class="paso-just">
+      <div class="titulo">Condición corregida</div>
+      Condición necesaria y suficiente, según el análisis anterior.
+    </div>
+
+    <div class="paso-dev">
+      $$n - 11 \geq 0 \;\Rightarrow\; 2n+7 \geq n+18$$
     </div>
     <div class="paso-just">
       <div class="titulo">Manipulación algebraica</div>
-      Buscamos comparar $2n+7$ con $n+18$. De $n \geq 8$ se sigue $n - 8 \geq 0$,
-      es decir $n \geq 8$, y entonces $2n + 7 \geq n + 15$. Pero necesitamos
-      $2n+7 \geq n+18$, es decir $n \geq 11$. Revisamos: para $n \geq 8$ esto
-      no es siempre cierto. Comparamos directamente los radicandos.
+      Sumando $n + 7$ a ambos lados de $n \geq 11$ se obtiene $2n + 7 \geq n + 18$.
     </div>
 
     <div class="paso-dev">
-      $$2n+7 \leq n + 18 \iff n \leq 11$$
+      $$\Rightarrow\; \sqrt{2n+7} \geq \sqrt{n+18}$$
     </div>
     <div class="paso-just">
-      <div class="titulo">Revisión de la dirección</div>
-      Para $8 \leq n \leq 11$: $2n+7 \leq n+18$. Para $n > 11$: $2n+7 > n+18$.
-      La desigualdad del enunciado requiere $\sqrt{2n+7} \geq \sqrt{n+18}$,
-      es decir $2n+7 \geq n+18$, es decir $n \geq 11$. Pero el enunciado dice $n \geq 8$.
-      Verificamos $n=8$: $\sqrt{23} \leq \sqrt{26}$ ✓. Entonces la dirección correcta
-      es $2n+7 \geq n+18$ para $n \geq 11$, y para $8 \leq n \leq 10$ verificar directamente.
+      <div class="titulo">Raíz cuadrada</div>
+      La función raíz cuadrada es creciente en los reales no negativos, por lo que preserva el orden.
     </div>
 
     <div class="paso-dev">
-      $$n \geq 8 \;\Rightarrow\; n + 7 \geq 15 \;\Rightarrow\; 2n+7 \geq n+15$$
-      $$\text{y } n+18 \leq 2n+10 \text{ para } n \geq 8$$
-      $$\Rightarrow\; 2n+7 \geq n+18 \iff n \geq 11$$
+      $$\Rightarrow\; \boxed{\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{n+18}}}$$
     </div>
     <div class="paso-just">
-      <div class="titulo">Corrección: el enunciado dice $\sqrt{18+n}$, no $\sqrt{n+18}$</div>
-      Leemos de nuevo: $\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$ equivale a
-      $\sqrt{18+n} \leq \sqrt{2n+7}$, es decir $18+n \leq 2n+7$, es decir $11 \leq n$.
-      Pero el enunciado asume $n \geq 8$. Para $n = 8$: $26 \leq 23$, falso.
-      Releyendo el enunciado original: la desigualdad es $\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$.
-    </div>
-
-    <div class="paso-dev">
-      $$\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{18+n}}$$
-      $$\iff \sqrt{18+n} \leq \sqrt{2n+7}$$
-      $$\iff 18+n \leq 2n+7$$
-      $$\iff 11 \leq n$$
-    </div>
-    <div class="paso-just">
-      <div class="titulo">Equivalencia de la desigualdad</div>
-      Tomar recíprocos invierte el orden (ambos radicales positivos).
-      Elevar al cuadrado preserva el orden (ambos lados positivos).
-      La condición necesaria y suficiente es $n \geq 11$.
-      Como $n \geq 8$ no implica $n \geq 11$, la desigualdad del enunciado
-      es válida solo para $n \geq 11$. Para $n = 8, 9, 10$ la desigualdad
-      es falsa: por ejemplo $n=8$ da $\frac{1}{\sqrt{23}} \leq \frac{1}{\sqrt{26}}$,
-      es decir $\sqrt{26} \leq \sqrt{23}$, que es falso.
-    </div>
-
-    <div class="paso-dev">
-      $$n \geq 11 \;\Rightarrow\; n - 11 \geq 0 \;\Rightarrow\; n+7 \geq 18$$
-      $$\;\Rightarrow\; 2n+7 \geq n+18$$
-      $$\;\Rightarrow\; \sqrt{2n+7} \geq \sqrt{n+18}$$
-      $$\;\Rightarrow\; \boxed{\frac{1}{\sqrt{2n+7}} \leq \frac{1}{\sqrt{n+18}}}$$
-    </div>
-    <div class="paso-just">
-      <div class="titulo">Demostración para $n \geq 11$ (que incluye $n \geq 8$ del enunciado con precaución)</div>
-      La cadena es directa. La condición mínima real es $n \geq 11$, más fuerte que $n \geq 8$.
-      Es posible que el enunciado tenga una errata o que $n$ sea entero y la condición
-      $n \geq 8$ sea un error tipográfico por $n \geq 11$.
+      <div class="titulo">Recíprocos de positivos</div>
+      Como $0 < \sqrt{2n+7}$ y $\sqrt{n+18} \leq \sqrt{2n+7}$, al tomar recíprocos el orden se invierte.
     </div>
   </div>
 
@@ -219,10 +232,11 @@
     <br><br>
     b) Por transitividad: $\dfrac{2}{n^3} < \dfrac{2}{n^2} < \dfrac{3}{n^2}$, luego $\boxed{\dfrac{2}{n^3} < \dfrac{3}{n^2}}$.
     <br><br>
-    c) La desigualdad $\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{18+n}}$ es equivalente a $n \geq 11$.
-    La demostración válida es: $n \geq 11 \Rightarrow 2n+7 \geq n+18 \Rightarrow \sqrt{2n+7} \geq \sqrt{n+18} \Rightarrow \boxed{\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{n+18}}}$.
-    <br>
-    <em>Nota: la condición $n \geq 8$ del enunciado parece ser una errata; la condición correcta es $n \geq 11$.</em>
+    c) La desigualdad $\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{n+18}}$ es equivalente a $n \geq 11$.
+    La hipótesis $n \geq 8$ del enunciado no es suficiente: el contraejemplo $n = 8$ lo confirma.
+    Bajo la condición correcta:
+    $$n \geq 11 \;\Rightarrow\; 2n+7 \geq n+18 \;\Rightarrow\; \sqrt{2n+7} \geq \sqrt{n+18} \;\Rightarrow\; \boxed{\dfrac{1}{\sqrt{2n+7}} \leq \dfrac{1}{\sqrt{n+18}}}.$$
+    <em>Nota: la condición $n \geq 8$ del enunciado parece ser una errata; la condición mínima correcta es $n \geq 11$.</em>
   </div>
 
 </body>

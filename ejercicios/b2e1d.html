@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b2e1d</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { overflow: hidden; }
+    body {
+      font-family: Georgia, serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 24px 60px;
+      color: #111;
+      line-height: 1.8;
+    }
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      border-bottom: 2px solid #111;
+      padding-bottom: 5px;
+      margin-top: 2.2rem;
+    }
+    .bloque { margin-top: 12px; padding: 0 4px; }
+    .nota {
+      border-left: 3px solid #555;
+      padding: 6px 14px;
+      margin: 14px 0;
+      font-style: italic;
+      font-size: .97rem;
+    }
+    .chiste {
+      font-style: italic;
+      font-size: .92rem;
+      color: #444;
+      margin-top: 4px;
+    }
+    .dos-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 14px;
+      border: 1px solid #aaa;
+    }
+    .col-header {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-bottom: 1px solid #aaa;
+    }
+    .col-desarrollo { border-right: 1px solid #aaa; }
+    .paso-dev {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      border-right: 1px solid #aaa;
+      font-size: .97rem;
+    }
+    .paso-dev:last-child { border-bottom: none; }
+    .paso-just {
+      padding: 12px 16px;
+      border-bottom: 1px dashed #ccc;
+      font-size: .93rem;
+      color: #333;
+    }
+    .paso-just:last-child { border-bottom: none; }
+    .resultado-final {
+      border: 2px solid #111;
+      padding: 16px 22px;
+      margin-top: 20px;
+      font-size: 1.02rem;
+    }
+  </style>
+  <script>
+    window.EJERCICIO = {
+      id: "b2e1d",
+      materia: "Cálculo I",
+      origen: "PR2",
+      ejercicio_nro: "1d",
+      tema: ["dominio de una función", "dominio", "función compuesta con raíz y logaritmo"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: ["dominio función raíz logaritmo", "dominio valor absoluto", "calcular dominio cálculo 1"],
+      fecha: "2026-03-14",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Calcule el dominio de:
+  $$f(x) = \sqrt{\sqrt{|x|-1}} - \ln(|x-1|-1)$$</p>
+</div>
+
+<h2>Antes de calcular</h2>
+<div class="bloque">
+  <p>La función tiene dos partes que conviven en una resta. Para que $f(x)$ exista, ambas partes deben existir al mismo tiempo. Eso nos da dos condiciones que hay que cumplir simultáneamente.</p>
+
+  <p>La parte izquierda, $\sqrt{\sqrt{|x|-1}}$, es una raíz dentro de otra raíz. Para que una raíz cuadrada exista, lo que está adentro tiene que ser $\geq 0$. Como hay dos raíces anidadas, hay que aplicar esa regla dos veces de afuera hacia adentro.</p>
+
+  <p>La parte derecha, $\ln(|x-1|-1)$, es un logaritmo. El logaritmo solo existe cuando su argumento es estrictamente positivo, así que $|x-1|-1 > 0$.</p>
+
+  <div class="nota">
+    Estrategia: encontrar por separado el conjunto de $x$ que hace funcionar cada parte, y luego tomar la intersección. Lo que queda es el dominio.
+  </div>
+
+  <p class="chiste">Dos condiciones distintas buscando al mismo $x$. Que ambas se cumplan a la vez es el drama del ejercicio.</p>
+</div>
+
+<h2>Manos a la obra</h2>
+
+<p style="margin-top:16px; font-family:sans-serif; font-size:.85rem; text-transform:uppercase; letter-spacing:.05em;">Condición 1: la raíz doble</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $\sqrt{|x|-1} \geq 0$
+  </div>
+  <div class="paso-just">
+    La raíz exterior existe $\iff$ su radicando es $\geq 0$. La raíz interior ya es $\geq 0$ cuando existe, así que la condición recae sobre ella.
+  </div>
+
+  <div class="paso-dev">
+    $|x| - 1 \geq 0$
+  </div>
+  <div class="paso-just">
+    Misma regla aplicada un nivel más adentro: la raíz interior existe $\iff$ su radicando es $\geq 0$.
+  </div>
+
+  <div class="paso-dev">
+    $|x| \geq 1$
+  </div>
+  <div class="paso-just">
+    Se despeja $|x|$.
+  </div>
+
+  <div class="paso-dev">
+    $x \leq -1 \quad \text{o} \quad x \geq 1$
+  </div>
+  <div class="paso-just">
+    Definición de $|x| \geq 1$: la distancia al origen es al menos 1.
+  </div>
+
+  <div class="paso-dev">
+    $C_1 = (-\infty, -1] \cup [1, +\infty)$
+  </div>
+  <div class="paso-just">
+    Conjunto solución de la condición 1.
+  </div>
+</div>
+
+<p style="margin-top:20px; font-family:sans-serif; font-size:.85rem; text-transform:uppercase; letter-spacing:.05em;">Condición 2: el logaritmo</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $|x - 1| - 1 > 0$
+  </div>
+  <div class="paso-just">
+    El argumento del logaritmo debe ser estrictamente positivo.
+  </div>
+
+  <div class="paso-dev">
+    $|x - 1| > 1$
+  </div>
+  <div class="paso-just">
+    Se despeja $|x-1|$.
+  </div>
+
+  <div class="paso-dev">
+    $x - 1 > 1 \quad \text{o} \quad x - 1 < -1$
+  </div>
+  <div class="paso-just">
+    Definición de valor absoluto estricto: $|A| > k \iff A > k$ o $A < -k$.
+  </div>
+
+  <div class="paso-dev">
+    $x > 2 \quad \text{o} \quad x < 0$
+  </div>
+  <div class="paso-just">
+    Se despeja $x$ en cada caso.
+  </div>
+
+  <div class="paso-dev">
+    $C_2 = (-\infty, 0) \cup (2, +\infty)$
+  </div>
+  <div class="paso-just">
+    Conjunto solución de la condición 2.
+  </div>
+</div>
+
+<p style="margin-top:20px; font-family:sans-serif; font-size:.85rem; text-transform:uppercase; letter-spacing:.05em;">Intersección: dominio final</p>
+
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $C_1 = (-\infty,-1]\cup[1,+\infty)$<br>
+    $C_2 = (-\infty,0)\cup(2,+\infty)$
+  </div>
+  <div class="paso-just">
+    Ambas condiciones deben cumplirse al mismo tiempo.
+  </div>
+
+  <div class="paso-dev">
+    $(-\infty,-1] \cap (-\infty,0) = (-\infty,-1]$
+  </div>
+  <div class="paso-just">
+    Ambos van hacia $-\infty$; el más acotado gana. $-1 &lt; 0$, así que el tope es $-1$.
+  </div>
+
+  <div class="paso-dev">
+    $(-\infty,-1] \cap (2,+\infty) = \emptyset$
+  </div>
+  <div class="paso-just">
+    Un conjunto termina en $-1$ y el otro empieza en $2$. No se tocan.
+  </div>
+
+  <div class="paso-dev">
+    $[1,+\infty) \cap (-\infty,0) = \emptyset$
+  </div>
+  <div class="paso-just">
+    Uno empieza en $1$ y el otro termina en $0$. Tampoco se tocan.
+  </div>
+
+  <div class="paso-dev">
+    $[1,+\infty) \cap (2,+\infty) = (2,+\infty)$
+  </div>
+  <div class="paso-just">
+    Ambos van a $+\infty$; el más acotado gana. $2 > 1$ y es abierto, así que el inicio es $(2$.
+  </div>
+
+  <div class="paso-dev">
+    $\text{Dom}(f) = (-\infty, -1] \cup (2, +\infty)$
+  </div>
+  <div class="paso-just">
+    Unión de los pares que sí se solaparon.
+  </div>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> El dominio de $f$ es:
+  $$\boxed{\text{Dom}(f) = (-\infty,\,-1\,] \cup (\,2,\,+\infty)}$$
+  Es decir, todos los $x \leq -1$ y todos los $x > 2$.
+</div>
+
+<h2>¿Y esto para qué me sirve?</h2>
+<div class="bloque">
+  <p>Calcular el dominio es exactamente lo que hace un compilador cuando valida tipos antes de ejecutar código. Una expresión como <code>sqrt(log(abs(x) - 1) - 1)</code> solo es evaluable si los datos de entrada cumplen ciertas condiciones: el argumento del logaritmo positivo, el radicando no negativo. Si se llama la función con un valor fuera de dominio, el programa lanza una excepción en tiempo de ejecución. Las restricciones que encontramos en este ejercicio son exactamente las guardas que escribiría un programador defensivo antes de calcular algo así.</p>
+  <p>Más en general, en análisis numérico y machine learning, verificar el dominio de las funciones de activación o de costo es parte del diseño del modelo. Una función logarítmica usada como pérdida (como en la entropía cruzada) requiere que sus entradas sean estrictamente positivas, y los frameworks modernos insertan esas comprobaciones de forma automática.</p>
+</div>
+
+</body>
+</html>
