@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>nalvv</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "nalvv",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30e",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores universal y existencial",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "cuantificador universal",
+        "cuantificador existencial",
+        "valor de verdad",
+        "números enteros",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [2x + 3y = 1]$</p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>El mapa antes del territorio</h2>
+  <div class="bloque">
+    <p>
+      La ecuación es la misma que en el caso real: $2x + 3y = 1$.
+      La estrategia también es la misma: para cada $x$ que llegue,
+      despejar $y$ y ver si existe. El problema es que ahora el dominio
+      es $\mathbb{Z}$, los enteros. Y despejar da
+      $y = \frac{1 - 2x}{3}$, que es una fracción.
+      No toda fracción es un entero.
+    </p>
+    <div class="nota">
+      La pregunta que hay que hacerse es: ¿para qué valores de $x \in \mathbb{Z}$
+      el número $\frac{1-2x}{3}$ resulta ser un entero?
+      Si hay algún $x$ entero para el que esa fracción no es entera,
+      la proposición es falsa. Si para todos funciona, es verdadera.
+    </div>
+    <p>
+      Para que $\frac{1-2x}{3}$ sea entero, el numerador $1 - 2x$
+      tiene que ser divisible por $3$. Eso es una condición sobre $x$
+      que no todos los enteros cumplen. Basta encontrar uno que no la cumpla
+      para terminar el trabajo.
+    </p>
+    <p class="chiste">
+      Pasar de $\mathbb{R}$ a $\mathbb{Z}$ es como cambiar las reglas del juego
+      a mitad del partido: lo que antes siempre funcionaba ahora puede fallar
+      en el momento menos pensado.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La pregunta "¿para qué enteros $x$ es $1 - 2x$ divisible por $3$?"
+      es exactamente el tipo de problema que estudia la aritmética modular.
+      En notación modular, la condición es $1 - 2x \equiv 0 \pmod{3}$,
+      que se simplifica a $2x \equiv 1 \pmod{3}$.
+      Resolver esto es encontrar el inverso multiplicativo de $2$ módulo $3$,
+      que resulta ser $2$, porque $2 \cdot 2 = 4 \equiv 1 \pmod{3}$.
+      Entonces la condición se cumple solo cuando $x \equiv 2 \pmod{3}$,
+      es decir, para $x = \ldots, -1, 2, 5, 8, \ldots$, no para todos los enteros.
+    </p>
+  </div>
+
+  <h2>Ahora sí, a demostrar</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $x \in \mathbb{Z}$ un entero cualquiera. Se necesita encontrar $y \in \mathbb{Z}$
+      tal que $2x + 3y = 1$.
+    </div>
+    <div class="paso-just">
+      Instanciar el $\forall x$: hay que mostrar que funciona para cualquier entero.
+    </div>
+
+    <div class="paso-dev">
+      $3y = 1 - 2x \implies y = \dfrac{1 - 2x}{3}$
+    </div>
+    <div class="paso-just">
+      Despejar $y$. La cuestión es si este valor pertenece a $\mathbb{Z}$.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $x = 0$: $y = \dfrac{1 - 0}{3} = \dfrac{1}{3} \notin \mathbb{Z}$
+    </div>
+    <div class="paso-just">
+      Contraejemplo concreto: $x = 0$ no produce un $y$ entero.
+    </div>
+
+    <div class="paso-dev">
+      No existe $y \in \mathbb{Z}$ tal que $2(0) + 3y = 1$
+    </div>
+    <div class="paso-just">
+      $3y = 1$ no tiene solución entera porque $3 \nmid 1$.
+    </div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [2x + 3y = 1]$ es <strong>falsa</strong>.
+    </div>
+    <div class="paso-just">
+      Un solo contraejemplo basta para refutar un $\forall$.
+    </div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Probemos con otro $x$ para confirmar que $x = 0$ no fue mala suerte.
+      Con $x = 1$: $y = \frac{1-2}{3} = \frac{-1}{3} \notin \mathbb{Z}$.
+      Con $x = 2$: $y = \frac{1-4}{3} = \frac{-3}{3} = -1 \in \mathbb{Z}$. Este sí funciona.
+      Con $x = 3$: $y = \frac{1-6}{3} = \frac{-5}{3} \notin \mathbb{Z}$. Este no.
+      No todos los enteros tienen su $y$ entero correspondiente,
+      así que la proposición es falsa.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [2x + 3y = 1]$
+    es <strong>falsa</strong>.
+    El contraejemplo $x = 0$ muestra que no existe ningún entero $y$
+    que satisfaga $3y = 1$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque">
+    <p>
+      Este tipo de problema aparece todo el tiempo en criptografía y en sistemas
+      de detección de errores. Muchos algoritmos dependen de que ciertas ecuaciones
+      tengan solución entera módulo algún número. Si la ecuación no tiene solución
+      entera, el algoritmo falla o produce resultados incorrectos.
+      Por eso los protocolos criptográficos eligen muy cuidadosamente los números
+      con los que trabajan: necesitan garantizar que las ecuaciones involucradas
+      siempre tengan solución en el dominio correcto.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En la proposición (∀x ∈ ℤ)(∃y ∈ ℤ)[2x + 3y = 1], ¿para qué valores enteros de x sí existe un y entero que satisface la ecuación? ¿Hay un patrón?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>¿Qué condición tienen que cumplir los coeficientes a, b y c en la ecuación ax + by = c para que exista solución entera para todo x entero? ¿Qué papel juega el máximo común divisor?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>¿Qué es la aritmética modular y cómo se usa para determinar si una ecuación lineal tiene solución entera? Explica con el ejemplo 2x + 3y = 1 sobre los enteros.</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Si la ecuación fuera 2x + 4y = 1, ¿tendría solución entera para algún x entero? ¿Por qué el máximo común divisor de 2 y 4 hace imposible la solución?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

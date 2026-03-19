@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>yum4l</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "yum4l",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "31a",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones abiertas",
+        "valor de verdad de proposiciones cuantificadas",
+        "números primos"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "cuantificador universal",
+        "cuantificador existencial",
+        "proposición abierta",
+        "valor de verdad",
+        "números primos",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Sea $A = \{2,3,4,5,6,7\}$, $P(x):\ x+1$ es un número primo,
+      $Q(x):\ x^2+x$ es un número impar. Determine el valor de verdad de:
+      $$\forall x \in \mathbb{N}[x \in A \to x < 9]\ \land\ \exists x \in \mathbb{N}[x \in A \land P(2x)]$$
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>
+      La proposición completa es una conjunción: dos partes unidas por un $\land$.
+      Para que sea verdadera, las <em>dos</em> partes tienen que ser verdaderas.
+      Si una falla, toda la proposición es falsa. Es como una puerta con dos
+      cerraduras: necesitas ambas llaves.
+    </p>
+    <div class="nota">
+      Parte izquierda: ¿todos los elementos de $A$ son menores que $9$?<br>
+      Parte derecha: ¿existe algún natural $x$ en $A$ tal que $2x + 1$ sea primo?<br>
+      Hay que evaluar cada parte por separado y luego combinarlas.
+    </div>
+    <p>
+      Para la parte derecha, $P(2x)$ significa evaluar la proposición $P$ en $2x$
+      en lugar de $x$. Como $P(x)$ dice "$x+1$ es primo", entonces
+      $P(2x)$ dice "$2x+1$ es primo". Hay que buscar algún $x \in A$
+      tal que $2x+1$ resulte primo.
+    </p>
+    <p class="chiste">
+      Dos proposiciones entran a un $\land$. Solo salen si las dos son verdaderas.
+      Spoiler: una de ellas no pasa el filtro.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Los números primos tienen una historia computacional fascinante.
+      Determinar si un número es primo parece simple, pero para números
+      enormes es uno de los problemas más costosos en computación.
+      El algoritmo más básico, dividir por todos los números hasta $\sqrt{n}$,
+      se vuelve impracticable muy rápido. Por eso existen pruebas de primalidad
+      probabilísticas como Miller-Rabin, que no garantizan que un número
+      sea primo pero dan una certeza altísima en muchísimo menos tiempo.
+      Toda la criptografía moderna, incluyendo HTTPS, depende de generar
+      números primos enormes de forma eficiente.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <p class="subcaso">Parte izquierda — $\forall x \in \mathbb{N}[x \in A \to x < 9]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A = \{2, 3, 4, 5, 6, 7\}$
+    </div>
+    <div class="paso-just">
+      Los únicos naturales que hacen verdadero el antecedente $x \in A$.
+    </div>
+
+    <div class="paso-dev">
+      $2 < 9,\ 3 < 9,\ 4 < 9,\ 5 < 9,\ 6 < 9,\ 7 < 9$
+    </div>
+    <div class="paso-just">
+      Verificar $x < 9$ para cada elemento de $A$.
+    </div>
+
+    <div class="paso-dev">
+      Para todo $x \notin A$, el antecedente $x \in A$ es falso,
+      por lo que $x \in A \to x < 9$ es vacuamente verdadera.
+    </div>
+    <div class="paso-just">
+      Una implicación con antecedente falso es siempre verdadera.
+    </div>
+
+    <div class="paso-dev">
+      $\forall x \in \mathbb{N}[x \in A \to x < 9]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      Todos los elementos de $A$ cumplen $x < 9$, y los demás no aplican.
+    </div>
+  </div>
+
+  <p class="subcaso">Parte derecha — $\exists x \in \mathbb{N}[x \in A \land P(2x)]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $P(2x) \iff 2x + 1$ es primo.
+    </div>
+    <div class="paso-just">
+      Sustituir $x$ por $2x$ en la definición de $P(x): x+1$ es primo.
+    </div>
+
+    <div class="paso-dev">
+      Evaluar $2x+1$ para cada $x \in A$:
+      \[
+      \begin{array}{c|c|c}
+        x & 2x+1 & \text{¿primo?} \\\hline
+        2 & 5 & \text{sí} \\
+        3 & 7 & \text{sí} \\
+        4 & 9 = 3^2 & \text{no} \\
+        5 & 11 & \text{sí} \\
+        6 & 13 & \text{sí} \\
+        7 & 15 = 3\cdot 5 & \text{no}
+      \end{array}
+      \]
+    </div>
+    <div class="paso-just">
+      Verificar $P(2x)$ para cada elemento de $A$.
+    </div>
+
+    <div class="paso-dev">
+      $x = 2 \in A$ y $P(2\cdot 2) = P(4)$: $4+1 = 5$ es primo. $\checkmark$
+    </div>
+    <div class="paso-just">
+      Testigo encontrado: $x = 2$ satisface $x \in A \land P(2x)$.
+    </div>
+
+    <div class="paso-dev">
+      $\exists x \in \mathbb{N}[x \in A \land P(2x)]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      Un solo testigo basta para probar una existencia.
+    </div>
+  </div>
+
+  <p class="subcaso">Conjunción final</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\text{V} \land \text{V}$
+    </div>
+    <div class="paso-just">
+      Ambas partes resultaron verdaderas.
+    </div>
+
+    <div class="paso-dev">
+      La proposición completa es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      $\text{V} \land \text{V} = \text{V}$.
+    </div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Para la parte izquierda: el mayor elemento de $A$ es $7$, y $7 < 9$.
+      Ningún elemento de $A$ alcanza ni supera $9$, así que la universal se sostiene.
+      Para la parte derecha: $x = 2$ da $2(2)+1 = 5$, que es primo.
+      El testigo existe y es concreto.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición
+    $\forall x \in \mathbb{N}[x \in A \to x < 9]\ \land\ \exists x \in \mathbb{N}[x \in A \land P(2x)]$
+    es <strong>verdadera</strong>.
+    Ambas partes de la conjunción son verdaderas:
+    todos los elementos de $A$ son menores que $9$,
+    y $x = 2$ es testigo de que $P(2x)$ se cumple para algún elemento de $A$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      La estructura de este ejercicio, evaluar una condición sobre un conjunto finito
+      y verificar si se cumple para todos o para alguno, es exactamente lo que hacen
+      las funciones <code>every()</code> y <code>some()</code> en JavaScript,
+      o <code>all()</code> y <code>any()</code> en Python.
+      El $\forall$ es un <code>every</code>: falla si encuentra un elemento que no cumple.
+      El $\exists$ es un <code>some</code>: termina en cuanto encuentra uno que sí cumple.
+      La conjunción final es simplemente un AND entre los dos resultados.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En bases de datos SQL, la cláusula WHERE filtra filas según una condición. ¿Cómo traducirías la proposición ∀x ∈ A[x &lt; 9] a una consulta SQL que verifique si todos los elementos de una tabla cumplen esa condición? ¿Y la proposición ∃x ∈ A[P(2x)] a una consulta que verifique si existe al menos uno?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Las pruebas unitarias en software verifican que una función cumple ciertas condiciones para todos los casos de prueba (∀) o que existe al menos un caso que produce cierto resultado (∃). ¿Cómo se relaciona la diferencia entre ∀ y ∃ con la diferencia entre una prueba que debe pasar para todos los inputs y una que solo necesita un ejemplo que funcione?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Los números primos son la base de la criptografía de clave pública (RSA, HTTPS). ¿Por qué es computacionalmente difícil verificar si un número muy grande es primo? ¿Qué estrategias usan los sistemas modernos para generar números primos grandes de forma eficiente?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En inteligencia artificial, un clasificador binario decide si un elemento cumple o no una condición. ¿Cómo se relaciona esto con evaluar una proposición abierta P(x) sobre un conjunto? ¿Qué significa en ese contexto que el clasificador tenga falsos positivos o falsos negativos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarDato(btn) {
+      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

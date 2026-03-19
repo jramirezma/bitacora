@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>lr6di</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn {
+      display: block;
+      margin: 16px auto 0;
+      max-width: 400px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "lr6di",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30c",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores existencial y universal",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador existencial",
+        "cuantificador universal",
+        "valor de verdad",
+        "números reales",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\exists y \in \mathbb{R})(\forall x \in \mathbb{R})\ [2x + 3y = 1]$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>
+      Piensa en una balanza. En un platillo está $2x + 3y$ y en el otro está $1$.
+      La proposición pregunta: ¿existe algún valor fijo de $y$ que mantenga
+      la balanza equilibrada sin importar qué $x$ aparezca?
+    </p>
+    <div class="nota">
+      El $\exists y$ viene primero: hay que elegir un $y$ fijo de una vez para siempre.
+      Después llegan todos los reales posibles como $x$, uno por uno, y ese mismo $y$
+      tiene que funcionar para cada uno de ellos.
+    </div>
+    <p>
+      Para que $2x + 3y = 1$ valga para todo $x$, el término $2x$ tendría que
+      desaparecer de alguna manera, porque $x$ cambia y $y$ no puede seguirle el paso.
+      Pero $2x$ no desaparece solo: depende de $x$, y $x$ puede ser cualquier número real.
+      Si $x$ crece, $2x$ crece. Si $y$ es fijo, $3y$ es fijo. La suma no puede ser
+      siempre $1$.
+    </p>
+    <p class="chiste">
+      Es como intentar mantener el precio total de una compra en exactamente $1$ peso
+      cuando la cantidad de productos puede ser cualquier número y el precio unitario
+      no se puede cambiar. Por más que se ajuste $y$, siempre llega algún $x$
+      que arruina la cuenta.
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La ecuación $2x + 3y = 1$ describe una recta en el plano cartesiano.
+      Pedir que exista un $y$ fijo que funcione para todo $x$ es equivalente a pedir
+      que esa recta sea horizontal, es decir, que tenga pendiente cero.
+      Pero $2x + 3y = 1$ tiene pendiente $-\frac{2}{3}$, así que no es horizontal.
+      Solo una ecuación sin $x$, como $3y = 1$, tendría esa propiedad:
+      ahí sí, $y = \frac{1}{3}$ funciona para cualquier $x$.
+    </p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Suponer que $(\exists y_0 \in \mathbb{R})(\forall x \in \mathbb{R})\ [2x + 3y_0 = 1]$.
+    </div>
+    <div class="paso-just">
+      Hipótesis. Se busca refutarla por contradicción.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $x = 0$: $\quad 2(0) + 3y_0 = 1 \implies y_0 = \dfrac{1}{3}$.
+    </div>
+    <div class="paso-just">
+      Aplicar la hipótesis a un valor concreto de $x$.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $x = 1$: $\quad 2(1) + 3y_0 = 1 \implies y_0 = -\dfrac{1}{3}$.
+    </div>
+    <div class="paso-just">
+      Aplicar la misma hipótesis a otro valor de $x$.
+    </div>
+
+    <div class="paso-dev">
+      $y_0 = \dfrac{1}{3} \quad \land \quad y_0 = -\dfrac{1}{3}$
+    </div>
+    <div class="paso-just">
+      Ambas deben ser ciertas con el mismo $y_0$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{3} = -\dfrac{1}{3} \quad \Rightarrow\Leftarrow$
+    </div>
+    <div class="paso-just">
+      Contradicción. $\tfrac{1}{3} \neq -\tfrac{1}{3}$ en $\mathbb{R}$.
+    </div>
+
+    <div class="paso-dev">
+      $(\exists y \in \mathbb{R})(\forall x \in \mathbb{R})\ [2x + 3y = 1]$ es <strong>falsa</strong>.
+    </div>
+    <div class="paso-just">
+      Ningún $y$ fijo sobrevive a todos los $x$.
+    </div>
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>
+      Si pruebas con $y = \frac{1}{3}$, que es lo que exige $x = 0$,
+      y luego mandas $x = 5$: $2(5) + 3\cdot\frac{1}{3} = 10 + 1 = 11 \neq 1$.
+      La balanza se desequilibra en cuanto $x$ deja de ser $0$.
+      No hay ningún $y$ que aguante.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\exists y \in \mathbb{R})(\forall x \in \mathbb{R})\ [2x + 3y = 1]$
+    es <strong>falsa</strong>.
+    No existe ningún valor fijo de $y$ que satisfaga la ecuación
+    para todos los reales $x$ simultáneamente.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque">
+    <p>
+      En álgebra lineal computacional, resolver sistemas de ecuaciones
+      es preguntar exactamente esto: ¿existe un vector de valores fijos
+      que satisfaga todas las ecuaciones a la vez?
+      Cuando el sistema no tiene solución, es porque ningún vector fijo
+      cumple todas las restricciones simultáneamente, el mismo mecanismo
+      que viste acá con $y$.
+    </p>
+    <p>
+      Librerías como NumPy o MATLAB detectan esto automáticamente
+      y reportan que el sistema es incompatible. Por dentro,
+      están encontrando la misma contradicción que encontraste
+      a mano.
+    </p>
+  </div>
+
+</body>
+</html>

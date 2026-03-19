@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>qpplf</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn {
+      display: block;
+      margin: 16px auto 0;
+      max-width: 400px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "qpplf",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30a",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores existencial y universal",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador existencial",
+        "cuantificador universal",
+        "valor de verdad",
+        "enteros",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\exists y \in \mathbb{Z})(\forall x \in \mathbb{Z})\ [x = y + 1]$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Imaginate que tenés una fila infinita de personas numeradas: ..., $-2$, $-1$, $0$, $1$, $2$, ...
+      La proposición pregunta: ¿existe alguna persona $y$ en esa fila tal que
+      <em>todas las demás personas</em> sean exactamente la siguiente en la fila después de $y$?
+      Es decir, ¿hay un único $y$ que sea el "vecino de adelante" de absolutamente todos?
+    </p>
+    <div class="nota">
+      El truco está en el orden: primero elegís $y$ y lo dejás fijo para siempre.
+      Después llegan todos los $x$ posibles y el pobre $y$ tiene que cumplir la condición
+      con cada uno de ellos. Es como si una sola persona tuviera que ser la vecina
+      de toda la humanidad al mismo tiempo.
+    </div>
+    <p>
+      Para demostrar que esto es falso, no hace falta revisar todos los enteros.
+      Alcanza con encontrar <em>dos</em> valores de $x$ que le exijan cosas distintas
+      al mismo $y$. Si $y$ tiene que ser dos cosas a la vez y esas cosas son diferentes,
+      $y$ explota. La contradicción hace el trabajo sola.
+    </p>
+    <p class="chiste">Es como pedirle a alguien que sea tu vecino de la derecha
+    y al mismo tiempo el vecino de la derecha de tu otro vecino. O vivís en dos casas a la vez,
+    o la lógica te manda a dormir afuera.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Suponer que $(\exists y \in \mathbb{Z})(\forall x \in \mathbb{Z})\ [x = y + 1]$
+      es verdadera.
+    </div>
+    <div class="paso-just">
+      Hipótesis. Se busca refutarla por contradicción.
+    </div>
+
+    <div class="paso-dev">
+      Sea $y_0 \in \mathbb{Z}$ ese entero que satisface $x = y_0 + 1$ para todo $x \in \mathbb{Z}$.
+    </div>
+    <div class="paso-just">
+      Instanciar el cuantificador existencial.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $x = 0$: $\quad 0 = y_0 + 1 \implies y_0 = -1$.
+    </div>
+    <div class="paso-just">
+      Aplicar la hipótesis a un valor concreto de $x$.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $x = 1$: $\quad 1 = y_0 + 1 \implies y_0 = 0$.
+    </div>
+    <div class="paso-just">
+      Aplicar la misma hipótesis a otro valor de $x$.
+    </div>
+
+    <div class="paso-dev">
+      $y_0 = -1 \quad \land \quad y_0 = 0$
+    </div>
+    <div class="paso-just">
+      Ambas conclusiones deben ser ciertas simultáneamente.
+    </div>
+
+    <div class="paso-dev">
+      $-1 = 0 \quad \Rightarrow\Leftarrow$
+    </div>
+    <div class="paso-just">
+      Contradicción. $-1 \neq 0$ en $\mathbb{Z}$.
+    </div>
+
+    <div class="paso-dev">
+      $(\exists y \in \mathbb{Z})(\forall x \in \mathbb{Z})\ [x = y + 1]$ es <strong>falsa</strong>.
+    </div>
+    <div class="paso-just">
+      La hipótesis lleva a una contradicción, así que la proposición original es falsa.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Probemos con $y = 5$, que parece un candidato simpático.
+      La promesa es que $x = 5 + 1 = 6$ para <em>todo</em> $x$.
+      Pero si $x = 3$, tenemos $3 = 6$. Falso.
+      Si $y = 100$, el $x$ que llega con cara de $7$ arruina la fiesta igual.
+      No importa qué $y$ elijas: siempre va a aparecer algún $x$ que diga
+      "yo no soy $y + 1$, soy yo mismo".
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\exists y \in \mathbb{Z})(\forall x \in \mathbb{Z})\ [x = y + 1]$
+    es <strong>falsa</strong>.
+    No existe ningún entero $y$ tal que todos los enteros sean iguales a $y + 1$
+    al mismo tiempo, ya que eso obligaría a que todos los enteros fueran iguales entre sí.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      Este tipo de razonamiento aparece todo el tiempo cuando se analizan funciones en
+      programación. Si una función recibe un parámetro $x$ y se espera que devuelva
+      siempre el mismo resultado fijo sin importar la entrada, eso es exactamente lo que
+      pide el cuantificador $\forall x$: que la condición valga para cualquier valor posible.
+      Cuando una función así falla para alguna entrada concreta (como cuando los tests
+      unitarios encuentran un caso que rompe la lógica), están haciendo exactamente lo
+      que hicimos acá: encontrar un $x$ específico que refuta la afirmación universal.
+    </p>
+    <p>
+      En bases de datos, una restricción de integridad del tipo
+      <em>"toda fila tiene el mismo valor en la columna X"</em>
+      también es un $\forall$ sobre todas las filas. Si se puede encontrar aunque sea una
+      fila que viole eso, la restricción cae. Mismo mecanismo, distinto contexto.
+    </p>
+  </div>
+
+</body>
+</html>

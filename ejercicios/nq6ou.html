@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>nq6ou</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "nq6ou",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "27",
+      tema: [
+        "Lógica",
+        "Cuantificadores y predicados",
+        "Simbolización, lógica de primer orden"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "cuantificadores lógica",
+        "simbolización predicados",
+        "lógica de primer orden álgebra"
+      ],
+      fecha: "2026-03-18",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Simbolice completamente las siguientes proposiciones, utilizando predicados, términos, conectivas y cuantificadores:</p>
+    <p>(a) Para todo $a$ y $b$ números reales positivos existe un número entero $n$ tal que $na$ es mayor o igual que $b$.</p>
+    <p>(b) Existe un número natural mayor que 5, de manera que su triple o su cuadrado sea menor que 30 y mayor que 20.</p>
+    <p>(c) Existen tres números reales de manera que la suma de los dos primeros es igual a la suma del tercero más 4.</p>
+    <p>(d) Para todo número real positivo $x$ existe al menos un número natural $n$ diferente de cero, tal que el inverso multiplicativo de $n$ es menor que $x$.</p>
+    <p>(e) Para todo número natural $a$ y para todo número natural $b$, $a$ y $b$ son primos relativos si y solo si el máximo común divisor de $a$ y $b$ es igual a uno.</p>
+    <p>(f) Todo número natural $n$ es divisible por 3 si existe un número natural $k$, de manera que el producto de 3 y $k$ sea $n$.</p>
+    <p>(g) No existe un número real que sea mayor que todos los reales.</p>
+    <p>(h) Si el entero $n$ es divisible por 2 y el entero $m$ es divisible por 3, entonces el producto de $m$ y $n$ es divisible por 6.</p>
+    <p>(i) Existe un número real que al elevarlo al cuadrado da $-1$.</p>
+    <p>(j) No existe un número racional tal que su cuadrado sea 2.</p>
+    <p>(k) Entre dos números racionales existe un número irracional.</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Simbolizar es traducir. El español es ambiguo y verboso; la lógica es precisa
+      y concisa. El truco está en identificar tres cosas en cada oración: el
+      <em>cuantificador</em> (¿dice "para todo" o "existe alguno"?), el
+      <em>dominio</em> (¿sobre qué conjunto estamos hablando: $\mathbb{R}$, $\mathbb{N}$, $\mathbb{Z}$?)
+      y el <em>predicado</em> (¿qué propiedad se está afirmando?).
+    </p>
+    <div class="nota">
+      "Para todo" se escribe $\forall$ y suele ir acompañado de una implicación ($\rightarrow$).
+      "Existe" se escribe $\exists$ y suele ir acompañado de una conjunción ($\wedge$).
+      Confundir esto es el error más común en simbolización.
+    </div>
+    <p>
+      Algunos incisos tienen cuantificadores anidados: un $\forall$ adentro de un $\exists$,
+      o viceversa. El orden importa: "para todo $x$ existe $y$" no es lo mismo que
+      "existe $y$ tal que para todo $x$".
+    </p>
+    <p class="chiste">Traducir del español a la lógica es como traducir contratos legales: cada palabra cuenta y una coma mal puesta cambia el significado por completo.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <p class="subcaso">(a) — Para todo $a$ y $b$ números reales positivos existe un número entero $n$ tal que $na$ es mayor o igual que $b$.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall a \in \mathbb{R}^+)(\forall b \in \mathbb{R}^+)(\exists n \in \mathbb{Z})[na \geq b]$
+    </div>
+    <div class="paso-just">
+      Dos universales anidados sobre positivos, luego un existencial. Esto es la propiedad arquimediana.
+    </div>
+  </div>
+
+  <p class="subcaso">(b) — Existe un número natural mayor que 5, de manera que su triple o su cuadrado sea menor que 30 y mayor que 20.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\exists n \in \mathbb{N})[n > 5 \wedge (20 < 3n < 30 \vee 20 < n^2 < 30)]$
+    </div>
+    <div class="paso-just">
+      Existencial con tres condiciones unidas por $\wedge$ y $\vee$. El "y" entre "menor que 30 y mayor que 20" se convierte en una doble desigualdad.
+    </div>
+  </div>
+
+  <p class="subcaso">(c) — Existen tres números reales de manera que la suma de los dos primeros es igual a la suma del tercero más 4.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})(\exists y \in \mathbb{R})(\exists z \in \mathbb{R})[x + y = z + 4]$
+    </div>
+    <div class="paso-just">
+      Tres existenciales independientes. "Los dos primeros" son $x$ e $y$; "el tercero" es $z$.
+    </div>
+  </div>
+
+  <p class="subcaso">(d) — Para todo número real positivo $x$ existe al menos un número natural $n$ diferente de cero, tal que el inverso multiplicativo de $n$ es menor que $x$.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{R}^+)(\exists n \in \mathbb{N} \setminus \{0\})\left[\dfrac{1}{n} < x\right]$
+    </div>
+    <div class="paso-just">
+      "Inverso multiplicativo de $n$" es $\frac{1}{n}$. El dominio excluye el cero explícitamente porque $\frac{1}{0}$ no existe.
+    </div>
+  </div>
+
+  <p class="subcaso">(e) — Para todo número natural $a$ y para todo número natural $b$, $a$ y $b$ son primos relativos si y solo si el máximo común divisor de $a$ y $b$ es igual a uno.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall a \in \mathbb{N})(\forall b \in \mathbb{N})[\text{coprimos}(a,b) \leftrightarrow \text{mcd}(a,b) = 1]$
+    </div>
+    <div class="paso-just">
+      El bicondicional $\leftrightarrow$ traduce el "si y solo si". $\text{coprimos}(a,b)$ es un predicado abreviado para "$a$ y $b$ son primos relativos".
+    </div>
+  </div>
+
+  <p class="subcaso">(f) — Todo número natural $n$ es divisible por 3 si existe un número natural $k$, de manera que el producto de 3 y $k$ sea $n$.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall n \in \mathbb{N})[(\exists k \in \mathbb{N})(3k = n) \rightarrow 3 \mid n]$
+    </div>
+    <div class="paso-just">
+      "Si existe $k$ tal que $3k = n$" es la hipótesis; "divisible por 3" es la conclusión. El existencial queda dentro del antecedente del condicional.
+    </div>
+  </div>
+
+  <p class="subcaso">(g) — No existe un número real que sea mayor que todos los reales.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $\neg(\exists x \in \mathbb{R})(\forall y \in \mathbb{R})[x > y]$
+    </div>
+    <div class="paso-just">
+      Equivalentemente: $(\forall x \in \mathbb{R})(\exists y \in \mathbb{R})[x \leq y]$. No hay máximo en $\mathbb{R}$.
+    </div>
+  </div>
+
+  <p class="subcaso">(h) — Si el entero $n$ es divisible por 2 y el entero $m$ es divisible por 3, entonces el producto de $m$ y $n$ es divisible por 6.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall n \in \mathbb{Z})(\forall m \in \mathbb{Z})[(2 \mid n \wedge 3 \mid m) \rightarrow 6 \mid mn]$
+    </div>
+    <div class="paso-just">
+      Dos universales. Las dos condiciones del antecedente van unidas con $\wedge$; el consecuente es la divisibilidad del producto.
+    </div>
+  </div>
+
+  <p class="subcaso">(i) — Existe un número real que al elevarlo al cuadrado da $-1$.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})[x^2 = -1]$
+    </div>
+    <div class="paso-just">
+      La proposición es falsa en $\mathbb{R}$ — ningún real cumple esto — pero eso no impide simbolizarla correctamente.
+    </div>
+  </div>
+
+  <p class="subcaso">(j) — No existe un número racional tal que su cuadrado sea 2.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $\neg(\exists x \in \mathbb{Q})[x^2 = 2]$
+    </div>
+    <div class="paso-just">
+      Equivalentemente: $(\forall x \in \mathbb{Q})[x^2 \neq 2]$. La irracionalidad de $\sqrt{2}$ expresada en lógica.
+    </div>
+  </div>
+
+  <p class="subcaso">(k) — Entre dos números racionales existe un número irracional.</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Simbolización</div>
+    <div class="col-header">Nota</div>
+    <div class="paso-dev">
+      $(\forall a \in \mathbb{Q})(\forall b \in \mathbb{Q})[a < b \rightarrow (\exists z \in \mathbb{I})(a < z < b)]$
+    </div>
+    <div class="paso-just">
+      $\mathbb{I}$ denota los irracionales. El condicional captura el "entre": solo aplica cuando $a < b$. Esto es la densidad de los irracionales en $\mathbb{R}$.
+    </div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Verificamos (b) con un valor concreto. El inciso pide un natural mayor que 5
+      cuyo triple o cuadrado esté entre 20 y 30. Probamos $n = 9$:
+      $n > 5$ ✓, $3 \cdot 9 = 27$ y $20 < 27 < 30$ ✓.
+      La proposición es verdadera y la simbolización la captura correctamente.
+    </p>
+    <p>
+      Verificamos (g): ¿existe algún real mayor que todos los reales? No, porque dado
+      cualquier $x$, el número $x + 1$ es mayor. La negación del existencial es correcta.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Las once proposiciones simbolizadas son:
+    <br><br>
+    (a) $(\forall a \in \mathbb{R}^+)(\forall b \in \mathbb{R}^+)(\exists n \in \mathbb{Z})[na \geq b]$<br>
+    (b) $(\exists n \in \mathbb{N})[n > 5 \wedge (20 < 3n < 30 \vee 20 < n^2 < 30)]$<br>
+    (c) $(\exists x \in \mathbb{R})(\exists y \in \mathbb{R})(\exists z \in \mathbb{R})[x + y = z + 4]$<br>
+    (d) $(\forall x \in \mathbb{R}^+)(\exists n \in \mathbb{N} \setminus \{0\})\left[\frac{1}{n} < x\right]$<br>
+    (e) $(\forall a \in \mathbb{N})(\forall b \in \mathbb{N})[\text{coprimos}(a,b) \leftrightarrow \text{mcd}(a,b) = 1]$<br>
+    (f) $(\forall n \in \mathbb{N})[(\exists k \in \mathbb{N})(3k = n) \rightarrow 3 \mid n]$<br>
+    (g) $\neg(\exists x \in \mathbb{R})(\forall y \in \mathbb{R})[x > y]$<br>
+    (h) $(\forall n \in \mathbb{Z})(\forall m \in \mathbb{Z})[(2 \mid n \wedge 3 \mid m) \rightarrow 6 \mid mn]$<br>
+    (i) $(\exists x \in \mathbb{R})[x^2 = -1]$<br>
+    (j) $\neg(\exists x \in \mathbb{Q})[x^2 = 2]$<br>
+    (k) $(\forall a \in \mathbb{Q})(\forall b \in \mathbb{Q})[a < b \rightarrow (\exists z \in \mathbb{I})(a < z < b)]$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      Los cuantificadores $\forall$ y $\exists$ tienen un equivalente directo en
+      cualquier lenguaje de programación: $\forall$ es un bucle que recorre todos
+      los elementos y verifica que todos cumplan una condición — en Python sería
+      <code>all(...)</code> —, mientras que $\exists$ es una búsqueda que termina
+      en cuanto encuentra uno que cumple — equivale a <code>any(...)</code>.
+      Cuando escribís un test que dice "para toda entrada válida, la función
+      devuelve un resultado positivo", estás escribiendo un $\forall$ en español.
+    </p>
+    <p>
+      El orden de los cuantificadores anidados, que en este ejercicio es crítico,
+      aparece también en los algoritmos: "para todo usuario existe una sesión" es
+      muy distinto de "existe una sesión que sirve para todos los usuarios". El
+      primero escala bien; el segundo es un cuello de botella clásico en sistemas
+      concurrentes.
+    </p>
+  </div>
+
+</body>
+</html>

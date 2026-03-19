@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>k7ngt</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn { display: block; margin: 16px auto 0; max-width: 400px; }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "k7ngt",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "25a",
+      tema: [
+        "Lógica",
+        "Argumentos y validez",
+        "Reglas de inferencia, simbolización"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "argumento válido lógica",
+        "reglas de inferencia álgebra",
+        "simbolización proposiciones"
+      ],
+      fecha: "2026-03-18",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      En cada uno de los siguientes casos, simbolice las proposiciones involucradas
+      y demuestre la validez de la conclusión.
+    </p>
+    <p>
+      (a) Si S campeoniza, entonces C gana o H gana. Si C gana, entonces S no campeoniza.
+      Si H gana, entonces A no gana. De hecho, S campeoniza. Por lo tanto, A no gana o L gana.
+    </p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      El ejercicio pide dos cosas: primero, traducir las oraciones del español al lenguaje
+      de la lógica (eso se llama <em>simbolizar</em>); segundo, demostrar que la conclusión
+      se sigue necesariamente de las premisas, usando reglas de inferencia paso a paso.
+    </p>
+    <div class="nota">
+      Un argumento es válido si, cada vez que todas las premisas son verdaderas,
+      la conclusión también lo es. No hace falta que las premisas sean verdaderas
+      en la realidad — solo que la conclusión no pueda ser falsa si ellas lo son.
+    </div>
+    <p>
+      La estrategia es directa: S es verdadera por dato, eso activa la primera premisa
+      y nos dice que C o H gana. Luego, C no puede ganar (porque si ganara, S no
+      campeonizaría, lo que contradice el dato). Entonces H gana, y eso implica que A
+      no gana. Con eso ya tenemos la conclusión.
+    </p>
+    <p class="chiste">Es el argumento clásico de eliminación de candidatos. En política también funciona, pero ahí nadie lo llama modus ponens.</p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+
+  <p class="subcaso">Paso 1 — Simbolización</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Definición</div>
+    <div class="col-header">Significado</div>
+
+    <div class="paso-dev">$S$</div>
+    <div class="paso-just">S campeoniza.</div>
+
+    <div class="paso-dev">$C$</div>
+    <div class="paso-just">C gana.</div>
+
+    <div class="paso-dev">$H$</div>
+    <div class="paso-just">H gana.</div>
+
+    <div class="paso-dev">$A$</div>
+    <div class="paso-just">A gana.</div>
+
+    <div class="paso-dev">$L$</div>
+    <div class="paso-just">L gana.</div>
+  </div>
+
+  <p style="margin-top:1.2rem;">El argumento simbolizado queda:</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Rol</div>
+
+    <div class="paso-dev">$P_1: S \rightarrow (C \vee H)$</div>
+    <div class="paso-just">Premisa 1.</div>
+
+    <div class="paso-dev">$P_2: C \rightarrow \neg S$</div>
+    <div class="paso-just">Premisa 2.</div>
+
+    <div class="paso-dev">$P_3: H \rightarrow \neg A$</div>
+    <div class="paso-just">Premisa 3.</div>
+
+    <div class="paso-dev">$P_4: S$</div>
+    <div class="paso-just">Premisa 4 (dato de hecho).</div>
+
+    <div class="paso-dev">$\therefore\ \neg A \vee L$</div>
+    <div class="paso-just">Conclusión a demostrar.</div>
+  </div>
+
+  <p class="subcaso">Paso 2 — Demostración</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(1)\ S \rightarrow (C \vee H)$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(2)\ C \rightarrow \neg S$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(3)\ H \rightarrow \neg A$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(4)\ S$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(5)\ C \vee H$</div>
+    <div class="paso-just">MPP, 1, 4.</div>
+
+    <div class="paso-dev">$(6)\ \neg C$</div>
+    <div class="paso-just">MTT, 2, 4. — Si C fuera verdad, S sería falsa. Pero S es verdadera.</div>
+
+    <div class="paso-dev">$(7)\ H$</div>
+    <div class="paso-just">SD, 5, 6.</div>
+
+    <div class="paso-dev">$(8)\ \neg A$</div>
+    <div class="paso-just">MPP, 3, 7.</div>
+
+    <div class="paso-dev">$(9)\ \neg A \vee L$</div>
+    <div class="paso-just">Adición, 8. $\blacksquare$</div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Asignemos valores concretos que satisfagan todas las premisas y verifiquemos
+      que la conclusión se cumple. Sea $S = V$, $H = V$, $C = F$, $A = F$, $L = F$.
+    </p>
+    <p>
+      $P_1$: $V \rightarrow (F \vee V) = V \rightarrow V = V$. ✓<br>
+      $P_2$: $F \rightarrow \neg V = F \rightarrow F = V$. ✓<br>
+      $P_3$: $V \rightarrow \neg F = V \rightarrow V = V$. ✓<br>
+      $P_4$: $S = V$. ✓<br>
+      Conclusión: $\neg F \vee F = V \vee F = V$. ✓
+    </p>
+    <p>
+      Todas las premisas son verdaderas y la conclusión también. El argumento es válido.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    El argumento es válido. A partir de las premisas simbolizadas
+    $S \rightarrow (C \vee H)$, $C \rightarrow \neg S$, $H \rightarrow \neg A$ y $S$,
+    se deduce $\boxed{\neg A \vee L}$ mediante modus ponens, silogismo disyuntivo y adición.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      La cadena de razonamiento de este ejercicio — eliminar una opción porque lleva a
+      contradicción y quedarse con la otra — es exactamente lo que hace un compilador cuando
+      evalúa una expresión con cortocircuito. En la mayoría de los lenguajes, si tenés
+      <code>A || B</code> y A ya es verdadero, B ni se evalúa. Y si tenés <code>A && B</code>
+      y A es falso, B tampoco. El motor descarta ramas enteras igual que nosotros descartamos
+      C porque contradecía S.
+    </p>
+    <p>
+      El silogismo disyuntivo — "si tengo X o Y, y sé que no es X, entonces es Y" — aparece
+      en todo sistema que maneja casos mutuamente excluyentes: un <code>switch</code> que
+      descarta ramas, un árbol de decisión en machine learning que elimina nodos, o un
+      solucionador de restricciones que hace exactamente eso para encontrar la asignación válida.
+    </p>
+  </div>
+
+</body>
+</html>

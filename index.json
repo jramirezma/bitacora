@@ -1,5 +1,445 @@
 [
   {
+    "id": "8g8c1",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30b",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores universal y existencial",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador universal",
+      "cuantificador existencial",
+      "valor de verdad",
+      "enteros",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/8g8c1.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\forall x \\in \\mathbb{Z})(\\exists y \\in \\mathbb{Z})\\ [x = y + 1]$"
+  },
+  {
+    "id": "ca5gh",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "44a",
+    "tema": [
+      "Lógica",
+      "Lógica de predicados",
+      "Reglas de inferencia con cuantificadores",
+      "validez de argumentos",
+      "cuantificadores"
+    ],
+    "dificultad": [
+      "avanzado",
+      "dificil",
+      "complejo"
+    ],
+    "seo_keywords": [
+      "lógica de predicados",
+      "reglas de inferencia",
+      "validez de argumentos",
+      "cuantificador universal",
+      "cuantificador existencial",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "subcasos",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/ca5gh.html",
+    "enunciado": "Demuestre la validez del siguiente argumento: $1.\\ \\nexists x\\,[R(x) \\land \\neg S(x)]$ $2.\\ \\forall x\\,[P(x) \\to Q(x)]$ $3.\\ \\forall x\\,[Q(x) \\to \\neg S(x)]$ $\\therefore\\ \\forall x\\,[P(x) \\to \\neg R(x"
+  },
+  {
+    "id": "jvpar",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30d",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores universal y existencial",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador universal",
+      "cuantificador existencial",
+      "valor de verdad",
+      "números reales",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/jvpar.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\forall x \\in \\mathbb{R})(\\exists y \\in \\mathbb{R})\\ [2x + 3y = 1]$"
+  },
+  {
+    "id": "kvh3v",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30g",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores universal y existencial",
+      "valor de verdad de proposiciones cuantificadas",
+      "densidad de los reales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador universal",
+      "cuantificador existencial",
+      "valor de verdad",
+      "números reales",
+      "densidad",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/kvh3v.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\forall x \\in\\ ]0,+\\infty[)(\\exists y \\in \\mathbb{R})\\ [0"
+  },
+  {
+    "id": "lr6di",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30c",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores existencial y universal",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador existencial",
+      "cuantificador universal",
+      "valor de verdad",
+      "números reales",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/lr6di.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\exists y \\in \\mathbb{R})(\\forall x \\in \\mathbb{R})\\ [2x + 3y = 1]$"
+  },
+  {
+    "id": "nalvv",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30e",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores universal y existencial",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cuantificador universal",
+      "cuantificador existencial",
+      "valor de verdad",
+      "números enteros",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/nalvv.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\forall x \\in \\mathbb{Z})(\\exists y \\in \\mathbb{Z})\\ [2x + 3y = 1]$"
+  },
+  {
+    "id": "qpplf",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30a",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores existencial y universal",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador existencial",
+      "cuantificador universal",
+      "valor de verdad",
+      "enteros",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/qpplf.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\exists y \\in \\mathbb{Z})(\\forall x \\in \\mathbb{Z})\\ [x = y + 1]$"
+  },
+  {
+    "id": "udggv",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "30f",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones con cuantificadores existencial y universal",
+      "valor de verdad de proposiciones cuantificadas"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "cuantificador existencial",
+      "cuantificador universal",
+      "valor de verdad",
+      "números reales",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/udggv.html",
+    "enunciado": "Determine el valor de verdad de la proposición: $(\\exists x \\in \\mathbb{R})(\\forall y \\in \\mathbb{R})\\ [xy = 0]$"
+  },
+  {
+    "id": "yum4l",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "31a",
+    "tema": [
+      "Lógica",
+      "Cuantificadores",
+      "Proposiciones abiertas",
+      "valor de verdad de proposiciones cuantificadas",
+      "números primos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cuantificador universal",
+      "cuantificador existencial",
+      "proposición abierta",
+      "valor de verdad",
+      "números primos",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/yum4l.html",
+    "enunciado": "Sea $A = \\{2,3,4,5,6,7\\}$, $P(x):\\ x+1$ es un número primo, $Q(x):\\ x^2+x$ es un número impar. Determine el valor de verdad de: $$\\forall x \\in \\mathbb{N}[x \\in A \\to x"
+  },
+  {
+    "id": "k7ngt",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "25a",
+    "tema": [
+      "Lógica",
+      "Argumentos y validez",
+      "Reglas de inferencia, simbolización"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "argumento válido lógica",
+      "reglas de inferencia álgebra",
+      "simbolización proposiciones"
+    ],
+    "fecha": "2026-03-18",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/k7ngt.html",
+    "enunciado": "En cada uno de los siguientes casos, simbolice las proposiciones involucradas y demuestre la validez de la conclusión. (a) Si S campeoniza, entonces C gana o H gana. Si C gana, entonces S no campeoniz"
+  },
+  {
+    "id": "nq6ou",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "27",
+    "tema": [
+      "Lógica",
+      "Cuantificadores y predicados",
+      "Simbolización, lógica de primer orden"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cuantificadores lógica",
+      "simbolización predicados",
+      "lógica de primer orden álgebra"
+    ],
+    "fecha": "2026-03-18",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/nq6ou.html",
+    "enunciado": "Simbolice completamente las siguientes proposiciones, utilizando predicados, términos, conectivas y cuantificadores: (a) Para todo $a$ y $b$ números reales positivos existe un número entero $n$ tal qu"
+  },
+  {
+    "id": "u8cwc",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "28",
+    "tema": [
+      "Lógica",
+      "Negación de proposiciones con cuantificadores",
+      "Simplificación lógica, De Morgan generalizado"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "negación cuantificadores lógica",
+      "simplificación proposiciones",
+      "De Morgan cuantificadores álgebra"
+    ],
+    "fecha": "2026-03-18",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/u8cwc.html",
+    "enunciado": "Escriba y simplifique la negación de las siguientes proposiciones: $(\\forall n \\in \\mathbb{N})[n^2 - 2n + 5 \\geq 4]$, $\\quad$ $(\\exists x \\in \\mathbb{R})[x > 2 \\rightarrow x^2 \\leq 5]$, $\\quad$ $(\\for"
+  },
+  {
+    "id": "vtln3",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "25b",
+    "tema": [
+      "Lógica",
+      "Argumentos y validez",
+      "Reglas de inferencia, simbolización"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "argumento válido lógica",
+      "reglas de inferencia álgebra",
+      "simbolización proposiciones"
+    ],
+    "fecha": "2026-03-18",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/vtln3.html",
+    "enunciado": "En cada uno de los siguientes casos, simbolice las proposiciones involucradas y demuestre la validez de la conclusión. (b) Si estudio matemática discreta o asisto al dentista, entonces no podré matric"
+  },
+  {
     "id": "c2d8e",
     "materia": [
       "Cálculo I"

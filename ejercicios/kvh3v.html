@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>kvh3v</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "kvh3v",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30g",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores universal y existencial",
+        "valor de verdad de proposiciones cuantificadas",
+        "densidad de los reales"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador universal",
+        "cuantificador existencial",
+        "valor de verdad",
+        "números reales",
+        "densidad",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\forall x \in\ ]0,+\infty[)(\exists y \in \mathbb{R})\ [0 < y < x]$</p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      La proposición dice: para cualquier número positivo $x$,
+      siempre existe algún real $y$ que se mete justo en el medio,
+      entre $0$ y $x$. No importa qué tan pequeño sea $x$,
+      siempre hay un $y$ que cabe entre él y el cero.
+    </p>
+    <div class="nota">
+      Piensa en una regla infinitamente fina. Por más que acerques
+      dos marcas, siempre puedes poner una tercera entre ellas.
+      Eso es exactamente lo que pregunta este ejercicio:
+      ¿siempre hay espacio para meter un número entre $0$ y $x$?
+    </div>
+    <p>
+      La estrategia es construir ese $y$ explícitamente.
+      Si $x$ es positivo, entonces $\frac{x}{2}$ también lo es,
+      y es exactamente la mitad de $x$, así que cae justo entre $0$ y $x$.
+      No importa qué tan pequeño sea $x$: su mitad siempre existe
+      y siempre está en el intervalo correcto.
+    </p>
+    <p class="chiste">
+      Entre cualquier dos puntos de la recta real siempre hay infinitos puntos más.
+      Los reales no tienen vecinos: por más que te acerques a uno,
+      hay otros esperando en el medio.
+    </p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Lo que este ejercicio está describiendo tiene un nombre formal:
+      la <em>propiedad de densidad</em> de los números reales.
+      Un conjunto es denso cuando entre cualquier par de elementos
+      siempre existe otro elemento del mismo conjunto.
+      Los racionales también son densos, y los irracionales también.
+      En cambio, los enteros no lo son: entre $3$ y $4$ no hay ningún entero.
+    </p>
+    <p>
+      Esta propiedad es la razón por la que en cálculo los límites
+      tienen sentido: puedes acercarte a un punto tanto como quieras
+      porque siempre hay valores más cercanos esperándote.
+      Sin densidad, la idea de "acercarse infinitamente" no funcionaría.
+    </p>
+  </div>
+
+  <h2>La demostración</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $x \in\ ]0, +\infty[$, es decir, $x \in \mathbb{R}$ con $x > 0$.
+    </div>
+    <div class="paso-just">
+      Instanciar el $\forall x$: hay que mostrar que funciona para cualquier positivo.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $y = \dfrac{x}{2}$.
+    </div>
+    <div class="paso-just">
+      Construir el $y$ explícitamente. La mitad de $x$ es el candidato natural.
+    </div>
+
+    <div class="paso-dev">
+      $y = \dfrac{x}{2} \in \mathbb{R}$
+    </div>
+    <div class="paso-just">
+      $\mathbb{R}$ es cerrado bajo la división por $2 \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $x > 0 \implies \dfrac{x}{2} > 0$, es decir, $y > 0$
+    </div>
+    <div class="paso-just">
+      Verificar la primera desigualdad: $0 < y$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{x}{2} < x \iff x < 2x \iff 0 < x$ $\checkmark$
+    </div>
+    <div class="paso-just">
+      Verificar la segunda desigualdad: $y < x$. Se cumple porque $x > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $0 < \dfrac{x}{2} < x$, es decir, $0 < y < x$ $\checkmark$
+    </div>
+    <div class="paso-just">
+      Ambas desigualdades se cumplen para el $y$ construido.
+    </div>
+
+    <div class="paso-dev">
+      $(\forall x \in\ ]0,+\infty[)(\exists y \in \mathbb{R})\ [0 < y < x]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      Para cualquier $x > 0$, el testigo $y = x/2$ siempre funciona.
+    </div>
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>
+      Con $x = 4$: $y = 2$, y efectivamente $0 < 2 < 4$.
+      Con $x = 0{,}01$: $y = 0{,}005$, y $0 < 0{,}005 < 0{,}01$.
+      Con $x = 0{,}000001$: $y = 0{,}0000005$, que también cae entre $0$ y $x$.
+      No importa qué tan pequeño sea $x$: su mitad siempre cabe entre $0$ y él.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\forall x \in\ ]0,+\infty[)(\exists y \in \mathbb{R})\ [0 < y < x]$
+    es <strong>verdadera</strong>.
+    Para cualquier $x > 0$, el valor $y = \dfrac{x}{2}$ satisface $0 < y < x$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      Esta propiedad es el fundamento de los algoritmos de búsqueda binaria.
+      Cuando buscas un valor en un intervalo, el algoritmo toma la mitad del intervalo
+      exactamente como lo hiciste acá: $y = x/2$.
+      Eso funciona porque los reales son densos: siempre hay un punto
+      en el medio al que apuntar. Si el conjunto no fuera denso,
+      la búsqueda binaria no tendría sentido en ese dominio.
+    </p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En programación de videojuegos y simulaciones físicas, los motores de colisión necesitan detectar si dos objetos se acercaron lo suficiente. ¿Por qué la propiedad de densidad de los reales hace imposible definir una distancia mínima entre dos puntos en la recta real? ¿Cómo resuelven este problema los computadores que trabajan con números de punto flotante en lugar de reales exactos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>La búsqueda binaria divide un intervalo por la mitad en cada paso, igual que el testigo y = x/2 de este ejercicio. ¿Qué garantiza que ese proceso pueda continuar en los reales? ¿Qué pasaría si el dominio fuera los enteros y el intervalo tuviera tamaño 1?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En representación de números en punto flotante (como float o double en cualquier lenguaje), los números no son densos: hay una cantidad finita de valores representables y entre dos floats consecutivos no hay ningún otro float. ¿Qué problemas prácticos genera esto cuando un algoritmo asume que entre dos valores siempre hay un tercero?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Los algoritmos de bisección para encontrar raíces de funciones se basan en que siempre existe un punto medio entre dos valores. ¿Cuándo termina ese proceso en una computadora real? ¿Por qué no puede continuar infinitamente como lo haría en los reales?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

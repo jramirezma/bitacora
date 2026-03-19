@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ca5gh</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "ca5gh",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "44a",
+      tema: [
+        "Lógica",
+        "Lógica de predicados",
+        "Reglas de inferencia con cuantificadores",
+        "validez de argumentos",
+        "cuantificadores"
+      ],
+      dificultad: [
+        "avanzado",
+        "dificil",
+        "complejo"
+      ],
+      seo_keywords: [
+        "lógica de predicados",
+        "reglas de inferencia",
+        "validez de argumentos",
+        "cuantificador universal",
+        "cuantificador existencial",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "subcasos",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Demuestre la validez del siguiente argumento:</p>
+    <p>
+      $1.\ \nexists x\,[R(x) \land \neg S(x)]$<br>
+      $2.\ \forall x\,[P(x) \to Q(x)]$<br>
+      $3.\ \forall x\,[Q(x) \to \neg S(x)]$<br>
+      $\therefore\ \forall x\,[P(x) \to \neg R(x)]$
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Un argumento es válido cuando, si todas las premisas son verdaderas,
+      la conclusión no puede ser falsa. No hay que demostrar que las premisas
+      son verdaderas: hay que demostrar que la conclusión <em>se sigue</em> de ellas.
+      Es como un contrato: si se cumplen las condiciones, el resultado está garantizado.
+    </p>
+    <div class="nota">
+      La estrategia es tomar un elemento arbitrario $x_0$ del dominio,
+      asumir $P(x_0)$ y demostrar que se llega a $\neg R(x_0)$.
+      Si eso funciona para cualquier $x_0$, la universal queda probada.
+    </div>
+    <p>
+      La premisa 1 dice que no existe ningún $x$ que sea $R$ y no sea $S$.
+      Eso es equivalente a decir que todo $x$ que sea $R$ también es $S$:
+      $\forall x\,[R(x) \to S(x)]$. Esa transformación es clave para
+      poder conectar las premisas y llegar a la conclusión.
+    </p>
+    <p class="chiste">
+      Tres premisas entran, una conclusión sale.
+      El trabajo es tender el puente entre ellas sin que se caiga ninguna pieza.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La lógica de predicados, que extiende la lógica proposicional con cuantificadores
+      $\forall$ y $\exists$, es la base formal de los lenguajes de programación
+      con tipos dependientes como Coq o Agda, donde las demostraciones matemáticas
+      son literalmente programas. Cuando un compilador verifica que un programa
+      es correcto, está ejecutando un proceso muy similar al de este ejercicio:
+      sigue una cadena de inferencias para garantizar que ciertas propiedades
+      se cumplen para todos los posibles valores de entrada.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>La demostración</h2>
+
+  <p class="subcaso">Simbolización — equivalencia de la premisa 1</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\nexists x\,[R(x) \land \neg S(x)]$
+    </div>
+    <div class="paso-just">
+      Premisa 1.
+    </div>
+
+    <div class="paso-dev">
+      $\forall x\,[\neg(R(x) \land \neg S(x))]$
+    </div>
+    <div class="paso-just">
+      $\nexists x\,[P(x)] \equiv \forall x\,[\neg P(x)]$. Negación del existencial.
+    </div>
+
+    <div class="paso-dev">
+      $\forall x\,[\neg R(x) \lor S(x)]$
+    </div>
+    <div class="paso-just">
+      De Morgan: $\neg(A \land B) \equiv \neg A \lor B$.
+    </div>
+
+    <div class="paso-dev">
+      $(1')\ \forall x\,[R(x) \to S(x)]$
+    </div>
+    <div class="paso-just">
+      $\neg A \lor B \equiv A \to B$. Forma usable de la premisa 1.
+    </div>
+  </div>
+
+  <p class="subcaso">Demostración de $\forall x\,[P(x) \to \neg R(x)]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $(1)\ P(x_0)$
+    </div>
+    <div class="paso-just">
+      Hipótesis. Se toma $x_0$ arbitrario y se asume $P(x_0)$.
+    </div>
+
+    <div class="paso-dev">
+      $(2)\ P(x_0) \to Q(x_0)$
+    </div>
+    <div class="paso-just">
+      Premisa 2, instanciada en $x_0$.
+    </div>
+
+    <div class="paso-dev">
+      $(3)\ Q(x_0)$
+    </div>
+    <div class="paso-just">
+      MPP, 1, 2.
+    </div>
+
+    <div class="paso-dev">
+      $(4)\ Q(x_0) \to \neg S(x_0)$
+    </div>
+    <div class="paso-just">
+      Premisa 3, instanciada en $x_0$.
+    </div>
+
+    <div class="paso-dev">
+      $(5)\ \neg S(x_0)$
+    </div>
+    <div class="paso-just">
+      MPP, 3, 4.
+    </div>
+
+    <div class="paso-dev">
+      $(6)\ R(x_0) \to S(x_0)$
+    </div>
+    <div class="paso-just">
+      Premisa $1'$, instanciada en $x_0$.
+    </div>
+
+    <div class="paso-dev">
+      $(7)\ \neg R(x_0)$
+    </div>
+    <div class="paso-just">
+      MTT, 5, 6.
+    </div>
+
+    <div class="paso-dev">
+      $(8)\ P(x_0) \to \neg R(x_0)$
+    </div>
+    <div class="paso-just">
+      De la hipótesis (1) se llegó a $\neg R(x_0)$: se introduce la implicación.
+    </div>
+
+    <div class="paso-dev">
+      $(9)\ \forall x\,[P(x) \to \neg R(x)]$
+    </div>
+    <div class="paso-just">
+      $x_0$ era arbitrario: se generaliza con $\forall$.
+    </div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Siguiendo la cadena: si $P(x_0)$ es verdadera, entonces $Q(x_0)$ por la premisa 2.
+      Con $Q(x_0)$ y la premisa 3 se obtiene $\neg S(x_0)$.
+      Ahora, la premisa 1 reformulada dice que todo $R$ es también $S$.
+      Si $x_0$ no es $S$, entonces tampoco puede ser $R$: $\neg R(x_0)$.
+      La cadena no tiene ningún eslabón suelto.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    El argumento es <strong>válido</strong>.
+    A partir de las tres premisas se demuestra $\forall x\,[P(x) \to \neg R(x)]$:
+    cualquier elemento que sea $P$ también es $Q$, por tanto no es $S$,
+    y como todo elemento $R$ es $S$, concluimos que no puede ser $R$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Las reglas de inferencia en lógica de predicados son el mecanismo
+      que usan los verificadores de tipos en lenguajes de programación.
+      Cuando un compilador garantiza que una variable de tipo $A$ siempre
+      puede usarse donde se espera un tipo $B$, está aplicando una cadena
+      de inferencias exactamente como la de este argumento: de premisas
+      sobre tipos se concluye que cierta operación es segura para todos
+      los posibles valores.
+      Lenguajes como Haskell, Rust o TypeScript hacen esto en cada compilación,
+      silenciosamente, miles de veces por segundo.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En lógica de predicados, la regla modus tollendo tollens (MTT) dice: si P→Q es verdadera y Q es falsa, entonces P es falsa. ¿Cómo aparece este patrón en la verificación de tipos de un compilador? ¿Puedes dar un ejemplo concreto en algún lenguaje de programación?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En bases de datos relacionales, las restricciones de integridad como "todo cliente que tenga una orden debe estar registrado" se expresan con cuantificadores universales (∀). ¿Cómo traduciría la premisa ∀x[R(x)→S(x)] a una restricción SQL? ¿Qué cláusula usarías?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Los sistemas de tipos dependientes en lenguajes como Coq o Agda permiten escribir demostraciones matemáticas formales como programas. ¿Qué significa que una demostración en lógica de predicados sea "ejecutable"? ¿Qué ventajas tiene eso para la verificación de software crítico?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En inteligencia artificial, los sistemas expertos usan reglas de inferencia del tipo "si A entonces B" para razonar sobre hechos conocidos. ¿Cómo se relaciona una cadena de inferencias como la de este argumento lógico con el encadenamiento hacia adelante (forward chaining) en un motor de inferencia?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarDato(btn) {
+      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarBloque(btn) {
+      const texto = [...btn.closest('.bloque').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

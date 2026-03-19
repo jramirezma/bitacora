@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>vtln3</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn { display: block; margin: 16px auto 0; max-width: 400px; }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "vtln3",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "25b",
+      tema: [
+        "Lógica",
+        "Argumentos y validez",
+        "Reglas de inferencia, simbolización"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "argumento válido lógica",
+        "reglas de inferencia álgebra",
+        "simbolización proposiciones"
+      ],
+      fecha: "2026-03-18",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      En cada uno de los siguientes casos, simbolice las proposiciones involucradas
+      y demuestre la validez de la conclusión.
+    </p>
+    <p>
+      (b) Si estudio matemática discreta o asisto al dentista, entonces no podré matricular
+      el curso de danza. Si no matriculo el curso de danza, entonces no participaré en el
+      festival. Participaré en el festival y me opondré a la explotación petrolera. Por lo
+      tanto, no ocurre que asista al dentista o no me pueda matricular en el curso de danza.
+    </p>
+  </div>
+
+  <h2>Antes de demostrar</h2>
+  <div class="bloque">
+    <p>
+      Lo primero es notar que la conclusión es una negación de una disyunción:
+      "no ocurre que (X o Y)". Por la ley de De Morgan, eso es lo mismo que
+      "no X y no Y". Entonces la conclusión pide demostrar dos cosas a la vez:
+      que no asistí al dentista, y que sí puedo matricular danza.
+    </p>
+    <div class="nota">
+      El dato clave es que participaré en el festival. Eso, combinado con las
+      implicaciones encadenadas, va a forzar que todas las condiciones anteriores
+      sean falsas, como un dominó al revés.
+    </div>
+    <p>
+      La estrategia es trabajar hacia atrás desde el festival: si participo en el
+      festival, entonces sí matriculé danza (por MTT sobre la segunda premisa).
+      Si matriculé danza, entonces no estudié discreta ni asistí al dentista (por
+      MTT sobre la primera premisa). Con eso llegamos a la conclusión.
+    </p>
+    <p class="chiste">El dentista pierde por lógica pura. Por una vez, una buena noticia.</p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+
+  <p class="subcaso">Paso 1 — Simbolización</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Definición</div>
+    <div class="col-header">Significado</div>
+
+    <div class="paso-dev">$M$</div>
+    <div class="paso-just">Estudio matemática discreta.</div>
+
+    <div class="paso-dev">$D$</div>
+    <div class="paso-just">Asisto al dentista.</div>
+
+    <div class="paso-dev">$B$</div>
+    <div class="paso-just">Puedo matricular el curso de danza.</div>
+
+    <div class="paso-dev">$F$</div>
+    <div class="paso-just">Participo en el festival.</div>
+
+    <div class="paso-dev">$P$</div>
+    <div class="paso-just">Me opongo a la explotación petrolera.</div>
+  </div>
+
+  <p style="margin-top:1.2rem;">El argumento simbolizado queda:</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Rol</div>
+
+    <div class="paso-dev">$P_1: (M \vee D) \rightarrow \neg B$</div>
+    <div class="paso-just">Premisa 1.</div>
+
+    <div class="paso-dev">$P_2: \neg B \rightarrow \neg F$</div>
+    <div class="paso-just">Premisa 2.</div>
+
+    <div class="paso-dev">$P_3: F \wedge P$</div>
+    <div class="paso-just">Premisa 3.</div>
+
+    <div class="paso-dev">$\therefore\ \neg(D \vee \neg B)$</div>
+    <div class="paso-just">Conclusión a demostrar.</div>
+  </div>
+
+  <p class="subcaso">Paso 2 — Demostración</p>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(1)\ (M \vee D) \rightarrow \neg B$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(2)\ \neg B \rightarrow \neg F$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(3)\ F \wedge P$</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(4)\ F$</div>
+    <div class="paso-just">Simp, 3.</div>
+
+    <div class="paso-dev">$(5)\ B$</div>
+    <div class="paso-just">MTT, 2, 4. — Si $\neg B$ llevara a $\neg F$, y $F$ es verdadera, entonces $B$ debe ser verdadera.</div>
+
+    <div class="paso-dev">$(6)\ \neg(M \vee D)$</div>
+    <div class="paso-just">MTT, 1, 5. — Si $M \vee D$ llevara a $\neg B$, y $B$ es verdadera, entonces $\neg(M \vee D)$.</div>
+
+    <div class="paso-dev">$(7)\ \neg M \wedge \neg D$</div>
+    <div class="paso-just">De Morgan, 6.</div>
+
+    <div class="paso-dev">$(8)\ \neg D$</div>
+    <div class="paso-just">Simp, 7.</div>
+
+    <div class="paso-dev">$(9)\ \neg D \wedge B$</div>
+    <div class="paso-just">Conj, 8, 5.</div>
+
+    <div class="paso-dev">$(10)\ \neg(D \vee \neg B)$</div>
+    <div class="paso-just">De Morgan, 9. $\blacksquare$</div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Asignemos valores concretos que satisfagan todas las premisas.
+      Sea $M = F$, $D = F$, $B = V$, $F = V$, $P = V$.
+    </p>
+    <p>
+      $P_1$: $(F \vee F) \rightarrow \neg V = F \rightarrow F = V$. ✓<br>
+      $P_2$: $\neg V \rightarrow \neg V = F \rightarrow F = V$. ✓<br>
+      $P_3$: $V \wedge V = V$. ✓<br>
+      Conclusión: $\neg(F \vee \neg V) = \neg(F \vee F) = \neg F = V$. ✓
+    </p>
+    <p>
+      Todas las premisas son verdaderas y la conclusión también. El argumento es válido.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    El argumento es válido. A partir de las premisas simbolizadas
+    $(M \vee D) \rightarrow \neg B$, $\neg B \rightarrow \neg F$ y $F \wedge P$,
+    se deduce $\boxed{\neg(D \vee \neg B)}$ mediante simplificación, MTT, De Morgan y conjunción.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      El paso central de este ejercicio es razonar hacia atrás desde un resultado
+      conocido para descubrir qué condiciones deben haberse cumplido antes. Eso es
+      exactamente lo que hace un depurador cuando seguís la pila de llamadas
+      (call stack) de un error: sabés que el programa falló en cierto punto, y
+      remontás la cadena de llamadas para encontrar qué función original causó el problema.
+    </p>
+    <p>
+      La ley de De Morgan, que convierte "no (X o Y)" en "no X y no Y", aparece
+      constantemente en el diseño de consultas en bases de datos. Un filtro como
+      <code>NOT (activo = false OR rol = 'invitado')</code> es exactamente eso,
+      y los motores de bases de datos lo reescriben internamente como
+      <code>activo = true AND rol != 'invitado'</code> para poder usar índices
+      de forma eficiente.
+    </p>
+  </div>
+
+</body>
+</html>

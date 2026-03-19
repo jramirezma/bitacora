@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>u8cwc</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "u8cwc",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "28",
+      tema: [
+        "Lógica",
+        "Negación de proposiciones con cuantificadores",
+        "Simplificación lógica, De Morgan generalizado"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "negación cuantificadores lógica",
+        "simplificación proposiciones",
+        "De Morgan cuantificadores álgebra"
+      ],
+      fecha: "2026-03-18",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Escriba y simplifique la negación de las siguientes proposiciones:</p>
+    <p>
+      $(\forall n \in \mathbb{N})[n^2 - 2n + 5 \geq 4]$, $\quad$
+      $(\exists x \in \mathbb{R})[x > 2 \rightarrow x^2 \leq 5]$, $\quad$
+      $(\forall x \in \mathbb{R})(\exists n \in \mathbb{N})[n > x \vee nx \leq 0]$
+    </p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>
+      Negar una proposición con cuantificadores tiene dos reglas fundamentales
+      que se aplican siempre, sin excepción:
+    </p>
+    <div class="nota">
+      $\neg\forall$ se convierte en $\exists$, y $\neg\exists$ se convierte en $\forall$.
+      El cuantificador cambia, y la negación pasa adentro del predicado.
+    </div>
+    <p>
+      Una vez adentro, la negación se distribuye usando las leyes de De Morgan
+      y las equivalencias de los conectivos: $\neg(P \rightarrow Q)$ se convierte
+      en $P \wedge \neg Q$, $\neg(P \vee Q)$ en $\neg P \wedge \neg Q$, y
+      $\neg(P \wedge Q)$ en $\neg P \vee \neg Q$. La negación de una desigualdad
+      invierte el signo: $\neg(a \geq b)$ es $a < b$, $\neg(a \leq b)$ es $a > b$.
+    </p>
+    <p class="chiste">Negar en lógica es más honesto que negar en una discusión: las reglas son fijas y no admiten "depende de cómo se mire".</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <p class="subcaso">Proposición 1 — $(\forall n \in \mathbb{N})[n^2 - 2n + 5 \geq 4]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\neg(\forall n \in \mathbb{N})[n^2 - 2n + 5 \geq 4]$
+    </div>
+    <div class="paso-just">Punto de partida: negar la proposición original.</div>
+
+    <div class="paso-dev">
+      $(\exists n \in \mathbb{N})\neg[n^2 - 2n + 5 \geq 4]$
+    </div>
+    <div class="paso-just">$\neg\forall$ se convierte en $\exists$; la negación pasa adentro.</div>
+
+    <div class="paso-dev">
+      $(\exists n \in \mathbb{N})[n^2 - 2n + 5 < 4]$
+    </div>
+    <div class="paso-just">Negación de $\geq$ es $<$.</div>
+
+    <div class="paso-dev">
+      $(\exists n \in \mathbb{N})[n^2 - 2n + 1 < 0]$
+    </div>
+    <div class="paso-just">Se resta 4 de ambos lados: $5 - 4 = 1$.</div>
+
+    <div class="paso-dev">
+      $(\exists n \in \mathbb{N})[(n-1)^2 < 0]$
+    </div>
+    <div class="paso-just">Se factoriza: $n^2 - 2n + 1 = (n-1)^2$.</div>
+  </div>
+
+  <p class="subcaso">Proposición 2 — $(\exists x \in \mathbb{R})[x > 2 \rightarrow x^2 \leq 5]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\neg(\exists x \in \mathbb{R})[x > 2 \rightarrow x^2 \leq 5]$
+    </div>
+    <div class="paso-just">Punto de partida: negar la proposición original.</div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{R})\neg[x > 2 \rightarrow x^2 \leq 5]$
+    </div>
+    <div class="paso-just">$\neg\exists$ se convierte en $\forall$; la negación pasa adentro.</div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{R})[x > 2 \wedge \neg(x^2 \leq 5)]$
+    </div>
+    <div class="paso-just">$\neg(P \rightarrow Q) \equiv P \wedge \neg Q$.</div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{R})[x > 2 \wedge x^2 > 5]$
+    </div>
+    <div class="paso-just">Negación de $\leq$ es $>$.</div>
+  </div>
+
+  <p class="subcaso">Proposición 3 — $(\forall x \in \mathbb{R})(\exists n \in \mathbb{N})[n > x \vee nx \leq 0]$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\neg(\forall x \in \mathbb{R})(\exists n \in \mathbb{N})[n > x \vee nx \leq 0]$
+    </div>
+    <div class="paso-just">Punto de partida: negar la proposición original.</div>
+
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})\neg(\exists n \in \mathbb{N})[n > x \vee nx \leq 0]$
+    </div>
+    <div class="paso-just">$\neg\forall$ se convierte en $\exists$; la negación pasa al siguiente cuantificador.</div>
+
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})(\forall n \in \mathbb{N})\neg[n > x \vee nx \leq 0]$
+    </div>
+    <div class="paso-just">$\neg\exists$ se convierte en $\forall$; la negación pasa adentro del predicado.</div>
+
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})(\forall n \in \mathbb{N})[\neg(n > x) \wedge \neg(nx \leq 0)]$
+    </div>
+    <div class="paso-just">De Morgan: $\neg(P \vee Q) \equiv \neg P \wedge \neg Q$.</div>
+
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})(\forall n \in \mathbb{N})[n \leq x \wedge nx > 0]$
+    </div>
+    <div class="paso-just">Negación de $>$ es $\leq$; negación de $\leq$ es $>$.</div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Para la proposición 1, la negación simplificada dice que existe un natural $n$
+      tal que $(n-1)^2 < 0$. Un cuadrado nunca puede ser negativo en $\mathbb{N}$,
+      así que la negación es falsa — lo que confirma que la proposición original es verdadera.
+    </p>
+    <p>
+      Para la proposición 2, la negación dice que todo real $x$ satisface $x > 2$ y
+      $x^2 > 5$ simultáneamente. Eso es falso: $x = 0$ cumple $0 > 2$, que es falso,
+      así que no todo $x$ satisface la conjunción. La negación es falsa, confirmando
+      que la proposición original es verdadera.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Las negaciones simplificadas son:
+    <br><br>
+    (1) $(\exists n \in \mathbb{N})[(n-1)^2 < 0]$
+    <br><br>
+    (2) $(\forall x \in \mathbb{R})[x > 2 \wedge x^2 > 5]$
+    <br><br>
+    (3) $(\exists x \in \mathbb{R})(\forall n \in \mathbb{N})[n \leq x \wedge nx > 0]$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque">
+    <p>
+      Negar una proposición con cuantificadores es exactamente lo que hace un
+      sistema de testing cuando busca un contraejemplo. Si el código afirma
+      "para toda entrada válida, el resultado es positivo" ($\forall$), el
+      framework de testing niega eso y busca "existe alguna entrada válida
+      para la que el resultado no es positivo" ($\exists$). Herramientas como
+      QuickCheck o Hypothesis hacen esto de forma automática: generan entradas
+      al azar esperando encontrar ese $\exists$ que rompe el $\forall$.
+    </p>
+    <p>
+      La regla $\neg(P \rightarrow Q) \equiv P \wedge \neg Q$ aparece cada vez
+      que un compilador optimiza una condición de guarda. Si una función dice
+      "si $x > 0$ entonces retorna algo válido", el análisis estático niega eso
+      para encontrar el caso problemático: $x > 0$ y el retorno no es válido.
+      Ese es exactamente el camino que sigue un analizador de código para
+      detectar bugs.
+    </p>
+  </div>
+
+</body>
+</html>

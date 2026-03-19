@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>jvpar</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn {
+      display: block;
+      margin: 16px auto 0;
+      max-width: 400px;
+    }
+
+
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "jvpar",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30d",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores universal y existencial",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador universal",
+        "cuantificador existencial",
+        "valor de verdad",
+        "números reales",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\forall x \in \mathbb{R})(\exists y \in \mathbb{R})\ [2x + 3y = 1]$</p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Compara este ejercicio con el anterior: la única diferencia es que
+      el $\forall$ y el $\exists$ cambiaron de lugar. Antes había que encontrar
+      un único $y$ que funcionara para todos. Ahora es al revés:
+      para cada $x$ que llegue, puedes buscar un $y$ distinto, uno hecho a medida.
+    </p>
+    <div class="nota">
+      El $\forall x$ viene primero: $x$ llega y recién entonces buscas un $y$ que funcione.
+      Como $y$ puede ser diferente para cada $x$, tienes mucha más libertad.
+      No hay un único $y$ que aguante todo: hay uno por cada $x$.
+    </div>
+    <p>
+      La ecuación $2x + 3y = 1$ despejada en términos de $y$ da
+      $y = \frac{1 - 2x}{3}$.
+      Para cualquier $x$ real que elijas, esa expresión produce un número real.
+      No hay división por cero, no hay raíz de negativo, no hay trampa.
+      Siempre existe ese $y$.
+    </p>
+    <p class="chiste">
+      Esta vez el $y$ no tiene que ser el héroe de toda la historia.
+      Solo tiene que resolver el problema de un $x$ a la vez,
+      como un técnico que repara cada aparato por separado en lugar de
+      inventar una solución universal para todos los electrodomésticos del mundo.
+    </p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Lo que acabas de hacer, despejar $y$ en función de $x$, es exactamente
+      definir una función: $f(x) = \frac{1 - 2x}{3}$.
+      Demostrar que esta proposición es verdadera es lo mismo que demostrar
+      que esa función existe y está bien definida para todo real.
+      Cada vez que defines una función en matemáticas o en código,
+      estás afirmando implícitamente un $(\forall x)(\exists y)$:
+      para cada entrada existe una salida.
+    </p>
+  </div>
+
+  <h2>La demostración</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $x \in \mathbb{R}$ un real cualquiera.
+    </div>
+    <div class="paso-just">
+      Instanciar el $\forall x$: hay que mostrar que funciona para cualquier $x$.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $y = \dfrac{1 - 2x}{3}$.
+    </div>
+    <div class="paso-just">
+      Construir el $y$ explícitamente. Puede ser distinto para cada $x$.
+    </div>
+
+    <div class="paso-dev">
+      $y = \dfrac{1 - 2x}{3} \in \mathbb{R}$
+    </div>
+    <div class="paso-just">
+      $\mathbb{R}$ es cerrado bajo suma, resta y división por $3 \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $2x + 3y = 2x + 3\cdot\dfrac{1-2x}{3} = 2x + (1 - 2x) = 1$
+    </div>
+    <div class="paso-just">
+      Verificar que este $y$ satisface la condición.
+    </div>
+
+    <div class="paso-dev">
+      $2x + 3y = 1$ $\checkmark$
+    </div>
+    <div class="paso-just">
+      La condición se cumple para el $y$ construido.
+    </div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{R})(\exists y \in \mathbb{R})\ [2x + 3y = 1]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      Como $x$ era cualquier real y siempre existe $y = \frac{1-2x}{3}$, la proposición vale para todos.
+    </div>
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>
+      Toma $x = 4$: su $y$ es $\frac{1 - 8}{3} = \frac{-7}{3}$.
+      Verifica: $2(4) + 3\cdot\frac{-7}{3} = 8 - 7 = 1$. Perfecto.
+      Ahora prueba con $x = -2$: $y = \frac{1+4}{3} = \frac{5}{3}$.
+      Verifica: $2(-2) + 3\cdot\frac{5}{3} = -4 + 5 = 1$. También perfecto.
+      La fórmula nunca falla porque está construida exactamente para eso.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\forall x \in \mathbb{R})(\exists y \in \mathbb{R})\ [2x + 3y = 1]$
+    es <strong>verdadera</strong>.
+    Para cada $x \in \mathbb{R}$, el valor $y = \frac{1-2x}{3}$ siempre existe
+    en $\mathbb{R}$ y satisface la ecuación.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      Cada función que escribes en código es un $(\forall x)(\exists y)$ en acción:
+      para cada entrada válida, la función promete producir una salida.
+      Cuando una función lanza una excepción o devuelve null para ciertos valores,
+      está rompiendo esa promesa: hay un $x$ para el que no existe $y$.
+      Por eso los tipos de retorno en lenguajes como TypeScript o Kotlin
+      te obligan a ser explícito cuando una función puede no devolver nada:
+      te están pidiendo que declares honestamente si tu $(\forall x)(\exists y)$ es verdadero o no.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En lógica matemática, ¿qué diferencia hay entre (∀x)(∃y)[P(x,y)] y (∃y)(∀x)[P(x,y)]? ¿Por qué una puede ser verdadera y la otra falsa para la misma condición P?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Si en la ecuación 2x + 3y = 1 el coeficiente de x fuera 0, quedando 3y = 1, ¿la proposición (∀x ∈ ℝ)(∃y ∈ ℝ)[3y = 1] seguiría siendo verdadera? ¿Cambiaría algo en la demostración?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Demostrar que (∀x ∈ ℝ)(∃y ∈ ℝ)[2x + 3y = 1] es verdadera es equivalente a decir que la función f(x) = (1 − 2x)/3 está bien definida para todo real. ¿Qué propiedades de ℝ garantizan que esa función siempre produce un valor real?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>¿Qué pasaría si el dominio fuera ℤ en lugar de ℝ? ¿Seguiría existiendo un y entero para cada x entero que satisfaga 2x + 3y = 1?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

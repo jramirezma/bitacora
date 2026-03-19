@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>8g8c1</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+    .venn {
+      display: block;
+      margin: 16px auto 0;
+      max-width: 400px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "8g8c1",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30b",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores universal y existencial",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador universal",
+        "cuantificador existencial",
+        "valor de verdad",
+        "enteros",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [x = y + 1]$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Volvemos a la fila infinita de enteros: ..., $-2$, $-1$, $0$, $1$, $2$, ...
+      Pero ahora la pregunta es distinta. Ya no preguntamos si existe un único $y$
+      que le sirva a todos. Ahora preguntamos: para cada persona $x$ en la fila,
+      ¿podemos encontrarle <em>su propio</em> $y$, uno específico para ella?
+    </p>
+    <div class="nota">
+      El orden cambió: primero llega el $\forall x$, después buscamos el $\exists y$.
+      Eso significa que $y$ puede ser distinto para cada $x$. No hay un único $y$
+      que aguante todo: se permite elegir uno nuevo cada vez.
+    </div>
+    <p>
+      La ecuación $x = y + 1$ despejada dice $y = x - 1$. Para cada entero $x$
+      que llegue, su $y$ personal es simplemente el anterior en la fila.
+      El $5$ tiene al $4$. El $-3$ tiene al $-4$. El $0$ tiene al $-1$.
+      Y como los enteros no tienen límite, siempre existe ese $y = x - 1$ en $\mathbb{Z}$.
+    </p>
+    <p class="chiste">Esta vez sí es posible: cada persona tiene exactamente un vecino
+    de la izquierda. No hace falta que uno solo sea el vecino de todos,
+    cada uno trae el propio.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      En matemáticas, el orden de las palabras importa tanto como en una receta:
+      "batir los huevos y agregar la harina" no es lo mismo que
+      "agregar la harina y batir los huevos".
+      Con los cuantificadores pasa exactamente eso: $(\forall x)(\exists y)$
+      y $(\exists y)(\forall x)$ suenan parecido pero dicen cosas completamente distintas.
+    </p>
+    <p>
+      En análisis matemático, la definición formal de límite tiene exactamente esta estructura:
+      $(\forall \varepsilon > 0)(\exists \delta > 0)[\,|x - a| < \delta \Rightarrow |f(x) - L| < \varepsilon\,]$.
+      Primero llega el $\forall$, después el $\exists$ responde.
+      Invertirlos daría una afirmación completamente diferente, y falsa.
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $x \in \mathbb{Z}$ un entero cualquiera.
+    </div>
+    <div class="paso-just">
+      Instanciar el $\forall x$: hay que mostrar que funciona para cualquier $x$.
+    </div>
+
+    <div class="paso-dev">
+      Tomar $y = x - 1$.
+    </div>
+    <div class="paso-just">
+      Construir el $y$ explícitamente. Se puede elegir uno distinto para cada $x$.
+    </div>
+
+    <div class="paso-dev">
+      $y = x - 1 \in \mathbb{Z}$
+    </div>
+    <div class="paso-just">
+      $\mathbb{Z}$ es cerrado bajo la resta: el anterior de un entero siempre es entero.
+    </div>
+
+    <div class="paso-dev">
+      $y + 1 = (x - 1) + 1 = x$
+    </div>
+    <div class="paso-just">
+      Verificar que este $y$ satisface la condición pedida.
+    </div>
+
+    <div class="paso-dev">
+      $x = y + 1$ $\checkmark$
+    </div>
+    <div class="paso-just">
+      La condición se cumple para el $y$ elegido.
+    </div>
+
+    <div class="paso-dev">
+      $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [x = y + 1]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      Como $x$ era un entero cualquiera y siempre encontramos $y = x-1$, la proposición vale para todos.
+    </div>
+  </div>
+
+  <h2>Chequeemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Tomemos $x = 7$: el $y$ que le corresponde es $7 - 1 = 6$, y efectivamente $6 + 1 = 7$. Perfecto.
+      Ahora $x = -100$: su $y$ es $-101$, y $-101 + 1 = -100$. También perfecto.
+      No importa qué entero llegue, su predecesor siempre está ahí esperándolo en $\mathbb{Z}$.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\forall x \in \mathbb{Z})(\exists y \in \mathbb{Z})\ [x = y + 1]$
+    es <strong>verdadera</strong>.
+    Para cada entero $x$, su correspondiente $y = x - 1$ siempre existe en $\mathbb{Z}$
+    y satisface la condición.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque">
+    <p>
+      Cada vez que recorrés una lista con un índice y accedés al elemento anterior,
+      estás usando exactamente esta idea: para cada posición $x$, existe una posición
+      $y = x - 1$ que es la anterior. Los lenguajes de programación asumen esto
+      sin decirlo: el índice anterior siempre existe dentro del rango, y por eso
+      los errores de "índice fuera de rango" ocurren justo cuando esa garantía se rompe,
+      en los bordes donde $y$ dejaría de pertenecer al conjunto válido.
+    </p>
+  </div>
+
+</body>
+</html>

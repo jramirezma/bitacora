@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>udggv</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "udggv",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "30f",
+      tema: [
+        "Lógica",
+        "Cuantificadores",
+        "Proposiciones con cuantificadores existencial y universal",
+        "valor de verdad de proposiciones cuantificadas"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "cuantificador existencial",
+        "cuantificador universal",
+        "valor de verdad",
+        "números reales",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Determine el valor de verdad de la proposición:
+    $(\exists x \in \mathbb{R})(\forall y \in \mathbb{R})\ [xy = 0]$</p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Antes de demostrar</h2>
+  <div class="bloque">
+    <p>
+      La proposición pregunta si existe algún número real $x$ tal que,
+      sin importar con qué $y$ lo multipliques, el resultado siempre sea $0$.
+      Es decir, ¿hay algún número que "anule" a cualquier otro en una multiplicación?
+    </p>
+    <div class="nota">
+      Piensa en $x$ como un interruptor de luz. La proposición pregunta:
+      ¿existe alguna posición del interruptor que deje el resultado en $0$
+      pase lo que pase con $y$? Si ese interruptor existe, la proposición es verdadera.
+    </div>
+    <p>
+      No hace falta buscar mucho. El número $0$ tiene exactamente esa propiedad:
+      $0 \cdot y = 0$ para cualquier real $y$, sin excepción.
+      Basta con mostrar que ese $x = 0$ funciona para demostrar que la proposición es verdadera.
+    </p>
+    <p class="chiste">
+      A veces la respuesta más obvia es la correcta.
+      El número que anula todo... es el cero. Nadie lo vio venir.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La propiedad $0 \cdot a = 0$ para todo $a$ no es un accidente:
+      es uno de los axiomas que definen cómo funciona la multiplicación
+      en estructuras algebraicas como los anillos y los cuerpos.
+      Se llama <em>elemento absorbente</em> de la multiplicación.
+      En cualquier estructura algebraica que tenga un cero,
+      ese cero absorbe todo lo que toca y devuelve cero.
+      Es el agujero negro de la aritmética.
+    </p>
+    <p>
+      En programación, este comportamiento aparece en operaciones con
+      valores nulos o con el número $0$ en máscaras de bits:
+      hacer AND con $0$ siempre produce $0$,
+      sin importar qué bits tenga el otro operando.
+      Mismo concepto, distinto contexto.
+    </p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Tomar $x = 0 \in \mathbb{R}$.
+    </div>
+    <div class="paso-just">
+      Construir el $x$ explícitamente. Con uno que funcione alcanza.
+    </div>
+
+    <div class="paso-dev">
+      Sea $y \in \mathbb{R}$ cualquiera.
+    </div>
+    <div class="paso-just">
+      Instanciar el $\forall y$: hay que verificar que funciona para todo $y$.
+    </div>
+
+    <div class="paso-dev">
+      $x \cdot y = 0 \cdot y = 0$
+    </div>
+    <div class="paso-just">
+      Propiedad del elemento absorbente: $0$ multiplicado por cualquier real es $0$.
+    </div>
+
+    <div class="paso-dev">
+      $xy = 0$ $\checkmark$
+    </div>
+    <div class="paso-just">
+      La condición se cumple para todo $y \in \mathbb{R}$ con el $x = 0$ elegido.
+    </div>
+
+    <div class="paso-dev">
+      $(\exists x \in \mathbb{R})(\forall y \in \mathbb{R})\ [xy = 0]$ es <strong>verdadera</strong>.
+    </div>
+    <div class="paso-just">
+      $x = 0$ es el testigo que prueba la existencia.
+    </div>
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>
+      Con $x = 0$: prueba con $y = 7$: $0 \cdot 7 = 0$. Con $y = -\pi$: $0 \cdot (-\pi) = 0$.
+      Con $y = 1{,}000{,}000$: $0 \cdot 1{,}000{,}000 = 0$.
+      No importa qué número elijas como $y$, multiplicarlo por $0$ siempre da $0$.
+      El testigo $x = 0$ nunca falla.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La proposición $(\exists x \in \mathbb{R})(\forall y \in \mathbb{R})\ [xy = 0]$
+    es <strong>verdadera</strong>.
+    El testigo es $x = 0$: para cualquier $y \in \mathbb{R}$, se cumple $0 \cdot y = 0$.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque">
+    <p>
+      El elemento absorbente aparece constantemente en operaciones a nivel de bits.
+      En una operación AND bit a bit, el valor $0$ es absorbente:
+      $0\ \text{AND}\ x = 0$ para cualquier valor de $x$.
+      Por eso las máscaras de bits usan AND con ceros para "apagar" bits específicos,
+      sin importar qué valor tenga el otro operando.
+      Es exactamente el mismo mecanismo que demostraste acá,
+      solo que en binario en lugar de en los reales.
+    </p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En álgebra, un elemento absorbente de una operación ∗ sobre un conjunto A es un elemento z tal que z ∗ a = a ∗ z = z para todo a en A. ¿Puede un conjunto tener más de un elemento absorbente para la misma operación? ¿Por qué?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>¿El número 0 es también absorbente para la suma en los reales? Es decir, ¿se cumple 0 + a = 0 para todo real a? ¿Qué diferencia hay entre un elemento absorbente y un elemento neutro?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Si en lugar de los reales el dominio fuera ℝ* (los reales sin el cero), ¿seguiría siendo verdadera la proposición (∃x ∈ ℝ*)(∀y ∈ ℝ*)[xy = 0]? ¿Por qué?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En lógica, demostrar que (∃x)(∀y)[P(x,y)] es verdadera requiere exhibir un "testigo", es decir, un valor concreto de x que funcione. ¿Por qué no alcanza con decir "existe algún x" sin mostrarlo explícitamente?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

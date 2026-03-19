@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!--
+    CONTEXTO DE CARGA:
+    Este archivo se carga dentro de un <iframe> desde un index.html externo.
+    Por eso el CSS tiene overflow: hidden en html: el scroll lo maneja el contenedor,
+    no este documento. No cambiar ese comportamiento.
+
+    INSTRUCCIONES PARA LA IA:
+    - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres alfanuméricos, ej: "a3f7c").
+    - El id en window.EJERCICIO debe ser el mismo hash de 5 caracteres.
+    - El hash debe generarse de forma que sea único y reproducible para cada ejercicio.
+    - La redacción debe ser en español neutro (sin regionalismos).
+    - El enunciado del ejercicio debe copiarse textualmente, sin adiciones ni alteraciones.
+    - El humor y comentarios informales van en el Análisis o en la columna derecha de la Solución, nunca en el Enunciado.
+    - Redactar siempre en español. Acento estrictamente neutro: sin voseo, sin tuteo
+      regional, sin modismos ni expresiones que solo se entiendan en un país.
+      Usar "tú" y sus conjugaciones (piensas, pruebas, ves) como segunda persona singular.
+      La excepción es el humor: se permite algo más de color coloquial si el chiste lo requiere,
+      pero sin regionalismos que excluyan al lector.
+    - Dirigirse siempre a una sola persona, en segunda persona singular. Como un profe
+      hablándole directo a su estudiante, no a un grupo. Nunca usar plural ("piensen",
+      "calculen", "noten") ni construcciones impersonales ("se observa", "se puede ver",
+      "cabe notar"). Siempre: "piensas", "calculas", "notas".
+    - El tono es el de una charla natural, no el de una clase formal. Como si el profe
+      se sentara al lado del estudiante y le explicara de persona a persona. Sin frases
+      solemnes, sin "como se puede apreciar", sin "procedemos a demostrar".
+      Si suena a libro de texto, reescribirlo.
+    - Estilo de redacción: palabras tan simples que un pibe de diez años pueda entender.
+      Construir intuición antes de la fórmula. Nada de jerga innecesaria.
+      Si hay una palabra técnica que no se puede evitar, explicarla en el momento en que aparece.
+    - Usar metáforas concretas y cotidianas para explicar las ideas abstractas: filas de personas,
+      vecinos, cajones, llaves y candados, recetas, partidos de fútbol, lo que venga.
+      La metáfora tiene que aparecer ANTES de los símbolos, no después.
+    - El humor es bienvenido tanto en el Análisis como en las justificaciones de la tabla.
+      El chiste tiene que nacer del ejercicio concreto, no ser un remate genérico.
+    - En la columna izquierda de Solución: SOLO desarrollo matemático puro
+      (fórmulas, definiciones, expresiones algebraicas, pasos de demostración). Sin ningún texto
+      explicativo, sin frases introductorias, sin "para que...", sin "necesitamos...".
+      Únicamente la expresión matemática o lógica del paso.
+    - En la columna derecha de Solución: justificaciones al estilo de comentarios de código:
+      cortas, al grano, descriptivas. Sin títulos ni encabezados. Ocasionalmente humor.
+    - Granularidad de los pasos: cada vez que la expresión cambia de forma, una fila nueva.
+      La justificación explica únicamente ese paso puntual.
+    - Cada .paso-dev tiene exactamente un .paso-just al lado derecho.
+      Nunca agrupar varios pasos matemáticos en un único .paso-dev.
+    - Sin colores de fondo en ningún elemento (el documento debe ser apto para impresión sin gastar tinta).
+
+    CRÍTICO: antes de comenzar la resolución, verificar que el usuario haya proporcionado:
+      1. El id del ejercicio (hash de 5 caracteres). Si no fue dado, pedirlo.
+      2. El número de práctica, si el origen es "PR{n}". Si no fue dado, pedirlo.
+    Nunca inventar ni asumir ninguno de estos dos valores.
+
+    CRÍTICO: cada ejercicio es completamente independiente. Nunca mencionar, comparar
+    ni hacer referencia a otros ejercicios de la misma práctica, del mismo tema,
+    ni de ninguna otra fuente. El estudiante lee este archivo solo, sin contexto previo.
+    Si el concepto clave del ejercicio aparece en otro inciso, explicarlo desde cero
+    como si fuera la primera vez que el estudiante lo ve.
+
+    ESTRUCTURA DE LA SOLUCIÓN — ELEGIR SEGÚN EL TIPO DE EJERCICIO:
+
+    A) DESARROLLO ALGEBRAICO O DEMOSTRACIÓN LINEAL
+       Usar una única tabla .dos-col con pares .paso-dev / .paso-just.
+       Ejemplo: simplificación de expresiones, cálculo de gráficos de relaciones,
+       operaciones con conjuntos, demostraciones directas simples.
+
+    B) DEMOSTRACIÓN CON SUBCASOS
+       Separar cada subcaso con un párrafo encabezador .subcaso fuera de la tabla,
+       y usar una tabla .dos-col independiente para cada uno.
+       Ejemplo: inducción matemática (caso base + paso inductivo),
+       demostración por contradicción, bicondicionales (⇒ y ⇐ por separado),
+       propiedades con múltiples casos (reflexiva, simétrica, transitiva...).
+
+    C) TABLA DE VERDAD
+       Usar la clase .tabla-verdad (tabla HTML estándar con esa clase).
+       No usar .dos-col para esto.
+       Las columnas son las variables y las subexpresiones intermedias, en orden
+       de evaluación de izquierda a derecha. La última columna es la expresión completa.
+       Marcar la columna principal con la clase .col-principal en los <th> y <td>.
+       Ejemplo: verificar tautologías, contradicciones, equivalencias lógicas,
+       validez de argumentos.
+
+    D) DIAGRAMA DE VENN
+       Insertar un <svg> inline con clase .venn dentro de un .bloque.
+       El SVG debe tener viewBox="0 0 400 260" y usar solo trazos en negro (#111)
+       sin rellenos de color (apto para impresión).
+       Las regiones relevantes se marcan con líneas de sombreado (hatch) o con
+       una etiqueta de texto, nunca con color sólido.
+       Ejemplo: representar (A−B)∪C, verificar igualdades de conjuntos,
+       ilustrar particiones.
+
+    TIPOS DE VERIFICACIÓN SEGÚN EL EJERCICIO:
+    - Conjuntos/operaciones: tomar un elemento representativo y verificar que pertenece
+      o no al conjunto resultado.
+    - Relaciones: tomar un par concreto y verificar que cumple (o no) la propiedad.
+    - Demostraciones: verificar el caso base de inducción, o sustituir un valor concreto
+      en la fórmula demostrada.
+    - Tablas de verdad: señalar una fila concreta y leer el valor de la columna principal.
+    - Grupos/estructuras: verificar el neutro o un inverso concreto con números.
+    - Funciones: evaluar f en un punto y verificar que la imagen cae en el codominio
+      esperado, o verificar f∘f⁻¹ = id en un valor concreto.
+  -->
+  <title>[id de 5 caracteres]</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* ── Tabla de verdad ── */
+    .tabla-verdad {
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: .93rem;
+      font-family: Georgia, serif;
+    }
+    .tabla-verdad th,
+    .tabla-verdad td {
+      border: 1px solid #aaa;
+      padding: 6px 14px;
+      text-align: center;
+    }
+    .tabla-verdad th {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-bottom: 2px solid #111;
+    }
+    /* Columna principal de la tabla de verdad */
+    .tabla-verdad .col-principal {
+      border-left: 2px solid #111;
+      border-right: 2px solid #111;
+      font-weight: bold;
+    }
+
+    /* ── Encabezador de subcaso ── */
+    .subcaso {
+      font-family: sans-serif;
+      font-size: .85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.6rem;
+      margin-bottom: 4px;
+      border-left: 3px solid #111;
+      padding-left: 10px;
+    }
+
+    /* ── SVG de Venn ── */
+    .venn {
+      display: block;
+      margin: 16px auto 0;
+      max-width: 400px;
+    }
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+
+      /*
+        CAMPOS Y REGLAS:
+
+        id
+          Hash de 5 caracteres alfanuméricos generado externamente por el usuario.
+          CADA ejercicio tiene su propio id, incluso si es un inciso del mismo número.
+          CRÍTICO: si el id no fue proporcionado por el usuario, pedirlo antes de
+          comenzar la resolución. Nunca inventarlo ni reutilizar el de otro ejercicio.
+
+        materia
+          Un único string con el nombre de la materia.
+          Ejemplos: "Álgebra", "Cálculo I", "Álgebra Lineal"
+
+        origen
+          Un único string. Valores posibles:
+            "PR{n}"  → práctica de la cátedra (ej: "PR1", "PR2", "PR12")
+            "EX"     → examen (parcial, final, recuperatorio, etc.)
+            "CL"     → ejercicio trabajado en clase
+            "IA"     → ejercicio generado por IA
+          No usar ningún otro valor.
+          CRÍTICO: si el origen es "PR{n}" y el número de práctica no fue
+          proporcionado explícitamente por el usuario, pedirlo antes de
+          comenzar la resolución. Nunca asumir ni inventar el número.
+
+        ejercicio_nro
+          String que identifica el ejercicio dentro de su origen:
+            - Sin incisos:   "1"
+            - Con inciso:    "1a", "1c", "5b"   (número + letra del inciso)
+          Cuando el ejercicio no tiene numeración, usar null.
+
+        tema, dificultad, seo_keywords
+          Arrays de strings con mínimo 3 valores cada uno.
+          Incluir nombre formal, coloquial, abreviaturas, términos relacionados.
+          El objetivo es máxima cobertura de búsqueda.
+
+        tipo_solucion
+          String que indica qué estructura usa la sección Solución.
+          Valores posibles: "algebraico" | "subcasos" | "tabla_verdad" | "venn" | "mixto"
+          "mixto" se usa cuando se combinan dos o más estructuras en el mismo ejercicio.
+
+        fecha
+          String en formato "yyyy-mm-dd".
+
+        autor
+          Objeto con nombre y modelo.
+      */
+
+      id: "[hash de 5 caracteres, ej: a3f7c]",
+      materia: "Álgebra",
+      origen: "[PR{n} | EX | CL | IA]",
+      ejercicio_nro: "[ej: 1 | 1a | 5b | null]",
+      tema: [
+        "[capítulo: Lógica | Teoría de conjuntos | Relaciones | Funciones | Aritmética modular | Estructuras algebraicas]",
+        "[nombre formal del tema dentro del capítulo]",
+        "[nombre alternativo, coloquial o subtema]"
+      ],
+      dificultad: [
+        "[basico | intermedio | avanzado]",
+        "[sinonimo: elemental | medio | dificil]",
+        "[sinonimo: introductorio | moderado | complejo]"
+      ],
+      seo_keywords: [
+        "[keyword 1]",
+        "[keyword 2]",
+        "[keyword 3]"
+      ],
+      fecha: "[yyyy-mm-dd]",
+      autor: { nombre: "[nombre]", modelo: "[modelo]" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <!--
+    El h2 de esta sección NO es fijo. Elegir el que mejor suene según el ejercicio.
+    Ejemplos por sección:
+
+    Enunciado:   "El problema", "Lo que nos piden", "El ejercicio"
+    Análisis:    "¿De qué se trata esto?", "Entendamos el problema", "Antes de demostrar",
+                 "¿Qué hay que ver acá?", "El mapa antes del territorio"
+    Dato curioso: "Algo que vale la pena saber", "Dato de color", "Antes de resolver, esto:",
+                 "Un dato que cambia todo", "Por si te lo preguntabas"
+    Solución:    "Manos a la obra", "Vamos por partes", "Ahora sí, a demostrar",
+                 "La demostración", "Construyamos la tabla", "El diagrama"
+    Verificación: "Chequeemos que esto tiene sentido", "¿El resultado aguanta?",
+                 "Una prueba rápida", "Comprobemos con números"
+    Informática: "¿Dónde ya existe esto?", "¿Para qué me sirve esto?",
+                 "¿Dónde vive esto en el código?", "¿Ya usé esto sin saberlo?"
+    Preguntas:   "Para seguir pensando", "Si quieres ir más lejos",
+                 "Preguntas para explorar", "¿Te quedaron dudas? Estas pueden ayudar"
+
+    El script generar_index.py busca el div por su CLASE "ejercicio", no por el h2.
+    NUNCA repetir el mismo encabezado en dos secciones del mismo ejercicio.
+    Variar también entre ejercicios distintos para evitar monotonía.
+  -->
+
+  <h2>El problema</h2>
+  <!--
+    CRITICO: la clase de este div DEBE ser exactamente "ejercicio".
+    No usar "enunciado", "problema", "ejercicio-texto" ni ninguna otra variante.
+  -->
+  <div class="ejercicio">
+    <p>[Enunciado textual del ejercicio, copiado sin alteraciones.]</p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <!--
+      Explicar la idea central con palabras simples, antes de entrar en símbolos.
+      Si hay que usar un término técnico, explicarlo en ese mismo momento.
+      Indicar también qué ESTRUCTURA DE SOLUCIÓN se va a usar y por qué
+      (tabla de verdad, subcasos, diagrama, desarrollo directo).
+      Usar .nota para destacar la idea clave o el truco principal.
+      Se puede incluir humor aquí con la clase .chiste, al final de la sección.
+    -->
+    <p>[Explicación intuitiva. ¿Qué se pide realmente? ¿Cómo conviene pensarlo?]</p>
+    <div class="nota">
+      [Idea clave o truco principal del ejercicio, en una o dos oraciones.]
+    </div>
+    <p>[Desarrollo de la idea, definiciones necesarias, planteo de la estrategia.]</p>
+    <p class="chiste">[Comentario humorístico opcional, al final del análisis.]</p>
+  </div>
+
+  <!--
+    El h2 de esta sección SIEMPRE empieza con una frase que invite a la curiosidad.
+    Ejemplos: "Algo que vale la pena saber", "Dato de color", "Antes de resolver, esto:",
+    "Un dato que cambia todo", "Por si te lo preguntabas".
+    Nunca usar el mismo encabezado dos veces en ejercicios distintos.
+    OBLIGATORIO en todos los ejercicios.
+    REGLAS:
+    - El dato tiene que sorprender, conectar el tema con algo inesperado,
+      o mostrar que el concepto aparece en un contexto completamente distinto.
+    - No es un resumen de la teoría necesaria para resolver el ejercicio.
+      Para eso está el Análisis.
+    - Puede conectar con la sección de informática, con la historia de las matemáticas,
+      con una paradoja, con un contraejemplo famoso, o con la vida cotidiana.
+    - NUNCA mencionar otros ejercicios de la práctica ni hacer comparaciones
+      con incisos anteriores o posteriores. El dato debe funcionar solo.
+    - El dato debe redactarse de forma autocontenida: mencionar el concepto
+      matemático por su nombre dentro del texto, de manera que tenga sentido
+      por sí solo sin necesidad de leer el resto del ejercicio. Esto permite
+      copiarlo y pegarlo en un chat de IA sin contexto adicional.
+    - Nunca usar referencias internas: nada de "este ejercicio", "como vimos",
+      "la proposición anterior", "el argumento de arriba". Nombrar siempre
+      el concepto directamente.
+    - Uno o dos párrafos cortos. No más.
+  -->
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>[Dato curioso autocontenido. Menciona el concepto matemático por su nombre
+    dentro del texto para que tenga sentido fuera del ejercicio.]</p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+  <!--
+    ═══════════════════════════════════════════════════════════════
+    ELEGIR UNO DE LOS CUATRO BLOQUES SIGUIENTES Y BORRAR LOS OTROS.
+    ═══════════════════════════════════════════════════════════════
+
+    ── OPCIÓN A: DESARROLLO ALGEBRAICO O DEMOSTRACIÓN LINEAL ──────
+    Una sola tabla. Cada fila = un paso. Sin texto entre filas.
+    Usar para: operaciones con conjuntos, cálculo de gráficos,
+    simplificación lógica, demostraciones directas sin ramificaciones.
+  -->
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      [Expresión matemática o lógica del paso 1]
+    </div>
+    <div class="paso-just">
+      [Por qué este paso es válido, en una línea.]
+    </div>
+
+    <div class="paso-dev">
+      [Expresión matemática o lógica del paso 2]
+    </div>
+    <div class="paso-just">
+      [Por qué este paso es válido, en una línea.]
+    </div>
+
+    <!-- Agregar más pares .paso-dev / .paso-just según sea necesario -->
+  </div>
+
+  <!--
+    ── OPCIÓN B: DEMOSTRACIÓN CON SUBCASOS ───────────────────────
+    Un párrafo .subcaso antes de cada tabla. Una tabla por subcaso.
+    Usar para: inducción (caso base + paso inductivo), bicondicionales
+    (⇒ y ⇐ por separado), propiedades múltiples (reflexiva / simétrica /
+    transitiva), demostración por contradicción o reducción al absurdo.
+
+    ARGUMENTOS LÓGICOS CON REGLAS DE INFERENCIA:
+    También es un caso de subcasos. La estructura habitual es dos tablas:
+    una para la simbolización y otra para la demostración.
+    En la tabla de demostración, cada .paso-dev lleva el número de la
+    proposición como prefijo: (1), (2), (3)...
+    La columna derecha indica la regla usada y los números de las
+    proposiciones de las que depende. Ejemplo: "MPP, 1, 3" o "MTT, 2, 4".
+    Abreviaturas estándar:
+      MPP  — modus ponendo ponens     (p, p→q  ∴ q)
+      MTT  — modus tollendo tollens   (¬q, p→q ∴ ¬p)
+      SD   — silogismo disyuntivo     (p∨q, ¬p ∴ q)
+      SC   — silogismo hipotético     (p→q, q→r ∴ p→r)
+      Ad   — adición                  (p ∴ p∨q)
+      Simp — simplificación           (p∧q ∴ p)
+      Conj — conjunción               (p, q ∴ p∧q)
+  -->
+  <p class="subcaso">Caso base / Subcaso 1 / (⇒) — elegir el que corresponda</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(1)\ $ [expresión]</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(2)\ $ [expresión]</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(3)\ $ [expresión]</div>
+    <div class="paso-just">[Regla], [n], [m].</div>
+  </div>
+
+  <p class="subcaso">Paso inductivo / Subcaso 2 / (⇐) — elegir el que corresponda</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(1)\ $ [expresión]</div>
+    <div class="paso-just">Premisa.</div>
+
+    <div class="paso-dev">$(2)\ $ [expresión]</div>
+    <div class="paso-just">[Regla], [n], [m].</div>
+  </div>
+
+  <!--
+    ── OPCIÓN C: TABLA DE VERDAD ─────────────────────────────────
+    Tabla HTML con clase .tabla-verdad.
+    Columnas: variables → subexpresiones intermedias → expresión final.
+    La columna principal (la que se está evaluando) lleva clase .col-principal
+    en su <th> y en cada <td> de esa columna.
+    V = verdadero, F = falso. Sin colores.
+  -->
+  <div class="bloque">
+    <table class="tabla-verdad">
+      <thead>
+        <tr>
+          <th>$P$</th>
+          <th>$Q$</th>
+          <th>[subexpresión intermedia]</th>
+          <th class="col-principal">[expresión principal]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>V</td><td>V</td><td>[valor]</td><td class="col-principal">[valor]</td>
+        </tr>
+        <tr>
+          <td>V</td><td>F</td><td>[valor]</td><td class="col-principal">[valor]</td>
+        </tr>
+        <tr>
+          <td>F</td><td>V</td><td>[valor]</td><td class="col-principal">[valor]</td>
+        </tr>
+        <tr>
+          <td>F</td><td>F</td><td>[valor]</td><td class="col-principal">[valor]</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>[Conclusión breve: tautología / contradicción / contingencia / equivalencia.]</p>
+  </div>
+
+  <!--
+    ── OPCIÓN D: DIAGRAMA DE VENN ────────────────────────────────
+    SVG inline con clase .venn. viewBox fijo: "0 0 400 260".
+    Solo trazos en negro (#111), sin rellenos de color.
+    Las regiones relevantes se marcan con sombreado de líneas (hatch)
+    definido como un <pattern> en el <defs>, o con una etiqueta de texto.
+    Agregar tantos círculos como conjuntos tenga el ejercicio (2 o 3).
+    Incluir etiquetas de texto para cada conjunto y para el universo U.
+    Si el ejercicio combina diagrama + tabla o diagrama + desarrollo,
+    colocar primero el SVG y luego la tabla .dos-col correspondiente
+    (tipo_solucion = "mixto").
+  -->
+  <div class="bloque">
+    <svg class="venn" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Patrón de sombreado para región destacada -->
+        <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" stroke="#111" stroke-width="1"/>
+        </pattern>
+      </defs>
+
+      <!-- Marco del universo U -->
+      <rect x="10" y="10" width="380" height="240" rx="6"
+            fill="none" stroke="#111" stroke-width="1.5"/>
+      <text x="22" y="30" font-family="Georgia,serif" font-size="14" fill="#111">U</text>
+
+      <!--
+        Círculos de los conjuntos. Ajustar cx, cy y r según cuántos conjuntos haya.
+        Para 2 conjuntos: centros en (155,130) y (245,130), r=80.
+        Para 3 conjuntos: centros en (155,105), (245,105) y (200,175), r=75.
+      -->
+      <circle cx="155" cy="130" r="80" fill="none" stroke="#111" stroke-width="1.5"/>
+      <circle cx="245" cy="130" r="80" fill="none" stroke="#111" stroke-width="1.5"/>
+
+      <!-- Región sombreada (ejemplo: intersección) -->
+      <clipPath id="clipA"><circle cx="155" cy="130" r="80"/></clipPath>
+      <circle cx="245" cy="130" r="80"
+              fill="url(#hatch)" clip-path="url(#clipA)" opacity="0.6"/>
+
+      <!-- Etiquetas de los conjuntos -->
+      <text x="100" y="90" font-family="Georgia,serif" font-size="15" font-style="italic" fill="#111">A</text>
+      <text x="290" y="90" font-family="Georgia,serif" font-size="15" font-style="italic" fill="#111">B</text>
+    </svg>
+    <p>[Descripción de lo que muestra el diagrama y qué región está destacada.]</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <!--
+    Mostrar la verificación de forma explícita, con números o elementos concretos.
+    Ver los tipos de verificación en los comentarios del encabezado.
+    Una o dos verificaciones es suficiente. Mostrar la sustitución y la conclusión.
+  -->
+  <div class="bloque">
+    <p>[Verificación explícita del resultado, con sustitución y conclusión.]</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> [Enunciado claro y completo del resultado obtenido,
+    con la respuesta destacada en \(\boxed{}\) si aplica, o con la conclusión
+    de la demostración expresada en una línea.]
+  </div>
+
+  <!--
+    El h2 de esta sección SIEMPRE es una pregunta en primera persona, corta y directa.
+    Ejemplos: "¿Dónde ya existe esto?", "¿Para qué me sirve esto?",
+    "¿Dónde vive esto en el código?", "¿Ya usé esto sin saberlo?"
+  -->
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <!--
+      INSTRUCCIONES PARA ESTA SECCIÓN:
+
+      El objetivo es que el estudiante tenga un momento "ah, entonces YA usé esto"
+      o "ah, entonces POR ESO funciona así". Partir siempre del ejercicio concreto.
+      NUNCA mencionar otros ejercicios de la práctica ni comparar con incisos anteriores.
+
+      El álgebra tiene conexiones especialmente ricas con programación:
+        - Conjuntos → estructuras de datos (Set, HashSet, filtros SQL con WHERE)
+        - Relaciones de equivalencia → particiones en bases de datos, clases CSS
+          que agrupan elementos, clustering en machine learning
+        - Relaciones de orden → ordenamiento de listas, índices B-tree
+        - Funciones biyectivas → funciones hash perfectas, codificación/decodificación
+        - Composición de funciones → pipelines, middlewares, funciones de orden superior
+        - Inducción matemática → razonamiento sobre recursividad y correctitud de algoritmos
+        - Grupos → criptografía (RSA, curvas elípticas), detección de errores
+        - Tablas de verdad → evaluación de condiciones en if/while, optimización
+          de expresiones booleanas por el compilador
+        - Cuantificadores → iteración (∀ es un for, ∃ es un find o any())
+
+      REGLAS:
+      - Nunca usar referencias internas al documento: nada de "este ejercicio",
+        "como vimos arriba", "la proposición anterior", "en el análisis de arriba".
+        Nombrar el concepto directamente. En lugar de "la estructura de este ejercicio",
+        decir "evaluar ∀ y ∃ sobre un conjunto finito", por ejemplo.
+      - Palabras simples. La misma vara que el resto del documento.
+      - Sin código fuente. Solo texto narrativo o descriptivo.
+      - Uno o dos párrafos. No más.
+      - Usar solo uno de los tres ángulos (conceptual, instrumental, cambio de perspectiva).
+        Si dos encajan y se complementan sin repetirse, pueden ir en dos párrafos cortos.
+    -->
+    <p>[Conexión entre el concepto matemático del ejercicio y la informática.
+    Sin referencias internas: nombrar el concepto directamente.]</p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <!--
+    SECCIÓN DE PREGUNTAS PARA AMPLIAR — OBLIGATORIA EN TODOS LOS EJERCICIOS.
+    El h2 varía. Ejemplos: "Para seguir pensando", "Si quieres ir más lejos",
+    "Preguntas para explorar", "¿Te quedaron dudas? Estas pueden ayudar".
+    REGLAS:
+    - Entre 3 y 5 preguntas. Cada una cubre un tipo distinto:
+        hipotética, de sondeo, de conexión, de generalización, aclaratoria.
+    - Cada pregunta debe ser autocontenida: se puede copiar y pegar en un chat
+      de IA sin contexto adicional y la IA entiende de qué se trata.
+      Eso significa mencionar el concepto explícitamente en la pregunta.
+    - NUNCA hacer referencia a otros ejercicios ni a incisos anteriores.
+    - Cada pregunta tiene su propio botón de copiar.
+  -->
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>[Pregunta autocontenida 1]</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>[Pregunta autocontenida 2]</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>[Pregunta autocontenida 3]</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarBloque(btn) {
+      const texto = [...btn.closest('.bloque').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarDato(btn) {
+      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
