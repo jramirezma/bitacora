@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>y1g5n</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "y1g5n",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "6a",
+      tema: [
+        "Teoría de conjuntos",
+        "Diferencia simétrica",
+        "Intersección de conjuntos",
+        "Diferencia de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "diferencia simétrica",
+        "intersección de conjuntos",
+        "diferencia de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <!-- Definición del icono SVG reutilizable -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icono-copiar" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2"/>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </symbol>
+  </svg>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{1,2\}$, $B = \{3,5,7\}$, $C = \{2,4,5,6\}$ y $D = \{2,5,6\}$,
+      con $U = \{1,2,3,4,5,6,7\}$ como conjunto universo, calcule
+      $(A \triangle B) - B \cap D$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+    </button>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Hay tres operaciones encadenadas y hay que tener cuidado con el orden.
+      Por convención, la intersección tiene mayor precedencia que la diferencia,
+      así que la expresión $(A \triangle B) - B \cap D$ se lee como
+      $(A \triangle B) - (B \cap D)$.
+      Primero se resuelven $A \triangle B$ y $B \cap D$ por separado,
+      y luego se hace la diferencia entre los dos resultados.
+    </p>
+    <div class="nota">
+      La precedencia de operaciones en conjuntos es similar a la aritmética:
+      la intersección $\cap$ actúa antes que la diferencia $-$ y la unión $\cup$,
+      igual que la multiplicación actúa antes que la suma.
+      Los paréntesis siempre ganan a todo.
+    </div>
+    <p>
+      La diferencia simétrica $A \triangle B$ da los elementos exclusivos de cada lado:
+      los de $A$ que no están en $B$, más los de $B$ que no están en $A$.
+      Como $A = \{1,2\}$ y $B = \{3,5,7\}$ no comparten ningún elemento,
+      la diferencia simétrica es simplemente su unión.
+    </p>
+    <p class="chiste">
+      Cuando dos conjuntos no tienen nada en común,
+      la diferencia simétrica es generosa: se queda con todos.
+      Es el único caso donde nadie queda afuera.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La precedencia de operadores en teoría de conjuntos tiene un paralelo
+      directo en los lenguajes de programación. En Python, el operador
+      de intersección de conjuntos <code>&</code> tiene mayor precedencia
+      que la diferencia <code>-</code> y la unión <code>|</code>,
+      exactamente igual que $\cap$ sobre $-$ y $\cup$ en matemáticas.
+      Por eso <code>A - B & C</code> en Python se evalúa como <code>A - (B & C)</code>,
+      no como <code>(A - B) & C</code>. Conocer la precedencia matemática
+      ayuda a predecir el comportamiento del código sin necesidad de probarlo.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+    </button>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $(A \triangle B) - (B \cap D)$
+    </div>
+    <div class="paso-just">
+      Forma explícita con precedencia aplicada: $\cap$ antes que $-$.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = \{1,2\} \triangle \{3,5,7\}$
+    </div>
+    <div class="paso-just">
+      Sustituir los conjuntos dados.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = \emptyset \implies A \triangle B = A \cup B = \{1,2,3,5,7\}$
+    </div>
+    <div class="paso-just">
+      $A$ y $B$ son disjuntos: ningún elemento se excluye,
+      la diferencia simétrica es igual a la unión.
+    </div>
+
+    <div class="paso-dev">
+      $B \cap D = \{3,5,7\} \cap \{2,5,6\} = \{5\}$
+    </div>
+    <div class="paso-just">
+      Solo el $5$ está en los dos conjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $(A \triangle B) - (B \cap D) = \{1,2,3,5,7\} - \{5\}$
+    </div>
+    <div class="paso-just">
+      Sustituir los resultados obtenidos.
+    </div>
+
+    <div class="paso-dev">
+      $(A \triangle B) - B \cap D = \{1,2,3,7\}$
+    </div>
+    <div class="paso-just">
+      Se elimina el $5$. Los demás permanecen.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $5 \notin (A \triangle B) - B \cap D$:
+      $5 \in A \triangle B$ ✓ pero $5 \in B \cap D$ ✓,
+      así que queda fuera de la diferencia. Correcto.
+      Verifica que $1 \in (A \triangle B) - B \cap D$:
+      $1 \in A \triangle B$ ✓ y $1 \notin B \cap D$ ✓,
+      así que permanece en el resultado. Correcto.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $(A \triangle B) - B \cap D = \{1,2,3,7\}$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La precedencia de operadores sobre conjuntos aparece directamente
+      en los sistemas de permisos y control de acceso en seguridad informática.
+      Cuando se evalúa si un usuario tiene acceso a un recurso,
+      la expresión puede combinar intersecciones de roles y diferencias de restricciones.
+      El orden en que se aplican esas operaciones determina el resultado final,
+      igual que acá. Un error de precedencia en una política de acceso
+      puede conceder permisos que no correspondían o bloquear accesos legítimos,
+      con consecuencias de seguridad reales.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+    </button>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En Python, los operadores de conjuntos &, |, - y ^ (diferencia simétrica) tienen precedencias distintas, igual que en matemáticas. ¿Cuál es el orden de precedencia exacto de estos operadores en Python? ¿Coincide completamente con el orden matemático?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+        </button>
+      </li>
+      <li>
+        <span>En sistemas de control de acceso basados en roles (RBAC), los permisos de un usuario se calculan combinando intersecciones y diferencias de conjuntos de permisos. ¿Cómo afecta un error de precedencia en la evaluación de políticas de acceso a la seguridad del sistema? ¿Qué herramientas existen para verificar formalmente que una política de acceso es correcta?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+        </button>
+      </li>
+      <li>
+        <span>En compiladores, el analizador sintáctico usa la precedencia de operadores para construir el árbol de sintaxis abstracta (AST) correcto. ¿Cómo se implementa la precedencia de operadores en un parser? ¿Qué es el algoritmo shunting-yard de Dijkstra y cómo resuelve este problema?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+        </button>
+      </li>
+      <li>
+        <span>La diferencia simétrica de dos conjuntos disjuntos es igual a su unión. En teoría de grafos, dos grafos son disjuntos en aristas si no comparten ninguna arista. ¿Qué representa la diferencia simétrica del conjunto de aristas de dos grafos disjuntos en aristas, y cómo se relaciona con el concepto de grafo unión?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg width="14" height="14"><use href="#icono-copiar"/></svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

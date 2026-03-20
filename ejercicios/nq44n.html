@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>nq44n</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "nq44n",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "3a",
+      tema: [
+        "Teoría de conjuntos",
+        "Diferencia simétrica",
+        "Unión de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "diferencia simétrica",
+        "unión de conjuntos",
+        "operaciones con conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b\}$, $B = \{b,c,d\}$ y $C = \{a,d\}$, con $U = \{a,b,c,d,e,f\}$
+      como conjunto universo, calcule $(A \cup C) \triangle B$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>
+      Hay dos operaciones encadenadas. Primero calculas $A \cup C$,
+      que es juntar todos los elementos de $A$ y $C$ en un solo conjunto,
+      sin repetir. Luego aplicas la diferencia simétrica con $B$:
+      te quedas con los elementos que están en uno de los dos conjuntos
+      pero no en ambos al mismo tiempo.
+    </p>
+    <div class="nota">
+      La diferencia simétrica $X \triangle Y$ guarda los elementos
+      que son exclusivos de cada lado. Los que aparecen en los dos
+      quedan fuera. Es el "o uno o el otro, pero no los dos" de los conjuntos.
+    </div>
+    <p>
+      Para calcularla usas la fórmula
+      $X \triangle Y = (X - Y) \cup (Y - X)$:
+      los que están en $X$ pero no en $Y$, más los que están en $Y$ pero no en $X$.
+      Primero resuelves el paréntesis, después aplicas la diferencia simétrica.
+    </p>
+    <p class="chiste">
+      La diferencia simétrica es muy exigente: si un elemento aparece
+      en los dos conjuntos, lo descarta sin contemplaciones.
+      Solo acepta a los que son únicos de su lado.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La diferencia simétrica convierte al conjunto potencia de cualquier conjunto
+      en un grupo algebraico. Si tomas todos los subconjuntos de un conjunto $U$
+      y los operas con $\triangle$, obtienes una estructura con elemento neutro
+      ($\emptyset$, porque $A \triangle \emptyset = A$) e inverso propio
+      (cada conjunto es su propio inverso, porque $A \triangle A = \emptyset$).
+      Este grupo aparece en teoría de códigos correctores de errores,
+      donde los mensajes válidos forman exactamente ese tipo de estructura
+      y la diferencia simétrica permite detectar y corregir bits alterados.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A \cup C = \{a,b\} \cup \{a,d\} = \{a,b,d\}$
+    </div>
+    <div class="paso-just">
+      Juntar todos los elementos de $A$ y $C$. El $a$ no se repite.
+    </div>
+
+    <div class="paso-dev">
+      $(A \cup C) - B = \{a,b,d\} - \{b,c,d\} = \{a\}$
+    </div>
+    <div class="paso-just">
+      Elementos de $A \cup C$ que no están en $B$. Se van $b$ y $d$.
+    </div>
+
+    <div class="paso-dev">
+      $B - (A \cup C) = \{b,c,d\} - \{a,b,d\} = \{c\}$
+    </div>
+    <div class="paso-just">
+      Elementos de $B$ que no están en $A \cup C$. Se van $b$ y $d$.
+    </div>
+
+    <div class="paso-dev">
+      $(A \cup C) \triangle B = \{a\} \cup \{c\} = \{a,c\}$
+    </div>
+    <div class="paso-just">
+      Unir los dos resultados: los exclusivos de cada lado.
+    </div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $a \in (A \cup C) \triangle B$:
+      $a \in A \cup C$ ✓ pero $a \notin B$ ✓, así que es exclusivo del lado izquierdo.
+      Verifica que $c \in (A \cup C) \triangle B$:
+      $c \notin A \cup C$ ✓ pero $c \in B$ ✓, exclusivo del lado derecho.
+      Verifica que $b \notin (A \cup C) \triangle B$:
+      $b \in A \cup C$ y $b \in B$, está en los dos, así que queda fuera. Todo cuadra.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $(A \cup C) \triangle B = \{a, c\}$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La diferencia simétrica entre conjuntos es la operación que usan
+      los algoritmos de sincronización de archivos. Cuando sincronizas
+      dos carpetas, el programa calcula qué archivos están en una pero no en la otra,
+      exactamente la diferencia simétrica de los dos conjuntos de archivos.
+      Los que aparecen en las dos carpetas con el mismo nombre no se tocan,
+      los que son exclusivos de un lado se copian o se eliminan según la dirección
+      de la sincronización. Herramientas como rsync o Dropbox hacen esto
+      constantemente en segundo plano.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>Los algoritmos de sincronización de archivos como rsync calculan la diferencia simétrica entre dos conjuntos de archivos para determinar qué copiar o eliminar. ¿Cómo optimiza rsync este proceso para no tener que transferir archivos completos cuando solo cambiaron algunas partes?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En bases de datos, la operación FULL OUTER JOIN combinada con un filtro WHERE devuelve las filas que están en una tabla pero no en la otra, lo que equivale a una diferencia simétrica. ¿Cómo se escribiría una consulta SQL que calcule la diferencia simétrica entre dos tablas con la misma estructura?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>La diferencia simétrica de conjuntos tiene la propiedad A △ A = ∅ y A △ ∅ = A, lo que la convierte en una operación de grupo sobre el conjunto potencia. ¿Cómo se usa esta estructura de grupo en los códigos de Hamming para la corrección de errores en transmisión de datos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En React y otros frameworks de interfaz de usuario, el algoritmo de reconciliación (diffing) compara el árbol de componentes anterior con el nuevo para determinar qué cambió. ¿Cómo se relaciona ese proceso con el cálculo de la diferencia simétrica entre dos conjuntos de nodos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>pbhr3</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "pbhr3",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "3c",
+      tema: [
+        "Teoría de conjuntos",
+        "Producto cartesiano",
+        "Diferencia de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "producto cartesiano",
+        "diferencia de conjuntos",
+        "pares ordenados",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b\}$, $B = \{b,c,d\}$ y $C = \{a,d\}$, con $U = \{a,b,c,d,e,f\}$
+      como conjunto universo, calcule $(C \times B) - (A \times C)$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      La diferencia entre dos productos cartesianos.
+      El producto cartesiano $C \times B$ es el conjunto de todos los pares
+      ordenados donde el primer elemento viene de $C$ y el segundo de $B$.
+      Lo mismo para $A \times C$. La diferencia $(C \times B) - (A \times C)$
+      da los pares que están en $C \times B$ pero no en $A \times C$.
+    </p>
+    <div class="nota">
+      Un par ordenado $(x, y)$ pertenece a la diferencia si y solo si
+      $(x, y) \in C \times B$ y $(x, y) \notin A \times C$.
+      Como los elementos de $C \times B$ tienen primer componente en $C$
+      y segundo en $B$, para que un par también esté en $A \times C$
+      necesitaría primer componente en $A$ y segundo en $C$.
+      Eso da una condición muy específica.
+    </div>
+    <p>
+      La estrategia más clara es construir los dos productos cartesianos
+      explícitamente y luego restar: quitar de $C \times B$ los pares
+      que también aparecen en $A \times C$.
+      Con conjuntos pequeños como estos, listar todos los pares es rápido.
+    </p>
+    <p class="chiste">
+      El orden importa en los pares ordenados: $(a, b)$ y $(b, a)$
+      son distintos. Como en la vida: no es lo mismo "Juan le debe a Pedro"
+      que "Pedro le debe a Juan".
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La diferencia entre productos cartesianos aparece en teoría de bases de datos
+      bajo el nombre de antijoin: dado el producto cartesiano de dos tablas,
+      el antijoin devuelve los pares de filas que no tienen correspondencia
+      en la otra tabla según alguna condición.
+      En álgebra relacional, el antijoin es una operación fundamental
+      que permite expresar consultas del tipo
+      "dame los clientes que no tienen ningún pedido",
+      calculando exactamente la diferencia entre el producto de clientes
+      con todos los pedidos posibles y los pares que sí existen.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $C \times B = \{a,d\} \times \{b,c,d\}$
+      $= \{(a,b),(a,c),(a,d),(d,b),(d,c),(d,d)\}$
+    </div>
+    <div class="paso-just">
+      Combinar cada elemento de $C$ con cada elemento de $B$:
+      $2 \times 3 = 6$ pares.
+    </div>
+
+    <div class="paso-dev">
+      $A \times C = \{a,b\} \times \{a,d\}$
+      $= \{(a,a),(a,d),(b,a),(b,d)\}$
+    </div>
+    <div class="paso-just">
+      Combinar cada elemento de $A$ con cada elemento de $C$:
+      $2 \times 2 = 4$ pares.
+    </div>
+
+    <div class="paso-dev">
+      $(C \times B) \cap (A \times C) = \{(a,d)\}$
+    </div>
+    <div class="paso-just">
+      El único par en común: $(a,d)$ aparece en los dos productos.
+    </div>
+
+    <div class="paso-dev">
+      $(C \times B) - (A \times C) = \{(a,b),(a,c),(a,d),(d,b),(d,c),(d,d)\} - \{(a,a),(a,d),(b,a),(b,d)\}$
+    </div>
+    <div class="paso-just">
+      Quitar de $C \times B$ los pares que también están en $A \times C$.
+    </div>
+
+    <div class="paso-dev">
+      $(C \times B) - (A \times C) = \{(a,b),(a,c),(d,b),(d,c),(d,d)\}$
+    </div>
+    <div class="paso-just">
+      Se eliminó solo $(a,d)$. Los demás pares de $C \times B$
+      no aparecen en $A \times C$.
+    </div>
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $(a,d) \notin (C \times B) - (A \times C)$:
+      $a \in C$ y $d \in B$, así que $(a,d) \in C \times B$ ✓,
+      pero también $a \in A$ y $d \in C$, así que $(a,d) \in A \times C$ ✓.
+      Como está en los dos, queda fuera de la diferencia. Correcto.
+      Verifica que $(d,d) \in (C \times B) - (A \times C)$:
+      $d \in C$ y $d \in B$, así que $(d,d) \in C \times B$ ✓.
+      Para que $(d,d) \in A \times C$ necesitaría $d \in A$,
+      pero $A = \{a,b\}$ y $d \notin A$. No está en $A \times C$, queda en la diferencia ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $(C \times B) - (A \times C) = \{(a,b),\ (a,c),\ (d,b),\ (d,c),\ (d,d)\}$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      En álgebra relacional, la diferencia entre productos cartesianos
+      es la base del operador antijoin, que en SQL se expresa como
+      LEFT JOIN combinado con un filtro WHERE que descarta las coincidencias.
+      Es la consulta del tipo "dame todos los registros de la tabla A
+      que no tienen ninguna fila correspondiente en la tabla B".
+      Este patrón aparece constantemente en análisis de datos:
+      encontrar clientes sin compras, usuarios sin sesión activa,
+      o productos sin stock. La diferencia de productos cartesianos
+      es exactamente la operación matemática que ocurre por debajo.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En álgebra relacional, el antijoin devuelve las filas de una tabla que no tienen correspondencia en otra. ¿Cómo se implementa el antijoin en SQL usando LEFT JOIN y WHERE? ¿Por qué esa combinación es equivalente a la diferencia de productos cartesianos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>El producto cartesiano de dos tablas con m y n filas produce m×n filas. ¿Por qué los motores de bases de datos evitan calcular el producto cartesiano completo antes de aplicar filtros? ¿Qué técnica de optimización usan para reducir el número de pares que realmente se evalúan?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En grafos dirigidos, una arista es un par ordenado (u, v) donde u es el origen y v el destino. El conjunto de aristas de un grafo es un subconjunto del producto cartesiano V × V, donde V es el conjunto de vértices. ¿Cómo se representaría la diferencia entre los conjuntos de aristas de dos grafos distintos sobre los mismos vértices?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En machine learning, el espacio de hipótesis de un clasificador binario es un subconjunto del producto cartesiano entre el espacio de entradas y el conjunto {0,1}. ¿Cómo se relaciona la diferencia entre dos espacios de hipótesis con la capacidad de un modelo para generalizar más allá de los datos de entrenamiento?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

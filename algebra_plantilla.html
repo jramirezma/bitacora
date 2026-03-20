@@ -238,6 +238,7 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
 </head>
 <body>
 
@@ -271,12 +272,6 @@
   -->
   <div class="ejercicio">
     <p>[Enunciado textual del ejercicio, copiado sin alteraciones.]</p>
-    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-      </svg>
-    </button>
   </div>
 
   <h2>¿De qué se trata esto?</h2>
@@ -288,6 +283,10 @@
       (tabla de verdad, subcasos, diagrama, desarrollo directo).
       Usar .nota para destacar la idea clave o el truco principal.
       Se puede incluir humor aquí con la clase .chiste, al final de la sección.
+      CRÍTICO: nunca hacer referencia a otros ejercicios, incisos anteriores
+      ni al contexto de la práctica. Frases como "igual que antes",
+      "como en el inciso anterior", "a diferencia del ejercicio previo"
+      están estrictamente prohibidas. Cada ejercicio se explica desde cero.
     -->
     <p>[Explicación intuitiva. ¿Qué se pide realmente? ¿Cómo conviene pensarlo?]</p>
     <div class="nota">
@@ -325,12 +324,6 @@
   <div class="bloque dato-curioso">
     <p>[Dato curioso autocontenido. Menciona el concepto matemático por su nombre
     dentro del texto para que tenga sentido fuera del ejercicio.]</p>
-    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-      </svg>
-    </button>
   </div>
   <!--
     ═══════════════════════════════════════════════════════════════
@@ -552,12 +545,6 @@
     -->
     <p>[Conexión entre el concepto matemático del ejercicio y la informática.
     Sin referencias internas: nombrar el concepto directamente.]</p>
-    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-      </svg>
-    </button>
   </div>
 
   <!--
@@ -576,64 +563,9 @@
   <h2>Para seguir pensando</h2>
   <div class="preguntas">
     <ol id="lista-preguntas">
-      <li>
-        <span>[Pregunta autocontenida 1]</span>
-        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <span>[Pregunta autocontenida 2]</span>
-        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <span>[Pregunta autocontenida 3]</span>
-        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-        </button>
+      <li><span>[Pregunta autocontenida 1]</span></li>
+      <li><span>[Pregunta autocontenida 2]</span></li>
+      <li><span>[Pregunta autocontenida 3]</span></li>
       </li>
     </ol>
   </div>
-
-  <script>
-    function copiar(btn) {
-      const texto = btn.previousElementSibling.textContent.trim();
-      navigator.clipboard.writeText(texto).then(() => {
-        btn.classList.add('copiado');
-        setTimeout(() => btn.classList.remove('copiado'), 1800);
-      });
-    }
-    function copiarBloque(btn) {
-      const texto = [...btn.closest('.bloque').querySelectorAll('p')]
-        .map(p => p.textContent.trim()).join('\n\n');
-      navigator.clipboard.writeText(texto).then(() => {
-        btn.classList.add('copiado');
-        setTimeout(() => btn.classList.remove('copiado'), 1800);
-      });
-    }
-    function copiarDato(btn) {
-      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
-        .map(p => p.textContent.trim()).join('\n\n');
-      navigator.clipboard.writeText(texto).then(() => {
-        btn.classList.add('copiado');
-        setTimeout(() => btn.classList.remove('copiado'), 1800);
-      });
-    }
-      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
-      navigator.clipboard.writeText(texto).then(() => {
-        btn.classList.add('copiado');
-        setTimeout(() => btn.classList.remove('copiado'), 1800);
-      });
-    }
-  </script>

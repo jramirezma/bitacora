@@ -1,5 +1,210 @@
 [
   {
+    "id": "k4fii",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "3b",
+    "tema": [
+      "Teoría de conjuntos",
+      "Conjunto potencia",
+      "Intersección de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "conjunto potencia",
+      "intersección de conjuntos",
+      "conjunto de partes",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/k4fii.html",
+    "enunciado": "Si $A = \\{a,b\\}$, $B = \\{b,c,d\\}$ y $C = \\{a,d\\}$, con $U = \\{a,b,c,d,e,f\\}$ como conjunto universo, calcule $\\mathcal{P}(A \\cap B)$."
+  },
+  {
+    "id": "nq44n",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "3a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Diferencia simétrica",
+      "Unión de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "diferencia simétrica",
+      "unión de conjuntos",
+      "operaciones con conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/nq44n.html",
+    "enunciado": "Si $A = \\{a,b\\}$, $B = \\{b,c,d\\}$ y $C = \\{a,d\\}$, con $U = \\{a,b,c,d,e,f\\}$ como conjunto universo, calcule $(A \\cup C) \\triangle B$."
+  },
+  {
+    "id": "pbhr3",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "3c",
+    "tema": [
+      "Teoría de conjuntos",
+      "Producto cartesiano",
+      "Diferencia de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "producto cartesiano",
+      "diferencia de conjuntos",
+      "pares ordenados",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/pbhr3.html",
+    "enunciado": "Si $A = \\{a,b\\}$, $B = \\{b,c,d\\}$ y $C = \\{a,d\\}$, con $U = \\{a,b,c,d,e,f\\}$ como conjunto universo, calcule $(C \\times B) - (A \\times C)$."
+  },
+  {
+    "id": "tgkt5",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1b",
+    "tema": [
+      "Teoría de conjuntos",
+      "Conjunto potencia",
+      "Diferencia de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "conjunto potencia",
+      "conjunto de partes",
+      "diferencia de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/tgkt5.html",
+    "enunciado": "Si $A = \\{a,b,c\\}$ y $B = \\{c,d,e\\}$, calcule $\\mathcal{P}(A - B)$."
+  },
+  {
+    "id": "xlt5f",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1c",
+    "tema": [
+      "Teoría de conjuntos",
+      "Diferencia simétrica",
+      "Intersección",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "diferencia simétrica",
+      "intersección de conjuntos",
+      "operaciones con conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/xlt5f.html",
+    "enunciado": "Si $A = \\{a,b,c\\}$, $B = \\{c,d,e\\}$ y $C = \\{c,e,f,g\\}$, calcule $(A \\triangle C) \\cap B$."
+  },
+  {
+    "id": "y1g5n",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "6a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Diferencia simétrica",
+      "Intersección de conjuntos",
+      "Diferencia de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "diferencia simétrica",
+      "intersección de conjuntos",
+      "diferencia de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/y1g5n.html",
+    "enunciado": "Si $A = \\{1,2\\}$, $B = \\{3,5,7\\}$, $C = \\{2,4,5,6\\}$ y $D = \\{2,5,6\\}$, con $U = \\{1,2,3,4,5,6,7\\}$ como conjunto universo, calcule $(A \\triangle B) - B \\cap D$."
+  },
+  {
     "id": "8g8c1",
     "materia": [
       "Álgebra"
@@ -69,6 +274,40 @@
     },
     "archivo": "ejercicios/ca5gh.html",
     "enunciado": "Demuestre la validez del siguiente argumento: $1.\\ \\nexists x\\,[R(x) \\land \\neg S(x)]$ $2.\\ \\forall x\\,[P(x) \\to Q(x)]$ $3.\\ \\forall x\\,[Q(x) \\to \\neg S(x)]$ $\\therefore\\ \\forall x\\,[P(x) \\to \\neg R(x"
+  },
+  {
+    "id": "dbdag",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "1a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Producto cartesiano",
+      "Diferencia de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "producto cartesiano",
+      "diferencia de conjuntos",
+      "pares ordenados",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-19",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/dbdag.html",
+    "enunciado": "Si $A = \\{a,b,c\\}$, $B = \\{c,d,e\\}$ y $C = \\{c,e,f,g\\}$, calcule $A \\times (B - C)$."
   },
   {
     "id": "jvpar",

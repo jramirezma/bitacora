@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>k4fii</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "k4fii",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "3b",
+      tema: [
+        "Teoría de conjuntos",
+        "Conjunto potencia",
+        "Intersección de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "conjunto potencia",
+        "intersección de conjuntos",
+        "conjunto de partes",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b\}$, $B = \{b,c,d\}$ y $C = \{a,d\}$, con $U = \{a,b,c,d,e,f\}$
+      como conjunto universo, calcule $\mathcal{P}(A \cap B)$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Dos operaciones en cadena. Primero calculas $A \cap B$,
+      que es el conjunto de elementos que están en $A$ y en $B$
+      al mismo tiempo. Es la zona de coincidencia entre los dos conjuntos.
+      Luego calculas el conjunto potencia de ese resultado:
+      todos los subconjuntos posibles de lo que obtuviste.
+    </p>
+    <div class="nota">
+      El conjunto potencia $\mathcal{P}(X)$ contiene todos los subconjuntos
+      de $X$, incluyendo el vacío $\emptyset$ y el propio $X$.
+      Si $X$ tiene $n$ elementos, $\mathcal{P}(X)$ tiene exactamente $2^n$ elementos.
+    </div>
+    <p>
+      El truco acá es que la intersección puede dar un conjunto muy pequeño,
+      incluso el vacío. Si $A \cap B = \emptyset$, entonces
+      $\mathcal{P}(\emptyset) = \{\emptyset\}$, un conjunto con un único elemento.
+      Si la intersección tiene un elemento, el conjunto potencia tiene $2^1 = 2$ elementos.
+      Vale la pena calcular primero para saber con cuánto se trabaja.
+    </p>
+    <p class="chiste">
+      A veces la intersección es tan pequeña que el conjunto potencia
+      cabe en una servilleta. Esta es una de esas veces.
+    </p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El conjunto potencia $\mathcal{P}(X)$ tiene $2^n$ elementos porque
+      construir un subconjunto es tomar una decisión binaria por cada elemento:
+      incluirlo o no incluirlo. Con $n$ elementos hay $n$ decisiones independientes,
+      cada una con 2 opciones, lo que da $2 \times 2 \times \cdots \times 2 = 2^n$ combinaciones.
+      Este mismo razonamiento explica por qué un archivo de $n$ bits puede representar
+      exactamente $2^n$ valores distintos: cada bit es una decisión binaria independiente.
+      La conexión entre subconjuntos y representación binaria no es casualidad,
+      es la misma estructura matemática vista desde dos ángulos distintos.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>La demostración</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A \cap B = \{a,b\} \cap \{b,c,d\} = \{b\}$
+    </div>
+    <div class="paso-just">
+      Solo $b$ está en los dos conjuntos a la vez.
+    </div>
+
+    <div class="paso-dev">
+      $|A \cap B| = 1 \implies |\mathcal{P}(A \cap B)| = 2^1 = 2$
+    </div>
+    <div class="paso-just">
+      Un conjunto de $1$ elemento tiene exactamente $2$ subconjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $\mathcal{P}(A \cap B) = \mathcal{P}(\{b\}) = \{\emptyset,\ \{b\}\}$
+    </div>
+    <div class="paso-just">
+      Los dos únicos subconjuntos de $\{b\}$: el vacío y el propio conjunto.
+    </div>
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $\emptyset \in \mathcal{P}(\{b\})$: el vacío es subconjunto
+      de cualquier conjunto ✓. Verifica que $\{b\} \in \mathcal{P}(\{b\})$:
+      todo conjunto es subconjunto de sí mismo ✓.
+      Verifica que $\{a\} \notin \mathcal{P}(\{b\})$: $a \notin \{b\}$,
+      así que $\{a\}$ no puede ser subconjunto de $\{b\}$ ✓.
+      Los dos elementos del conjunto potencia son exactamente los correctos.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $\mathcal{P}(A \cap B) = \{\,\emptyset,\ \{b\}\,\}$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La intersección de conjuntos es la operación detrás del INNER JOIN
+      en bases de datos relacionales: devuelve solo las filas que tienen
+      correspondencia en ambas tablas, exactamente los elementos comunes.
+      El conjunto potencia, por su parte, aparece en los problemas de
+      optimización combinatoria donde hay que evaluar todas las combinaciones
+      posibles de un conjunto de opciones. Cuando la intersección es pequeña,
+      como en este ejercicio, el espacio de búsqueda del conjunto potencia
+      se reduce drásticamente, lo que es exactamente el tipo de observación
+      que aprovechan los algoritmos de poda en inteligencia artificial
+      para evitar explorar ramas innecesarias.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En bases de datos, el INNER JOIN devuelve solo las filas que tienen correspondencia en ambas tablas, equivalente a la intersección de conjuntos. ¿Qué diferencia hay entre INNER JOIN, LEFT JOIN y FULL OUTER JOIN en términos de operaciones de conjuntos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En algoritmos de búsqueda con poda (branch and bound), reducir el espacio de soluciones antes de explorar es clave para la eficiencia. Si la intersección de dos conjuntos de restricciones tiene pocos elementos, ¿cómo afecta eso al tamaño del conjunto potencia que hay que explorar? ¿Qué estrategias usan los algoritmos para detectar estas reducciones temprano?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En teoría de tipos, el tipo producto de dos tipos A y B corresponde al producto cartesiano A × B, y el tipo intersección corresponde a A ∩ B. ¿Qué representa el conjunto potencia de un tipo en el contexto de los sistemas de tipos de lenguajes como TypeScript o Scala?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Los filtros Bloom son estructuras de datos probabilísticas que verifican si un elemento pertenece a un conjunto usando múltiples funciones hash. ¿Cómo se relaciona la intersección de conjuntos con el funcionamiento interno de un filtro Bloom y por qué puede producir falsos positivos pero nunca falsos negativos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>tgkt5</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "tgkt5",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "1b",
+      tema: [
+        "Teoría de conjuntos",
+        "Conjunto potencia",
+        "Diferencia de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "conjunto potencia",
+        "conjunto de partes",
+        "diferencia de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b,c\}$ y $B = \{c,d,e\}$, calcule $\mathcal{P}(A - B)$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Dos operaciones encadenadas, igual que antes: primero calculas $A - B$,
+      que es lo que queda de $A$ después de quitarle los elementos que también
+      están en $B$. Luego calculas el conjunto potencia de ese resultado.
+    </p>
+    <div class="nota">
+      El conjunto potencia $\mathcal{P}(X)$ es el conjunto de todos los subconjuntos
+      posibles de $X$, incluyendo el conjunto vacío $\emptyset$ y el propio $X$.
+      Si $X$ tiene $n$ elementos, entonces $\mathcal{P}(X)$ tiene exactamente $2^n$ elementos.
+    </div>
+    <p>
+      Piensa en el conjunto potencia como todas las formas posibles de elegir
+      elementos de $X$: puedes no elegir ninguno, elegir solo algunos, o elegirlos todos.
+      Si $X$ tiene 2 elementos, hay $2^2 = 4$ formas de elegir.
+      Si tiene 3, hay $2^3 = 8$. El número crece rápido.
+    </p>
+    <p class="chiste">
+      El conjunto potencia es la versión matemática de ese amigo que cuando le preguntas
+      "¿qué quieres comer?" responde con todas las combinaciones posibles del menú.
+    </p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El conjunto potencia $\mathcal{P}(X)$ tiene exactamente $2^n$ elementos
+      cuando $X$ tiene $n$ elementos. Ese $2$ no es casualidad:
+      para cada elemento de $X$ hay exactamente dos opciones, incluirlo o no incluirlo
+      en el subconjunto. Multiplicar $2$ por sí mismo $n$ veces da el total de combinaciones.
+      Este mismo razonamiento aparece en computación cada vez que se trabaja con
+      números binarios: un número de $n$ bits puede representar exactamente $2^n$ valores distintos,
+      porque cada bit tiene dos estados posibles, $0$ o $1$.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A - B = \{a,b,c\} - \{c,d,e\}$
+    </div>
+    <div class="paso-just">
+      Sustituir los conjuntos dados.
+    </div>
+
+    <div class="paso-dev">
+      $A - B = \{a, b\}$
+    </div>
+    <div class="paso-just">
+      $c$ está en $B$, así que se va. $a$ y $b$ no están en $B$, así que se quedan.
+    </div>
+
+    <div class="paso-dev">
+      $|\,A - B\,| = 2 \implies |\,\mathcal{P}(A-B)\,| = 2^2 = 4$
+    </div>
+    <div class="paso-just">
+      Un conjunto de $n$ elementos tiene $2^n$ subconjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $\mathcal{P}(A - B) = \{\,\emptyset,\ \{a\},\ \{b\},\ \{a,b\}\,\}$
+    </div>
+    <div class="paso-just">
+      Listar todos los subconjuntos: el vacío, los unitarios y el total.
+    </div>
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>
+      Verifica que hay exactamente 4 elementos: $\emptyset$, $\{a\}$, $\{b\}$ y $\{a,b\}$.
+      Cada uno es un subconjunto de $\{a,b\}$: ninguno contiene elementos fuera de $\{a,b\}$,
+      y no falta ninguna combinación posible. Los 4 coinciden con $2^2 = 4$. Perfecto.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $\mathcal{P}(A - B) = \{\,\emptyset,\ \{a\},\ \{b\},\ \{a,b\}\,\}$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El conjunto potencia aparece directamente en los problemas de optimización
+      combinatoria en informática. Encontrar el mejor subconjunto de elementos
+      que satisfaga cierta condición, como el problema de la mochila,
+      requiere en principio revisar todos los subconjuntos posibles,
+      es decir, recorrer el conjunto potencia completo.
+      Con $n$ elementos hay $2^n$ subconjuntos, lo que hace que estos algoritmos
+      sean exponenciales y se vuelvan impracticables muy rápido.
+      Por eso gran parte de la investigación en algoritmos busca atajos
+      que eviten explorar todo el conjunto potencia.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El conjunto potencia de un conjunto de n elementos tiene 2^n elementos, la misma cantidad que los valores representables con n bits en un sistema binario. ¿Cómo se relaciona formalmente el conjunto potencia con la representación binaria de números? ¿Puedes describir una biyección entre subconjuntos de {a,b,c} y números de 3 bits?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En el problema de la mochila (knapsack problem), se busca el subconjunto de objetos con mayor valor que quepa en una mochila de capacidad limitada. La solución por fuerza bruta recorre el conjunto potencia completo. ¿Qué técnicas usa la programación dinámica para evitar explorar los 2^n subconjuntos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En teoría de la computación, el problema de decidir si un subconjunto de números suma exactamente un valor dado (subset sum) es NP-completo. ¿Qué significa que un problema sea NP-completo y por qué el crecimiento exponencial del conjunto potencia tiene algo que ver con esa clasificación?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Las máscaras de bits (bitmasks) en programación representan subconjuntos de un conjunto finito usando números enteros, donde cada bit indica si un elemento está incluido o no. ¿Cómo se implementaría iterar sobre todos los subconjuntos de un conjunto de n elementos usando máscaras de bits? ¿Cuál es la complejidad temporal de ese proceso?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarDato(btn) {
+      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarBloque(btn) {
+      const texto = [...btn.closest('.bloque').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>

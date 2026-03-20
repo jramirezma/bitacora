@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>xlt5f</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "xlt5f",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "1c",
+      tema: [
+        "Teoría de conjuntos",
+        "Diferencia simétrica",
+        "Intersección",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "diferencia simétrica",
+        "intersección de conjuntos",
+        "operaciones con conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b,c\}$, $B = \{c,d,e\}$ y $C = \{c,e,f,g\}$, calcule
+      $(A \triangle C) \cap B$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Hay dos operaciones encadenadas. Primero calculas $A \triangle C$,
+      que es la diferencia simétrica: los elementos que están en uno
+      de los dos conjuntos pero no en ambos al mismo tiempo.
+      Después intersectas ese resultado con $B$, quedándote solo con
+      lo que también está en $B$.
+    </p>
+    <div class="nota">
+      La diferencia simétrica $A \triangle C$ es como una puerta exclusiva:
+      entran los que están en $A$ o en $C$, pero no los que están en los dos.
+      Es el "uno u otro, pero no ambos" de los conjuntos.
+    </div>
+    <p>
+      Una forma práctica de calcularla: $A \triangle C = (A - C) \cup (C - A)$.
+      Primero sacas lo que está en $A$ pero no en $C$, luego lo que está en $C$
+      pero no en $A$, y unes los dos resultados.
+      Después aplicas la intersección con $B$ para quedarte con lo que también pertenece a $B$.
+    </p>
+    <p class="chiste">
+      La diferencia simétrica es el conjunto más dramático de todos:
+      rechaza a los que están en los dos lados al mismo tiempo.
+      Nada de doble ciudadanía.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La diferencia simétrica $A \triangle B$ tiene una conexión directa
+      con el operador XOR (OR exclusivo) de la lógica digital.
+      Un elemento pertenece a $A \triangle B$ si y solo si pertenece
+      a $A$ o a $B$, pero no a ambos: exactamente la definición de XOR.
+      Por eso en teoría de conjuntos la diferencia simétrica se comporta
+      como una suma módulo 2: aplicarla dos veces con el mismo conjunto
+      devuelve el original, igual que $x \oplus x = 0$ en aritmética binaria.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A - C = \{a,b,c\} - \{c,e,f,g\} = \{a,b\}$
+    </div>
+    <div class="paso-just">
+      Elementos de $A$ que no están en $C$. El $c$ se va.
+    </div>
+
+    <div class="paso-dev">
+      $C - A = \{c,e,f,g\} - \{a,b,c\} = \{e,f,g\}$
+    </div>
+    <div class="paso-just">
+      Elementos de $C$ que no están en $A$. El $c$ se va también.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle C = (A-C) \cup (C-A) = \{a,b\} \cup \{e,f,g\} = \{a,b,e,f,g\}$
+    </div>
+    <div class="paso-just">
+      Unir los dos resultados: los de uno pero no del otro.
+    </div>
+
+    <div class="paso-dev">
+      $(A \triangle C) \cap B = \{a,b,e,f,g\} \cap \{c,d,e\}$
+    </div>
+    <div class="paso-just">
+      Intersectar con $B$: quedarse con lo que también está en $B$.
+    </div>
+
+    <div class="paso-dev">
+      $(A \triangle C) \cap B = \{e\}$
+    </div>
+    <div class="paso-just">
+      Solo $e$ está en ambos conjuntos. $a$, $b$, $f$, $g$ no están en $B$.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $e \in (A \triangle C) \cap B$:
+      $e \notin A$ y $e \in C$, así que $e \in A \triangle C$ ✓.
+      Además $e \in B$ ✓. El elemento pasa los dos filtros.
+      Ahora verifica que $c \notin (A \triangle C) \cap B$:
+      $c \in A$ y $c \in C$, así que $c \notin A \triangle C$
+      porque está en los dos al mismo tiempo. No pasa el primer filtro.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $(A \triangle C) \cap B = \{e\}$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El operador XOR a nivel de bits es la implementación directa
+      de la diferencia simétrica en hardware y software.
+      Se usa para detectar cambios entre dos estados:
+      si tienes dos versiones de un dato y les aplicas XOR bit a bit,
+      los bits que resultaron en $1$ son exactamente los que cambiaron,
+      los que estaban en uno pero no en el otro.
+      Por eso XOR aparece en algoritmos de detección de errores,
+      en checksums, en criptografía y hasta en el truco de intercambiar
+      dos variables sin usar una tercera.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El operador XOR en programación es la implementación directa de la diferencia simétrica de conjuntos. ¿Cómo se usa XOR para intercambiar dos variables sin usar una tercera? ¿Por qué funciona eso algebraicamente?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En detección de errores, los códigos de paridad usan XOR para verificar si un conjunto de bits fue transmitido correctamente. ¿Cómo se relaciona eso con la propiedad de que la diferencia simétrica aplicada dos veces devuelve el conjunto original, es decir, A △ B △ B = A?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En criptografía, el cifrado de flujo (stream cipher) aplica XOR entre el mensaje y una clave para cifrar, y el mismo XOR para descifrar. ¿Por qué la propiedad A △ B △ B = A hace que XOR sea útil para cifrado simétrico?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En control de versiones como Git, detectar los cambios entre dos versiones de un archivo es conceptualmente similar a calcular una diferencia simétrica: encontrar lo que está en una versión pero no en la otra. ¿Cómo implementa Git internamente la detección de diferencias entre archivos?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

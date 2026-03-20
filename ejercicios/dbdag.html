@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>dbdag</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "dbdag",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "1a",
+      tema: [
+        "Teoría de conjuntos",
+        "Producto cartesiano",
+        "Diferencia de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "producto cartesiano",
+        "diferencia de conjuntos",
+        "pares ordenados",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-19",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{a,b,c\}$, $B = \{c,d,e\}$ y $C = \{c,e,f,g\}$, calcule
+      $A \times (B - C)$.
+    </p>
+    <button class="copy-btn" title="Copiar enunciado" onclick="copiarEnunciado(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>
+      Hay dos operaciones encadenadas. Primero hay que calcular $B - C$,
+      que es lo que queda de $B$ cuando le sacas los elementos que también
+      están en $C$. Luego hay que hacer el producto cartesiano de $A$
+      con ese resultado.
+    </p>
+    <div class="nota">
+      El producto cartesiano $A \times B$ es el conjunto de todos los pares
+      ordenados $(a, b)$ donde el primer elemento viene de $A$ y el segundo de $B$.
+      El orden importa: $(a, b)$ y $(b, a)$ son pares distintos.
+    </div>
+    <p>
+      Piensa en el producto cartesiano como una tabla: las filas son los elementos
+      de $A$ y las columnas son los elementos de $B - C$. Cada celda es un par ordenado.
+      Primero construyes las columnas calculando $B - C$,
+      después llenas la tabla combinando cada fila con cada columna.
+    </p>
+    <p class="chiste">
+      La diferencia $B - C$ es como invitar a todos los de $B$ a una fiesta
+      y pedirle a los que también están en $C$ que se retiren.
+      Los que quedan son los que van al producto cartesiano.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El producto cartesiano de conjuntos lleva el nombre de René Descartes,
+      quien en el siglo XVII tuvo la idea de representar puntos geométricos
+      como pares de números: el plano cartesiano $\mathbb{R} \times \mathbb{R}$.
+      Esa idea conectó el álgebra con la geometría por primera vez en la historia
+      y es la razón por la que hoy puedes graficar funciones en un sistema de ejes.
+      Cada punto $(x, y)$ de una gráfica es literalmente un elemento
+      del producto cartesiano $\mathbb{R} \times \mathbb{R}$.
+    </p>
+    <button class="copy-btn" title="Copiar dato" onclick="copiarDato(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $B - C = \{c,d,e\} - \{c,e,f,g\}$
+    </div>
+    <div class="paso-just">
+      Sustituir los conjuntos dados.
+    </div>
+
+    <div class="paso-dev">
+      $B - C = \{d\}$
+    </div>
+    <div class="paso-just">
+      $c$ y $e$ están en $C$, así que se van. Solo $d$ sobrevive.
+    </div>
+
+    <div class="paso-dev">
+      $A \times (B - C) = \{a,b,c\} \times \{d\}$
+    </div>
+    <div class="paso-just">
+      Sustituir $B - C$ por el resultado obtenido.
+    </div>
+
+    <div class="paso-dev">
+      $A \times (B-C) = \{(a,d),\ (b,d),\ (c,d)\}$
+    </div>
+    <div class="paso-just">
+      Combinar cada elemento de $A$ con el único elemento de $\{d\}$.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $(b, d) \in A \times (B-C)$:
+      $b \in A$ ✓ y $d \in B - C$ ✓, así que el par pertenece al producto.
+      Ahora verifica que $(a, c) \notin A \times (B-C)$:
+      $a \in A$ ✓ pero $c \notin B - C$ porque $c$ fue removido al calcular $B - C$.
+      El par no pertenece. Todo cuadra.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $A \times (B - C) = \{(a,d),\ (b,d),\ (c,d)\}$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El producto cartesiano de conjuntos es la operación que está detrás
+      de los JOIN en bases de datos relacionales. Cuando haces un JOIN entre
+      dos tablas, el motor primero genera todos los pares posibles de filas
+      (producto cartesiano) y luego filtra los que cumplen la condición.
+      La diferencia de conjuntos $B - C$ también aparece en SQL como
+      la cláusula EXCEPT: devuelve las filas de una consulta que no aparecen
+      en otra, exactamente como quitar los elementos de $C$ que estaban en $B$.
+    </p>
+    <button class="copy-btn" title="Copiar" onclick="copiarBloque(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En bases de datos relacionales, el producto cartesiano de dos tablas genera todas las combinaciones posibles de filas. Si una tabla tiene 1000 filas y otra tiene 1000 filas, ¿cuántas filas tiene su producto cartesiano? ¿Por qué los motores de bases de datos evitan calcular el producto cartesiano completo cuando hacen un JOIN?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En programación, la diferencia de conjuntos A - B (elementos que están en A pero no en B) se implementa de distintas formas según la estructura de datos. ¿Cómo se implementaría con un Set en JavaScript o Python? ¿Qué complejidad temporal tiene esa operación?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>En machine learning, el espacio de características (feature space) de un modelo es un producto cartesiano de los posibles valores de cada variable. Si un modelo tiene 3 variables categóricas con 4, 5 y 6 valores posibles respectivamente, ¿cuántos puntos tiene ese espacio? ¿Por qué esto se llama "maldición de la dimensionalidad"?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <span>Los tipos de datos compuestos en programación, como las tuplas o los structs, son esencialmente elementos de un producto cartesiano de tipos. Por ejemplo, un punto en 2D es un elemento de ℝ × ℝ. ¿Cómo se relaciona la cardinalidad del producto cartesiano de conjuntos finitos con el número de valores posibles de un tipo compuesto en un lenguaje tipado?</span>
+        <button class="copy-btn" title="Copiar pregunta" onclick="copiar(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    function copiar(btn) {
+      const texto = btn.previousElementSibling.textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarDato(btn) {
+      const texto = [...btn.closest('.dato-curioso').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarBloque(btn) {
+      const texto = [...btn.closest('.bloque').querySelectorAll('p')]
+        .map(p => p.textContent.trim()).join('\n\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+    function copiarEnunciado(btn) {
+      const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+      navigator.clipboard.writeText(texto).then(() => {
+        btn.classList.add('copiado');
+        setTimeout(() => btn.classList.remove('copiado'), 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>
