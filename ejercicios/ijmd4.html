@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ijmd4</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "ijmd4",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "17b",
+      tema: [
+        "Teoría de conjuntos",
+        "Simplificación de expresiones con conjuntos",
+        "Leyes de conjuntos",
+        "álgebra de conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "simplificación de conjuntos",
+        "leyes de conjuntos",
+        "absorción",
+        "asociatividad",
+        "álgebra de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Simplifique la siguiente expresión utilizando las leyes de conjuntos.
+      Indique la ley que utiliza en cada paso:
+      $$[A \cup (B \cup C)] \cup (B \cap C)$$
+    </p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      La expresión une dos cosas: el bloque $[A \cup (B \cup C)]$
+      y el conjunto $B \cap C$. La clave es notar que $B \cap C$
+      siempre está contenido en $B$, y $B$ ya está dentro de $B \cup C$,
+      que a su vez está dentro de $A \cup (B \cup C)$.
+      Así que $B \cap C$ ya está "adentro" del primer bloque:
+      unirlo no agrega nada nuevo.
+    </p>
+    <div class="nota">
+      La ley de absorción dice que si $X \subseteq Y$, entonces $Y \cup X = Y$.
+      Acá $B \cap C \subseteq B \subseteq B \cup C \subseteq A \cup (B \cup C)$,
+      así que unir $B \cap C$ al primer bloque lo absorbe sin dejar rastro.
+    </div>
+    <p>
+      El camino más directo es usar la asociatividad de la unión
+      para reagrupar, y luego aplicar absorción.
+      Con tres conjuntos el árbol de operaciones puede tener varias formas,
+      pero la asociatividad garantiza que el resultado es el mismo
+      sin importar cómo se agrupen.
+    </p>
+    <p class="chiste">
+      $B \cap C$ intenta unirse a la fiesta, pero resulta que ya estaba invitado
+      desde el principio. La ley de absorción le cierra la puerta amablemente.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La asociatividad de la unión de conjuntos, $A \cup (B \cup C) = (A \cup B) \cup C$,
+      tiene un equivalente directo en los sistemas de bases de datos distribuidas.
+      Cuando una consulta une los resultados de múltiples nodos,
+      el orden en que se combinan los conjuntos de resultados no importa:
+      el resultado final es el mismo. Esto permite que el planificador de consultas
+      distribuidas reorganice libremente el árbol de operaciones para minimizar
+      la transferencia de datos entre nodos, eligiendo el agrupamiento
+      que resulte más eficiente sin alterar el resultado.
+    </p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $[A \cup (B \cup C)] \cup (B \cap C)$
+    </div>
+    <div class="paso-just">
+      Expresión original.
+    </div>
+
+    <div class="paso-dev">
+      $A \cup [(B \cup C) \cup (B \cap C)]$
+    </div>
+    <div class="paso-just">
+      Ley asociativa de la unión: reagrupar para aislar $B \cup C$ y $B \cap C$.
+    </div>
+
+    <div class="paso-dev">
+      $A \cup (B \cup C)$
+    </div>
+    <div class="paso-just">
+      Ley de absorción: $(B \cup C) \cup (B \cap C) = B \cup C$,
+      porque $B \cap C \subseteq B \subseteq B \cup C$.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Toma $A = \{1\}$, $B = \{2, 3\}$, $C = \{3, 4\}$.
+      $B \cup C = \{2,3,4\}$, $B \cap C = \{3\}$.
+      Lado izquierdo: $[A \cup (B \cup C)] \cup (B \cap C)
+      = \{1,2,3,4\} \cup \{3\} = \{1,2,3,4\}$.
+      Resultado simplificado: $A \cup (B \cup C) = \{1\} \cup \{2,3,4\} = \{1,2,3,4\}$.
+      Coinciden ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $[A \cup (B \cup C)] \cup (B \cap C) = A \cup B \cup C$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La asociatividad de operaciones sobre conjuntos es lo que permite
+      a los motores de bases de datos distribuidas reordenar libremente
+      las operaciones de unión entre tablas.
+      Cuando una consulta combina resultados de múltiples fuentes,
+      el optimizador elige el orden de agrupamiento que minimiza
+      el costo de transferencia de datos, sabiendo que el resultado final
+      no cambia gracias a la asociatividad.
+      Sin esta propiedad, el planificador estaría atado al orden
+      en que el programador escribió la consulta,
+      perdiendo oportunidades críticas de optimización.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>La asociatividad de la unión de conjuntos garantiza que A ∪ (B ∪ C) = (A ∪ B) ∪ C. ¿Cómo aprovechan los optimizadores de consultas SQL esta propiedad para reordenar joins y reducir el costo de ejecución? ¿Qué métricas usa el optimizador para elegir el mejor orden?</span>
+      </li>
+      <li>
+        <span>En programación funcional, las operaciones asociativas permiten la paralelización con map-reduce: si f(a, f(b, c)) = f(f(a, b), c), se puede dividir el trabajo en cualquier punto. ¿Qué operaciones sobre conjuntos son asociativas y cuáles no? ¿Cómo afecta esto a la paralelización de operaciones sobre grandes colecciones de datos?</span>
+      </li>
+      <li>
+        <span>La ley de absorción en álgebra de conjuntos, A ∪ (A ∩ B) = A, tiene un equivalente en lógica proposicional: P ∨ (P ∧ Q) ≡ P. ¿Cómo usan los sistemas de razonamiento automático y los solucionadores SAT estas equivalencias para simplificar fórmulas lógicas antes de resolverlas?</span>
+      </li>
+      <li>
+        <span>En teoría de lattices, la unión e intersección de conjuntos son los operadores join y meet de un lattice distributivo. ¿Qué es un lattice y cómo aparece esta estructura en la jerarquía de tipos de un lenguaje de programación orientado a objetos, donde la herencia define un orden parcial entre tipos?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

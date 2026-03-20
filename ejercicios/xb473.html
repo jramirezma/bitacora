@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>xb473</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "xb473",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "6a",
+      tema: [
+        "Teoría de conjuntos",
+        "Complemento de un conjunto",
+        "Diferencia simétrica",
+        "Intersección de conjuntos",
+        "operaciones con conjuntos"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "complemento de un conjunto",
+        "diferencia simétrica",
+        "intersección de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $A = \{1,2\}$, $B = \{3,5,7\}$, $C = \{2,4,5,6\}$ y $D = \{2,5,6\}$,
+      con $U = \{1,2,3,4,5,6,7\}$ como conjunto universo, calcule
+      $\overline{(A \triangle B) - B} \cap D$.
+    </p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      Hay cuatro operaciones encadenadas y el orden es crítico.
+      Primero resuelves lo que está dentro de la barra de complemento:
+      calculas $A \triangle B$ y luego le restas $B$.
+      Después tomas el complemento de ese resultado respecto a $U$,
+      que es todo lo que <em>no</em> estaba en ese conjunto.
+      Finalmente intersectas con $D$.
+    </p>
+    <div class="nota">
+      El complemento $\overline{X}$ de un conjunto $X$ respecto al universo $U$
+      es $U - X$: todos los elementos de $U$ que no están en $X$.
+      La barra actúa como un paréntesis que agrupa todo lo que cubre,
+      y su resultado se complementa de una sola vez.
+    </div>
+    <p>
+      El plan paso a paso: calcular $A \triangle B$, luego restar $B$,
+      luego complementar respecto a $U$, y finalmente intersectar con $D$.
+      Cada paso alimenta al siguiente.
+    </p>
+    <p class="chiste">
+      El complemento es el rebelde de las operaciones:
+      se queda con todo lo que los demás rechazaron.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El complemento de un conjunto respecto a un universo es la operación
+      detrás del operador lógico NOT en programación.
+      Cuando escribes <code>!condicion</code> en un <code>if</code>,
+      estás tomando el complemento del conjunto de casos donde
+      la condición es verdadera. Las leyes de De Morgan,
+      $\overline{A \cup B} = \overline{A} \cap \overline{B}$ y
+      $\overline{A \cap B} = \overline{A} \cup \overline{B}$,
+      son exactamente las mismas reglas que los compiladores usan
+      para optimizar expresiones booleanas negadas,
+      transformando NOT (A OR B) en (NOT A) AND (NOT B).
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A \triangle B = \{1,2\} \triangle \{3,5,7\}$
+    </div>
+    <div class="paso-just">
+      Primer paso: diferencia simétrica.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = \emptyset \implies A \triangle B = A \cup B = \{1,2,3,5,7\}$
+    </div>
+    <div class="paso-just">
+      $A$ y $B$ son disjuntos: la diferencia simétrica es igual a la unión.
+    </div>
+
+    <div class="paso-dev">
+      $(A \triangle B) - B = \{1,2,3,5,7\} - \{3,5,7\} = \{1,2\}$
+    </div>
+    <div class="paso-just">
+      Restar $B$: se eliminan $3$, $5$ y $7$.
+    </div>
+
+    <div class="paso-dev">
+      $\overline{(A \triangle B) - B} = U - \{1,2\} = \{1,2,3,4,5,6,7\} - \{1,2\}$
+    </div>
+    <div class="paso-just">
+      Complemento respecto a $U$: todo lo que no está en $\{1,2\}$.
+    </div>
+
+    <div class="paso-dev">
+      $\overline{(A \triangle B) - B} = \{3,4,5,6,7\}$
+    </div>
+    <div class="paso-just">
+      Se eliminan $1$ y $2$ del universo.
+    </div>
+
+    <div class="paso-dev">
+      $\overline{(A \triangle B) - B} \cap D = \{3,4,5,6,7\} \cap \{2,5,6\}$
+    </div>
+    <div class="paso-just">
+      Intersectar con $D$: quedarse con los elementos comunes.
+    </div>
+
+    <div class="paso-dev">
+      $\overline{(A \triangle B) - B} \cap D = \{5,6\}$
+    </div>
+    <div class="paso-just">
+      Solo $5$ y $6$ están en los dos conjuntos.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Verifica que $5 \in \overline{(A \triangle B) - B} \cap D$:
+      $5 \notin \{1,2\}$, así que $5 \in \overline{(A \triangle B) - B}$ ✓,
+      y además $5 \in D$ ✓. Pasa los dos filtros.
+      Verifica que $4 \notin \overline{(A \triangle B) - B} \cap D$:
+      $4 \notin \{1,2\}$, así que $4 \in \overline{(A \triangle B) - B}$ ✓,
+      pero $4 \notin D$. No pasa el segundo filtro.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $\overline{(A \triangle B) - B} \cap D = \{5,\ 6\}$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El complemento de un conjunto en informática aparece en los sistemas
+      de caché y listas negras. El conjunto de solicitudes permitidas
+      es el complemento del conjunto de solicitudes bloqueadas respecto
+      al universo de todas las solicitudes posibles.
+      Los firewalls y filtros de contenido trabajan exactamente así:
+      definen un conjunto de reglas de bloqueo y dejan pasar todo lo demás,
+      o definen un conjunto de reglas de permiso y bloquean todo lo demás.
+      Cambiar entre lista blanca y lista negra es simplemente
+      tomar el complemento del conjunto de reglas.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>Las leyes de De Morgan en teoría de conjuntos dicen que el complemento de una unión es la intersección de los complementos, y viceversa. ¿Cómo se aplican estas leyes en la optimización de consultas SQL con NOT IN y NOT EXISTS? ¿Cuál de las dos formas es más eficiente en la práctica?</span>
+      </li>
+      <li>
+        <span>En seguridad informática, un firewall puede operar con lista blanca (solo permite lo que está en el conjunto permitido) o lista negra (bloquea lo que está en el conjunto prohibido y permite el resto). ¿Cuál de los dos enfoques es el complemento del otro? ¿Cuáles son las ventajas de seguridad de cada enfoque?</span>
+      </li>
+      <li>
+        <span>En programación funcional, el operador de complemento de conjuntos se puede expresar como la composición de filter y negación del predicado. ¿Cómo se implementaría el complemento de un conjunto en un lenguaje funcional como Haskell o en Python usando comprensión de listas? ¿Qué rol juegan las leyes de De Morgan al simplificar predicados compuestos?</span>
+      </li>
+      <li>
+        <span>En redes de computadoras, las máscaras de subred definen el complemento entre la parte de red y la parte de host de una dirección IP. ¿Cómo se usa la operación de complemento a nivel de bits (NOT) para calcular la máscara wildcard a partir de una máscara de subred, y para qué se usa esa máscara wildcard en la configuración de routers?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

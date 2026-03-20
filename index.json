@@ -1,5 +1,146 @@
 [
   {
+    "id": "67z9q",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "8a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Operaciones con intervalos",
+      "Unión, intersección y diferencia de conjuntos",
+      "intervalos reales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "intervalos reales",
+      "unión de intervalos",
+      "intersección de intervalos",
+      "diferencia de conjuntos",
+      "diferencia simétrica",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/67z9q.html",
+    "enunciado": "Para $A = [-1, 4[$ y $B = [0, 2]$, calcule $A \\cup B$, $A \\cap B$, $A - B$, $B - A$ y $A \\triangle B$."
+  },
+  {
+    "id": "daghv",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "20",
+    "tema": [
+      "Teoría de conjuntos",
+      "Cardinalidad",
+      "Conjunto potencia",
+      "Producto cartesiano"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "cardinalidad",
+      "conjunto potencia",
+      "producto cartesiano",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/daghv.html",
+    "enunciado": "Si $|A| = 3$ y $|B| = 5$, calcule: $$|\\mathcal{P}(A) \\times \\mathcal{P}(B)| \\quad \\text{y} \\quad |\\mathcal{P}(A \\times B)|$$"
+  },
+  {
+    "id": "ijmd4",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "17b",
+    "tema": [
+      "Teoría de conjuntos",
+      "Simplificación de expresiones con conjuntos",
+      "Leyes de conjuntos",
+      "álgebra de conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "simplificación de conjuntos",
+      "leyes de conjuntos",
+      "absorción",
+      "asociatividad",
+      "álgebra de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/ijmd4.html",
+    "enunciado": "Simplifique la siguiente expresión utilizando las leyes de conjuntos. Indique la ley que utiliza en cada paso: $$[A \\cup (B \\cup C)] \\cup (B \\cap C)$$"
+  },
+  {
+    "id": "jnn1p",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "17a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Simplificación de expresiones con conjuntos",
+      "Leyes de conjuntos",
+      "álgebra de conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "simplificación de conjuntos",
+      "leyes de conjuntos",
+      "absorción",
+      "álgebra de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/jnn1p.html",
+    "enunciado": "Simplifique la siguiente expresión utilizando las leyes de conjuntos. Indique la ley que utiliza en cada paso: $$[(A \\cup B) \\cap A] \\cup B$$"
+  },
+  {
     "id": "k4fii",
     "materia": [
       "Álgebra"
@@ -32,6 +173,43 @@
     },
     "archivo": "ejercicios/k4fii.html",
     "enunciado": "Si $A = \\{a,b\\}$, $B = \\{b,c,d\\}$ y $C = \\{a,d\\}$, con $U = \\{a,b,c,d,e,f\\}$ como conjunto universo, calcule $\\mathcal{P}(A \\cap B)$."
+  },
+  {
+    "id": "kxyav",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "17d",
+    "tema": [
+      "Teoría de conjuntos",
+      "Simplificación de expresiones con conjuntos",
+      "Leyes de conjuntos",
+      "álgebra de conjuntos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "simplificación de conjuntos",
+      "leyes de conjuntos",
+      "absorción",
+      "asociatividad",
+      "distributividad",
+      "álgebra de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/kxyav.html",
+    "enunciado": "Simplifique la siguiente expresión utilizando las leyes de conjuntos. Indique la ley que utiliza en cada paso: $$(A \\cap B) \\cup [A \\cap (B \\cap C)] \\cup (A \\cap C)$$"
   },
   {
     "id": "nq44n",
@@ -136,6 +314,41 @@
     "enunciado": "Si $A = \\{a,b,c\\}$ y $B = \\{c,d,e\\}$, calcule $\\mathcal{P}(A - B)$."
   },
   {
+    "id": "xb473",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "6a",
+    "tema": [
+      "Teoría de conjuntos",
+      "Complemento de un conjunto",
+      "Diferencia simétrica",
+      "Intersección de conjuntos",
+      "operaciones con conjuntos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "complemento de un conjunto",
+      "diferencia simétrica",
+      "intersección de conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/xb473.html",
+    "enunciado": "Si $A = \\{1,2\\}$, $B = \\{3,5,7\\}$, $C = \\{2,4,5,6\\}$ y $D = \\{2,5,6\\}$, con $U = \\{1,2,3,4,5,6,7\\}$ como conjunto universo, calcule $\\overline{(A \\triangle B) - B} \\cap D$."
+  },
+  {
     "id": "xlt5f",
     "materia": [
       "Álgebra"
@@ -174,8 +387,8 @@
     "materia": [
       "Álgebra"
     ],
-    "origen": "PR2",
-    "ejercicio_nro": "6a",
+    "origen": "null",
+    "ejercicio_nro": "null",
     "tema": [
       "Teoría de conjuntos",
       "Diferencia simétrica",
@@ -203,6 +416,76 @@
     },
     "archivo": "ejercicios/y1g5n.html",
     "enunciado": "Si $A = \\{1,2\\}$, $B = \\{3,5,7\\}$, $C = \\{2,4,5,6\\}$ y $D = \\{2,5,6\\}$, con $U = \\{1,2,3,4,5,6,7\\}$ como conjunto universo, calcule $(A \\triangle B) - B \\cap D$."
+  },
+  {
+    "id": "yafsl",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "19",
+    "tema": [
+      "Teoría de conjuntos",
+      "Principio de inclusión-exclusión",
+      "Cardinalidad de conjuntos",
+      "conteo con conjuntos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "principio de inclusión exclusión",
+      "cardinalidad",
+      "conteo con conjuntos",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/yafsl.html",
+    "enunciado": "En una encuesta aplicada a 135 personas acerca de los medios de información que utilizan para enterarse de las noticias, se obtuvo la siguiente información: 70 utilizan la prensa escrita ($P$); 83, la"
+  },
+  {
+    "id": "z5b08",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "PR2",
+    "ejercicio_nro": "8b",
+    "tema": [
+      "Teoría de conjuntos",
+      "Operaciones con intervalos",
+      "Unión, intersección y diferencia de conjuntos",
+      "intervalos reales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "intervalos reales",
+      "unión de intervalos",
+      "intersección de intervalos",
+      "diferencia de conjuntos",
+      "diferencia simétrica",
+      "teoría de conjuntos",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-20",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/z5b08.html",
+    "enunciado": "Para $A = [1, 5]$ y $B = [0, 3[$, calcule $A \\cup B$, $A \\cap B$, $A - B$, $B - A$ y $A \\triangle B$."
   },
   {
     "id": "8g8c1",

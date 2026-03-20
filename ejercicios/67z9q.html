@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>67z9q</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "67z9q",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "8a",
+      tema: [
+        "Teoría de conjuntos",
+        "Operaciones con intervalos",
+        "Unión, intersección y diferencia de conjuntos",
+        "intervalos reales"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "intervalos reales",
+        "unión de intervalos",
+        "intersección de intervalos",
+        "diferencia de conjuntos",
+        "diferencia simétrica",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Para $A = [-1, 4[$ y $B = [0, 2]$, calcule
+      $A \cup B$, $A \cap B$, $A - B$, $B - A$ y $A \triangle B$.
+    </p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Los conjuntos acá no son listas de elementos aislados sino intervalos:
+      segmentos continuos de la recta real. Para operar con ellos,
+      la herramienta más clara es dibujarlos mentalmente sobre una recta
+      y ver qué zonas se superponen, cuáles son exclusivas de cada uno,
+      y cuáles quedan fuera de ambos.
+    </p>
+    <div class="nota">
+      El corchete $[$ indica que el extremo está incluido en el intervalo.
+      El paréntesis $[$ o $]$ con la apertura hacia afuera indica que el extremo
+      está excluido. Así, $[-1, 4[$ incluye el $-1$ pero excluye el $4$,
+      y $[0, 2]$ incluye tanto el $0$ como el $2$.
+    </div>
+    <p>
+      Ubicados sobre la recta, $A$ empieza en $-1$ y llega hasta justo antes de $4$,
+      mientras que $B$ empieza en $0$ y termina en $2$.
+      $B$ está completamente contenido dentro de $A$, lo que simplifica
+      varios de los cálculos.
+    </p>
+    <p class="chiste">
+      Cuando un intervalo está completamente dentro del otro,
+      la diferencia $B - A$ da vacío. $B$ no tiene dónde esconderse.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Los intervalos reales son la representación matemática de los rangos
+      que aparecen constantemente en programación: rangos de índices,
+      rangos de fechas, rangos de valores válidos.
+      La distinción entre extremo incluido $[$ y excluido $)$ también aparece
+      en los lenguajes de programación: en Python, <code>range(0, 4)</code>
+      incluye el $0$ pero excluye el $4$, exactamente como el intervalo $[0, 4[$.
+      Esta convención de extremo superior excluido es tan común en programación
+      que tiene nombre: se llama notación semiabierta por la derecha,
+      y facilita calcular longitudes porque <code>len = fin - inicio</code> sin ajustes.
+    </p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A \cup B = [-1, 4[ \cup [0, 2]$
+    </div>
+    <div class="paso-just">
+      Unión: todo lo que está en $A$ o en $B$.
+    </div>
+
+    <div class="paso-dev">
+      $A \cup B = [-1, 4[$
+    </div>
+    <div class="paso-just">
+      $B \subseteq A$, así que la unión no agrega nada nuevo.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = [-1, 4[ \cap [0, 2]$
+    </div>
+    <div class="paso-just">
+      Intersección: solo lo que está en los dos a la vez.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = [0, 2]$
+    </div>
+    <div class="paso-just">
+      La zona de superposición empieza en $\max(-1, 0) = 0$ y termina en $\min(4, 2) = 2$.
+      Ambos extremos están incluidos en sus respectivos intervalos.
+    </div>
+
+    <div class="paso-dev">
+      $A - B = [-1, 4[ - [0, 2]$
+    </div>
+    <div class="paso-just">
+      Lo que está en $A$ pero no en $B$.
+    </div>
+
+    <div class="paso-dev">
+      $A - B = [-1, 0[$
+    </div>
+    <div class="paso-just">
+      La parte de $A$ a la izquierda de $B$. El $0$ se excluye porque pertenece a $B$.
+      La parte $]2, 4[$ también pertenece a $A - B$.
+    </div>
+
+    <div class="paso-dev">
+      $A - B = [-1, 0[ \cup ]2, 4[$
+    </div>
+    <div class="paso-just">
+      Dos trozos: lo que está antes de $B$ en $A$, y lo que está después de $B$ en $A$.
+      El $2$ se excluye porque pertenece a $B$.
+    </div>
+
+    <div class="paso-dev">
+      $B - A = [0, 2] - [-1, 4[ = \emptyset$
+    </div>
+    <div class="paso-just">
+      $B \subseteq A$: todo elemento de $B$ también está en $A$. No queda nada.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = (A - B) \cup (B - A)$
+    </div>
+    <div class="paso-just">
+      Definición de diferencia simétrica.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = \left([-1, 0[ \cup ]2, 4[\right) \cup \emptyset$
+    </div>
+    <div class="paso-just">
+      Sustituir los resultados obtenidos.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = [-1, 0[ \cup ]2, 4[$
+    </div>
+    <div class="paso-just">
+      La unión con $\emptyset$ no cambia nada.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Toma $x = -0.5$: $-0.5 \in A$ ✓ y $-0.5 \notin B$ ✓,
+      así que $-0.5 \in A - B$ y $-0.5 \in A \triangle B$. Correcto.
+      Toma $x = 1$: $1 \in A$ ✓ y $1 \in B$ ✓,
+      así que $1 \in A \cap B$ y $1 \notin A \triangle B$. Correcto.
+      Toma $x = 3$: $3 \in A$ ✓ y $3 \notin B$ ✓,
+      así que $3 \in A - B$ y $3 \in A \triangle B$. Correcto.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong><br>
+    $A \cup B = [-1, 4[$<br>
+    $A \cap B = [0, 2]$<br>
+    $A - B = [-1, 0[ \cup ]2, 4[$<br>
+    $B - A = \emptyset$<br>
+    $A \triangle B = [-1, 0[ \cup ]2, 4[$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Las operaciones sobre intervalos reales aparecen en los motores
+      de bases de datos cuando se trabaja con rangos de fechas o valores numéricos.
+      Calcular la intersección de dos rangos de disponibilidad,
+      por ejemplo para encontrar el horario libre común entre dos personas,
+      es exactamente $A \cap B$ sobre intervalos.
+      La diferencia $A - B$ aparece cuando se buscan los períodos
+      en que un recurso está disponible en $A$ pero bloqueado en $B$.
+      Librerías como Moment.js o date-fns implementan estas operaciones
+      sobre intervalos de tiempo con exactamente la misma lógica.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En programación, los rangos con extremo superior excluido como [inicio, fin) son la convención estándar en lenguajes como Python, Java y C. ¿Por qué esta convención facilita el cálculo de longitudes y la concatenación de rangos adyacentes sin solapamientos?</span>
+      </li>
+      <li>
+        <span>En bases de datos, las consultas sobre rangos de fechas usan operaciones equivalentes a intersección y diferencia de intervalos. ¿Cómo se implementa eficientemente la búsqueda de registros dentro de un rango de fechas usando índices B-tree? ¿Por qué los índices B-tree son especialmente adecuados para consultas de rango?</span>
+      </li>
+      <li>
+        <span>En gráficos por computadora y motores de videojuegos, la detección de colisiones entre objetos en una dimensión es equivalente a verificar si la intersección de dos intervalos es no vacía. ¿Cómo se extiende este concepto a dos y tres dimensiones usando bounding boxes, y qué operaciones de conjuntos sobre intervalos están involucradas?</span>
+      </li>
+      <li>
+        <span>En redes de computadoras, los rangos de direcciones IP como 192.168.1.0/24 definen subconjuntos del espacio de direcciones. La diferencia entre dos rangos de IPs determina qué direcciones están en una subred pero no en otra. ¿Cómo se calcula la diferencia entre dos rangos de IPs y qué rol juega la notación CIDR en esta operación?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

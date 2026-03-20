@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>daghv</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "daghv",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "20",
+      tema: [
+        "Teoría de conjuntos",
+        "Cardinalidad",
+        "Conjunto potencia",
+        "Producto cartesiano"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "cardinalidad",
+        "conjunto potencia",
+        "producto cartesiano",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Si $|A| = 3$ y $|B| = 5$, calcule:
+      $$|\mathcal{P}(A) \times \mathcal{P}(B)| \quad \text{y} \quad |\mathcal{P}(A \times B)|$$
+    </p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Son dos expresiones que se parecen pero son muy distintas.
+      La primera, $\mathcal{P}(A) \times \mathcal{P}(B)$, primero construye
+      los conjuntos potencia de $A$ y de $B$ por separado,
+      y luego hace el producto cartesiano entre ellos.
+      La segunda, $\mathcal{P}(A \times B)$, primero hace el producto cartesiano
+      de $A$ con $B$, y luego construye el conjunto potencia de ese resultado.
+      El orden importa, y los números que salen son muy distintos.
+    </p>
+    <div class="nota">
+      Tres fórmulas clave para este ejercicio:
+      $|\mathcal{P}(X)| = 2^{|X|}$,
+      $|X \times Y| = |X| \cdot |Y|$,
+      $|X \times Y| = |X| \cdot |Y|$.
+      Con estas tres todo se reduce a aritmética.
+    </div>
+    <p>
+      Piensa en la diferencia así: en el primer caso estás eligiendo
+      un subconjunto de $A$ y un subconjunto de $B$ de forma independiente,
+      y formando pares de subconjuntos. En el segundo caso estás eligiendo
+      subconjuntos de pares ordenados $(a, b)$: una operación mucho más grande.
+    </p>
+    <p class="chiste">
+      Cambiar el orden de $\mathcal{P}$ y $\times$ es como cambiar el orden
+      de "hacer una mochila" y "empacar todo": los resultados no tienen nada que ver.
+    </p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La diferencia entre $|\mathcal{P}(A) \times \mathcal{P}(B)|$ y
+      $|\mathcal{P}(A \times B)|$ ilustra por qué el orden de las operaciones
+      importa tanto en matemáticas y en programación.
+      En teoría de tipos, $\mathcal{P}(A) \times \mathcal{P}(B)$ corresponde
+      a un par de conjuntos de valores, mientras que $\mathcal{P}(A \times B)$
+      corresponde a un conjunto de pares de valores, estructuras completamente distintas.
+      Esta diferencia aparece en el diseño de APIs:
+      una función que devuelve un par de listas no es lo mismo
+      que una función que devuelve una lista de pares,
+      aunque ambas manejen los mismos datos subyacentes.
+    </p>
+  </div>
+
+  <h2>La demostración</h2>
+
+  <p class="subcaso">Primera expresión — $|\mathcal{P}(A) \times \mathcal{P}(B)|$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(A)| = 2^{|A|} = 2^3 = 8$
+    </div>
+    <div class="paso-just">
+      Un conjunto de 3 elementos tiene $2^3$ subconjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(B)| = 2^{|B|} = 2^5 = 32$
+    </div>
+    <div class="paso-just">
+      Un conjunto de 5 elementos tiene $2^5$ subconjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(A) \times \mathcal{P}(B)| = |\mathcal{P}(A)| \cdot |\mathcal{P}(B)|$
+    </div>
+    <div class="paso-just">
+      Cardinalidad del producto cartesiano: $|X \times Y| = |X| \cdot |Y|$.
+    </div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(A) \times \mathcal{P}(B)| = 8 \cdot 32 = 256$
+    </div>
+    <div class="paso-just">
+      Hay 256 pares posibles de la forma (subconjunto de $A$, subconjunto de $B$).
+    </div>
+  </div>
+
+  <p class="subcaso">Segunda expresión — $|\mathcal{P}(A \times B)|$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $|A \times B| = |A| \cdot |B| = 3 \cdot 5 = 15$
+    </div>
+    <div class="paso-just">
+      El producto cartesiano de $A$ y $B$ tiene $3 \times 5 = 15$ pares ordenados.
+    </div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(A \times B)| = 2^{|A \times B|} = 2^{15}$
+    </div>
+    <div class="paso-just">
+      El conjunto potencia de un conjunto de 15 elementos tiene $2^{15}$ subconjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $|\mathcal{P}(A \times B)| = 32768$
+    </div>
+    <div class="paso-just">
+      $2^{15} = 32768$.
+    </div>
+  </div>
+
+  <h2>Comprobemos que tiene sentido</h2>
+  <div class="bloque">
+    <p>
+      $|\mathcal{P}(A) \times \mathcal{P}(B)| = 256 = 2^8$.
+      Nótese que $2^{|A|} \cdot 2^{|B|} = 2^{|A|+|B|} = 2^{3+5} = 2^8 = 256$.
+      Eso confirma el resultado por otro camino.
+      Para la segunda: $2^{15} = 32768 \gg 256$,
+      lo que tiene sentido porque el conjunto potencia de un producto cartesiano
+      crece exponencialmente más rápido que el producto de los conjuntos potencia por separado.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong><br>
+    $|\mathcal{P}(A) \times \mathcal{P}(B)| = 2^8 = 256$<br>
+    $|\mathcal{P}(A \times B)| = 2^{15} = 32768$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La diferencia entre $\mathcal{P}(A) \times \mathcal{P}(B)$ y $\mathcal{P}(A \times B)$
+      aparece en el diseño de esquemas de bases de datos.
+      Una tabla de relaciones muchos a muchos entre dos entidades $A$ y $B$
+      almacena subconjuntos de $A \times B$: cada fila es un par $(a, b)$
+      y el conjunto de filas es un elemento de $\mathcal{P}(A \times B)$.
+      El número de posibles estados de esa tabla es $2^{|A| \cdot |B|}$,
+      que crece muchísimo más rápido que si llevaras listas separadas de subconjuntos,
+      que sería $2^{|A|} \cdot 2^{|B|}$.
+      Esta diferencia explica por qué las tablas de relaciones muchos a muchos
+      pueden volverse enormes muy rápido.
+    </p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En teoría de tipos, el tipo producto A × B y el tipo función A → B tienen cardinalidades distintas: |A × B| = |A| · |B| mientras que |A → B| = |B|^|A|. ¿Cómo se relaciona esto con la diferencia entre |𝒫(A) × 𝒫(B)| y |𝒫(A × B)|? ¿Qué estructura matemática captura mejor las funciones de A en B?</span>
+      </li>
+      <li>
+        <span>En bases de datos relacionales, una tabla de relación muchos a muchos entre dos entidades A y B es un subconjunto de A × B, es decir, un elemento de 𝒫(A × B). ¿Por qué el número de posibles estados de esa tabla crece como 2^(|A|·|B|) y no como 2^|A| · 2^|B|? ¿Qué implicaciones tiene esto para el almacenamiento y la indexación?</span>
+      </li>
+      <li>
+        <span>En criptografía, el espacio de claves de un cifrado simétrico de n bits tiene cardinalidad 2^n, equivalente al conjunto potencia de n bits. ¿Cómo se relaciona la cardinalidad del espacio de claves con la seguridad del cifrado contra ataques de fuerza bruta? ¿Por qué duplicar el tamaño de la clave no duplica sino que eleva al cuadrado el esfuerzo del atacante?</span>
+      </li>
+      <li>
+        <span>En machine learning, el espacio de hipótesis de un clasificador binario sobre n características booleanas tiene cardinalidad 2^(2^n), el conjunto potencia del espacio de instancias. ¿Por qué este crecimiento doblemente exponencial hace que aprender la función objetivo exacta sea computacionalmente intratable para n grande, y cómo resuelven esto los algoritmos de aprendizaje en la práctica?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

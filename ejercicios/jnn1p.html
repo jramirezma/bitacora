@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>jnn1p</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "jnn1p",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "17a",
+      tema: [
+        "Teoría de conjuntos",
+        "Simplificación de expresiones con conjuntos",
+        "Leyes de conjuntos",
+        "álgebra de conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "simplificación de conjuntos",
+        "leyes de conjuntos",
+        "absorción",
+        "álgebra de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Simplifique la siguiente expresión utilizando las leyes de conjuntos.
+      Indique la ley que utiliza en cada paso:
+      $$[(A \cup B) \cap A] \cup B$$
+    </p>
+  </div>
+
+  <h2>El mapa antes del territorio</h2>
+  <div class="bloque">
+    <p>
+      Simplificar una expresión de conjuntos es como simplificar una expresión
+      algebraica: hay leyes que permiten reescribir partes de la expresión
+      en formas más simples, hasta llegar a algo que no se puede reducir más.
+      El truco es reconocer qué ley aplica en cada momento.
+    </p>
+    <div class="nota">
+      La ley de absorción dice que $A \cup (A \cap B) = A$ y $A \cap (A \cup B) = A$.
+      En palabras: si un conjunto ya contiene a otro, unirlo o intersectarlo
+      con ese otro no cambia nada. El más grande absorbe al más pequeño.
+    </div>
+    <p>
+      En esta expresión, el primer paso clave es reconocer que
+      $(A \cup B) \cap A$ tiene exactamente la forma de la ley de absorción:
+      $A \cap (A \cup B) = A$. Eso colapsa toda la parte entre corchetes
+      a un simple $A$, y el resto se resuelve solo.
+    </p>
+    <p class="chiste">
+      La ley de absorción es la Marie Kondo de las operaciones con conjuntos:
+      si algo ya está ahí, no hace falta agregarlo de nuevo.
+    </p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Las leyes de conjuntos, como la absorción, la conmutatividad y la distributividad,
+      forman parte de una estructura algebraica llamada álgebra de Boole,
+      desarrollada por George Boole en 1854.
+      Esa misma álgebra es la que describe el comportamiento de los circuitos digitales:
+      cada compuerta lógica AND, OR y NOT obedece exactamente las mismas leyes
+      que las operaciones $\cap$, $\cup$ y complemento sobre conjuntos.
+      Por eso los ingenieros de hardware usan estas leyes para simplificar
+      circuitos y reducir la cantidad de compuertas necesarias,
+      exactamente como se hace acá con los conjuntos.
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $[(A \cup B) \cap A] \cup B$
+    </div>
+    <div class="paso-just">
+      Expresión original.
+    </div>
+
+    <div class="paso-dev">
+      $[A \cap (A \cup B)] \cup B$
+    </div>
+    <div class="paso-just">
+      Ley conmutativa de la intersección: $X \cap Y = Y \cap X$.
+    </div>
+
+    <div class="paso-dev">
+      $A \cup B$
+    </div>
+    <div class="paso-just">
+      Ley de absorción: $A \cap (A \cup B) = A$. Luego $A \cup B$.
+    </div>
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>
+      Toma $A = \{1, 2\}$ y $B = \{2, 3\}$.
+      Lado izquierdo: $A \cup B = \{1,2,3\}$, luego $(A \cup B) \cap A = \{1,2\} = A$,
+      luego $A \cup B = \{1,2,3\}$.
+      Lado derecho (resultado simplificado): $A \cup B = \{1,2,3\}$.
+      Coinciden ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $[(A \cup B) \cap A] \cup B = A \cup B$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Las leyes del álgebra de Boole, incluyendo la absorción, son las reglas
+      que los compiladores usan en la fase de optimización para simplificar
+      expresiones booleanas en el código. Una condición como
+      <code>(A || B) && A</code> se simplifica a <code>A</code> por absorción,
+      reduciendo operaciones innecesarias en tiempo de ejecución.
+      Los sintetizadores de hardware digital hacen lo mismo con circuitos:
+      aplicar estas leyes reduce la cantidad de compuertas lógicas,
+      lo que se traduce en menos consumo de energía y mayor velocidad.
+    </p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>La ley de absorción en álgebra de Boole dice que A AND (A OR B) = A y A OR (A AND B) = A. ¿Cómo usan los compiladores modernos estas leyes para optimizar expresiones booleanas en el código? ¿En qué fase del proceso de compilación ocurre esta optimización?</span>
+      </li>
+      <li>
+        <span>En diseño de circuitos digitales, simplificar expresiones booleanas usando leyes como la absorción reduce la cantidad de compuertas lógicas necesarias. ¿Qué es el mapa de Karnaugh y cómo automatiza el proceso de simplificación de expresiones booleanas para circuitos combinacionales?</span>
+      </li>
+      <li>
+        <span>En bases de datos, el optimizador de consultas aplica reglas algebraicas equivalentes a las leyes de conjuntos para reescribir consultas SQL de forma más eficiente. ¿Qué transformaciones algebraicas aplica el optimizador para simplificar consultas con condiciones redundantes, similar a la ley de absorción?</span>
+      </li>
+      <li>
+        <span>El álgebra de Boole desarrollada por George Boole en 1854 describe tanto las operaciones sobre conjuntos como el comportamiento de los circuitos digitales. ¿Cómo estableció Claude Shannon en 1937 la conexión formal entre el álgebra de Boole y los circuitos eléctricos, y qué impacto tuvo eso en el desarrollo de las computadoras modernas?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>z5b08</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "z5b08",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "8b",
+      tema: [
+        "Teoría de conjuntos",
+        "Operaciones con intervalos",
+        "Unión, intersección y diferencia de conjuntos",
+        "intervalos reales"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "intervalos reales",
+        "unión de intervalos",
+        "intersección de intervalos",
+        "diferencia de conjuntos",
+        "diferencia simétrica",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Para $A = [1, 5]$ y $B = [0, 3[$, calcule
+      $A \cup B$, $A \cap B$, $A - B$, $B - A$ y $A \triangle B$.
+    </p>
+  </div>
+
+  <h2>Antes de demostrar</h2>
+  <div class="bloque">
+    <p>
+      Los dos intervalos se solapan parcialmente: $A$ empieza en $1$ y llega hasta $5$,
+      mientras $B$ empieza en $0$ y llega hasta justo antes de $3$.
+      Ninguno contiene completamente al otro, así que habrá partes exclusivas
+      de cada lado y una zona de intersección en el medio.
+    </p>
+    <div class="nota">
+      Para encontrar la intersección de dos intervalos que se solapan,
+      el extremo izquierdo es el mayor de los dos inicios
+      y el extremo derecho es el menor de los dos finales.
+      El tipo de cada extremo (incluido o excluido) se hereda del intervalo
+      que impone ese límite.
+    </div>
+    <p>
+      Ubicados en la recta: $B$ tiene terreno exclusivo a la izquierda ($[0, 1[$),
+      los dos se superponen en el medio ($[1, 3[$), y $A$ tiene terreno
+      exclusivo a la derecha ($[3, 5]$). Ese mapa mental hace que
+      todas las operaciones se lean directamente.
+    </p>
+    <p class="chiste">
+      Dos intervalos que se solapan parcialmente son como dos vecinos
+      que comparten una pared pero cada uno tiene sus propias habitaciones.
+      La pared compartida es la intersección; lo que no comparten es la diferencia.
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Cuando dos intervalos reales se solapan parcialmente,
+      su unión no puede expresarse como un único intervalo simple:
+      requiere describir el rango completo desde el mínimo hasta el máximo.
+      Este problema aparece en los sistemas de calendarios y agendas:
+      fusionar dos bloques de tiempo que se superponen parcialmente
+      produce un único bloque más grande, exactamente la unión de intervalos.
+      Los algoritmos de fusión de intervalos solapados son un problema clásico
+      de entrevistas técnicas en empresas de software, y su solución eficiente
+      requiere ordenar los intervalos por inicio y recorrerlos una sola vez.
+    </p>
+  </div>
+
+  <h2>La demostración</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $A \cup B = [1,5] \cup [0,3[$
+    </div>
+    <div class="paso-just">
+      Unión: todo lo que está en $A$ o en $B$.
+    </div>
+
+    <div class="paso-dev">
+      $A \cup B = [0, 5]$
+    </div>
+    <div class="paso-just">
+      El inicio es $\min(0,1) = 0$ (incluido, viene de $B$).
+      El final es $\max(5,3) = 5$ (incluido, viene de $A$).
+      Los dos intervalos se solapan, así que forman un único intervalo.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = [1,5] \cap [0,3[$
+    </div>
+    <div class="paso-just">
+      Intersección: solo lo que está en los dos a la vez.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap B = [1, 3[$
+    </div>
+    <div class="paso-just">
+      Inicio: $\max(0,1) = 1$ (incluido, viene de $A$).
+      Final: $\min(5,3) = 3$ (excluido, viene de $B$).
+    </div>
+
+    <div class="paso-dev">
+      $A - B = [1,5] - [0,3[$
+    </div>
+    <div class="paso-just">
+      Lo que está en $A$ pero no en $B$.
+    </div>
+
+    <div class="paso-dev">
+      $A - B = [3, 5]$
+    </div>
+    <div class="paso-just">
+      La parte de $A$ a la derecha de $B$.
+      El $3$ está incluido porque $B$ excluye su extremo derecho ($3 \notin B$).
+    </div>
+
+    <div class="paso-dev">
+      $B - A = [0,3[ - [1,5]$
+    </div>
+    <div class="paso-just">
+      Lo que está en $B$ pero no en $A$.
+    </div>
+
+    <div class="paso-dev">
+      $B - A = [0, 1[$
+    </div>
+    <div class="paso-just">
+      La parte de $B$ a la izquierda de $A$.
+      El $1$ se excluye porque pertenece a $A$.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = (A-B) \cup (B-A) = [3,5] \cup [0,1[$
+    </div>
+    <div class="paso-just">
+      Definición de diferencia simétrica: los exclusivos de cada lado.
+    </div>
+
+    <div class="paso-dev">
+      $A \triangle B = [0,1[ \cup [3,5]$
+    </div>
+    <div class="paso-just">
+      Reordenado de menor a mayor para mayor claridad.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Toma $x = 0.5$: $0.5 \notin A$ y $0.5 \in B$,
+      así que $0.5 \in B - A$ y $0.5 \in A \triangle B$ ✓.
+      Toma $x = 2$: $2 \in A$ y $2 \in B$,
+      así que $2 \in A \cap B$ y $2 \notin A \triangle B$ ✓.
+      Toma $x = 4$: $4 \in A$ y $4 \notin B$,
+      así que $4 \in A - B$ y $4 \in A \triangle B$ ✓.
+      Toma $x = 3$: $3 \in A$ y $3 \notin B$ (extremo excluido),
+      así que $3 \in A - B$ ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong><br>
+    $A \cup B = [0, 5]$<br>
+    $A \cap B = [1, 3[$<br>
+    $A - B = [3, 5]$<br>
+    $B - A = [0, 1[$<br>
+    $A \triangle B = [0,1[ \cup [3,5]$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Las operaciones sobre intervalos solapados son el núcleo de los algoritmos
+      de scheduling en sistemas operativos. Cuando el planificador de procesos
+      asigna tiempo de CPU, necesita detectar solapamientos entre ventanas de tiempo,
+      calcular intersecciones para encontrar conflictos y diferencias para
+      identificar tiempo libre. El problema de fusionar intervalos solapados
+      en una lista más compacta aparece también en la compresión de rangos
+      de direcciones IP, en la simplificación de reglas de firewall
+      y en la gestión de memoria donde bloques adyacentes se fusionan
+      para reducir la fragmentación.
+    </p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El problema de fusionar una lista de intervalos solapados es un ejercicio clásico en entrevistas técnicas. Dado un arreglo de intervalos [inicio, fin], ¿cuál es el algoritmo eficiente para fusionar todos los que se solapan en una lista de intervalos disjuntos? ¿Qué complejidad temporal tiene?</span>
+      </li>
+      <li>
+        <span>En sistemas operativos, el planificador de procesos (scheduler) asigna ventanas de tiempo de CPU a distintos procesos. ¿Cómo se detecta un conflicto de scheduling, es decir, dos procesos que necesitan CPU en el mismo intervalo de tiempo, usando la operación de intersección de intervalos?</span>
+      </li>
+      <li>
+        <span>En bases de datos temporales, los registros tienen períodos de validez representados como intervalos de tiempo. La consulta "dame todos los registros válidos en un momento dado" es una intersección de intervalos. ¿Qué extensiones de SQL como SQL:2011 soportan operaciones nativas sobre períodos temporales y qué operadores definen?</span>
+      </li>
+      <li>
+        <span>En gestión de memoria dinámica, el allocator necesita fusionar bloques libres adyacentes para reducir la fragmentación externa, un proceso llamado coalescing. ¿Cómo se relaciona este proceso con la unión de intervalos contiguos o solapados, y qué estructuras de datos usa el allocator para encontrar eficientemente bloques adyacentes?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

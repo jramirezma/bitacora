@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>kxyav</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "kxyav",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "17d",
+      tema: [
+        "Teoría de conjuntos",
+        "Simplificación de expresiones con conjuntos",
+        "Leyes de conjuntos",
+        "álgebra de conjuntos"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "simplificación de conjuntos",
+        "leyes de conjuntos",
+        "absorción",
+        "asociatividad",
+        "distributividad",
+        "álgebra de conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Simplifique la siguiente expresión utilizando las leyes de conjuntos.
+      Indique la ley que utiliza en cada paso:
+      $$(A \cap B) \cup [A \cap (B \cap C)] \cup (A \cap C)$$
+    </p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Los tres términos tienen algo en común: todos contienen $A$.
+      Eso es la señal para aplicar la ley distributiva al revés:
+      sacar $A$ como factor común de la unión,
+      igual que en álgebra cuando sacas factor común en $ab + ac = a(b+c)$.
+      Una vez que $A$ está afuera, lo que queda adentro se simplifica
+      con absorción.
+    </p>
+    <div class="nota">
+      La ley distributiva de conjuntos dice que
+      $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+      Usada al revés, permite factorizar $A$ cuando aparece
+      en todos los términos de una unión.
+    </div>
+    <p>
+      El segundo término $A \cap (B \cap C)$ es un subconjunto de $A \cap B$
+      y también de $A \cap C$, así que al unir los tres términos,
+      ese del medio queda absorbido por sus vecinos.
+      El resultado final es más compacto de lo que parece al inicio.
+    </p>
+    <p class="chiste">
+      Tres términos con $A$ adentro. La distributiva los mira,
+      saca $A$ como factor común y deja todo prolijo.
+      El término del medio ni se entera de que ya no hace falta.
+    </p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La propiedad distributiva del álgebra de conjuntos,
+      $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$,
+      es exactamente la misma regla que usan los procesadores de consultas
+      en bases de datos para "empujar" filtros hacia adentro de una consulta.
+      Si tienes una consulta que primero une dos tablas y luego filtra por $A$,
+      el optimizador la transforma para filtrar primero cada tabla por separado
+      y luego unir los resultados más pequeños.
+      Esto se llama pushdown de predicados y puede reducir drásticamente
+      la cantidad de datos que se procesan.
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $(A \cap B) \cup [A \cap (B \cap C)] \cup (A \cap C)$
+    </div>
+    <div class="paso-just">
+      Expresión original.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap [B \cup (B \cap C) \cup C]$
+    </div>
+    <div class="paso-just">
+      Ley distributiva: $A$ es factor común en los tres términos.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap [B \cup C \cup (B \cap C)]$
+    </div>
+    <div class="paso-just">
+      Ley conmutativa de la unión: reordenar para aislar $B \cap C$.
+    </div>
+
+    <div class="paso-dev">
+      $A \cap (B \cup C)$
+    </div>
+    <div class="paso-just">
+      Ley de absorción: $(B \cup C) \cup (B \cap C) = B \cup C$,
+      porque $B \cap C \subseteq B \subseteq B \cup C$.
+    </div>
+  </div>
+
+  <h2>Comprobemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Toma $A = \{1,2,3\}$, $B = \{2,3,4\}$, $C = \{3,4,5\}$.
+      $A \cap B = \{2,3\}$, $B \cap C = \{3,4\}$, $A \cap (B \cap C) = \{3\}$, $A \cap C = \{3\}$.
+      Lado izquierdo: $\{2,3\} \cup \{3\} \cup \{3\} = \{2,3\}$.
+      Resultado simplificado: $A \cap (B \cup C) = \{1,2,3\} \cap \{2,3,4,5\} = \{2,3\}$.
+      Coinciden ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $(A \cap B) \cup [A \cap (B \cap C)] \cup (A \cap C) = A \cap (B \cup C)$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      La distributividad de conjuntos es la base del pushdown de predicados
+      en los optimizadores de bases de datos relacionales.
+      Cuando una consulta filtra por una condición $A$ sobre la unión
+      de dos conjuntos de resultados $B \cup C$,
+      el optimizador la transforma en filtrar primero $B$ por $A$
+      y $C$ por $A$ por separado, y luego unir los resultados más pequeños.
+      Esto reduce la cantidad de datos que se procesan en la unión,
+      que suele ser la operación más costosa.
+      Bases de datos como PostgreSQL, MySQL y Spark aplican esta transformación
+      automáticamente en la fase de optimización lógica.
+    </p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El pushdown de predicados en bases de datos relacionales usa la distributividad A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) para empujar filtros hacia adentro de una consulta. ¿Cómo implementa PostgreSQL esta optimización en su planificador de consultas? ¿En qué casos no es posible aplicar pushdown?</span>
+      </li>
+      <li>
+        <span>En álgebra relacional, las operaciones de selección (equivalente a intersección con una condición) y proyección son las más baratas de ejecutar. ¿Por qué los optimizadores intentan aplicar selecciones y proyecciones lo antes posible en el árbol de operaciones, y cómo se relaciona esto con la distributividad de conjuntos?</span>
+      </li>
+      <li>
+        <span>En Apache Spark, el optimizador Catalyst aplica reglas algebraicas sobre el plan lógico de una consulta antes de ejecutarla. ¿Qué reglas equivalentes a las leyes de conjuntos aplica Catalyst para optimizar consultas sobre grandes volúmenes de datos distribuidos?</span>
+      </li>
+      <li>
+        <span>La propiedad distributiva del álgebra de Boole, A AND (B OR C) = (A AND B) OR (A AND C), permite reescribir expresiones lógicas en forma normal disyuntiva (DNF) o conjuntiva (CNF). ¿Por qué los solucionadores SAT prefieren trabajar con fórmulas en CNF, y cómo se transforma una fórmula arbitraria a CNF usando distributividad?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

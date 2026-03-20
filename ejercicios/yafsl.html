@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>yafsl</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "yafsl",
+      materia: "Álgebra",
+      origen: "PR2",
+      ejercicio_nro: "19",
+      tema: [
+        "Teoría de conjuntos",
+        "Principio de inclusión-exclusión",
+        "Cardinalidad de conjuntos",
+        "conteo con conjuntos"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "principio de inclusión exclusión",
+        "cardinalidad",
+        "conteo con conjuntos",
+        "teoría de conjuntos",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-20",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      En una encuesta aplicada a 135 personas acerca de los medios de información
+      que utilizan para enterarse de las noticias, se obtuvo la siguiente información:
+      70 utilizan la prensa escrita ($P$); 83, la radio ($R$); 74, la televisión ($T$);
+      50, la prensa escrita y la radio ($P \cap R$); 38, la prensa escrita y la televisión
+      ($P \cap T$); 41, la radio y la televisión ($R \cap T$);
+      por último, 27 personas utilizan la prensa escrita, la radio y la televisión
+      ($P \cap R \cap T$).
+    </p>
+    <p>
+      (a) ¿Cuántas personas utilizan al menos uno de los tres medios de información?<br>
+      (b) ¿Cuántas personas utilizan exactamente dos de esos tres medios de información?
+    </p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>
+      El problema es que si sumas directamente los tres grupos (70 + 83 + 74),
+      estás contando varias veces a las personas que usan más de un medio.
+      Alguien que usa prensa y radio aparece en los dos grupos,
+      y alguien que usa los tres aparece en los tres.
+      El principio de inclusión-exclusión es la fórmula que corrige ese conteo.
+    </p>
+    <div class="nota">
+      El principio de inclusión-exclusión para tres conjuntos dice:
+      $$|P \cup R \cup T| = |P| + |R| + |T| - |P \cap R| - |P \cap T| - |R \cap T| + |P \cap R \cap T|$$
+      Primero sumas todos, luego restas los que contaste doble,
+      luego vuelves a sumar los que restaste de más.
+    </div>
+    <p>
+      Para la parte (b), "exactamente dos medios" significa los que están
+      en alguna intersección de dos conjuntos pero <em>no</em> en la intersección
+      de los tres. Hay que descontar de cada intersección doble
+      a los que también están en la triple.
+    </p>
+    <p class="chiste">
+      Contar sin inclusión-exclusión es como contar cuántas personas
+      hay en una reunión contando cada vez que alguien levanta la mano.
+      Si alguien levanta las dos manos, lo contás dos veces.
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El principio de inclusión-exclusión es uno de los resultados
+      más usados en combinatoria y probabilidad.
+      En informática aparece directamente en el cálculo de la probabilidad
+      de que al menos uno de varios eventos independientes ocurra,
+      y en el análisis de complejidad de algoritmos que procesan
+      múltiples conjuntos de datos con solapamientos.
+      También es la base del teorema de Möbius en teoría de números,
+      que generaliza el principio a funciones aritméticas
+      y se usa en criptografía para contar números primos relativos
+      a un número dado.
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <p class="subcaso">Parte (a) — al menos uno de los tres medios</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $|P \cup R \cup T| = |P| + |R| + |T|$
+      $- |P \cap R| - |P \cap T| - |R \cap T|$
+      $+ |P \cap R \cap T|$
+    </div>
+    <div class="paso-just">
+      Principio de inclusión-exclusión para tres conjuntos.
+    </div>
+
+    <div class="paso-dev">
+      $= 70 + 83 + 74 - 50 - 38 - 41 + 27$
+    </div>
+    <div class="paso-just">
+      Sustituir los datos del enunciado.
+    </div>
+
+    <div class="paso-dev">
+      $= 227 - 129 + 27$
+    </div>
+    <div class="paso-just">
+      Agrupar sumas y restas.
+    </div>
+
+    <div class="paso-dev">
+      $|P \cup R \cup T| = 125$
+    </div>
+    <div class="paso-just">
+      125 personas usan al menos uno de los tres medios.
+    </div>
+  </div>
+
+  <p class="subcaso">Parte (b) — exactamente dos medios</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $|P \cap R \cap T'| = |P \cap R| - |P \cap R \cap T| = 50 - 27 = 23$
+    </div>
+    <div class="paso-just">
+      Solo prensa y radio: quitar los que también usan televisión.
+    </div>
+
+    <div class="paso-dev">
+      $|P \cap T \cap R'| = |P \cap T| - |P \cap R \cap T| = 38 - 27 = 11$
+    </div>
+    <div class="paso-just">
+      Solo prensa y televisión: quitar los que también usan radio.
+    </div>
+
+    <div class="paso-dev">
+      $|R \cap T \cap P'| = |R \cap T| - |P \cap R \cap T| = 41 - 27 = 14$
+    </div>
+    <div class="paso-just">
+      Solo radio y televisión: quitar los que también usan prensa.
+    </div>
+
+    <div class="paso-dev">
+      $\text{Exactamente dos} = 23 + 11 + 14$
+    </div>
+    <div class="paso-just">
+      Sumar los tres grupos de exactamente dos medios.
+    </div>
+
+    <div class="paso-dev">
+      $\text{Exactamente dos} = 48$
+    </div>
+    <div class="paso-just">
+      48 personas usan exactamente dos medios.
+    </div>
+  </div>
+
+  <h2>Comprobemos que tiene sentido</h2>
+  <div class="bloque">
+    <p>
+      Podemos verificar la coherencia del resultado (a) desglosando
+      todos los grupos sin solapamiento:
+      solo $P$: $70 - 50 - 38 + 27 = 9$,
+      solo $R$: $83 - 50 - 41 + 27 = 19$,
+      solo $T$: $74 - 38 - 41 + 27 = 22$.
+      Exactamente uno: $9 + 19 + 22 = 50$.
+      Exactamente dos: $48$.
+      Exactamente tres: $27$.
+      Total: $50 + 48 + 27 = 125$ ✓.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong><br>
+    (a) $|P \cup R \cup T| = \mathbf{125}$ personas utilizan al menos uno de los tres medios.<br>
+    (b) $\mathbf{48}$ personas utilizan exactamente dos de los tres medios.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El principio de inclusión-exclusión aparece en el análisis
+      de cobertura de código en pruebas de software.
+      Cuando varios casos de prueba cubren distintas partes del código
+      con solapamientos, calcular cuántas líneas están cubiertas
+      por al menos uno de los tests requiere exactamente este principio:
+      sumar las coberturas individuales, restar los solapamientos dobles,
+      sumar los triples, y así sucesivamente.
+      Herramientas como Istanbul o JaCoCo calculan métricas de cobertura
+      aplicando esta lógica internamente para evitar contar dos veces
+      las líneas cubiertas por múltiples tests.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El principio de inclusión-exclusión calcula la cardinalidad de la unión de conjuntos con solapamientos. ¿Cómo se generaliza esta fórmula para n conjuntos? ¿Cuántos términos tiene la fórmula general y cómo crece esa cantidad con n?</span>
+      </li>
+      <li>
+        <span>En análisis de cobertura de código, herramientas como Istanbul calculan qué porcentaje de líneas están cubiertas por al menos un test. Si tres tests cubren distintas líneas con solapamientos, ¿cómo se aplica el principio de inclusión-exclusión para calcular la cobertura total sin contar líneas dos veces?</span>
+      </li>
+      <li>
+        <span>En probabilidad, el principio de inclusión-exclusión permite calcular P(A ∪ B ∪ C) a partir de las probabilidades individuales y de las intersecciones. ¿Cómo se usa este principio en sistemas de detección de intrusiones para calcular la probabilidad de que al menos uno de varios sensores detecte un ataque?</span>
+      </li>
+      <li>
+        <span>El filtro Bloom es una estructura de datos probabilística que verifica si un elemento pertenece a un conjunto usando múltiples funciones hash. ¿Cómo se relaciona el principio de inclusión-exclusión con el análisis de la tasa de falsos positivos de un filtro Bloom cuando se insertan múltiples elementos?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>
