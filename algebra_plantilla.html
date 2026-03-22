@@ -66,12 +66,24 @@
        Ejemplo: simplificación de expresiones, cálculo de gráficos de relaciones,
        operaciones con conjuntos, demostraciones directas simples.
 
+       COMPORTAMIENTO EN MÓVIL:
+       En pantallas pequeñas (≤600px), las dos columnas se convierten en una sola.
+       Las justificaciones (.paso-just) quedan ocultas por defecto y se muestran
+       al tocar la fila de desarrollo (.paso-dev). Solo una justificación puede
+       estar visible a la vez. Esto es automático: no requiere cambios en el HTML.
+       NO agregar texto explicativo en .paso-dev para compensar — la justificación
+       siempre está disponible con un toque.
+
     B) DEMOSTRACIÓN CON SUBCASOS
        Separar cada subcaso con un párrafo encabezador .subcaso fuera de la tabla,
        y usar una tabla .dos-col independiente para cada uno.
        Ejemplo: inducción matemática (caso base + paso inductivo),
        demostración por contradicción, bicondicionales (⇒ y ⇐ por separado),
        propiedades con múltiples casos (reflexiva, simétrica, transitiva...).
+
+       COMPORTAMIENTO EN MÓVIL: igual que la Opción A. Cada tabla .dos-col
+       funciona de forma independiente: tocar un .paso-dev muestra su justificación
+       y oculta las demás dentro de esa misma tabla.
 
     C) TABLA DE VERDAD
        Usar la clase .tabla-verdad (tabla HTML estándar con esa clase).
@@ -325,6 +337,7 @@
     <p>[Dato curioso autocontenido. Menciona el concepto matemático por su nombre
     dentro del texto para que tenga sentido fuera del ejercicio.]</p>
   </div>
+
   <!--
     ═══════════════════════════════════════════════════════════════
     ELEGIR UNO DE LOS CUATRO BLOQUES SIGUIENTES Y BORRAR LOS OTROS.
@@ -334,6 +347,14 @@
     Una sola tabla. Cada fila = un paso. Sin texto entre filas.
     Usar para: operaciones con conjuntos, cálculo de gráficos,
     simplificación lógica, demostraciones directas sin ramificaciones.
+
+    COMPORTAMIENTO EN MÓVIL:
+    En pantallas pequeñas (≤600px), las dos columnas se convierten en una sola.
+    Las justificaciones (.paso-just) quedan ocultas por defecto y se muestran
+    al tocar la fila de desarrollo (.paso-dev). Solo una justificación puede
+    estar visible a la vez. Esto es automático: no requiere cambios en el HTML.
+    NO agregar texto explicativo en .paso-dev para compensar — la justificación
+    siempre está disponible con un toque.
   -->
   <div class="dos-col">
     <div class="col-header col-desarrollo">Desarrollo</div>
@@ -362,6 +383,10 @@
     Usar para: inducción (caso base + paso inductivo), bicondicionales
     (⇒ y ⇐ por separado), propiedades múltiples (reflexiva / simétrica /
     transitiva), demostración por contradicción o reducción al absurdo.
+
+    COMPORTAMIENTO EN MÓVIL: igual que la Opción A. Cada tabla .dos-col
+    funciona de forma independiente: tocar un .paso-dev muestra su
+    justificación y oculta las demás dentro de esa misma tabla.
 
     ARGUMENTOS LÓGICOS CON REGLAS DE INFERENCIA:
     También es un caso de subcasos. La estructura habitual es dos tablas:
@@ -457,31 +482,26 @@
   <div class="bloque">
     <svg class="venn" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Patrón de sombreado para región destacada -->
         <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="6" stroke="#111" stroke-width="1"/>
         </pattern>
       </defs>
 
-      <!-- Marco del universo U -->
       <rect x="10" y="10" width="380" height="240" rx="6"
             fill="none" stroke="#111" stroke-width="1.5"/>
       <text x="22" y="30" font-family="Georgia,serif" font-size="14" fill="#111">U</text>
 
       <!--
-        Círculos de los conjuntos. Ajustar cx, cy y r según cuántos conjuntos haya.
         Para 2 conjuntos: centros en (155,130) y (245,130), r=80.
         Para 3 conjuntos: centros en (155,105), (245,105) y (200,175), r=75.
       -->
       <circle cx="155" cy="130" r="80" fill="none" stroke="#111" stroke-width="1.5"/>
       <circle cx="245" cy="130" r="80" fill="none" stroke="#111" stroke-width="1.5"/>
 
-      <!-- Región sombreada (ejemplo: intersección) -->
       <clipPath id="clipA"><circle cx="155" cy="130" r="80"/></clipPath>
       <circle cx="245" cy="130" r="80"
               fill="url(#hatch)" clip-path="url(#clipA)" opacity="0.6"/>
 
-      <!-- Etiquetas de los conjuntos -->
       <text x="100" y="90" font-family="Georgia,serif" font-size="15" font-style="italic" fill="#111">A</text>
       <text x="290" y="90" font-family="Georgia,serif" font-size="15" font-style="italic" fill="#111">B</text>
     </svg>
@@ -490,11 +510,6 @@
 
   <h2>Manos a la obra</h2>
   <h2>Chequeemos que esto tiene sentido</h2>
-  <!--
-    Mostrar la verificación de forma explícita, con números o elementos concretos.
-    Ver los tipos de verificación en los comentarios del encabezado.
-    Una o dos verificaciones es suficiente. Mostrar la sustitución y la conclusión.
-  -->
   <div class="bloque">
     <p>[Verificación explícita del resultado, con sustitución y conclusión.]</p>
   </div>
@@ -566,6 +581,8 @@
       <li><span>[Pregunta autocontenida 1]</span></li>
       <li><span>[Pregunta autocontenida 2]</span></li>
       <li><span>[Pregunta autocontenida 3]</span></li>
-      </li>
     </ol>
   </div>
+
+</body>
+</html>

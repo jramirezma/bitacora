@@ -230,7 +230,22 @@ const SearchEngine = {
 
   // ─── Resultados ────────────────────────────────────────
 
+  closeExercise() {
+    if (document.body.classList.contains('ejercicio-abierto')) {
+      document.body.classList.remove('ejercicio-abierto');
+      const main = document.querySelector('main');
+      main.innerHTML = `
+        <section class="disclaimer">
+          <h2>Aviso importante</h2>
+          <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
+        </section>
+        <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
+      `;
+    }
+  },
+
   applyAndRender() {
+    this.closeExercise();
     const resultado = this.filterData(this.selected, this.searchQuery);
     const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
     const ejercicios = tieneAlgo ? resultado : this.randomSample(resultado, 6);
@@ -294,13 +309,8 @@ const SearchEngine = {
 
     document.body.classList.add('ejercicio-abierto');
     main.innerHTML = `
-      <div class="ejercicio-nav"><button class="btn-volver">← Volver</button></div>
       <iframe class="ejercicio-iframe" src="${ej.archivo}" title="${ej.id}"></iframe>
     `;
-    main.querySelector('.btn-volver').onclick = () => {
-      document.body.classList.remove('ejercicio-abierto');
-      window.history.back();
-    };
     const iframe = main.querySelector('.ejercicio-iframe');
     iframe.onload = () => {
       try { iframe.style.height = iframe.contentDocument.documentElement.scrollHeight + 'px'; }
