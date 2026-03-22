@@ -21,7 +21,10 @@
 
 <body>
 
-  <aside class="buscador-panel" id="buscador-panel">
+  <!-- Overlay para cerrar el drawer tocando afuera -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <aside class="buscador-panel collapsed" id="buscador-panel">
     <!-- contenido generado por app.js -->
   </aside>
 
@@ -33,6 +36,11 @@
 
     <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
   </main>
+
+  <!-- Botón flotante para abrir el drawer (solo móvil, el CSS lo oculta en desktop) -->
+  <button class="drawer-btn" id="drawer-btn">
+    <span>☰</span> Filtros
+  </button>
 
   <script src="assets/app.js"></script>
 

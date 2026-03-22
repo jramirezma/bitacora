@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <!--
+    CONTEXTO DE CARGA:
+    Este archivo se carga dentro de un <iframe> desde un index.html externo.
+    Por eso el CSS tiene overflow: hidden en html: el scroll lo maneja el contenedor,
+    no este documento. No cambiar ese comportamiento.
+
     INSTRUCCIONES PARA LA IA:
     - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres alfanuméricos, ej: "a3f7c").
     - El id en window.EJERCICIO debe ser el mismo hash de 5 caracteres.
@@ -10,10 +15,27 @@
     - La redacción debe ser en español neutro (sin regionalismos).
     - El enunciado del ejercicio debe copiarse textualmente, sin adiciones ni alteraciones.
     - El humor y comentarios informales van en el Análisis o en la columna derecha de la Solución, nunca en el Enunciado.
-    - Estilo de redacción: palabras tan simples que un niño de diez años pueda entender.
+    - Redactar siempre en español. Acento estrictamente neutro: sin voseo, sin tuteo
+      regional, sin modismos ni expresiones que solo se entiendan en un país.
+      Usar "tú" y sus conjugaciones (piensas, pruebas, ves) como segunda persona singular.
+      La excepción es el humor: se permite algo más de color coloquial si el chiste lo requiere,
+      pero sin regionalismos que excluyan al lector.
+    - Dirigirse siempre a una sola persona, en segunda persona singular. Como un profe
+      hablándole directo a su estudiante, no a un grupo. Nunca usar plural ("piensen",
+      "calculen", "noten") ni construcciones impersonales ("se observa", "se puede ver",
+      "cabe notar"). Siempre: "piensas", "calculas", "notas".
+    - El tono es el de una charla natural, no el de una clase formal. Como si el profe
+      se sentara al lado del estudiante y le explicara de persona a persona. Sin frases
+      solemnes, sin "como se puede apreciar", sin "procedemos a demostrar".
+      Si suena a libro de texto, reescribirlo.
+    - Estilo de redacción: palabras tan simples que un pibe de diez años pueda entender.
       Construir intuición antes de la fórmula. Nada de jerga innecesaria.
       Si hay una palabra técnica que no se puede evitar, explicarla en el momento en que aparece.
+    - Usar metáforas concretas y cotidianas para explicar las ideas abstractas: filas de personas,
+      vecinos, cajones, llaves y candados, recetas, partidos de fútbol, lo que venga.
+      La metáfora tiene que aparecer ANTES de los símbolos, no después.
     - El humor es bienvenido tanto en el Análisis como en las justificaciones de la tabla.
+      El chiste tiene que nacer del ejercicio concreto, no ser un remate genérico.
     - En la columna izquierda de Solución: SOLO desarrollo matemático puro
       (fórmulas, definiciones, expresiones algebraicas). Sin ningún texto explicativo,
       sin frases introductorias, sin "para que...", sin "necesitamos...".
@@ -25,6 +47,27 @@
     - Cada .paso-dev tiene exactamente un .paso-just al lado derecho.
       Nunca agrupar varios pasos matemáticos en un único .paso-dev.
     - Sin colores de fondo en ningún elemento (el documento debe ser apto para impresión sin gastar tinta).
+
+    CRÍTICO: antes de comenzar la resolución, verificar que el usuario haya proporcionado:
+      1. El id del ejercicio (hash de 5 caracteres). Si no fue dado, pedirlo.
+      2. El número de práctica, si el origen es "PR{n}". Si no fue dado, pedirlo.
+    Nunca inventar ni asumir ninguno de estos dos valores.
+
+    CRÍTICO: cada ejercicio es completamente independiente. Nunca mencionar, comparar
+    ni hacer referencia a otros ejercicios de la misma práctica, del mismo tema,
+    ni de ninguna otra fuente. El estudiante lee este archivo solo, sin contexto previo.
+    Si el concepto clave del ejercicio aparece en otro inciso, explicarlo desde cero
+    como si fuera la primera vez que el estudiante lo ve.
+
+    COMPORTAMIENTO EN MÓVIL:
+    En pantallas pequeñas (≤600px), las dos columnas se convierten en una sola.
+    Las justificaciones (.paso-just) quedan ocultas por defecto y se muestran
+    al tocar la fila de desarrollo (.paso-dev). Solo una justificación puede
+    estar visible a la vez. Esto es automático: no requiere cambios en el HTML.
+    NO agregar texto explicativo en .paso-dev para compensar — la justificación
+    siempre está disponible con un toque.
+    Si la solución tiene subcasos (varias tablas .dos-col), cada tabla funciona
+    de forma independiente.
   -->
   <title>[id de 5 caracteres]</title>
 
@@ -41,11 +84,13 @@
         CAMPOS Y REGLAS:
 
         id
-          Hash de 5 caracteres alfanuméricos. Único y reproducible para cada ejercicio.
+          Hash de 5 caracteres alfanuméricos generado externamente por el usuario.
+          CADA ejercicio tiene su propio id, incluso si es un inciso del mismo número.
+          CRÍTICO: si el id no fue proporcionado por el usuario, pedirlo antes de
+          comenzar la resolución. Nunca inventarlo ni reutilizar el de otro ejercicio.
 
         materia
           Un único string con el nombre de la materia.
-          Se indica al momento de solicitar la resolución.
           Ejemplos: "Cálculo I", "Álgebra Lineal", "Probabilidad y Estadística"
 
         origen
@@ -55,6 +100,9 @@
             "CL"     → ejercicio trabajado en clase
             "IA"     → ejercicio generado por IA
           No usar ningún otro valor.
+          CRÍTICO: si el origen es "PR{n}" y el número de práctica no fue
+          proporcionado explícitamente por el usuario, pedirlo antes de
+          comenzar la resolución. Nunca asumir ni inventar el número.
 
         ejercicio_nro
           String que identifica el ejercicio dentro de su origen:
@@ -67,6 +115,13 @@
           Incluir nombre formal, coloquial, abreviaturas, términos relacionados.
           El objetivo es máxima cobertura de búsqueda.
 
+        tipo_solucion
+          String que indica qué estructura usa la sección Solución.
+          Valores posibles: "algebraico" | "subcasos" | "mixto"
+          "algebraico"  → una sola tabla .dos-col lineal
+          "subcasos"    → varias tablas .dos-col, una por subcaso
+          "mixto"       → combinación de tablas y otros elementos
+
         fecha
           String en formato "yyyy-mm-dd".
 
@@ -78,7 +133,6 @@
       materia: "[nombre de la materia, ej: Cálculo I]",
       origen: "[PR{n} | EX | CL | IA]",
       ejercicio_nro: "[ej: 1 | 1a | 5b | null]",
-
       tema: [
         "[nombre formal del tema]",
         "[nombre alternativo o coloquial]",
@@ -94,6 +148,7 @@
         "[keyword 2]",
         "[keyword 3]"
       ],
+      tipo_solucion: "[algebraico | subcasos | mixto]",
       fecha: "[yyyy-mm-dd]",
       autor: { nombre: "[nombre]", modelo: "[modelo]" }
     };
@@ -107,43 +162,55 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
 </head>
 <body>
 
   <!--
-    ENCABEZADOS ADAPTATIVOS:
-    Los h2 de cada sección NO son fijos. Elegir el que mejor suene según el ejercicio.
-    El tono es de tu a tu, con humor si aplica. Ejemplos por sección:
+    El h2 de cada sección NO es fijo. Elegir el que mejor suene según el ejercicio.
+    Ejemplos por sección:
 
-    Enunciado:   "El problema", "Lo que nos piden", "El ejercicio"
-    Análisis:    "¿De qué se trata esto?", "Entendamos el problema", "Antes de calcular"
-    Solución:    "Manos a la obra", "Vamos por partes", "Ahora sí, a calcular"
-    Informática: "¿Y esto para qué me sirve?", "La vuelta a la informática",
-                 "¿Dónde aparece esto en el mundo real?"
+    Enunciado:    "El problema", "Lo que nos piden", "El ejercicio"
+    Análisis:     "¿De qué se trata esto?", "Entendamos el problema", "Antes de calcular",
+                  "¿Qué hay que ver acá?", "El mapa antes del territorio"
+    Dato curioso: "Algo que vale la pena saber", "Dato de color", "Antes de resolver, esto:",
+                  "Un dato que cambia todo", "Por si te lo preguntabas"
+    Solución:     "Manos a la obra", "Vamos por partes", "Ahora sí, a calcular",
+                  "La demostración", "Vamos paso a paso"
+    Verificación: "Chequeemos que esto tiene sentido", "¿El resultado aguanta?",
+                  "Una prueba rápida", "Comprobemos con números"
+    Informática:  "¿Dónde ya existe esto?", "¿Para qué me sirve esto?",
+                  "¿Dónde vive esto en el código?", "¿Ya usé esto sin saberlo?"
+    Preguntas:    "Para seguir pensando", "Si quieres ir más lejos",
+                  "Preguntas para explorar", "¿Te quedaron dudas? Estas pueden ayudar"
 
-    El encabezado del enunciado puede quedarse como "El problema" en la mayoría de los casos.
     El script generar_index.py busca el div por su CLASE "ejercicio", no por el h2.
+    NUNCA repetir el mismo encabezado en dos secciones del mismo ejercicio.
+    Variar también entre ejercicios distintos para evitar monotonía.
   -->
 
   <h2>El problema</h2>
   <!--
-    CRITICO: la clase de este div DEBE ser exactamente "ejercicio".
+    CRÍTICO: la clase de este div DEBE ser exactamente "ejercicio".
     No usar "enunciado", "problema", "ejercicio-texto" ni ninguna otra variante.
   -->
   <div class="ejercicio">
-    <p>[Enunciado textual del ejercicio]</p>
+    <p>[Enunciado textual del ejercicio, copiado sin alteraciones.]</p>
   </div>
 
   <h2>¿De qué se trata esto?</h2>
   <div class="bloque">
     <!--
-      Explicar la idea central con palabras tan simples que un niño de diez años pueda
-      entender, antes de entrar en fórmulas. Si hay que usar un término técnico, explicarlo
-      en ese mismo momento.
-      Usar .nota para destacar la idea clave o truco principal.
+      Explicar la idea central con palabras simples, antes de entrar en símbolos.
+      Si hay que usar un término técnico, explicarlo en ese mismo momento.
+      Usar .nota para destacar la idea clave o el truco principal.
       Se puede incluir humor aquí con la clase .chiste, al final de la sección.
+      CRÍTICO: nunca hacer referencia a otros ejercicios, incisos anteriores
+      ni al contexto de la práctica. Frases como "igual que antes",
+      "como en el inciso anterior", "a diferencia del ejercicio previo"
+      están estrictamente prohibidas. Cada ejercicio se explica desde cero.
     -->
-    <p>[Explicación intuitiva del problema. ¿Qué se pide realmente? ¿Cómo conviene pensarlo?]</p>
+    <p>[Explicación intuitiva. ¿Qué se pide realmente? ¿Cómo conviene pensarlo?]</p>
     <div class="nota">
       [Idea clave o truco principal del ejercicio, en una o dos oraciones.]
     </div>
@@ -151,27 +218,65 @@
     <p class="chiste">[Comentario humorístico opcional, al final del análisis.]</p>
   </div>
 
-  <h2>Manos a la obra</h2>
   <!--
-    REGLAS DE LA TABLA:
-    - Cada .paso-dev contiene UNA transformación algebraica. Si la expresión cambia
-      de forma, es una fila nueva. No agrupar varios pasos en un mismo bloque.
-    - El .paso-dev debe contener SOLO la expresión matemática del paso: una fórmula,
-      una igualdad, una inecuación. Sin texto introductorio ni frases explicativas.
-    - El .paso-just correspondiente explica SOLO ese paso, como un comentario de código:
-      corto, al grano, sin título ni encabezado.
-    - Cada .paso-dev tiene exactamente un .paso-just al lado derecho.
-    - Agregar o quitar pares según la longitud del ejercicio.
-    - Si la solución tiene sub-secciones (ej: Condición 1, Condición 2, Intersección),
-      separar cada sub-sección con un párrafo encabezador fuera de la tabla, y usar
-      una tabla .dos-col independiente para cada una. Cada fila de cada tabla sigue
-      la misma regla: un paso matemático, una justificación.
+    El h2 de esta sección SIEMPRE empieza con una frase que invite a la curiosidad.
+    Ejemplos: "Algo que vale la pena saber", "Dato de color", "Antes de resolver, esto:",
+    "Un dato que cambia todo", "Por si te lo preguntabas".
+    Nunca usar el mismo encabezado dos veces en ejercicios distintos.
+    OBLIGATORIO en todos los ejercicios.
+    REGLAS:
+    - El dato tiene que sorprender, conectar el tema con algo inesperado,
+      o mostrar que el concepto aparece en un contexto completamente distinto.
+    - No es un resumen de la teoría necesaria para resolver el ejercicio.
+      Para eso está el Análisis.
+    - Puede conectar con la sección de informática, con la historia de las matemáticas,
+      con una paradoja, con un contraejemplo famoso, o con la vida cotidiana.
+    - NUNCA mencionar otros ejercicios de la práctica ni hacer comparaciones
+      con incisos anteriores o posteriores. El dato debe funcionar solo.
+    - El dato debe redactarse de forma autocontenida: mencionar el concepto
+      matemático por su nombre dentro del texto, de manera que tenga sentido
+      por sí solo sin necesidad de leer el resto del ejercicio.
+    - Nunca usar referencias internas: nada de "este ejercicio", "como vimos",
+      "la proposición anterior", "el argumento de arriba". Nombrar siempre
+      el concepto directamente.
+    - Uno o dos párrafos cortos. No más.
   -->
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>[Dato curioso autocontenido. Menciona el concepto matemático por su nombre
+    dentro del texto para que tenga sentido fuera del ejercicio.]</p>
+  </div>
+
+  <!--
+    ESTRUCTURA DE LA SOLUCIÓN:
+
+    A) DESARROLLO ALGEBRAICO LINEAL (tipo_solucion = "algebraico")
+       Una sola tabla .dos-col. Cada fila = un paso. Sin texto entre filas.
+       Usar para: cálculo de dominios, límites directos, derivadas, integrales
+       sin ramificaciones, demostraciones de desigualdades.
+
+    B) SOLUCIÓN CON SUBCASOS (tipo_solucion = "subcasos")
+       Un párrafo .subcaso antes de cada tabla. Una tabla .dos-col por subcaso.
+       Usar para: dominios con varias condiciones, análisis de signo por intervalos,
+       demostraciones por casos, ejercicios con varias partes independientes.
+
+    C) MIXTO (tipo_solucion = "mixto")
+       Combinación de tablas y otros elementos (párrafos intermedios, notas).
+       Usar cuando el ejercicio no encaja limpiamente en A ni en B.
+
+    REGLAS COMUNES A TODAS LAS ESTRUCTURAS:
+    - .paso-dev: SOLO la expresión matemática del paso. Sin texto introductorio.
+    - .paso-just: justificación de ESE paso, como comentario de código.
+    - Un .paso-just por cada .paso-dev, siempre.
+  -->
+
+  <h2>Manos a la obra</h2>
+
+  <!-- OPCIÓN A: tabla única -->
   <div class="dos-col">
     <div class="col-header col-desarrollo">Desarrollo</div>
     <div class="col-header">Justificación</div>
 
-    <!-- Paso 1 -->
     <div class="paso-dev">
       [Expresión matemática del paso 1]
     </div>
@@ -179,7 +284,6 @@
       [Por qué este paso es válido, en una línea.]
     </div>
 
-    <!-- Paso 2 -->
     <div class="paso-dev">
       [Expresión matemática del paso 2]
     </div>
@@ -188,67 +292,59 @@
     </div>
 
     <!-- Agregar más pares .paso-dev / .paso-just según sea necesario -->
+  </div>
 
+  <!-- OPCIÓN B: subcasos — borrar si no aplica -->
+  <p class="subcaso">Subcaso 1 / Condición 1 — elegir el que corresponda</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">[expresión]</div>
+    <div class="paso-just">[justificación]</div>
+  </div>
+
+  <p class="subcaso">Subcaso 2 / Condición 2 — elegir el que corresponda</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">[expresión]</div>
+    <div class="paso-just">[justificación]</div>
   </div>
 
   <!--
-    El h2 de esta sección NO es fijo. Elegir el que mejor suene según el ejercicio.
-    Ejemplos: "Chequeemos que esto tiene sentido", "¿Tiene sentido lo que obtuvimos?",
-    "Una prueba rápida", "Antes de cerrar, verifiquemos", "¿El resultado aguanta?",
-    "Comprobemos con un ejemplo".
-    El tono puede ser informal o directo, pero nunca el mismo en todos los ejercicios.
+    VERIFICACIÓN — el h2 varía. Ejemplos:
+    "Chequeemos que esto tiene sentido", "¿El resultado aguanta?",
+    "Una prueba rápida", "Comprobemos con un ejemplo".
+    Nunca el mismo en todos los ejercicios.
+
+    TIPOS DE VERIFICACIÓN SEGÚN EL EJERCICIO:
+    - Dominio: tomar un punto dentro del dominio (debe existir la función)
+      y uno fuera (no debe existir).
+    - Límite: evaluar la función en valores cada vez más cercanos al punto
+      límite por izquierda y derecha.
+    - Derivada: evaluar en un punto donde el comportamiento es conocido
+      (máximo, mínimo, zona creciente) y verificar signo y magnitud.
+    - Integral indefinida: derivar el resultado y verificar que se recupera
+      la función original.
+    - Integral definida: verificar que el signo es coherente con la geometría.
+    - Ecuación o sistema: sustituir la solución y verificar que se cumple
+      la igualdad.
+    - Desigualdad: sustituir un valor concreto y verificar que se cumple.
+
+    Mostrar la sustitución explícita y la conclusión. Una o dos verificaciones
+    es suficiente. Si hay varios intervalos o casos, verificar al menos uno
+    dentro y uno fuera.
   -->
   <h2>Chequeemos que esto tiene sentido</h2>
-  <!--
-    INSTRUCCIONES PARA ESTA SECCIÓN:
-
-    No se trata de resolver el ejercicio de nuevo. Se trata de hacerle una pregunta
-    rápida al resultado: ¿es coherente con lo que sabemos? Si la verificación falla,
-    hay un error en el desarrollo y hay que revisarlo antes de continuar.
-
-    La forma concreta de verificar depende del tipo de ejercicio. Elegir la que
-    corresponda:
-
-    DOMINIO:
-      Tomar un punto representativo de cada intervalo del dominio y evaluar la
-      función: debe existir. Tomar un punto fuera del dominio y evaluar: no debe
-      existir. Si alguna verificación falla, hay un error en la tabla de signos
-      o en la intersección.
-
-    LÍMITE:
-      Evaluar la función en valores cada vez más cercanos al punto límite, por
-      izquierda y por derecha, y verificar que los resultados se acercan al valor
-      obtenido.
-
-    DERIVADA:
-      Evaluar la derivada en un punto donde el comportamiento es conocido (un
-      máximo, un mínimo, un punto donde la función es claramente creciente o
-      decreciente) y verificar que el signo y la magnitud son coherentes.
-
-    INTEGRAL INDEFINIDA:
-      Derivar el resultado y verificar que se recupera la función original.
-
-    INTEGRAL DEFINIDA:
-      Verificar que el signo es coherente con la geometría: si la función es
-      positiva en todo el intervalo, el resultado debe ser positivo.
-
-    ECUACIÓN O SISTEMA:
-      Sustituir la solución en la ecuación original y verificar que se cumple
-      la igualdad.
-
-    REGLAS DE REDACCIÓN:
-    - Mostrar la verificación de forma explícita, con los números.
-    - Si se evalúa un punto, escribir la sustitución y el resultado.
-    - Palabras simples. Una o dos verificaciones es suficiente.
-    - Si el ejercicio tiene varios intervalos o casos, verificar al menos uno
-      dentro y uno fuera.
-  -->
   <div class="bloque">
     <p>[Verificación explícita del resultado, con sustitución y conclusión.]</p>
   </div>
 
   <div class="resultado-final">
-    <strong>Resultado.</strong> [Enunciado claro y completo del resultado obtenido, con la respuesta destacada en \boxed{}.]
+    <strong>Resultado.</strong> [Enunciado claro y completo del resultado obtenido,
+    con la respuesta destacada en \(\boxed{}\) si aplica.]
     <br><br>
     [Fórmula general o nota adicional si aplica.]
   </div>
@@ -257,68 +353,63 @@
     El h2 de esta sección SIEMPRE es una pregunta en primera persona, corta y directa.
     Ejemplos: "¿Dónde ya existe esto?", "¿Para qué me sirve esto?",
     "¿Dónde vive esto en el código?", "¿Ya usé esto sin saberlo?"
-    Elegir la que mejor encaje con el ejercicio. No usar siempre la misma.
+    Elegir la que mejor encaje. No usar siempre la misma.
   -->
   <h2>¿Dónde ya existe esto?</h2>
-  <div class="bloque">
+  <div class="bloque bloque-copiable">
     <!--
-      INSTRUCCIONES PARA ESTA SECCIÓN:
+      El objetivo es que el estudiante tenga un momento "ah, entonces YA usé esto"
+      o "ah, entonces POR ESO funciona así". Partir siempre del ejercicio concreto.
+      NUNCA mencionar otros ejercicios ni comparar con incisos anteriores.
 
-      El objetivo es que el alumno tenga un momento "ah, entonces YA usé esto"
-      o "ah, entonces POR ESO funciona así". No es un párrafo genérico sobre
-      aplicaciones de la matemática. Parte siempre del ejercicio concreto que
-      se acaba de resolver.
+      Elegir UNO de estos tres ángulos (dos solo si se complementan sin repetirse):
 
-      REGLA DE SELECCIÓN:
-      Revisar los tres ángulos disponibles y elegir el que produzca la conexión
-      más genuina y sorprendente para este ejercicio en particular. Usar solo uno.
-      Si dos encajan igual de bien y se complementan sin repetirse, pueden ir en
-      dos párrafos cortos dentro del mismo bloque. Eso es la excepción, no la norma.
-      Si un ángulo produce una conexión obvia o forzada, descartarlo y probar otro.
+      1. CONCEPTUAL: la idea matemática del ejercicio ES la misma idea detrás de
+         algún concepto de programación. Dirección: matemática → programación.
+         Ejemplos: dominio → guardas de validación antes de llamar a sqrt() o log();
+         monotonía → invariantes de orden en algoritmos de ordenamiento.
 
-      ÁNGULOS DISPONIBLES:
+      2. INSTRUMENTAL: el resultado concreto o la técnica usada aparece como parte
+         de la solución a un problema real de programación.
+         Ejemplos: composición de funciones → pipelines o middlewares;
+         derivada → algoritmo de gradiente descendente en machine learning.
 
-      1. CONCEPTUAL: la idea matemática del ejercicio ES la misma idea que está
-         detrás de algún concepto de programación, aunque nadie lo mencione en
-         clase de matemática. La dirección es matemática → programación: el alumno
-         descubre que dos mundos que parecían separados son el mismo.
-         Ejemplos del estilo buscado:
-           - Conjuntos → clases en POO: una clase define el conjunto, cada objeto
-             es un elemento.
-           - Intersección de conjuntos → filtros en bases de datos: un WHERE con
-             dos condiciones es una intersección.
-           - Función inyectiva → clave primaria en una tabla: cada valor del dominio
-             mapea a exactamente un valor del codominio, sin repetición.
+      3. CAMBIO DE PERSPECTIVA: algo que el estudiante ya hace en programación,
+         que siempre pareció una regla arbitraria, tiene una explicación matemática
+         que lo justifica. Dirección: programación → matemática.
+         Ejemplos: por qué log() lanza excepción con argumento negativo → dominio;
+         por qué sqrt() de un número negativo es NaN → dominio en los reales.
 
-      2. INSTRUMENTAL: el resultado concreto del ejercicio, o la técnica usada,
-         aparece como parte de la solución a un problema real de programación.
-         La dirección también es matemática → programación, pero la conexión es
-         de método o herramienta, no de concepto.
-         Ejemplos del estilo buscado:
-           - Dominio de una función → las guardas de validación que escribe un
-             programador antes de llamar a sqrt() o log().
-           - Composición de funciones → el patrón de middlewares en un servidor web:
-             cada middleware es una función, y el pipeline es la composición.
-
-      3. CAMBIO DE PERSPECTIVA: algo que el alumno ya hace en programación, y que
-         siempre le pareció una regla arbitraria o un detalle técnico, tiene una
-         explicación matemática que lo justifica desde abajo. La dirección es
-         programación → matemática: el alumno no aprende algo nuevo, sino que
-         reencuadra algo que ya sabía.
-         Ejemplos del estilo buscado:
-           - La clave primaria de una base de datos siempre pareció una regla del
-             motor. Después de estudiar inyectividad, se ve que es una consecuencia
-             matemática, no una decisión de diseño.
-           - Los errores de tipo en tiempo de compilación siempre parecieron
-             caprichos del lenguaje. Después de estudiar dominio y codominio, se
-             entiende que el compilador está verificando exactamente eso.
-
-      REGLAS DE REDACCIÓN:
-      - Palabras simples. La misma vara que el resto del documento.
-      - Sin código fuente. Solo texto narrativo o descriptivo.
+      REGLAS:
+      - Nunca usar referencias internas: nada de "este ejercicio", "como vimos arriba",
+        "la proposición anterior". Nombrar el concepto directamente.
+      - Palabras simples. Sin código fuente. Solo texto narrativo.
       - Uno o dos párrafos. No más.
     -->
-    <p>[Conexión entre el ejercicio concreto y la programación.]</p>
+    <p>[Conexión entre el concepto matemático del ejercicio y la programación.
+    Sin referencias internas: nombrar el concepto directamente.]</p>
+  </div>
+
+  <!--
+    SECCIÓN DE PREGUNTAS PARA AMPLIAR — OBLIGATORIA EN TODOS LOS EJERCICIOS.
+    El h2 varía. Ejemplos: "Para seguir pensando", "Si quieres ir más lejos",
+    "Preguntas para explorar", "¿Te quedaron dudas? Estas pueden ayudar".
+    REGLAS:
+    - Entre 3 y 5 preguntas. Cada una cubre un tipo distinto:
+        hipotética, de sondeo, de conexión, de generalización, aclaratoria.
+    - Cada pregunta debe ser autocontenida: se puede copiar y pegar en un chat
+      de IA sin contexto adicional y la IA entiende de qué se trata.
+      Eso significa mencionar el concepto explícitamente en la pregunta.
+    - NUNCA hacer referencia a otros ejercicios ni a incisos anteriores.
+    - Cada pregunta tiene su propio botón de copiar (lo agrega ejercicio.js).
+  -->
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>[Pregunta autocontenida 1]</span></li>
+      <li><span>[Pregunta autocontenida 2]</span></li>
+      <li><span>[Pregunta autocontenida 3]</span></li>
+    </ol>
   </div>
 
 </body>

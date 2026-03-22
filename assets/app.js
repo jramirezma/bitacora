@@ -68,6 +68,20 @@ const SearchEngine = {
     return Array.from(seen).sort();
   },
 
+  openDrawer() {
+    document.getElementById('buscador-panel').classList.remove('collapsed');
+    const overlay = document.getElementById('drawer-overlay');
+    if (overlay) overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeDrawer() {
+    document.getElementById('buscador-panel').classList.add('collapsed');
+    const overlay = document.getElementById('drawer-overlay');
+    if (overlay) overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  },
+
   // ─── Panel ─────────────────────────────────────────────
 
   buildPanel() {
@@ -102,6 +116,17 @@ const SearchEngine = {
     document.getElementById('buscador-toggle').addEventListener('click', () => {
       panel.classList.toggle('collapsed');
     });
+
+    // Drawer móvil
+    const drawerBtn = document.getElementById('drawer-btn');
+    const overlay   = document.getElementById('drawer-overlay');
+
+    if (drawerBtn) {
+      drawerBtn.addEventListener('click', () => this.openDrawer());
+    }
+    if (overlay) {
+      overlay.addEventListener('click', () => this.closeDrawer());
+    }
 
     this.refreshPanel();
   },
