@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ejercicios</title>
   <link rel="stylesheet" href="assets/style.css">
-
   <script>
     window.MathJax = {
       tex: {
@@ -18,10 +17,9 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="assets/analytics.js"></script>
 </head>
-
 <body>
 
-  <!-- Panel lateral fijo — solo visible en escritorio -->
+  <!-- Panel lateral — solo escritorio -->
   <aside class="buscador-panel" id="buscador-panel"></aside>
 
   <main>
@@ -30,13 +28,12 @@
       <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
     </section>
 
-    <!-- Filtros inline — solo visible en móvil, generado por app.js -->
-    <div id="filtros-mobile"></div>
+    <!-- Filtros sticky — solo móvil -->
+    <div class="filtros-mobile" id="filtros-mobile"></div>
 
     <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
   </main>
 
   <script src="assets/app.js"></script>
-
 </body>
 </html>

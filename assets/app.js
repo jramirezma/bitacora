@@ -8,7 +8,8 @@ const SearchEngine = {
     try {
       const res = await fetch('index.json');
       this.data = await res.json();
-      this.buildPanel();
+      this.buildDesktop();
+      this.buildMobile();
       this.applyFromURL();
       window.addEventListener('popstate', () => this.applyFromURL());
     } catch (e) {
@@ -68,72 +69,48 @@ const SearchEngine = {
     return Array.from(seen).sort();
   },
 
-  // ─── Panel ─────────────────────────────────────────────
+  // ─── Panel lateral escritorio ──────────────────────────
 
-  // Monta el panel en los dos contenedores (desktop y móvil).
-  // El CSS decide cuál es visible según el ancho de pantalla.
-  buildPanel() {
-    this._mountIn('buscador-panel', 'search-input', 'filtros-wrap', 'btn-limpiar', false);
-    this._mountIn('filtros-mobile', 'search-input-m', 'filtros-wrap-m', 'btn-limpiar-m', true);
-    this.refreshPanel();
-  },
-
-  _mountIn(mountId, searchId, wrapId, limpiarId, isMobile) {
-    const mount = document.getElementById(mountId);
-    if (!mount) return;
-
-    mount.innerHTML = `
+  buildDesktop() {
+    const panel = document.getElementById('buscador-panel');
+    if (!panel) return;
+    panel.innerHTML = `
       <div class="buscador-contenido">
         <div class="filtro-search-wrap">
-          <input type="search" id="${searchId}" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
+          <input type="search" id="search-input" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
         </div>
-        <div id="${wrapId}"></div>
-        <button class="btn-limpiar" id="${limpiarId}" style="display:none">Limpiar filtros</button>
+        <div id="filtros-wrap"></div>
+        <button class="btn-limpiar" id="btn-limpiar" style="display:none">Limpiar filtros</button>
       </div>
-      ${!isMobile ? '<button class="buscador-toggle" id="buscador-toggle"></button>' : ''}
+      <button class="buscador-toggle" id="buscador-toggle"></button>
     `;
 
-    document.getElementById(searchId).addEventListener('input', e => {
+    document.getElementById('search-input').addEventListener('input', e => {
       this.searchQuery = e.target.value.trim();
-      // Sincronizar ambos inputs
-      ['search-input', 'search-input-m'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.id !== searchId) el.value = this.searchQuery;
-      });
-      this.refreshPanel();
+      this.refreshDesktop();
       this.applyAndRender();
       this.updateURL();
     });
 
-    document.getElementById(limpiarId).addEventListener('click', () => {
+    document.getElementById('btn-limpiar').addEventListener('click', () => {
       this.selected = { materia: null, tema: null, dificultad: null };
       this.searchQuery = '';
-      ['search-input', 'search-input-m'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = '';
-      });
-      this.refreshPanel();
+      document.getElementById('search-input').value = '';
+      this.refreshDesktop();
+      this.refreshMobile();
       this.applyAndRender();
       this.updateURL();
     });
 
-    if (!isMobile) {
-      const toggleBtn = document.getElementById('buscador-toggle');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          document.getElementById('buscador-panel').classList.toggle('collapsed');
-        });
-      }
-    }
+    document.getElementById('buscador-toggle').addEventListener('click', () => {
+      panel.classList.toggle('collapsed');
+    });
+
+    this.refreshDesktop();
   },
 
-  refreshPanel() {
-    this._refreshWrap('filtros-wrap', 'btn-limpiar');
-    this._refreshWrap('filtros-wrap-m', 'btn-limpiar-m');
-  },
-
-  _refreshWrap(wrapId, limpiarId) {
-    const wrap = document.getElementById(wrapId);
+  refreshDesktop() {
+    const wrap = document.getElementById('filtros-wrap');
     if (!wrap) return;
     wrap.innerHTML = '';
 
@@ -173,7 +150,8 @@ const SearchEngine = {
           this.selected[key] = null;
           if (key === 'materia') this.selected.tema = null;
           this.openSections.delete(key);
-          this.refreshPanel();
+          this.refreshDesktop();
+          this.refreshMobile();
           this.applyAndRender();
           this.updateURL();
         });
@@ -189,7 +167,8 @@ const SearchEngine = {
           this.selected[key] = op;
           if (key === 'materia') this.selected.tema = null;
           this.openSections.delete(key);
-          this.refreshPanel();
+          this.refreshDesktop();
+          this.refreshMobile();
           this.applyAndRender();
           this.updateURL();
         });
@@ -250,8 +229,109 @@ const SearchEngine = {
     });
 
     const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
-    const limpiarBtn = document.getElementById(limpiarId);
-    if (limpiarBtn) limpiarBtn.style.display = tieneAlgo ? 'block' : 'none';
+    const btn = document.getElementById('btn-limpiar');
+    if (btn) btn.style.display = tieneAlgo ? 'block' : 'none';
+  },
+
+  // ─── Filtros móvil (tres botones en línea, sticky) ─────
+
+  buildMobile() {
+    const wrap = document.getElementById('filtros-mobile');
+    if (!wrap) return;
+
+    const secciones = [
+      { key: 'materia',    label: 'Materia' },
+      { key: 'tema',       label: 'Tema' },
+      { key: 'dificultad', label: 'Dificultad' },
+    ];
+
+    wrap.innerHTML = '';
+    secciones.forEach(({ key, label }) => {
+      const btn = document.createElement('button');
+      btn.className = 'filtro-mobile-btn';
+      btn.id = `filtro-mobile-${key}`;
+      btn.textContent = this.selected[key] || label;
+      if (this.selected[key]) btn.classList.add('activo');
+
+      // Dropdown
+      const dropdown = document.createElement('div');
+      dropdown.className = 'filtro-mobile-dropdown';
+      dropdown.id = `dropdown-${key}`;
+      dropdown.style.display = 'none';
+
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        // Cerrar otros dropdowns
+        document.querySelectorAll('.filtro-mobile-dropdown').forEach(d => {
+          if (d.id !== `dropdown-${key}`) d.style.display = 'none';
+        });
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        this.populateDropdown(key, dropdown);
+      });
+
+      const container = document.createElement('div');
+      container.className = 'filtro-mobile-item';
+      container.appendChild(btn);
+      container.appendChild(dropdown);
+      wrap.appendChild(container);
+    });
+
+    // Cerrar dropdowns al tocar fuera
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-mobile-dropdown').forEach(d => {
+        d.style.display = 'none';
+      });
+    });
+  },
+
+  populateDropdown(key, dropdown) {
+    dropdown.innerHTML = '';
+    const opciones = this.availableFor(key);
+
+    if (this.selected[key]) {
+      const todos = document.createElement('button');
+      todos.className = 'filtro-mobile-opcion filtro-todos';
+      todos.textContent = 'Ver todos';
+      todos.addEventListener('click', e => {
+        e.stopPropagation();
+        this.selected[key] = null;
+        if (key === 'materia') this.selected.tema = null;
+        dropdown.style.display = 'none';
+        this.refreshDesktop();
+        this.refreshMobile();
+        this.applyAndRender();
+        this.updateURL();
+      });
+      dropdown.appendChild(todos);
+    }
+
+    opciones.forEach(op => {
+      const btn = document.createElement('button');
+      btn.className = 'filtro-mobile-opcion' + (this.selected[key] === op ? ' activo' : '');
+      btn.textContent = op;
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        this.selected[key] = op;
+        if (key === 'materia') this.selected.tema = null;
+        dropdown.style.display = 'none';
+        this.refreshDesktop();
+        this.refreshMobile();
+        this.applyAndRender();
+        this.updateURL();
+      });
+      dropdown.appendChild(btn);
+    });
+  },
+
+  refreshMobile() {
+    const secciones = ['materia', 'tema', 'dificultad'];
+    const labels = { materia: 'Materia', tema: 'Tema', dificultad: 'Dificultad' };
+    secciones.forEach(key => {
+      const btn = document.getElementById(`filtro-mobile-${key}`);
+      if (!btn) return;
+      btn.textContent = this.selected[key] || labels[key];
+      btn.classList.toggle('activo', !!this.selected[key]);
+    });
   },
 
   // ─── Resultados ────────────────────────────────────────
@@ -265,10 +345,11 @@ const SearchEngine = {
           <h2>Aviso importante</h2>
           <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
         </section>
-        <div id="filtros-mobile"></div>
+        <div class="filtros-mobile" id="filtros-mobile"></div>
         <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
       `;
-      this.buildPanel();
+      this.buildMobile();
+      this.refreshMobile();
     }
 
     const resultado = this.filterData(this.selected, this.searchQuery);
@@ -302,7 +383,6 @@ const SearchEngine = {
       : `<p class="resultados-hint">${ejercicios.length} ejercicio${ejercicios.length !== 1 ? 's' : ''} encontrado${ejercicios.length !== 1 ? 's' : ''}.</p>`;
 
     const q = this.searchQuery;
-
     ejercicios.forEach(ej => {
       const materia = this.expand(ej.materia)[0] || '';
       const origen  = this.expand(ej.origen)[0] || '';
@@ -368,11 +448,10 @@ const SearchEngine = {
     this.selected.tema       = params.get('tema')       || null;
     this.selected.dificultad = params.get('dificultad') || null;
     this.searchQuery         = params.get('q')          || '';
-    ['search-input', 'search-input-m'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = this.searchQuery;
-    });
-    this.refreshPanel();
+    const inp = document.getElementById('search-input');
+    if (inp) inp.value = this.searchQuery;
+    this.refreshDesktop();
+    this.refreshMobile();
     this.applyAndRender();
   },
 };
