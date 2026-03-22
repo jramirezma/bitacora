@@ -1,5 +1,75 @@
 [
   {
+    "id": "5s2l3",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "EX",
+    "ejercicio_nro": "1",
+    "tema": [
+      "Lógica",
+      "Simplificación de expresiones lógicas",
+      "Conectivas definidas por el usuario",
+      "álgebra proposicional"
+    ],
+    "dificultad": [
+      "avanzado",
+      "dificil",
+      "complejo"
+    ],
+    "seo_keywords": [
+      "simplificación lógica",
+      "conectiva definida",
+      "álgebra proposicional",
+      "tautología",
+      "lógica matemática",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-21",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/5s2l3.html",
+    "enunciado": "Se define $p \\circledast q := (p \\land \\neg q) \\lor (q \\lor \\neg p)$. Simplifique la siguiente expresión: $$[(\\neg p \\circledast q) \\to p] \\to [p \\to (q \\circledast p)]$$"
+  },
+  {
+    "id": "vwbpp",
+    "materia": [
+      "Álgebra"
+    ],
+    "origen": "EX",
+    "ejercicio_nro": null,
+    "tema": [
+      "Lógica",
+      "Reglas de inferencia",
+      "Determinación de conclusión",
+      "lógica proposicional"
+    ],
+    "dificultad": [
+      "avanzado",
+      "dificil",
+      "complejo"
+    ],
+    "seo_keywords": [
+      "reglas de inferencia",
+      "modus ponens",
+      "modus tollens",
+      "silogismo disyuntivo",
+      "lógica proposicional",
+      "álgebra UMSA"
+    ],
+    "tipo_solucion": "subcasos",
+    "fecha": "2026-03-21",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/vwbpp.html",
+    "enunciado": "Determinar la conclusión que se sigue a partir de las siguientes premisas: $(1).\\ (p \\to q) \\to \\neg r$ $(2).\\ s \\to (r \\lor t)$ $(3).\\ t \\to v$ $(4).\\ s \\land \\neg v$"
+  },
+  {
     "id": "67z9q",
     "materia": [
       "Álgebra"

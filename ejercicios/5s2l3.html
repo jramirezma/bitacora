@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>5s2l3</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "5s2l3",
+      materia: "Álgebra",
+      origen: "EX",
+      ejercicio_nro: "1",
+      tema: [
+        "Lógica",
+        "Simplificación de expresiones lógicas",
+        "Conectivas definidas por el usuario",
+        "álgebra proposicional"
+      ],
+      dificultad: [
+        "avanzado",
+        "dificil",
+        "complejo"
+      ],
+      seo_keywords: [
+        "simplificación lógica",
+        "conectiva definida",
+        "álgebra proposicional",
+        "tautología",
+        "lógica matemática",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-21",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Se define $p \circledast q := (p \land \neg q) \lor (q \lor \neg p)$.
+      Simplifique la siguiente expresión:
+      $$[(\neg p \circledast q) \to p] \to [p \to (q \circledast p)]$$
+    </p>
+  </div>
+
+  <h2>El mapa antes del territorio</h2>
+  <div class="bloque">
+    <p>
+      El ejercicio introduce una conectiva nueva, $\circledast$, definida
+      en términos de las conectivas conocidas.
+      El primer paso es entender qué hace $\circledast$:
+      simplificar su definición antes de tocar la expresión principal.
+      Una vez que $p \circledast q$ se reduce a algo más simple,
+      se sustituye en la expresión y se simplifica el resto.
+    </p>
+    <div class="nota">
+      La estrategia es de adentro hacia afuera: primero simplificar
+      la conectiva $\circledast$, luego calcular $\neg p \circledast q$
+      y $q \circledast p$ por separado, y finalmente simplificar
+      la expresión completa usando leyes lógicas.
+    </div>
+    <p>
+      Un dato útil: si la expresión completa resulta ser una tautología,
+      su valor de verdad es siempre verdadero sin importar $p$ y $q$.
+      Vale la pena sospechar eso desde el inicio y verificarlo al final.
+    </p>
+    <p class="chiste">
+      Una conectiva nueva suena intimidante, pero por dentro
+      es solo las de siempre disfrazadas. Hay que quitarle el disfraz primero.
+    </p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Las conectivas definidas por el usuario en lógica proposicional
+      tienen un equivalente directo en programación: los operadores sobrecargados.
+      En C++, Python o Kotlin puedes definir qué hace el operador <code>+</code>
+      cuando se aplica a tus propios tipos de datos, igual que acá se define
+      qué hace $\circledast$ sobre proposiciones.
+      La sobrecarga de operadores es exactamente eso: darle un nuevo significado
+      a un símbolo en términos de operaciones más básicas.
+      El compilador luego sustituye cada uso del operador sobrecargado
+      por su definición, igual que lo que hacemos en el primer paso de este ejercicio.
+    </p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $p \circledast q = (p \land \neg q) \lor (q \lor \neg p)$
+    </div>
+    <div class="paso-just">
+      Definición de la conectiva $\circledast$.
+    </div>
+
+    <div class="paso-dev">
+      $= (p \land \neg q) \lor \neg p \lor q$
+    </div>
+    <div class="paso-just">
+      Asociatividad de la disyunción: quitar paréntesis internos.
+    </div>
+
+    <div class="paso-dev">
+      $= (\neg p \lor q) \lor (p \land \neg q)$
+    </div>
+    <div class="paso-just">
+      Conmutatividad: reordenar términos.
+    </div>
+
+    <div class="paso-dev">
+      $= (p \to q) \lor (p \land \neg q)$
+    </div>
+    <div class="paso-just">
+      $\neg p \lor q \equiv p \to q$.
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor q \lor (p \land \neg q)$
+    </div>
+    <div class="paso-just">
+      Reescribir $p \to q$ para aplicar distributividad.
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor (q \lor (p \land \neg q))$
+    </div>
+    <div class="paso-just">
+      Asociatividad de la disyunción.
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor ((q \lor p) \land (q \lor \neg q))$
+    </div>
+    <div class="paso-just">
+      Ley distributiva: $q \lor (p \land \neg q) = (q \lor p) \land (q \lor \neg q)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor ((q \lor p) \land \top)$
+    </div>
+    <div class="paso-just">
+      Ley del complemento: $q \lor \neg q = \top$ (tautología).
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor (q \lor p)$
+    </div>
+    <div class="paso-just">
+      Ley de identidad: $X \land \top = X$.
+    </div>
+
+    <div class="paso-dev">
+      $= \neg p \lor p \lor q$
+    </div>
+    <div class="paso-just">
+      Conmutatividad y asociatividad de la disyunción.
+    </div>
+
+    <div class="paso-dev">
+      $p \circledast q = \top$
+    </div>
+    <div class="paso-just">
+      Ley del complemento: $\neg p \lor p = \top$. La conectiva es siempre verdadera.
+    </div>
+
+    <div class="paso-dev">
+      $\neg p \circledast q = \top$ $\quad$ y $\quad$ $q \circledast p = \top$
+    </div>
+    <div class="paso-just">
+      Como $p \circledast q = \top$ para cualquier $p, q$, también vale
+      para $\neg p \circledast q$ y $q \circledast p$.
+    </div>
+
+    <div class="paso-dev">
+      $[(\neg p \circledast q) \to p] \to [p \to (q \circledast p)]$
+      $= [\top \to p] \to [p \to \top]$
+    </div>
+    <div class="paso-just">
+      Sustituir $\neg p \circledast q = \top$ y $q \circledast p = \top$.
+    </div>
+
+    <div class="paso-dev">
+      $= p \to \top$
+    </div>
+    <div class="paso-just">
+      $\top \to p \equiv p$. Una implicación con antecedente verdadero
+      equivale al consecuente.
+    </div>
+
+    <div class="paso-dev">
+      $= \top$
+    </div>
+    <div class="paso-just">
+      $p \to \top$ es siempre verdadero: cualquier cosa implica lo verdadero.
+    </div>
+  </div>
+
+  <h2>Comprobemos con valores concretos</h2>
+  <div class="bloque">
+    <p>
+      Toma $p = F$, $q = F$:
+      $\neg p \circledast q = \top$, $q \circledast p = \top$.
+      $[\top \to F] \to [F \to \top] = F \to \top = \top$ ✓.
+      Toma $p = V$, $q = F$:
+      $[\top \to V] \to [V \to \top] = V \to \top = \top$ ✓.
+      En todas las combinaciones el resultado es $\top$.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La expresión $[(\neg p \circledast q) \to p] \to [p \to (q \circledast p)]$
+    es una <strong>tautología</strong>: su valor de verdad es $\top$
+    para cualquier combinación de valores de $p$ y $q$.
+    La clave es que la conectiva $\circledast$ definida como
+    $(p \land \neg q) \lor (q \lor \neg p)$ es en sí misma una tautología.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Las tautologías lógicas son expresiones que los compiladores e
+      intérpretes detectan y eliminan como código muerto.
+      Si una condición en un <code>if</code> es siempre verdadera,
+      el compilador puede eliminar la rama <code>else</code> completa
+      en tiempo de compilación, reduciendo el tamaño del ejecutable.
+      Los analizadores estáticos de código como ESLint o SonarQube
+      detectan estas condiciones redundantes y las reportan como advertencias,
+      porque una condición que siempre es verdadera suele indicar
+      un error lógico en el programa.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>En lógica proposicional, una tautología es una fórmula que es verdadera para todas las asignaciones de valores. ¿Cómo detectan los solucionadores SAT si una fórmula es una tautología? ¿Qué relación hay entre verificar una tautología y verificar la insatisfacibilidad de su negación?</span>
+      </li>
+      <li>
+        <span>La sobrecarga de operadores en lenguajes como C++, Python o Kotlin permite definir nuevas operaciones en términos de las existentes, igual que la conectiva ⊛ en este ejercicio. ¿Qué problemas de legibilidad y mantenimiento puede generar el abuso de sobrecarga de operadores, y qué guías de estilo recomiendan al respecto?</span>
+      </li>
+      <li>
+        <span>Los analizadores estáticos de código detectan condiciones que son siempre verdaderas o siempre falsas (tautologías y contradicciones lógicas) como posibles errores. ¿Qué técnicas usan herramientas como Coverity o SonarQube para detectar estas condiciones redundantes en código real, y qué tipo de bugs suelen indicar?</span>
+      </li>
+      <li>
+        <span>En verificación formal de software, demostrar que una propiedad de un programa es una tautología garantiza que se cumple para todas las entradas posibles. ¿Qué es la lógica de Hoare y cómo usa tautologías lógicas para demostrar la corrección de programas imperativos?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>

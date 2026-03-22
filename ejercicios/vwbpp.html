@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>vwbpp</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "vwbpp",
+      materia: "Álgebra",
+      origen: "EX",
+      ejercicio_nro: null,
+      tema: [
+        "Lógica",
+        "Reglas de inferencia",
+        "Determinación de conclusión",
+        "lógica proposicional"
+      ],
+      dificultad: [
+        "avanzado",
+        "dificil",
+        "complejo"
+      ],
+      seo_keywords: [
+        "reglas de inferencia",
+        "modus ponens",
+        "modus tollens",
+        "silogismo disyuntivo",
+        "lógica proposicional",
+        "álgebra UMSA"
+      ],
+      tipo_solucion: "subcasos",
+      fecha: "2026-03-21",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      Determinar la conclusión que se sigue a partir de las siguientes premisas:
+    </p>
+    <p>
+      $(1).\ (p \to q) \to \neg r$<br>
+      $(2).\ s \to (r \lor t)$<br>
+      $(3).\ t \to v$<br>
+      $(4).\ s \land \neg v$
+    </p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>
+      Este ejercicio no dice qué hay que demostrar: hay que encontrar
+      la conclusión por cuenta propia, siguiendo la cadena de consecuencias
+      que se derivan de las cuatro premisas.
+      La estrategia es empezar por la premisa más concreta,
+      la que da información directa sin condiciones, y ver adónde lleva.
+    </p>
+    <div class="nota">
+      La premisa 4, $s \land \neg v$, es la más rica porque da dos hechos
+      de una vez: $s$ es verdadera y $v$ es falsa.
+      Desde ahí se puede avanzar usando las otras premisas como palancas.
+    </div>
+    <p>
+      El plan: de $s$ y la premisa 2 se obtiene $r \lor t$.
+      De $\neg v$ y la premisa 3 se obtiene $\neg t$ por MTT.
+      Con $r \lor t$ y $\neg t$ se obtiene $r$ por silogismo disyuntivo.
+      Con $\neg r$ y la premisa 1 se obtiene la conclusión final.
+    </p>
+    <p class="chiste">
+      Cuatro premisas y ninguna conclusión explícita.
+      Es como un detective sin caso: hay que construir el crimen
+      a partir de las pistas.
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      El proceso de derivar conclusiones a partir de premisas usando reglas
+      de inferencia es exactamente lo que hacen los motores de inferencia
+      en inteligencia artificial simbólica.
+      Sistemas como Prolog trabajan con una base de hechos (las premisas)
+      y reglas de inferencia, y derivan automáticamente todas las conclusiones
+      posibles usando encadenamiento hacia adelante o hacia atrás.
+      El encadenamiento hacia adelante parte de los hechos conocidos
+      y aplica reglas hasta llegar a la conclusión,
+      exactamente la estrategia que se usa en este ejercicio.
+    </p>
+  </div>
+
+  <h2>La demostración</h2>
+
+  <p class="subcaso">Extracción de hechos de la premisa 4</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(5)\ s$</div>
+    <div class="paso-just">Simp, 4. ($s \land \neg v \Rightarrow s$)</div>
+
+    <div class="paso-dev">$(6)\ \neg v$</div>
+    <div class="paso-just">Simp, 4. ($s \land \neg v \Rightarrow \neg v$)</div>
+  </div>
+
+  <p class="subcaso">Cadena desde $s$ y $\neg v$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(7)\ r \lor t$</div>
+    <div class="paso-just">MPP, 5, 2. ($s$ y $s \to (r \lor t)$)</div>
+
+    <div class="paso-dev">$(8)\ \neg t$</div>
+    <div class="paso-just">MTT, 6, 3. ($\neg v$ y $t \to v \Rightarrow \neg t$)</div>
+
+    <div class="paso-dev">$(9)\ r$</div>
+    <div class="paso-just">SD, 7, 8. ($r \lor t$ y $\neg t \Rightarrow r$)</div>
+  </div>
+
+  <p class="subcaso">Conclusión final desde $r$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Proposición</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$(10)\ \neg(p \to q)$</div>
+    <div class="paso-just">MTT, 9, 1. ($r$ y $(p \to q) \to \neg r \Rightarrow \neg(p \to q)$)</div>
+
+    <div class="paso-dev">$(11)\ \neg(\neg p \lor q)$</div>
+    <div class="paso-just">$p \to q \equiv \neg p \lor q$.</div>
+
+    <div class="paso-dev">$(12)\ p \land \neg q$</div>
+    <div class="paso-just">De Morgan: $\neg(\neg p \lor q) \equiv p \land \neg q$.</div>
+  </div>
+
+  <h2>Comprobemos que tiene sentido</h2>
+  <div class="bloque">
+    <p>
+      Verifica la cadena completa:
+      de $s \land \neg v$ se extrae $s$ y $\neg v$.
+      $s$ activa la premisa 2, dando $r \lor t$.
+      $\neg v$ activa MTT sobre la premisa 3, dando $\neg t$.
+      $r \lor t$ con $\neg t$ da $r$ por silogismo disyuntivo.
+      $r$ activa MTT sobre la premisa 1: como $\neg r$ es falso,
+      el antecedente $p \to q$ debe ser falso, dando $\neg(p \to q)$,
+      que se expande a $p \land \neg q$.
+      Cada eslabón es necesario y ninguno se puede saltar.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    La conclusión que se sigue de las cuatro premisas es
+    $\boxed{p \land \neg q}$:
+    $p$ es verdadera y $q$ es falsa.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El encadenamiento de reglas de inferencia es el mecanismo central
+      de los sistemas expertos y los motores de reglas en inteligencia artificial.
+      Herramientas como Drools o el motor de reglas de Prolog toman
+      una base de hechos y un conjunto de reglas condicionales,
+      y derivan automáticamente todas las conclusiones posibles
+      aplicando modus ponens, silogismo disyuntivo y modus tollens
+      en secuencia, exactamente como se hizo acá.
+      Estos sistemas se usan en diagnóstico médico, detección de fraude
+      y configuración automática de sistemas complejos.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li>
+        <span>El encadenamiento hacia adelante (forward chaining) en motores de inferencia parte de hechos conocidos y aplica reglas hasta derivar nuevas conclusiones, igual que en este ejercicio. ¿Cómo decide el motor qué regla aplicar primero cuando hay múltiples reglas aplicables? ¿Qué es el algoritmo RETE y cómo optimiza este proceso?</span>
+      </li>
+      <li>
+        <span>En Prolog, el encadenamiento hacia atrás (backward chaining) parte de la conclusión que se quiere probar y busca premisas que la justifiquen. ¿Cómo se representarían las cuatro premisas de este ejercicio en Prolog, y cómo derivaría el motor la conclusión p ∧ ¬q automáticamente?</span>
+      </li>
+      <li>
+        <span>El modus tollendo tollens (si P→Q es verdadera y Q es falsa, entonces P es falsa) es una de las reglas de inferencia más usadas en verificación de software. ¿Cómo aparece este patrón en la propagación de restricciones (constraint propagation) en solucionadores de satisfacción de restricciones (CSP)?</span>
+      </li>
+      <li>
+        <span>En detección de fraude con sistemas basados en reglas, cada transacción se evalúa contra un conjunto de reglas condicionales para derivar si es fraudulenta. ¿Qué limitaciones tienen los sistemas de reglas lógicas para detectar fraude comparados con los modelos de machine learning, y en qué casos sigue siendo preferible el enfoque basado en reglas?</span>
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>
