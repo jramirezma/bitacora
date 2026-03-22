@@ -57,28 +57,73 @@ function copiar(btn) {
   _flashCopy(btn, texto);
 }
 
+// ─── JUSTIFICACIÓN EXPANDIBLE EN MÓVIL ───────────────────
+
+function initJustificaciones() {
+  if (window.innerWidth > 600) return;
+
+  document.querySelectorAll('.dos-col').forEach(grid => {
+    const devs  = Array.from(grid.querySelectorAll('.paso-dev'));
+    const justs = Array.from(grid.querySelectorAll('.paso-just'));
+
+    // Reorganizar el DOM: insertar cada just inmediatamente después de su dev
+    devs.forEach((dev, i) => {
+      const just = justs[i];
+      if (!just) return;
+      dev.after(just);
+    });
+
+    // Ahora sí, conectar cada par
+    devs.forEach((dev, i) => {
+      const just = justs[i];
+      if (!just) return;
+
+      if (i === 0) {
+        dev.classList.add('abierto');
+        just.classList.add('visible');
+      }
+
+      dev.addEventListener('click', e => {
+        if (e.target.closest('.copy-btn')) return;
+        const abierto = dev.classList.contains('abierto');
+
+        // Cerrar todos los demás en este grid
+        devs.forEach((d, j) => {
+          d.classList.remove('abierto');
+          if (justs[j]) justs[j].classList.remove('visible');
+        });
+
+        // Abrir este si estaba cerrado
+        if (!abierto) {
+          dev.classList.add('abierto');
+          just.classList.add('visible');
+          if (window.MathJax) MathJax.typesetPromise([just]).catch(console.error);
+        }
+      });
+    });
+  });
+}
+
 // ─── AUTO INIT ────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
   inyectarSymbol();
 
-  // Enunciado
   document.querySelectorAll('.ejercicio').forEach(el => {
     el.appendChild(crearBoton('Copiar enunciado', copiarEnunciado));
   });
 
-  // Dato curioso
   document.querySelectorAll('.dato-curioso').forEach(el => {
     el.appendChild(crearBoton('Copiar dato', copiarDato));
   });
 
-  // Bloques de informática
   document.querySelectorAll('.bloque-copiable').forEach(el => {
     el.appendChild(crearBoton('Copiar', copiarBloque));
   });
 
-  // Preguntas individuales
   document.querySelectorAll('.preguntas li').forEach(li => {
     li.appendChild(crearBoton('Copiar pregunta', copiar));
   });
+
+  initJustificaciones();
 });

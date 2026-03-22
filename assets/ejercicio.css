@@ -157,7 +157,6 @@ h2 {
   color: #111;
 }
 
-/* Botón de copiar del enunciado — alineado a la derecha */
 .ejercicio {
   position: relative;
 }
@@ -166,4 +165,86 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+/* ── Responsive móvil ── */
+@media (max-width: 600px) {
+  body {
+    margin: 12px auto;
+    padding: 0 10px 40px;
+  }
+
+  .dos-col {
+    grid-template-columns: 1fr;
+  }
+
+  .col-header { display: none; }
+
+  .paso-dev {
+    border-right: none;
+    border-bottom: none;
+    font-size: .95rem;
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .paso-dev::after {
+    content: '▸';
+    font-size: .75rem;
+    color: #999;
+    flex-shrink: 0;
+    transition: transform .2s;
+  }
+
+  .paso-dev.abierto::after {
+    transform: rotate(90deg);
+  }
+
+  .paso-just {
+    display: none;
+    background: #f9f9f9;
+    border-bottom: 1px dashed #ccc;
+    border-top: 1px dashed #ccc;
+    font-size: .88rem;
+    padding: 8px 12px 10px;
+  }
+
+  .paso-just.visible {
+    display: block;
+  }
+
+  .paso-dev.abierto {
+    border-bottom: none;
+    background: #f0f4f8;
+    border-left: 3px solid #2c3e50;
+  }
+
+  .paso-just.visible {
+    background: #f0f4f8;
+    border-left: 3px solid #2c3e50;
+    border-top: 1px dashed #b0bec5;
+  }
+
+  /* separador entre filas cuando está cerrado */
+  .paso-dev:not(.abierto) {
+    border-bottom: 1px dashed #ccc;
+  }
+
+  .paso-just .titulo {
+    font-size: .75rem;
+    color: #555;
+  }
+
+  .resultado-final {
+    padding: 12px 14px;
+    font-size: .95rem;
+  }
+
+  mjx-container {
+    font-size: 95% !important;
+  }
 }

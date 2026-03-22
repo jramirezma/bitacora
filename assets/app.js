@@ -1,427 +1,341 @@
-// ─── STORAGE ──────────────────────────────────────────────
-
-const USP_CART = 'usp_cart';
-const USP_PROGRESS = 'usp_progress';
-const USP_SIMULATIONS = 'usp_simulations';
-
-function storageGet(key) {
-  try {
-    return JSON.parse(localStorage.getItem(key));
-  } catch {
-    return null;
-  }
-}
-
-function storageSet(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch {
-    mostrarAvisoStorage();
-    return false;
-  }
-}
-
-function storageRemove(key) {
-  try {
-    localStorage.removeItem(key);
-  } catch {
-    mostrarAvisoStorage();
-  }
-}
-
-function mostrarAvisoStorage() {
-  alert('No se pudo guardar en el navegador. Puede que el almacenamiento esté lleno.');
-}
-
-// ─── SEARCH ENGINE ────────────────────────────────────────
-
 const SearchEngine = {
   data: [],
-  facets: {}, // Pre-indexed values for each field
-  activeFilters: {},
-  suggestionIndex: -1,
-  suggestionsData: [],
+  selected: { materia: null, tema: null, dificultad: null },
+  searchQuery: '',
+  openSections: new Set(),
 
   async init() {
     try {
-      const response = await fetch('index.json');
-      this.data = await response.json();
-      this.buildFacets();
-      this.setupEventListeners();
-      this.applyFiltersFromURL();
-      
-      window.addEventListener('popstate', () => this.applyFiltersFromURL());
-      window.addEventListener('load', () => this.restoreSidebarState());
+      const res = await fetch('index.json');
+      this.data = await res.json();
+      this.buildPanel();
+      this.applyFromURL();
+      window.addEventListener('popstate', () => this.applyFromURL());
     } catch (e) {
-      console.error('Error initializing SearchEngine:', e);
+      console.error('Error init:', e);
     }
   },
 
-  buildFacets() {
-    if (this.data.length === 0) return;
-    const fields = Object.keys(this.data[0]).filter(k => k !== 'enunciado' && k !== 'archivo' && k !== 'id');
-    
-    fields.forEach(field => {
-      const seen = new Set();
-      this.data.forEach(item => {
-        const values = this.expandValues(item[field]);
-        values.forEach(v => {
-          if (v) seen.add(String(v));
-        });
-      });
-      this.facets[field] = Array.from(seen).sort();
-    });
+  // ─── Helpers ───────────────────────────────────────────
+
+  expand(val) {
+    if (Array.isArray(val)) return val.map(String);
+    if (val == null || val === 'null') return [];
+    return [String(val)];
   },
 
-  expandValues(val) {
-    if (Array.isArray(val)) return val;
-    if (val === null || val === undefined || val === "null") return [];
-    return [val];
+  norm(s) {
+    return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   },
 
-  normalize(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  },
-
-  setupEventListeners() {
-    const input = document.getElementById('filtro-busqueda');
-    const suggestions = document.getElementById('sugerencias');
-    const toggle = document.getElementById('buscador-toggle');
-
-    input.addEventListener('input', (e) => this.handleInput(e.target.value));
-    input.addEventListener('keydown', (e) => this.handleKeyDown(e));
-    input.addEventListener('blur', () => setTimeout(() => suggestions.classList.remove('mostrar'), 200));
-
-    toggle.addEventListener('click', () => {
-      const panel = document.getElementById('buscador-panel');
-      panel.classList.toggle('collapsed');
-      this.updateSidebarURL(panel.classList.contains('collapsed'));
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.buscador-input-wrapper')) {
-        suggestions.classList.remove('mostrar');
+  filterData(sel, query) {
+    return this.data.filter(ej => {
+      if (sel.materia) {
+        const vals = this.expand(ej.materia).map(v => this.norm(v));
+        if (!vals.includes(this.norm(sel.materia))) return false;
       }
-    });
-  },
-
-  handleInput(raw) {
-    const suggestions = document.getElementById('sugerencias');
-    const query = this.normalize(raw);
-
-    if (query.length < 1) {
-      suggestions.classList.remove('mostrar');
-      return;
-    }
-
-    if (raw.startsWith('#')) {
-      this.showFieldSuggestions(raw.slice(1));
-    } else {
-      this.showGeneralSuggestions(query);
-    }
-  },
-
-  showFieldSuggestions(rawField) {
-    const queryField = this.normalize(rawField);
-    const fields = Object.keys(this.facets);
-    const matches = fields.filter(f => this.normalize(f).includes(queryField));
-
-    if (matches.length === 0) {
-      document.getElementById('sugerencias').classList.remove('mostrar');
-      return;
-    }
-
-    this.suggestionsData = [];
-    matches.forEach(field => {
-      this.facets[field].forEach(val => {
-        this.suggestionsData.push({ campo: field, valor: val });
-      });
-    });
-
-    this.renderSuggestions();
-  },
-
-  showGeneralSuggestions(query) {
-    const queryParts = query.split(/\s+/);
-    let results = [];
-
-    // Search in facets
-    for (const [field, values] of Object.entries(this.facets)) {
-      values.forEach(val => {
-        const normVal = this.normalize(val);
-        if (queryParts.every(part => normVal.includes(part))) {
-          results.push({ campo: field, valor: val });
-        }
-      });
-    }
-
-    this.suggestionsData = results.slice(0, 15);
-    
-    // Search in enunciados (count only)
-    const enunciadosMatches = this.data.filter(ej => {
-      const normEnun = this.normalize(ej.enunciado || '');
-      return queryParts.every(part => normEnun.includes(part));
-    });
-
-    this.renderSuggestions(enunciadosMatches);
-  },
-
-  renderSuggestions(enunciadosMatches = []) {
-    const container = document.getElementById('sugerencias');
-    container.innerHTML = '';
-    this.suggestionIndex = -1;
-
-    if (this.suggestionsData.length === 0 && enunciadosMatches.length === 0) {
-      container.classList.remove('mostrar');
-      return;
-    }
-
-    this.suggestionsData.forEach((s, idx) => {
-      const div = document.createElement('div');
-      div.className = 'sugerencia-item';
-      div.dataset.index = idx;
-      div.innerHTML = `<span class="campo">${s.campo}:</span> ${s.valor}`;
-      div.addEventListener('click', () => {
-        this.addFilter(s.campo, s.valor);
-        document.getElementById('filtro-busqueda').value = '';
-        container.classList.remove('mostrar');
-      });
-      container.appendChild(div);
-    });
-
-    if (enunciadosMatches.length > 0) {
-      const sep = document.createElement('div');
-      sep.className = 'sugerencia-separador';
-      sep.textContent = `${enunciadosMatches.length} en enunciados (Ver todos)`;
-      sep.addEventListener('click', () => {
-        this.renderResults(enunciadosMatches);
-        document.getElementById('filtro-busqueda').value = '';
-        container.classList.remove('mostrar');
-      });
-      container.appendChild(sep);
-    }
-
-    container.classList.add('mostrar');
-  },
-
-  handleKeyDown(e) {
-    const container = document.getElementById('sugerencias');
-    const items = container.querySelectorAll('.sugerencia-item');
-    if (!items.length) return;
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      this.suggestionIndex = Math.min(this.suggestionIndex + 1, items.length - 1);
-      this.highlightSuggestion(items);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      this.suggestionIndex = Math.max(this.suggestionIndex - 1, -1);
-      this.highlightSuggestion(items);
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (this.suggestionIndex >= 0 && this.suggestionsData[this.suggestionIndex]) {
-        const s = this.suggestionsData[this.suggestionIndex];
-        this.addFilter(s.campo, s.valor);
-        document.getElementById('filtro-busqueda').value = '';
-        container.classList.remove('mostrar');
+      if (sel.tema) {
+        const vals = this.expand(ej.tema).map(v => this.norm(v));
+        if (!vals.some(v => v.includes(this.norm(sel.tema)))) return false;
       }
-    } else if (e.key === 'Escape') {
-      container.classList.remove('mostrar');
-    }
-  },
-
-  highlightSuggestion(items) {
-    items.forEach((item, i) => {
-      item.classList.toggle('selected', i === this.suggestionIndex);
-    });
-    if (this.suggestionIndex >= 0 && items[this.suggestionIndex]) {
-      items[this.suggestionIndex].scrollIntoView({ block: 'nearest' });
-    }
-  },
-
-  addFilter(campo, valor) {
-    if (!this.activeFilters[campo]) {
-      this.activeFilters[campo] = new Set();
-    }
-    this.activeFilters[campo].add(valor);
-    this.renderTags();
-    this.applyFilters();
-  },
-
-  removeFilter(campo, valor) {
-    if (this.activeFilters[campo]) {
-      this.activeFilters[campo].delete(valor);
-      if (this.activeFilters[campo].size === 0) {
-        delete this.activeFilters[campo];
+      if (sel.dificultad) {
+        const vals = this.expand(ej.dificultad).map(v => this.norm(v));
+        if (!vals.includes(this.norm(sel.dificultad))) return false;
       }
-    }
-    this.renderTags();
-    this.applyFilters();
-  },
-
-  clearAllFilters() {
-    this.activeFilters = {};
-    this.renderTags();
-    this.applyFilters();
-  },
-
-  renderTags() {
-    const container = document.getElementById('filtros-tags');
-    container.innerHTML = '';
-
-    const hasFilters = Object.keys(this.activeFilters).length > 0;
-    if (hasFilters) {
-      const clearBtn = document.createElement('button');
-      clearBtn.className = 'btn-clear-filters';
-      clearBtn.textContent = 'Limpiar todo';
-      clearBtn.onclick = () => this.clearAllFilters();
-      container.appendChild(clearBtn);
-    }
-
-    Object.entries(this.activeFilters).forEach(([campo, valores]) => {
-      valores.forEach(valor => {
-        const tag = document.createElement('span');
-        tag.className = 'filtro-tag';
-        tag.innerHTML = `<span class="campo">${campo}:</span> ${valor} <span class="quitar">×</span>`;
-        tag.querySelector('.quitar').onclick = () => this.removeFilter(campo, valor);
-        container.appendChild(tag);
-      });
-    });
-  },
-
-  applyFilters() {
-    this.updateURL();
-    
-    if (Object.keys(this.activeFilters).length === 0) {
-      this.renderRandomExercises();
-      return;
-    }
-
-    const filtered = this.data.filter(ej => {
-      for (const [campo, valoresFiltro] of Object.entries(this.activeFilters)) {
-        const valorEj = this.expandValues(ej[campo]);
-        const normValoresEj = valorEj.map(v => this.normalize(String(v)));
-        const match = Array.from(valoresFiltro).some(vf => normValoresEj.includes(this.normalize(vf)));
-        if (!match) return false;
+      if (query) {
+        const q = this.norm(query);
+        const searchable = [
+          ...this.expand(ej.ejercicio_nro),
+          ...this.expand(ej.origen),
+          ej.enunciado || '',
+          ...this.expand(ej.seo_keywords),
+        ].map(v => this.norm(v)).join(' ');
+        if (!searchable.includes(q)) return false;
       }
       return true;
     });
-
-    this.renderResults(filtered);
   },
 
-  renderResults(ejercicios) {
+  availableFor(field) {
+    const tempSel = { ...this.selected, [field]: null };
+    const subset = this.filterData(tempSel, this.searchQuery);
+    const seen = new Set();
+    subset.forEach(ej => {
+      this.expand(ej[field]).forEach(v => {
+        if (v && v !== 'null') seen.add(v);
+      });
+    });
+    return Array.from(seen).sort();
+  },
+
+  // ─── Panel ─────────────────────────────────────────────
+
+  buildPanel() {
+    const panel = document.getElementById('buscador-panel');
+    panel.innerHTML = `
+      <div class="buscador-contenido">
+        <div class="filtro-search-wrap">
+          <input type="search" id="search-input" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
+        </div>
+        <div id="filtros-wrap"></div>
+        <button class="btn-limpiar" id="btn-limpiar" style="display:none">Limpiar filtros</button>
+      </div>
+      <button class="buscador-toggle" id="buscador-toggle"></button>
+    `;
+
+    document.getElementById('search-input').addEventListener('input', e => {
+      this.searchQuery = e.target.value.trim();
+      this.refreshPanel();
+      this.applyAndRender();
+      this.updateURL();
+    });
+
+    document.getElementById('btn-limpiar').addEventListener('click', () => {
+      this.selected = { materia: null, tema: null, dificultad: null };
+      this.searchQuery = '';
+      document.getElementById('search-input').value = '';
+      this.refreshPanel();
+      this.applyAndRender();
+      this.updateURL();
+    });
+
+    document.getElementById('buscador-toggle').addEventListener('click', () => {
+      panel.classList.toggle('collapsed');
+    });
+
+    this.refreshPanel();
+  },
+
+  refreshPanel() {
+    const wrap = document.getElementById('filtros-wrap');
+    wrap.innerHTML = '';
+
+    const secciones = [
+      { key: 'materia',    label: 'Materia' },
+      { key: 'tema',       label: 'Tema' },
+      { key: 'dificultad', label: 'Dificultad' },
+    ];
+
+    secciones.forEach(({ key, label }) => {
+      const opciones = this.availableFor(key);
+      if (opciones.length === 0) return;
+
+      const seccion = document.createElement('div');
+      seccion.className = 'filtro-seccion' + (this.selected[key] ? ' tiene-seleccion' : '');
+
+      const header = document.createElement('button');
+      header.className = 'filtro-header';
+      header.innerHTML = `
+        <span class="filtro-label">${label}</span>
+        ${this.selected[key]
+          ? `<span class="filtro-valor-sel">${this.selected[key]}</span>`
+          : '<span class="filtro-placeholder">Todos</span>'
+        }
+        <span class="filtro-arrow">▾</span>
+      `;
+
+      const lista = document.createElement('div');
+      lista.className = 'filtro-lista';
+
+      if (this.selected[key]) {
+        const todos = document.createElement('button');
+        todos.className = 'filtro-opcion filtro-todos';
+        todos.textContent = 'Ver todos';
+        todos.addEventListener('click', e => {
+          e.stopPropagation();
+          this.selected[key] = null;
+          if (key === 'materia') this.selected.tema = null;
+          this.openSections.delete(key);
+          this.refreshPanel();
+          this.applyAndRender();
+          this.updateURL();
+        });
+        lista.appendChild(todos);
+      }
+
+      opciones.forEach(op => {
+        const btn = document.createElement('button');
+        btn.className = 'filtro-opcion' + (this.selected[key] === op ? ' activo' : '');
+        btn.textContent = op;
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          this.selected[key] = op;
+          if (key === 'materia') this.selected.tema = null;
+          this.openSections.delete(key);       // cerrar al seleccionar
+          this.refreshPanel();
+          this.applyAndRender();
+          this.updateURL();
+        });
+        lista.appendChild(btn);
+      });
+
+      const abierto = this.openSections.has(key);
+      lista.style.display = abierto ? 'flex' : 'none';
+      if (abierto) seccion.classList.add('abierto');
+
+      header.addEventListener('click', () => {
+        if (this.openSections.has(key)) {
+          this.openSections.delete(key);
+          lista.style.display = 'none';
+          seccion.classList.remove('abierto');
+        } else {
+          this.openSections.add(key);
+          lista.style.display = 'flex';
+          seccion.classList.add('abierto');
+        }
+      });
+
+      // Navegación con teclado
+      header.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        } else if ((e.key === 'ArrowDown') && this.openSections.has(key)) {
+          e.preventDefault();
+          const first = lista.querySelector('.filtro-opcion');
+          if (first) first.focus();
+        }
+      });
+
+      lista.addEventListener('keydown', e => {
+        const opciones = Array.from(lista.querySelectorAll('.filtro-opcion'));
+        const idx = opciones.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = opciones[idx + 1];
+          if (next) next.focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (idx === 0) { header.focus(); }
+          else if (opciones[idx - 1]) opciones[idx - 1].focus();
+        } else if (e.key === 'Escape') {
+          this.openSections.delete(key);
+          lista.style.display = 'none';
+          seccion.classList.remove('abierto');
+          header.focus();
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (document.activeElement) document.activeElement.click();
+        }
+      });
+
+      seccion.appendChild(header);
+      seccion.appendChild(lista);
+      wrap.appendChild(seccion);
+    });
+
+    const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
+    document.getElementById('btn-limpiar').style.display = tieneAlgo ? 'block' : 'none';
+  },
+
+  // ─── Resultados ────────────────────────────────────────
+
+  applyAndRender() {
+    const resultado = this.filterData(this.selected, this.searchQuery);
+    const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
+    const ejercicios = tieneAlgo ? resultado : this.randomSample(resultado, 6);
+    this.renderResults(ejercicios, !tieneAlgo);
+  },
+
+  randomSample(arr, n) {
+    return [...arr].sort(() => 0.5 - Math.random()).slice(0, n);
+  },
+
+  highlight(text, query) {
+    if (!query) return text;
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\  renderResults(ejercicios, esAleatorio = false) {');
+    const regex = new RegExp(`(${escaped})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  },
+
+  renderResults(ejercicios, esAleatorio = false) {
     const container = document.getElementById('ejercicios-destacados');
+
     if (ejercicios.length === 0) {
       container.innerHTML = '<p class="no-resultados">No se encontraron ejercicios.</p>';
       return;
     }
 
-    container.innerHTML = '';
+    container.innerHTML = esAleatorio
+      ? '<p class="resultados-hint">Mostrando ejercicios al azar. Usá los filtros para explorar.</p>'
+      : `<p class="resultados-hint">${ejercicios.length} ejercicio${ejercicios.length !== 1 ? 's' : ''} encontrado${ejercicios.length !== 1 ? 's' : ''}.</p>`;
+
     ejercicios.forEach(ej => {
-      const materia = this.expandValues(ej.materia)[0] || '';
-      const origen = this.expandValues(ej.origen)[0] || '';
-      const nro = this.expandValues(ej.ejercicio_nro)[0] || '';
-      const meta = [materia, origen, nro ? `Ej. ${nro}` : ''].filter(Boolean).join(' · ');
+      const materia  = this.expand(ej.materia)[0] || '';
+      const origen   = this.expand(ej.origen)[0] || '';
+      const nro      = this.expand(ej.ejercicio_nro)[0] || '';
+      const dif      = this.expand(ej.dificultad)[0] || '';
+      const meta     = [materia, origen, nro ? `Ej. ${nro}` : ''].filter(Boolean).join(' · ');
+      const q = this.searchQuery;
 
       const btn = document.createElement('button');
       btn.className = 'tarjeta-ejercicio-link';
       btn.innerHTML = `
         <article class="tarjeta-ejercicio">
-          <div class="tarjeta-tema">${meta}</div>
-          <div class="tarjeta-enunciado">${ej.enunciado}</div>
+          <div class="tarjeta-meta">
+            <span class="tarjeta-tema">${this.highlight(meta, q)}</span>
+            ${dif ? `<span class="tarjeta-dif tarjeta-dif--${this.norm(dif.split(',')[0])}">${dif}</span>` : ''}
+          </div>
+          <div class="tarjeta-enunciado">${this.highlight(ej.enunciado, q)}</div>
         </article>
       `;
       btn.onclick = () => this.loadExercise(ej);
       container.appendChild(btn);
     });
 
-    this.renderMath(container);
+    if (window.MathJax) MathJax.typesetPromise([container]).catch(console.error);
   },
 
   loadExercise(ej) {
     const main = document.querySelector('main');
     const params = new URLSearchParams(window.location.search);
     params.set('ejercicio', ej.id);
-    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+    window.history.pushState({}, '', `${window.location.pathname}?${params}`);
 
     document.body.classList.add('ejercicio-abierto');
     main.innerHTML = `
       <div class="ejercicio-nav"><button class="btn-volver">← Volver</button></div>
       <iframe class="ejercicio-iframe" src="${ej.archivo}" title="${ej.id}"></iframe>
     `;
-
     main.querySelector('.btn-volver').onclick = () => {
       document.body.classList.remove('ejercicio-abierto');
       window.history.back();
     };
-
     const iframe = main.querySelector('.ejercicio-iframe');
     iframe.onload = () => {
-      try {
-        iframe.style.height = iframe.contentDocument.documentElement.scrollHeight + 'px';
-      } catch {
-        iframe.style.height = '2000px';
-      }
+      try { iframe.style.height = iframe.contentDocument.documentElement.scrollHeight + 'px'; }
+      catch { iframe.style.height = '2000px'; }
     };
   },
 
-  renderMath(container) {
-    if (window.MathJax) {
-      MathJax.typesetPromise([container]).catch(err => console.error(err));
-    }
-  },
-
-  renderRandomExercises() {
-    const shuffled = [...this.data].sort(() => 0.5 - Math.random());
-    this.renderResults(shuffled.slice(0, 3));
-  },
+  // ─── URL state ────────────────────────────────────────
 
   updateURL() {
     const params = new URLSearchParams();
-    Object.entries(this.activeFilters).forEach(([k, v]) => {
-      params.set(k, Array.from(v).join(','));
-    });
-    const query = params.toString();
-    window.history.replaceState({}, '', query ? `?${query}` : window.location.pathname);
+    if (this.selected.materia)    params.set('materia',    this.selected.materia);
+    if (this.selected.tema)       params.set('tema',       this.selected.tema);
+    if (this.selected.dificultad) params.set('dificultad', this.selected.dificultad);
+    if (this.searchQuery)         params.set('q',          this.searchQuery);
+    const qs = params.toString();
+    window.history.replaceState({}, '', qs ? `?${qs}` : window.location.pathname);
   },
 
-  applyFiltersFromURL() {
+  applyFromURL() {
     const params = new URLSearchParams(window.location.search);
     const ejercicioId = params.get('ejercicio');
-
     if (ejercicioId) {
       const ej = this.data.find(e => e.id === ejercicioId);
-      if (ej) {
-        this.loadExercise(ej);
-        return;
-      }
+      if (ej) { this.loadExercise(ej); return; }
     }
-
-    this.activeFilters = {};
-    params.forEach((val, key) => {
-      if (key === 'ejercicio' || key === 'sidebar') return;
-      this.activeFilters[key] = new Set(val.split(','));
-    });
-
-    this.renderTags();
-    this.applyFilters();
+    this.selected.materia    = params.get('materia')    || null;
+    this.selected.tema       = params.get('tema')       || null;
+    this.selected.dificultad = params.get('dificultad') || null;
+    this.searchQuery         = params.get('q')          || '';
+    const inp = document.getElementById('search-input');
+    if (inp) inp.value = this.searchQuery;
+    this.refreshPanel();
+    this.applyAndRender();
   },
-
-  updateSidebarURL(collapsed) {
-    const params = new URLSearchParams(window.location.search);
-    collapsed ? params.set('sidebar', 'collapsed') : params.delete('sidebar');
-    window.history.replaceState({}, '', `?${params.toString()}`);
-  },
-
-  restoreSidebarState() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('sidebar') === 'collapsed') {
-      document.getElementById('buscador-panel').classList.add('collapsed');
-    }
-  }
 };
 
-// Iniciar
 SearchEngine.init();
