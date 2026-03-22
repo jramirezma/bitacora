@@ -76,21 +76,11 @@ const SearchEngine = {
     if (!panel) return;
     panel.innerHTML = `
       <div class="buscador-contenido">
-        <div class="filtro-search-wrap">
-          <input type="search" id="search-input" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
-        </div>
         <div id="filtros-wrap"></div>
         <button class="btn-limpiar" id="btn-limpiar" style="display:none">Limpiar filtros</button>
       </div>
       <button class="buscador-toggle" id="buscador-toggle"></button>
     `;
-
-    document.getElementById('search-input').addEventListener('input', e => {
-      this.searchQuery = e.target.value.trim();
-      this.refreshDesktop();
-      this.applyAndRender();
-      this.updateURL();
-    });
 
     document.getElementById('btn-limpiar').addEventListener('click', () => {
       this.selected = { materia: null, tema: null, dificultad: null };
@@ -420,8 +410,13 @@ const SearchEngine = {
     `;
     const iframe = main.querySelector('.ejercicio-iframe');
     iframe.onload = () => {
-      try { iframe.style.height = iframe.contentDocument.documentElement.scrollHeight + 'px'; }
-      catch { iframe.style.height = '2000px'; }
+      try {
+        const doc = iframe.contentDocument;
+        const style = doc.createElement('style');
+        style.textContent = 'body { margin: 4px !important; padding: 0 !important; }';
+        doc.head.appendChild(style);
+        iframe.style.height = doc.documentElement.scrollHeight + 'px';
+      } catch { iframe.style.height = '2000px'; }
     };
   },
 
