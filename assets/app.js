@@ -68,71 +68,73 @@ const SearchEngine = {
     return Array.from(seen).sort();
   },
 
-  openDrawer() {
-    document.getElementById('buscador-panel').classList.remove('collapsed');
-    const overlay = document.getElementById('drawer-overlay');
-    if (overlay) overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  },
-
-  closeDrawer() {
-    document.getElementById('buscador-panel').classList.add('collapsed');
-    const overlay = document.getElementById('drawer-overlay');
-    if (overlay) overlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  },
-
   // ─── Panel ─────────────────────────────────────────────
 
+  // Monta el panel en los dos contenedores (desktop y móvil).
+  // El CSS decide cuál es visible según el ancho de pantalla.
   buildPanel() {
-    const panel = document.getElementById('buscador-panel');
-    panel.innerHTML = `
-      <div class="buscador-contenido">
-        <div class="filtro-search-wrap">
-          <input type="search" id="search-input" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
-        </div>
-        <div id="filtros-wrap"></div>
-        <button class="btn-limpiar" id="btn-limpiar" style="display:none">Limpiar filtros</button>
-      </div>
-      <button class="buscador-toggle" id="buscador-toggle"></button>
-    `;
-
-    document.getElementById('search-input').addEventListener('input', e => {
-      this.searchQuery = e.target.value.trim();
-      this.refreshPanel();
-      this.applyAndRender();
-      this.updateURL();
-    });
-
-    document.getElementById('btn-limpiar').addEventListener('click', () => {
-      this.selected = { materia: null, tema: null, dificultad: null };
-      this.searchQuery = '';
-      document.getElementById('search-input').value = '';
-      this.refreshPanel();
-      this.applyAndRender();
-      this.updateURL();
-    });
-
-    document.getElementById('buscador-toggle').addEventListener('click', () => {
-      panel.classList.toggle('collapsed');
-    });
-
-    // Drawer móvil
-    const drawerBtn = document.getElementById('drawer-btn');
-    const overlay   = document.getElementById('drawer-overlay');
-
-    if (drawerBtn) {
-      drawerBtn.addEventListener('click', () => this.openDrawer());
-    }
-    if (overlay) {
-      overlay.addEventListener('click', () => this.closeDrawer());
-    }
-
+    this._mountIn('buscador-panel', 'search-input', 'filtros-wrap', 'btn-limpiar', false);
+    this._mountIn('filtros-mobile', 'search-input-m', 'filtros-wrap-m', 'btn-limpiar-m', true);
     this.refreshPanel();
   },
 
+  _mountIn(mountId, searchId, wrapId, limpiarId, isMobile) {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+
+    mount.innerHTML = `
+      <div class="buscador-contenido">
+        <div class="filtro-search-wrap">
+          <input type="search" id="${searchId}" placeholder="Buscar por nro, origen, enunciado…" autocomplete="off">
+        </div>
+        <div id="${wrapId}"></div>
+        <button class="btn-limpiar" id="${limpiarId}" style="display:none">Limpiar filtros</button>
+      </div>
+      ${!isMobile ? '<button class="buscador-toggle" id="buscador-toggle"></button>' : ''}
+    `;
+
+    document.getElementById(searchId).addEventListener('input', e => {
+      this.searchQuery = e.target.value.trim();
+      // Sincronizar ambos inputs
+      ['search-input', 'search-input-m'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.id !== searchId) el.value = this.searchQuery;
+      });
+      this.refreshPanel();
+      this.applyAndRender();
+      this.updateURL();
+    });
+
+    document.getElementById(limpiarId).addEventListener('click', () => {
+      this.selected = { materia: null, tema: null, dificultad: null };
+      this.searchQuery = '';
+      ['search-input', 'search-input-m'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      this.refreshPanel();
+      this.applyAndRender();
+      this.updateURL();
+    });
+
+    if (!isMobile) {
+      const toggleBtn = document.getElementById('buscador-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          document.getElementById('buscador-panel').classList.toggle('collapsed');
+        });
+      }
+    }
+  },
+
   refreshPanel() {
-    const wrap = document.getElementById('filtros-wrap');
+    this._refreshWrap('filtros-wrap', 'btn-limpiar');
+    this._refreshWrap('filtros-wrap-m', 'btn-limpiar-m');
+  },
+
+  _refreshWrap(wrapId, limpiarId) {
+    const wrap = document.getElementById(wrapId);
+    if (!wrap) return;
     wrap.innerHTML = '';
 
     const secciones = [
@@ -186,7 +188,7 @@ const SearchEngine = {
           e.stopPropagation();
           this.selected[key] = op;
           if (key === 'materia') this.selected.tema = null;
-          this.openSections.delete(key);       // cerrar al seleccionar
+          this.openSections.delete(key);
           this.refreshPanel();
           this.applyAndRender();
           this.updateURL();
@@ -210,12 +212,11 @@ const SearchEngine = {
         }
       });
 
-      // Navegación con teclado
       header.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           header.click();
-        } else if ((e.key === 'ArrowDown') && this.openSections.has(key)) {
+        } else if (e.key === 'ArrowDown' && this.openSections.has(key)) {
           e.preventDefault();
           const first = lista.querySelector('.filtro-opcion');
           if (first) first.focus();
@@ -223,16 +224,15 @@ const SearchEngine = {
       });
 
       lista.addEventListener('keydown', e => {
-        const opciones = Array.from(lista.querySelectorAll('.filtro-opcion'));
-        const idx = opciones.indexOf(document.activeElement);
+        const items = Array.from(lista.querySelectorAll('.filtro-opcion'));
+        const idx = items.indexOf(document.activeElement);
         if (e.key === 'ArrowDown') {
           e.preventDefault();
-          const next = opciones[idx + 1];
-          if (next) next.focus();
+          if (items[idx + 1]) items[idx + 1].focus();
         } else if (e.key === 'ArrowUp') {
           e.preventDefault();
-          if (idx === 0) { header.focus(); }
-          else if (opciones[idx - 1]) opciones[idx - 1].focus();
+          if (idx === 0) header.focus();
+          else if (items[idx - 1]) items[idx - 1].focus();
         } else if (e.key === 'Escape') {
           this.openSections.delete(key);
           lista.style.display = 'none';
@@ -250,12 +250,13 @@ const SearchEngine = {
     });
 
     const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
-    document.getElementById('btn-limpiar').style.display = tieneAlgo ? 'block' : 'none';
+    const limpiarBtn = document.getElementById(limpiarId);
+    if (limpiarBtn) limpiarBtn.style.display = tieneAlgo ? 'block' : 'none';
   },
 
   // ─── Resultados ────────────────────────────────────────
 
-  closeExercise() {
+  applyAndRender() {
     if (document.body.classList.contains('ejercicio-abierto')) {
       document.body.classList.remove('ejercicio-abierto');
       const main = document.querySelector('main');
@@ -264,13 +265,12 @@ const SearchEngine = {
           <h2>Aviso importante</h2>
           <p>El contenido puede contener errores. Verificar antes de usar como material oficial.</p>
         </section>
+        <div id="filtros-mobile"></div>
         <section class="ejercicios-destacados" id="ejercicios-destacados"></section>
       `;
+      this.buildPanel();
     }
-  },
 
-  applyAndRender() {
-    this.closeExercise();
     const resultado = this.filterData(this.selected, this.searchQuery);
     const tieneAlgo = Object.values(this.selected).some(v => v) || this.searchQuery;
     const ejercicios = tieneAlgo ? resultado : this.randomSample(resultado, 6);
@@ -283,13 +283,14 @@ const SearchEngine = {
 
   highlight(text, query) {
     if (!query) return text;
-    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\  renderResults(ejercicios, esAleatorio = false) {');
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const regex = new RegExp(`(${escaped})`, 'gi');
     return text.replace(regex, '<mark>$1</mark>');
   },
 
   renderResults(ejercicios, esAleatorio = false) {
     const container = document.getElementById('ejercicios-destacados');
+    if (!container) return;
 
     if (ejercicios.length === 0) {
       container.innerHTML = '<p class="no-resultados">No se encontraron ejercicios.</p>';
@@ -300,13 +301,14 @@ const SearchEngine = {
       ? '<p class="resultados-hint">Mostrando ejercicios al azar. Usá los filtros para explorar.</p>'
       : `<p class="resultados-hint">${ejercicios.length} ejercicio${ejercicios.length !== 1 ? 's' : ''} encontrado${ejercicios.length !== 1 ? 's' : ''}.</p>`;
 
+    const q = this.searchQuery;
+
     ejercicios.forEach(ej => {
-      const materia  = this.expand(ej.materia)[0] || '';
-      const origen   = this.expand(ej.origen)[0] || '';
-      const nro      = this.expand(ej.ejercicio_nro)[0] || '';
-      const dif      = this.expand(ej.dificultad)[0] || '';
-      const meta     = [materia, origen, nro ? `Ej. ${nro}` : ''].filter(Boolean).join(' · ');
-      const q = this.searchQuery;
+      const materia = this.expand(ej.materia)[0] || '';
+      const origen  = this.expand(ej.origen)[0] || '';
+      const nro     = this.expand(ej.ejercicio_nro)[0] || '';
+      const dif     = this.expand(ej.dificultad)[0] || '';
+      const meta    = [materia, origen, nro ? `Ej. ${nro}` : ''].filter(Boolean).join(' · ');
 
       const btn = document.createElement('button');
       btn.className = 'tarjeta-ejercicio-link';
@@ -343,7 +345,7 @@ const SearchEngine = {
     };
   },
 
-  // ─── URL state ────────────────────────────────────────
+  // ─── URL state ─────────────────────────────────────────
 
   updateURL() {
     const params = new URLSearchParams();
@@ -366,8 +368,10 @@ const SearchEngine = {
     this.selected.tema       = params.get('tema')       || null;
     this.selected.dificultad = params.get('dificultad') || null;
     this.searchQuery         = params.get('q')          || '';
-    const inp = document.getElementById('search-input');
-    if (inp) inp.value = this.searchQuery;
+    ['search-input', 'search-input-m'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = this.searchQuery;
+    });
     this.refreshPanel();
     this.applyAndRender();
   },
