@@ -3,93 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>f9g3h</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
   <style>
-    * { box-sizing: border-box; }
-    html { overflow: hidden; }
-    body {
-      font-family: Georgia, serif;
-      max-width: 860px;
-      margin: 40px auto;
-      padding: 0 24px 60px;
-      color: #111;
-      line-height: 1.8;
-    }
-    h2 {
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      border-bottom: 2px solid #111;
-      padding-bottom: 5px;
-      margin-top: 2.2rem;
-    }
-    .bloque { margin-top: 12px; padding: 0 4px; }
-    .nota {
-      border-left: 3px solid #555;
-      padding: 6px 14px;
-      margin: 14px 0;
-      font-style: italic;
-      font-size: .97rem;
-    }
-    .chiste {
-      font-style: italic;
-      font-size: .92rem;
-      color: #444;
-      margin-top: 4px;
-    }
-    .dos-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-top: 14px;
-      border: 1px solid #aaa;
-    }
-    .col-header {
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-family: sans-serif;
-      font-weight: bold;
-      padding: 6px 14px;
-      border-bottom: 1px solid #aaa;
-    }
-    .col-desarrollo { border-right: 1px solid #aaa; }
-    .paso-dev {
-      padding: 12px 16px;
-      border-bottom: 1px dashed #ccc;
-      border-right: 1px solid #aaa;
-      font-size: .97rem;
-    }
-    .paso-dev:last-child { border-bottom: none; }
-    .paso-just {
-      padding: 12px 16px;
-      border-bottom: 1px dashed #ccc;
-      font-size: .93rem;
-      color: #333;
-    }
-    .paso-just:last-child { border-bottom: none; }
-    .resultado-final {
-      border: 2px solid #111;
-      padding: 16px 22px;
-      margin-top: 20px;
-      font-size: 1.02rem;
-    }
-    .subtitulo-seccion {
-      margin-top: 20px;
-      font-family: sans-serif;
-      font-size: .85rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
+    /* estilos propios de este ejercicio, si aplica */
   </style>
+
   <script>
     window.EJERCICIO = {
       id: "f9g3h",
       materia: "Cálculo I",
       origen: "PR2",
       ejercicio_nro: "15f",
-      tema: ["funciones crecientes y decrecientes", "monotonía", "función hiperbólica racional"],
+      tema: ["funciones"],
       dificultad: ["intermedio", "medio", "moderado"],
-      seo_keywords: ["función decreciente racional 1 sobre x", "monotonía función hipérbola", "demostrar decreciente cálculo 1"],
+      seo_keywords: [
+        "función decreciente racional 1 sobre x",
+        "monotonía función hipérbola",
+        "demostrar decreciente cálculo 1"
+      ],
+      tipo_solucion: "subcasos",
       fecha: "2026-03-17",
       autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
     };
@@ -103,6 +37,7 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
 </head>
 <body>
 
@@ -114,21 +49,25 @@
 
 <h2>Antes de calcular</h2>
 <div class="bloque">
-  <p>El dominio de $f$ es $\mathbb{R} \setminus \{2\}$, es decir, todos los reales excepto $x = 2$. Eso divide el dominio en dos partes separadas: $(-\infty, 2)$ y $(2, +\infty)$. La demostración hay que hacerla dentro de cada parte por separado, porque no tiene sentido comparar un valor de un lado con un valor del otro lado: la función no está definida en $x = 2$ y no se puede "cruzar".</p>
+  <p>El dominio de $f$ es $\mathbb{R} \setminus \{2\}$: todos los reales excepto $x = 2$. Ese hueco divide el dominio en dos partes separadas, $(-\infty, 2)$ y $(2, +\infty)$, y la demostración hay que hacerla dentro de cada parte por separado. No tiene sentido comparar un valor de un lado con uno del otro: la función no está definida en $x = 2$ y no se puede cruzar.</p>
 
   <div class="nota">
-    Cuando el dominio tiene un hueco, la monotonía se demuestra en cada intervalo del dominio por separado. En cada uno, el esquema es el mismo de siempre.
+    Cuando el dominio tiene un hueco, la monotonía se demuestra en cada intervalo por separado. En cada uno, el esquema es el mismo de siempre: tomar $x_1 < x_2$, calcular $f(x_1) - f(x_2)$ y ver su signo.
   </div>
 
-  <p>Para restar las dos fracciones vamos a usar el denominador común $(x_1 - 2)(x_2 - 2)$, y el signo de ese producto va a depender de en qué intervalo estemos.</p>
+  <p>Para restar las dos fracciones se usa denominador común $(x_1 - 2)(x_2 - 2)$. El signo de ese producto depende de en qué intervalo estén los puntos, y ahí es donde los dos casos se separan.</p>
 
-  <p class="chiste">Una función que sube cuando $x$ sube debería ser creciente. Pero acá $f$ baja en los dos trozos. Hay que demostrarlo en cada uno.</p>
+  <p class="chiste">Una función que baja en dos trozos no baja en el dominio completo. Matemáticamente, eso importa.</p>
 </div>
 
-<h2>Manos a la obra</h2>
+<h2>Un dato que cambia todo</h2>
+<div class="bloque dato-curioso">
+  <p>Que una función sea decreciente en cada trozo de su dominio no implica que sea decreciente en el dominio completo. Para que una función sea decreciente en un conjunto, cualquier par de puntos de ese conjunto debe cumplir la condición. Si los intervalos están desconectados, siempre es posible tomar un punto de cada trozo y encontrar que la condición falla: por ejemplo, $f(1) = -1$ y $f(3) = 1$, con $1 < 3$ pero $f(1) < f(3)$. Por eso en este tipo de ejercicios el resultado final no puede decir simplemente "es decreciente", sino que debe aclarar en qué intervalos.</p>
+</div>
 
-<p class="subtitulo-seccion">Caso 1: $x_1, x_2 \in (-\infty, 2)$</p>
+<h2>Vamos por partes</h2>
 
+<p class="subcaso">Caso 1 — $x_1, x_2 \in (-\infty, 2)$</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -169,11 +108,10 @@
   </div>
 
   <div class="paso-dev">
-    $x_1 < 2$ y $x_2 < 2$<br>
-    $\Rightarrow x_1 - 2 < 0$ y $x_2 - 2 < 0$
+    $x_1 - 2 < 0 \;$ y $\; x_2 - 2 < 0$
   </div>
   <div class="paso-just">
-    Ambos valores están a la izquierda de $2$, así que ambos factores del denominador son negativos.
+    Ambos están a la izquierda de $2$: los dos factores del denominador son negativos.
   </div>
 
   <div class="paso-dev">
@@ -187,19 +125,18 @@
     $f(x_1) - f(x_2) = \dfrac{x_2-x_1}{(x_1-2)(x_2-2)} > 0$
   </div>
   <div class="paso-just">
-    Positivo sobre positivo da positivo.
+    Positivo sobre positivo: el cociente es positivo.
   </div>
 
   <div class="paso-dev">
-    $f(x_1) > f(x_2)$
+    $\therefore\; x_1 < x_2 \Rightarrow f(x_1) > f(x_2)$
   </div>
   <div class="paso-just">
-    $f$ es decreciente en $(-\infty, 2)$.
+    $f$ es estrictamente decreciente en $(-\infty, 2)$.
   </div>
 </div>
 
-<p class="subtitulo-seccion">Caso 2: $x_1, x_2 \in (2, +\infty)$</p>
-
+<p class="subcaso">Caso 2 — $x_1, x_2 \in (2, +\infty)$</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -226,11 +163,10 @@
   </div>
 
   <div class="paso-dev">
-    $x_1 > 2$ y $x_2 > 2$<br>
-    $\Rightarrow x_1 - 2 > 0$ y $x_2 - 2 > 0$
+    $x_1 - 2 > 0 \;$ y $\; x_2 - 2 > 0$
   </div>
   <div class="paso-just">
-    Ambos valores están a la derecha de $2$, así que ambos factores del denominador son positivos.
+    Ambos están a la derecha de $2$: los dos factores del denominador son positivos.
   </div>
 
   <div class="paso-dev">
@@ -244,38 +180,47 @@
     $f(x_1) - f(x_2) = \dfrac{x_2-x_1}{(x_1-2)(x_2-2)} > 0$
   </div>
   <div class="paso-just">
-    Positivo sobre positivo da positivo.
+    Positivo sobre positivo: el cociente es positivo.
   </div>
 
   <div class="paso-dev">
-    $f(x_1) > f(x_2)$
+    $\therefore\; x_1 < x_2 \Rightarrow f(x_1) > f(x_2)$
   </div>
   <div class="paso-just">
-    $f$ es decreciente en $(2, +\infty)$.
+    $f$ es estrictamente decreciente en $(2, +\infty)$.
   </div>
 </div>
 
 <h2>Comprobemos con un ejemplo</h2>
 <div class="bloque">
-  <p>Un par de valores en cada intervalo:</p>
-  <p>$x_1 = 0 < x_2 = 1$, ambos en $(-\infty, 2)$:</p>
-  <p>$f(0) = \frac{1}{-2} = -0.5 \quad$ y $\quad f(1) = \frac{1}{-1} = -1$</p>
-  <p>$f(0) = -0.5 > -1 = f(1)$ ✓: cuando $x$ subió, $f$ bajó.</p>
-  <p>$x_1 = 3 < x_2 = 6$, ambos en $(2, +\infty)$:</p>
-  <p>$f(3) = \frac{1}{1} = 1 \quad$ y $\quad f(6) = \frac{1}{4} = 0.25$</p>
-  <p>$f(3) = 1 > 0.25 = f(6)$ ✓: cuando $x$ subió, $f$ bajó.</p>
+  <p>En $(-\infty, 2)$, con $x_1 = 0 < x_2 = 1$:</p>
+  <p>$f(0) = \dfrac{1}{-2} = -0.5 \qquad f(1) = \dfrac{1}{-1} = -1$</p>
+  <p>$f(0) = -0.5 > -1 = f(1)$ ✓</p>
+  <p>En $(2, +\infty)$, con $x_1 = 3 < x_2 = 6$:</p>
+  <p>$f(3) = \dfrac{1}{1} = 1 \qquad f(6) = \dfrac{1}{4} = 0.25$</p>
+  <p>$f(3) = 1 > 0.25 = f(6)$ ✓</p>
 </div>
 
 <div class="resultado-final">
   <strong>Resultado.</strong> $f(x) = \dfrac{1}{x-2}$ es $\boxed{\text{estrictamente decreciente}}$ en cada intervalo de su dominio.
   <br><br>
-  Es decreciente en $(-\infty, 2)$ y decreciente en $(2, +\infty)$, por separado.
-  No se puede decir que es decreciente en todo su dominio junto, porque los dos intervalos están desconectados.
+  Es decreciente en $(-\infty, 2)$ y decreciente en $(2, +\infty)$, por separado. No se puede afirmar que es decreciente en todo su dominio, porque los dos intervalos están desconectados.
 </div>
 
 <h2>¿Dónde ya existe esto?</h2>
-<div class="bloque">
-  <p>El detalle final del resultado, que la función es decreciente en cada trozo pero no en el dominio completo, tiene un paralelo directo en programación: una función puede ser correcta dentro de su rango de entrada válido y romperse completamente fuera de él. Un algoritmo que ordena correctamente listas de hasta 1000 elementos no necesariamente se comporta bien con listas más grandes si hay un desbordamiento de memoria en el medio. La discontinuidad en $x = 2$ es exactamente eso: una barrera que separa dos mundos donde la función se comporta bien, pero que no se pueden mezclar. Ignorar ese hueco y tratar el dominio como uno solo sería el equivalente matemático de un bug por desbordamiento.</p>
+<div class="bloque bloque-copiable">
+  <p>El hecho de que una función sea decreciente en cada trozo de su dominio pero no en el dominio completo tiene un paralelo directo en programación: una función puede comportarse correctamente dentro de su rango de entrada válido y producir resultados incorrectos fuera de él. Un algoritmo que ordena listas correctamente hasta cierto tamaño no necesariamente se comporta igual si hay un desbordamiento de memoria en el medio. La discontinuidad en $x = 2$ es exactamente eso: una barrera que separa dos zonas donde la función opera bien, pero que no se pueden mezclar. Ignorar ese hueco y tratar el dominio como uno solo sería el equivalente matemático de un bug por no validar los límites de entrada.</p>
+</div>
+
+<h2>Para seguir pensando</h2>
+<div class="preguntas">
+  <ol id="lista-preguntas">
+    <li><span>Si una función es decreciente en cada intervalo de su dominio por separado, ¿puede no ser decreciente en el dominio completo? ¿Qué condición faltaría para que lo fuera?</span></li>
+    <li><span>¿Qué pasa con la monotonía de $f(x) = \frac{1}{x-2}$ si se restringe el dominio a un único intervalo, por ejemplo solo $(2, +\infty)$? ¿Cambia la conclusión?</span></li>
+    <li><span>La función $f(x) = \frac{1}{x-2}$ tiene una asíntota vertical en $x = 2$. ¿Tiene alguna relación esa asíntota con el hecho de que el dominio esté partido en dos?</span></li>
+    <li><span>¿Es posible demostrar que $f(x) = \frac{1}{x-2}$ es decreciente en cada intervalo usando derivadas? ¿Qué condición sobre $f'(x)$ habría que verificar?</span></li>
+    <li><span>Si se define $h(x) = \frac{1}{(x-2)^2}$, ¿esa función es creciente o decreciente en cada intervalo de su dominio? ¿Por qué el resultado cambia respecto a $\frac{1}{x-2}$?</span></li>
+  </ol>
 </div>
 
 </body>
