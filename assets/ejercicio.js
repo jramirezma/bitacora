@@ -36,7 +36,10 @@ function _flashCopy(btn, texto) {
 }
 
 function copiarEnunciado(btn) {
-  const texto = btn.closest('.ejercicio').querySelector('p').textContent.trim();
+  // Lee el LaTeX crudo guardado antes de que MathJax procese el DOM,
+  // en lugar de textContent (que devuelve el texto Unicode renderizado).
+  const el = btn.closest('.ejercicio');
+  const texto = el.dataset.latex || el.querySelector('p').textContent.trim();
   _flashCopy(btn, texto);
 }
 
@@ -57,6 +60,18 @@ function copiar(btn) {
   _flashCopy(btn, texto);
 }
 
+// ─── GUARDAR LATEX CRUDO ANTES DE MATHJAX ────────────────
+
+function guardarLatexCrudo() {
+  document.querySelectorAll('.ejercicio').forEach(el => {
+    const p = el.querySelector('p');
+    if (p) el.dataset.latex = p.innerHTML
+      .replace(/<[^>]+>/g, '')   // quita etiquetas HTML residuales
+      .replace(/\s+/g, ' ')      // colapsa whitespace
+      .trim();
+  });
+}
+
 // ─── JUSTIFICACIÓN EXPANDIBLE EN MÓVIL ───────────────────
 
 function initJustificaciones() {
@@ -66,14 +81,12 @@ function initJustificaciones() {
     const devs  = Array.from(grid.querySelectorAll('.paso-dev'));
     const justs = Array.from(grid.querySelectorAll('.paso-just'));
 
-    // Reorganizar el DOM: insertar cada just inmediatamente después de su dev
     devs.forEach((dev, i) => {
       const just = justs[i];
       if (!just) return;
       dev.after(just);
     });
 
-    // Ahora sí, conectar cada par
     devs.forEach((dev, i) => {
       const just = justs[i];
       if (!just) return;
@@ -87,13 +100,11 @@ function initJustificaciones() {
         if (e.target.closest('.copy-btn')) return;
         const abierto = dev.classList.contains('abierto');
 
-        // Cerrar todos los demás en este grid
         devs.forEach((d, j) => {
           d.classList.remove('abierto');
           if (justs[j]) justs[j].classList.remove('visible');
         });
 
-        // Abrir este si estaba cerrado
         if (!abierto) {
           dev.classList.add('abierto');
           just.classList.add('visible');
@@ -107,6 +118,9 @@ function initJustificaciones() {
 // ─── AUTO INIT ────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+  // CRÍTICO: guardar el LaTeX ANTES de que MathJax reescriba el DOM
+  guardarLatexCrudo();
+
   inyectarSymbol();
 
   document.querySelectorAll('.ejercicio').forEach(el => {

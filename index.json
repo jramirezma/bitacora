@@ -1039,9 +1039,7 @@
     "origen": "PR2",
     "ejercicio_nro": "15e",
     "tema": [
-      "funciones crecientes y decrecientes",
-      "monotonía",
-      "función exponencial"
+      "funciones"
     ],
     "dificultad": [
       "intermedio",
@@ -1050,9 +1048,10 @@
     ],
     "seo_keywords": [
       "función creciente exponencial",
-      "monotonía x más e a la x",
-      "demostrar creciente cálculo 1"
+      "monotonía función suma",
+      "demostrar función creciente cálculo 1"
     ],
+    "tipo_solucion": "algebraico",
     "fecha": "2026-03-17",
     "autor": {
       "nombre": "Claude",
@@ -1823,7 +1822,7 @@
       "CALCULO I"
     ],
     "origen": [
-      "Práctica 1"
+      "PR1"
     ],
     "ejercicio_nro": [
       "30"
@@ -1843,8 +1842,7 @@
     "seo_keywords": [
       "cota superior conjunto",
       "supremo conjunto real",
-      "máximo función acotada",
-      "cálculo 1 UMSA"
+      "máximo función acotada"
     ],
     "fecha": "2026-03-06",
     "autor": {
@@ -1857,11 +1855,7 @@
   {
     "id": "a8f1b",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -1903,11 +1897,7 @@
   {
     "id": "b3d9a",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -1949,11 +1939,7 @@
   {
     "id": "b4e2a",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2033,11 +2019,7 @@
   {
     "id": "c2e7f",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2118,11 +2100,7 @@
   {
     "id": "c7d1f",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2166,11 +2144,7 @@
   {
     "id": "d5a3e",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2248,11 +2222,7 @@
   {
     "id": "d6c4e",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2296,11 +2266,7 @@
   {
     "id": "e4b6c",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2378,11 +2344,7 @@
   {
     "id": "e9b3d",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2426,11 +2388,7 @@
   {
     "id": "f2a8c",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2473,11 +2431,7 @@
   {
     "id": "f7c2b",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2519,11 +2473,7 @@
   {
     "id": "g3d8a",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2565,11 +2515,7 @@
   {
     "id": "h1e5d",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -2611,11 +2557,7 @@
   {
     "id": "i2f4c",
     "materia": [
-      "Cálculo I",
-      "MAT-132",
-      "INF-115",
-      "Análisis matemático",
-      "Cálculo 1"
+      "CALCULO I"
     ],
     "origen": [
       "Guía de prácticas",
@@ -3231,9 +3173,7 @@
   {
     "id": "b7e2a",
     "materia": [
-      "Análisis Matemático",
-      "Cálculo 1",
-      "Matemáticas"
+      "CALCULO I"
     ],
     "tema": [
       "Inecuaciones con valor absoluto",
@@ -3736,7 +3676,7 @@
   {
     "id": "e1x8z",
     "materia": [
-      "Matemáticas I"
+      "ALGEBRA"
     ],
     "tema": [
       "Conjuntos"
