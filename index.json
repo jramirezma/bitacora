@@ -1068,9 +1068,7 @@
     "origen": "PR2",
     "ejercicio_nro": "15f",
     "tema": [
-      "funciones crecientes y decrecientes",
-      "monotonía",
-      "función hiperbólica racional"
+      "funciones"
     ],
     "dificultad": [
       "intermedio",
@@ -1082,6 +1080,7 @@
       "monotonía función hipérbola",
       "demostrar decreciente cálculo 1"
     ],
+    "tipo_solucion": "subcasos",
     "fecha": "2026-03-17",
     "autor": {
       "nombre": "Claude",
@@ -1098,9 +1097,7 @@
     "origen": "PR2",
     "ejercicio_nro": "9",
     "tema": [
-      "composición de funciones",
-      "función lineal",
-      "identificación de coeficientes"
+      "funciones"
     ],
     "dificultad": [
       "intermedio",
@@ -1112,6 +1109,7 @@
       "identificar coeficientes función compuesta",
       "calcular a+b cálculo 1"
     ],
+    "tipo_solucion": "subcasos",
     "fecha": "2026-03-17",
     "autor": {
       "nombre": "Claude",

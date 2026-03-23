@@ -3,93 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>h6j2m</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
   <style>
-    * { box-sizing: border-box; }
-    html { overflow: hidden; }
-    body {
-      font-family: Georgia, serif;
-      max-width: 860px;
-      margin: 40px auto;
-      padding: 0 24px 60px;
-      color: #111;
-      line-height: 1.8;
-    }
-    h2 {
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      border-bottom: 2px solid #111;
-      padding-bottom: 5px;
-      margin-top: 2.2rem;
-    }
-    .bloque { margin-top: 12px; padding: 0 4px; }
-    .nota {
-      border-left: 3px solid #555;
-      padding: 6px 14px;
-      margin: 14px 0;
-      font-style: italic;
-      font-size: .97rem;
-    }
-    .chiste {
-      font-style: italic;
-      font-size: .92rem;
-      color: #444;
-      margin-top: 4px;
-    }
-    .dos-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-top: 14px;
-      border: 1px solid #aaa;
-    }
-    .col-header {
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-family: sans-serif;
-      font-weight: bold;
-      padding: 6px 14px;
-      border-bottom: 1px solid #aaa;
-    }
-    .col-desarrollo { border-right: 1px solid #aaa; }
-    .paso-dev {
-      padding: 12px 16px;
-      border-bottom: 1px dashed #ccc;
-      border-right: 1px solid #aaa;
-      font-size: .97rem;
-    }
-    .paso-dev:last-child { border-bottom: none; }
-    .paso-just {
-      padding: 12px 16px;
-      border-bottom: 1px dashed #ccc;
-      font-size: .93rem;
-      color: #333;
-    }
-    .paso-just:last-child { border-bottom: none; }
-    .resultado-final {
-      border: 2px solid #111;
-      padding: 16px 22px;
-      margin-top: 20px;
-      font-size: 1.02rem;
-    }
-    .subtitulo-seccion {
-      margin-top: 20px;
-      font-family: sans-serif;
-      font-size: .85rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
+    /* estilos propios de este ejercicio, si aplica */
   </style>
+
   <script>
     window.EJERCICIO = {
       id: "h6j2m",
       materia: "Cálculo I",
       origen: "PR2",
       ejercicio_nro: "9",
-      tema: ["composición de funciones", "función lineal", "identificación de coeficientes"],
+      tema: ["funciones"],
       dificultad: ["intermedio", "medio", "moderado"],
-      seo_keywords: ["composición función lineal f(f(x))", "identificar coeficientes función compuesta", "calcular a+b cálculo 1"],
+      seo_keywords: [
+        "composición función lineal f(f(x))",
+        "identificar coeficientes función compuesta",
+        "calcular a+b cálculo 1"
+      ],
+      tipo_solucion: "subcasos",
       fecha: "2026-03-17",
       autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
     };
@@ -103,6 +37,7 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
 </head>
 <body>
 
@@ -113,21 +48,25 @@
 
 <h2>¿De qué se trata esto?</h2>
 <div class="bloque">
-  <p>Tenemos una función lineal $f(x) = ax + b$ con dos constantes desconocidas. La condición $f(f(x)) = bx + a$ nos dice cómo se ve la función aplicada dos veces seguidas. La idea es calcular $f(f(x))$ explícitamente, y como el resultado tiene que ser igual a $bx + a$ para todo $x$, los coeficientes de ambos lados deben coincidir exactamente.</p>
+  <p>Tenés una función lineal $f(x) = ax + b$ con dos constantes desconocidas. La condición $f(f(x)) = bx + a$ te dice cómo queda la función cuando se aplica dos veces seguidas. La estrategia es calcular $f(f(x))$ explícitamente y, como ese resultado tiene que coincidir con $bx + a$ para todo $x$, los coeficientes de ambos lados deben ser exactamente iguales.</p>
 
   <div class="nota">
-    Dos polinomios son iguales para todo $x$ si y solo si tienen exactamente los mismos coeficientes. Eso convierte una igualdad de funciones en un sistema de ecuaciones con $a$ y $b$.
+    Dos polinomios son iguales para todo $x$ si y solo si tienen los mismos coeficientes término a término. Eso convierte una igualdad de funciones en un sistema de dos ecuaciones con $a$ y $b$.
   </div>
 
-  <p>Este principio se llama identificación de coeficientes: en lugar de resolver una ecuación con incógnitas numéricas, igualamos los coeficientes del mismo término en ambos lados.</p>
+  <p>Este principio se llama identificación de coeficientes: en lugar de resolver una ecuación con valores numéricos, igualás el coeficiente de $x$ con el coeficiente de $x$, y el término independiente con el término independiente. De ahí salen las dos ecuaciones del sistema.</p>
 
   <p class="chiste">La función se aplica a sí misma y el resultado ya está dado. Solo hay que calcular ese resultado y ver qué condiciones impone.</p>
 </div>
 
-<h2>Vamos por partes</h2>
+<h2>Por si te lo preguntabas</h2>
+<div class="bloque dato-curioso">
+  <p>La composición de una función consigo misma se llama iteración, y aparece en lugares inesperados. Los fractales más conocidos se construyen aplicando una función simple una y otra vez, miles de veces. En ese contexto, la pregunta natural no es "¿cuánto vale $f(f(x))$?" sino "¿hacia dónde converge la secuencia $x, f(x), f(f(x)), \ldots$?". La respuesta depende de los coeficientes de $f$, exactamente el tipo de información que se extrae con identificación de coeficientes.</p>
+</div>
 
-<p class="subtitulo-seccion">Paso 1: calcular f(f(x))</p>
+<h2>Vamos paso a paso</h2>
 
+<p class="subcaso">Paso 1 — calcular $f(f(x))$</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -147,22 +86,21 @@
   </div>
 
   <div class="paso-dev">
-    $f(ax+b) = a(ax+b) + b$
+    $= a(ax+b) + b$
   </div>
   <div class="paso-just">
     Se aplica la regla de $f$: multiplicar el argumento por $a$ y sumar $b$.
   </div>
 
   <div class="paso-dev">
-    $f(f(x)) = a^2x + ab + b$
+    $= a^2x + ab + b$
   </div>
   <div class="paso-just">
-    Se distribuye y se agrupan los términos independientes.
+    Se distribuye $a$ y se agrupan los términos independientes.
   </div>
 </div>
 
-<p class="subtitulo-seccion">Paso 2: identificar coeficientes</p>
-
+<p class="subcaso">Paso 2 — identificar coeficientes</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -171,7 +109,7 @@
     $a^2x + ab + b = bx + a$
   </div>
   <div class="paso-just">
-    Se iguala el resultado obtenido con la condición del enunciado.
+    Se iguala el resultado con la condición del enunciado.
   </div>
 
   <div class="paso-dev">
@@ -189,8 +127,7 @@
   </div>
 </div>
 
-<p class="subtitulo-seccion">Paso 3: resolver el sistema</p>
-
+<p class="subcaso">Paso 3 — resolver el sistema</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -227,12 +164,11 @@
     $a = 0 \qquad$ o $\qquad a = \dfrac{-1 \pm \sqrt{5}}{2}$
   </div>
   <div class="paso-just">
-    Dos casos: $a = 0$ directo, o se aplica la fórmula cuadrática a $a^2 + a - 1 = 0$.
+    Dos casos: $a = 0$ directo, o fórmula cuadrática aplicada a $a^2 + a - 1 = 0$.
   </div>
 </div>
 
-<p class="subtitulo-seccion">Paso 4: calcular a + b en cada caso</p>
-
+<p class="subcaso">Paso 4 — calcular $a + b$ en cada caso</p>
 <div class="dos-col">
   <div class="col-header col-desarrollo">Desarrollo</div>
   <div class="col-header">Justificación</div>
@@ -242,32 +178,30 @@
     $a + b = 0$
   </div>
   <div class="paso-just">
-    Caso trivial: $f(x) = 0$, que efectivamente cumple $f(f(x)) = 0 = bx + a$.
+    Caso trivial: $f(x) = 0$, que cumple $f(f(x)) = 0 = bx + a$.
   </div>
 
   <div class="paso-dev">
     $a = \dfrac{-1+\sqrt{5}}{2}$<br><br>
-    $(-1+\sqrt{5})^2 = 1 - 2\sqrt{5} + 5 = 6 - 2\sqrt{5}$<br><br>
-    $b = a^2 = \dfrac{6-2\sqrt{5}}{4} = \dfrac{3-\sqrt{5}}{2}$
+    $b = a^2 = \dfrac{(-1+\sqrt{5})^2}{4} = \dfrac{6-2\sqrt{5}}{4} = \dfrac{3-\sqrt{5}}{2}$
   </div>
   <div class="paso-just">
-    Se eleva $a$ al cuadrado expandiendo $(-1+\sqrt{5})^2$ con $(p+q)^2 = p^2+2pq+q^2$, luego se simplifica dividiendo por 2.
+    Se eleva $a$ al cuadrado con $(p+q)^2 = p^2+2pq+q^2$ y se simplifica.
   </div>
 
   <div class="paso-dev">
     $a + b = \dfrac{-1+\sqrt{5}}{2} + \dfrac{3-\sqrt{5}}{2} = \dfrac{2}{2} = 1$
   </div>
   <div class="paso-just">
-    Se suman. Los $\sqrt{5}$ se cancelan entre sí.
+    Los $\sqrt{5}$ se cancelan entre sí.
   </div>
 
   <div class="paso-dev">
     $a = \dfrac{-1-\sqrt{5}}{2}$<br><br>
-    $(-1-\sqrt{5})^2 = 1 + 2\sqrt{5} + 5 = 6 + 2\sqrt{5}$<br><br>
-    $b = a^2 = \dfrac{6+2\sqrt{5}}{4} = \dfrac{3+\sqrt{5}}{2}$
+    $b = a^2 = \dfrac{(-1-\sqrt{5})^2}{4} = \dfrac{6+2\sqrt{5}}{4} = \dfrac{3+\sqrt{5}}{2}$
   </div>
   <div class="paso-just">
-    Mismo procedimiento con la otra raíz. El signo del $\sqrt{5}$ cambia pero el resultado tiene la misma forma.
+    Mismo procedimiento con la otra raíz.
   </div>
 
   <div class="paso-dev">
@@ -278,11 +212,11 @@
   </div>
 </div>
 
-<h2>Antes de cerrar, verifiquemos</h2>
+<h2>Una prueba rápida</h2>
 <div class="bloque">
-  <p>Para el caso $a + b = 1$, tomamos la solución $a = \frac{-1+\sqrt{5}}{2}$, $b = \frac{3-\sqrt{5}}{2}$ y verificamos que $a^2 = b$:</p>
-  $$a^2 = \left(\frac{-1+\sqrt{5}}{2}\right)^2 = \frac{1 - 2\sqrt{5} + 5}{4} = \frac{6 - 2\sqrt{5}}{4} = \frac{3-\sqrt{5}}{2} = b \checkmark$$
-  <p>Y verificamos que $ab + b = a$:</p>
+  <p>Para $a = \dfrac{-1+\sqrt{5}}{2}$ y $b = \dfrac{3-\sqrt{5}}{2}$, se verifica que $a^2 = b$:</p>
+  $$a^2 = \left(\frac{-1+\sqrt{5}}{2}\right)^2 = \frac{6 - 2\sqrt{5}}{4} = \frac{3-\sqrt{5}}{2} = b \checkmark$$
+  <p>Y que $ab + b = a$:</p>
   $$b(a+1) = \frac{3-\sqrt{5}}{2} \cdot \frac{1+\sqrt{5}}{2} = \frac{3+3\sqrt{5}-\sqrt{5}-5}{4} = \frac{-2+2\sqrt{5}}{4} = \frac{-1+\sqrt{5}}{2} = a \checkmark$$
 </div>
 
@@ -292,8 +226,19 @@
 </div>
 
 <h2>¿Dónde ya existe esto?</h2>
-<div class="bloque">
-  <p>Identificar coeficientes es exactamente lo que hace un compilador cuando resuelve un sistema de restricciones de tipos. Cuando el compilador ve que dos expresiones deben ser del mismo tipo para todo valor posible, no compara caso por caso: compara las estructuras, igual que acá comparamos los coeficientes de $x$ y los términos independientes por separado. En lenguajes con inferencia de tipos, como Haskell o Rust, el compilador construye ecuaciones sobre los tipos desconocidos y las resuelve, sin que el programador tenga que escribir los tipos explícitamente. La matemática detrás de esa inferencia es la misma idea que aplicamos en este ejercicio.</p>
+<div class="bloque bloque-copiable">
+  <p>Identificar coeficientes es exactamente lo que hace un compilador cuando resuelve un sistema de restricciones de tipos. Cuando el compilador detecta que dos expresiones deben ser del mismo tipo para todo valor posible, no compara caso por caso: compara las estructuras, igual que acá se comparan el coeficiente de $x$ y el término independiente por separado. En lenguajes con inferencia de tipos, como Haskell o Rust, el compilador construye ecuaciones sobre los tipos desconocidos y las resuelve sin que el programador tenga que escribir los tipos explícitamente. La matemática detrás de esa inferencia es la misma idea aplicada en este ejercicio.</p>
+</div>
+
+<h2>Si quieres ir más lejos</h2>
+<div class="preguntas">
+  <ol id="lista-preguntas">
+    <li><span>En este ejercicio, $f(f(x)) = bx + a$ tiene la misma forma que $f(x) = ax + b$ pero con $a$ y $b$ intercambiados. ¿Qué pasa si en cambio se pide que $f(f(x)) = f(x)$ para todo $x$? ¿Qué condición impone eso sobre $a$ y $b$?</span></li>
+    <li><span>La identificación de coeficientes dice que si dos polinomios son iguales para todo $x$, sus coeficientes coinciden. ¿Por qué esa afirmación es verdadera? ¿Qué pasa si solo se sabe que son iguales para un valor particular de $x$?</span></li>
+    <li><span>En la resolución del sistema, se obtiene la ecuación $a(a^2 + a - 1) = 0$. ¿Qué significa geométricamente que $a = 0$ sea una solución? ¿Cómo se ve la función $f(x) = 0x + 0$?</span></li>
+    <li><span>Si $f(x) = ax + b$ y se define $g = f \circ f \circ f$ (la función aplicada tres veces), ¿cuál sería la forma general de $g(x)$? ¿Qué coeficientes tendría en función de $a$ y $b$?</span></li>
+    <li><span>El número $\frac{-1+\sqrt{5}}{2}$ que aparece como solución es la razón áurea menos 1. ¿Tiene alguna propiedad especial que explique por qué aparece naturalmente en este tipo de ecuaciones con autorreferencia?</span></li>
+  </ol>
 </div>
 
 </body>
