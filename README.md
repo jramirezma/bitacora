@@ -1,2 +1,2 @@
-# bitacora
-Registro de ejercicios resueltos a lo largo de la carrera de Informatica
+# 404-experto-no-encontrado
+Registro de ejercicios generados y resueltos con Inteligencia Artificial como entrenamiento para aprender Informatica.
