@@ -278,8 +278,8 @@ mark { background: #fff176; color: inherit; border-radius: 2px; padding: 0 1px; 
   border-radius: var(--border-radius);
 }
 
-body.ejercicio-abierto { overflow: hidden; }
-body.ejercicio-abierto main { overflow: hidden; }
+body.ejercicio-abierto { overflow: auto; }
+body.ejercicio-abierto main { overflow: visible; }
 
 /* ─── MATHJAX ────────────────────────────────────────────── */
 mjx-container { overflow-x: auto; overflow-y: hidden; }

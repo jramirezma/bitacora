@@ -415,7 +415,12 @@ const SearchEngine = {
         const style = doc.createElement('style');
         style.textContent = 'body { margin: 4px !important; padding: 0 !important; }';
         doc.head.appendChild(style);
-        iframe.style.height = doc.documentElement.scrollHeight + 'px';
+        const setHeight = () => {
+          iframe.style.height = doc.documentElement.scrollHeight + 'px';
+        };
+        setHeight();
+        // Re-check tras renderizado de MathJax u otros recursos
+        setTimeout(setHeight, 800);
       } catch { iframe.style.height = '2000px'; }
     };
   },
