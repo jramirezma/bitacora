@@ -3,21 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <!--
+    CONTEXTO DE CARGA:
+    Este archivo se carga dentro de un <iframe> desde un index.html externo.
+    El scroll lo maneja el contenedor, no este documento. No cambiar ese comportamiento.
+
     INSTRUCCIONES PARA LA IA:
     - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres alfanuméricos, ej: "a3f7c").
     - El id en window.EJERCICIO debe ser el mismo hash de 5 caracteres.
-    - La redacción debe ser en español neutro (sin regionalismos).
-    - El enunciado del ejercicio debe copiarse textualmente, sin adiciones ni alteraciones.
-    - El humor y comentarios informales van en el Análisis, nunca en el Enunciado.
-    - Estilo de redacción: palabras simples, como explicándole a alguien que recién empieza.
-      Construir intuición antes del diagrama o el pseudocódigo.
-    - Diagrama de clases: solo nombre, atributos y métodos. Sin colores de fondo.
-      Tipo primero: "float ancho", "boolean esCuadrado()". Visibilidad: - privado, + público.
-    - Pseudocódigo: usar llaves { } para delimitar bloques. Comentarios con //.
-      Columna derecha: una línea de comentario por cada línea de código.
-      Líneas en blanco del código → span con &nbsp; en la columna derecha.
-      No incluir párrafos de texto sueltos entre el encabezado y el bloque de pseudocódigo.
-    - Sin colores de fondo en ningún elemento (apto para impresión sin gastar tinta).
+    - El hash debe generarse de forma que sea único y reproducible para cada ejercicio.
+
+    CRÍTICO: antes de comenzar la resolución, verificar que el usuario haya proporcionado:
+      1. El id del ejercicio (hash de 5 caracteres). Si no fue dado, pedirlo.
+      2. El número de práctica, si el origen es "PR{n}". Si no fue dado, pedirlo.
+    Nunca inventar ni asumir ninguno de estos dos valores.
+
+    CRÍTICO: cada ejercicio es completamente independiente. Nunca mencionar, comparar
+    ni hacer referencia a otros ejercicios de la misma práctica, del mismo tema,
+    ni de ninguna otra fuente. El estudiante lee este archivo solo, sin contexto previo.
+    Si el concepto clave del ejercicio aparece en otro ejercicio, explicarlo desde cero
+    como si fuera la primera vez que el estudiante lo ve.
+
+    CRÍTICO: este archivo nunca incluye código en ningún lenguaje de programación
+    (Java, Python, C++, etc.). La solución llega únicamente hasta el pseudocódigo.
+    Si el enunciado pide "implementar en Java" u otro lenguaje, ignorar esa parte
+    y resolver solo hasta el pseudocódigo.
+
+    REDACCIÓN:
+    - Español neutro. Sin regionalismos.
+    - Segunda persona singular: "tú", "piensas", "defines", "ves". Nunca plural
+      ("piensen", "noten") ni impersonal ("se observa", "cabe notar").
+    - Tono de charla directa, no de clase formal. Como un profe al lado del estudiante.
+      Sin frases solemnes ni de libro de texto. Si suena a manual, reescribirlo.
+    - Palabras simples. Construir intuición antes del diagrama o el pseudocódigo.
+      Si hay un término técnico inevitable, explicarlo en el momento en que aparece.
+    - Metáforas concretas y cotidianas para explicar ideas abstractas. La metáfora
+      va ANTES de los conceptos formales, no después.
+    - El humor es bienvenido en el Análisis y en las justificaciones del pseudocódigo.
+      Tiene que nacer del ejercicio concreto, no ser un remate genérico.
+    - El enunciado se copia textualmente, sin adiciones ni alteraciones.
+      Humor y comentarios informales van en el Análisis, nunca en el Enunciado.
+
+    DIAGRAMA DE CLASES:
+    - Solo nombre de clase, atributos y métodos. Sin colores de fondo.
+    - Tipo primero: "float ancho", "boolean esCuadrado()".
+    - Visibilidad: - privado, + público.
+
+    PSEUDOCÓDIGO:
+    - Usar llaves { } para delimitar bloques. Comentarios con //.
+    - Columna derecha: una línea de comentario por cada línea de código.
+    - Líneas en blanco del código → <span>&nbsp;</span> en la columna derecha.
+    - No incluir párrafos de texto entre el .pseudo-header y el .pseudo-wrap.
+    - Los botones de copiar los inyecta ejercicio.js automáticamente.
+      No agregar botones de copiar manualmente ni scripts inline para eso.
+      Condición: el .block-title debe tener data-target con el id del <pre>.
+
+    SIN COLORES DE FONDO en ningún elemento (apto para impresión).
   -->
   <title>[id de 5 caracteres]</title>
 
@@ -66,75 +106,34 @@
       margin: 18px 0 4px 0;
     }
     .block-title { font-weight: bold; font-size: 13px; font-family: monospace; }
-    .copy-btn {
-      font-family: monospace;
-      font-size: 12px;
-      padding: 4px 12px;
-      border: 1px solid #111;
-      background: #fff;
-      cursor: pointer;
-    }
-    .copy-btn:hover { background: #111; color: #fff; }
 
     hr { border: none; border-top: 1px solid #111; margin: 28px 0; }
   </style>
 
-  <script>
-    window.EJERCICIO = {
-      /*
-        CAMPOS Y REGLAS:
-
-        id
-          Hash de 5 caracteres alfanuméricos. Único y reproducible para cada ejercicio.
-
-        materia
-          Un único string con el nombre de la materia.
-          Ejemplos: "Programación I", "Algoritmos y Estructuras de Datos", "POO"
-
-        origen
-          Un único string. Valores posibles:
-            "PR{n}"  → práctica de la cátedra (ej: "PR1", "PR2")
-            "EX"     → examen
-            "CL"     → ejercicio trabajado en clase
-            "IA"     → ejercicio generado por IA
-
-        ejercicio_nro
-          String que identifica el ejercicio dentro de su origen.
-          Sin incisos: "1" | Con inciso: "1a", "3c" | Sin numeración: null
-
-        paradigma
-          Array de strings. Paradigma(s) involucrado(s).
-          Ejemplos: ["POO"], ["POO", "funcional"], ["estructurado"]
-
-        tema, dificultad, seo_keywords
-          Arrays de strings con mínimo 3 valores cada uno.
-
-        fecha
-          String en formato "yyyy-mm-dd".
-
-        autor
-          Objeto con nombre y modelo.
-      */
-
-      id:            "[hash de 5 caracteres]",
-      materia:       "[nombre de la materia]",
-      origen:        "[PR{n} | EX | CL | IA]",
-      ejercicio_nro: "[ej: 1 | 1a | null]",
-
-      paradigma: ["[POO | estructurado | funcional]"],
-      tema: [
-        "[nombre formal del tema]",
-        "[nombre alternativo o coloquial]",
-        "[concepto relacionado]"
-      ],
-      dificultad: ["[basico | intermedio | avanzado]", "[sinonimo]", "[sinonimo]"],
-      seo_keywords: ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
-      fecha:  "[yyyy-mm-dd]",
-      autor:  { nombre: "[nombre]", modelo: "[modelo]" }
-    };
-  </script>
+  <script src="../assets/ejercicio.js"></script>
 </head>
 <body>
+
+  <!--
+    El h2 de cada sección NO es fijo. Elegir el que mejor suene según el ejercicio.
+    Ejemplos por sección:
+
+    Enunciado:      "El problema", "Lo que nos piden", "El ejercicio"
+    Análisis:       "¿De qué se trata esto?", "Antes de codear", "Entendamos el problema",
+                    "¿Qué hay que ver acá?", "El mapa antes del territorio"
+    Dato curioso:   "Algo que vale la pena saber", "Dato de color", "Antes de resolver, esto:",
+                    "Un dato que cambia todo", "Por si te lo preguntabas"
+    Diseño:         "Manos a la obra", "El diseño", "Diagrama y solución"
+    Verificación:   "Probemos con un ejemplo", "Prueba de escritorio", "Tracemos a mano"
+    Informática:    "¿Dónde ya existe esto?", "¿Para qué me sirve esto?",
+                    "¿Dónde vive esto en el código?", "¿Ya usé esto sin saberlo?"
+    Preguntas:      "Para seguir pensando", "Si quieres ir más lejos",
+                    "Preguntas para explorar", "¿Te quedaron dudas? Estas pueden ayudar"
+
+    NUNCA repetir el mismo encabezado en dos secciones del mismo ejercicio.
+    Variar también entre ejercicios distintos para evitar monotonía.
+  -->
+
 
   <!-- ═══════════════════════════════════════════════
        ENUNCIADO
@@ -151,17 +150,32 @@
        Explicar la idea antes de mostrar código o diagrama.
        Usar .nota para el concepto clave.
        Usar .chiste para humor opcional al final.
-       Los h2 no son fijos; elegir el que mejor suene.
-       Ejemplos: "¿De qué se trata esto?", "Antes de codear", "Entendamos el problema"
   ════════════════════════════════════════════════ -->
   <h2>[¿De qué se trata esto? | Antes de codear | Entendamos el problema]</h2>
   <div class="bloque">
-    <p>[Explicación intuitiva. ¿Qué pide el ejercicio? ¿Cómo conviene pensarlo?]</p>
+    <p>[Explicación intuitiva. ¿Qué pide el ejercicio? ¿Cómo conviene pensarlo?
+    Metáforas primero, conceptos formales después.]</p>
     <div class="nota">
       [Idea clave del ejercicio en una o dos oraciones.]
     </div>
-    <p>[Estrategia: qué clases hacen falta, qué responsabilidad tiene cada una, qué relaciones hay entre ellas.]</p>
+    <p>[Estrategia: qué clases hacen falta, qué responsabilidad tiene cada una,
+    qué relaciones hay entre ellas.]</p>
     <p class="chiste">[Comentario humorístico opcional.]</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       DATO CURIOSO — OBLIGATORIO
+       Autocontenido: mencionar el concepto por su nombre dentro del texto.
+       No es teoría del ejercicio: eso va en el Análisis.
+       Conectar con historia, paradoja, aplicación inesperada o vida cotidiana.
+       Uno o dos párrafos. No más.
+       El botón de copiar lo inyecta ejercicio.js automáticamente.
+  ════════════════════════════════════════════════ -->
+  <h2>[Algo que vale la pena saber | Dato de color | Por si te lo preguntabas]</h2>
+  <div class="bloque dato-curioso">
+    <p>[Dato curioso autocontenido. Menciona el concepto por su nombre para que
+    tenga sentido fuera del ejercicio. Sorprende, conecta con algo inesperado.]</p>
   </div>
 
 
@@ -191,7 +205,8 @@
   </div>
 
   <div class="bloque" style="margin-top:14px;">
-    <p>[Explicación del diagrama: visibilidad, encapsulamiento, relaciones entre clases si las hay.]</p>
+    <p>[Explicación del diagrama: visibilidad, encapsulamiento, relaciones entre
+    clases si las hay.]</p>
   </div>
 
   <hr>
@@ -199,17 +214,18 @@
 
   <!-- ═══════════════════════════════════════════════
        PSEUDOCÓDIGO
-       Dos bloques fijos: CLASE y PROGRAMA PRINCIPAL.
-       Cada bloque tiene su propio botón Copiar.
-       Columna derecha: una línea de comentario por cada línea de código.
-       Líneas en blanco del código → <span>&nbsp;</span> en la columna derecha.
-       No agregar párrafos de texto entre el .pseudo-header y el .pseudo-wrap.
+       Dos bloques mínimos: CLASE y PROGRAMA PRINCIPAL.
+       Agregar más bloques si el ejercicio lo requiere.
+
+       CÓMO FUNCIONA EL BOTÓN DE COPIAR:
+       ejercicio.js busca cada .pseudo-header que tenga un .block-title
+       con data-target="[id-del-pre]" e inyecta el botón automáticamente.
+       No agregar botones manualmente ni scripts inline.
   ════════════════════════════════════════════════ -->
 
   <!-- Bloque 1: Clase completa -->
   <div class="pseudo-header">
-    <span class="block-title">CLASE [NombreClase]</span>
-    <button class="copy-btn" onclick="copiar('pseudo-clase', this)">Copiar</button>
+    <span class="block-title" data-target="pseudo-clase">CLASE [NombreClase]</span>
   </div>
   <div class="pseudo-wrap">
     <pre id="pseudo-clase">// Constructor
@@ -270,8 +286,7 @@
 
   <!-- Bloque 2: Programa principal -->
   <div class="pseudo-header">
-    <span class="block-title">PROGRAMA PRINCIPAL</span>
-    <button class="copy-btn" onclick="copiar('pseudo-main', this)">Copiar</button>
+    <span class="block-title" data-target="pseudo-main">PROGRAMA PRINCIPAL</span>
   </div>
   <div class="pseudo-wrap">
     <pre id="pseudo-main">// Instanciar objetos
@@ -318,35 +333,137 @@ SINO
 
 
   <!-- ═══════════════════════════════════════════════
-       RESULTADO FINAL
-       Síntesis clara de lo que se obtuvo/implementó.
+       PRUEBA DE ESCRITORIO — equivalente a la Verificación de cálculo.
+       Ejecutar el pseudocódigo mentalmente con valores concretos.
+       Mostrar qué valores toman las variables paso a paso y cuál es
+       la salida esperada. Verificar al menos un caso "feliz" y,
+       si el ejercicio lo permite, uno que active una condición de borde.
   ════════════════════════════════════════════════ -->
-  <div class="resultado-final">
-    <strong>Resultado.</strong> [Descripción clara de lo que se modeló: clases, atributos, métodos y comportamiento esperado.]
+  <h2>[Probemos con un ejemplo | Prueba de escritorio | Tracemos a mano]</h2>
+  <div class="bloque">
+    <p>[Trazar el pseudocódigo con valores concretos. Mostrar el estado de las
+    variables en cada paso relevante y la salida que produce el programa.]</p>
   </div>
 
 
   <!-- ═══════════════════════════════════════════════
-       ¿Y ESTO PARA QUÉ ME SIRVE?
-       Conexión entre el ejercicio y la programación real.
-       Sin código. Solo texto narrativo.
-       h2 flexible: "¿Y esto para qué me sirve?", "En el mundo real", "¿Por qué me hacen aprender esto?"
+       RESULTADO FINAL
+       Síntesis clara de lo que se obtuvo/implementó.
   ════════════════════════════════════════════════ -->
-  <h2>[¿Y esto para qué me sirve? | En el mundo real | ¿Por qué me hacen aprender esto?]</h2>
-  <div class="bloque">
-    <p>[Conexión entre el concepto del ejercicio y su uso real en programación o en la industria.]</p>
+  <div class="resultado-final">
+    <strong>Resultado.</strong> [Descripción clara de lo que se modeló: clases,
+    atributos, métodos y comportamiento esperado.]
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CONEXIÓN CON LA PROGRAMACIÓN REAL
+       Elegir UNO de estos tres ángulos
+       (dos solo si se complementan sin repetirse):
+
+       1. CONCEPTUAL: la idea del ejercicio ES la misma detrás de algún
+          concepto conocido en programación real.
+          Dirección: diseño → uso real.
+
+       2. INSTRUMENTAL: el patrón o técnica usada aparece como parte
+          de la solución a un problema real.
+          Dirección: pseudocódigo → aplicación concreta.
+
+       3. CAMBIO DE PERSPECTIVA: algo que el estudiante ya hace o ve
+          en programación, que siempre pareció arbitrario, tiene una
+          explicación en el diseño que acaba de resolver.
+          Dirección: uso real → diseño.
+
+       REGLAS:
+       - Sin referencias internas: nombrar el concepto directamente.
+       - Sin código fuente. Solo texto narrativo.
+       - Uno o dos párrafos. No más.
+       - El botón de copiar lo inyecta ejercicio.js automáticamente
+         gracias a la clase .bloque-copiable.
+  ════════════════════════════════════════════════ -->
+  <h2>[¿Dónde ya existe esto? | ¿Para qué me sirve esto? | ¿Ya usé esto sin saberlo?]</h2>
+  <div class="bloque bloque-copiable">
+    <p>[Conexión entre el concepto del ejercicio y su uso real en programación
+    o en la industria. Sin referencias internas: nombrar el concepto directamente.]</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PREGUNTAS PARA SEGUIR PENSANDO — OBLIGATORIA
+       Entre 3 y 5 preguntas. Cada una cubre un tipo distinto:
+       hipotética, de sondeo, de conexión, de generalización, aclaratoria.
+       Cada pregunta debe ser autocontenida: se puede copiar y pegar
+       en un chat de IA sin contexto adicional y la IA entiende de qué trata.
+       Mencionar el concepto explícitamente en la pregunta.
+       NUNCA hacer referencia a otros ejercicios ni a incisos anteriores.
+       Los botones de copiar los inyecta ejercicio.js automáticamente.
+  ════════════════════════════════════════════════ -->
+  <h2>[Para seguir pensando | Si quieres ir más lejos | Preguntas para explorar]</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>[Pregunta autocontenida 1 — hipotética]</span></li>
+      <li><span>[Pregunta autocontenida 2 — de conexión]</span></li>
+      <li><span>[Pregunta autocontenida 3 — de generalización]</span></li>
+    </ol>
   </div>
 
 
   <script>
-    function copiar(id, btn) {
-      const texto = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(texto).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = "¡Copiado!";
-        setTimeout(() => btn.textContent = orig, 2000);
-      });
-    }
+    window.EJERCICIO = {
+      /*
+        CAMPOS Y REGLAS:
+
+        id
+          Hash de 5 caracteres alfanuméricos. Único y reproducible para cada ejercicio.
+          CRÍTICO: si no fue proporcionado por el usuario, pedirlo antes de comenzar.
+          Nunca inventarlo ni reutilizar el de otro ejercicio.
+
+        materia
+          Un único string con el nombre de la materia.
+          Ejemplos: "Programación I", "Algoritmos y Estructuras de Datos", "POO"
+
+        origen
+          Un único string. Valores posibles:
+            "PR{n}"  → práctica de la cátedra (ej: "PR1", "PR2")
+            "EX"     → examen
+            "CL"     → ejercicio trabajado en clase
+            "IA"     → ejercicio generado por IA
+          CRÍTICO: si el origen es "PR{n}" y el número no fue dado, pedirlo.
+
+        ejercicio_nro
+          String que identifica el ejercicio dentro de su origen.
+          Sin incisos: "1" | Con inciso: "1a", "3c" | Sin numeración: null
+
+        paradigma
+          Array de strings. Paradigma(s) involucrado(s).
+          Ejemplos: ["POO"], ["POO", "funcional"], ["estructurado"]
+
+        tema, dificultad, seo_keywords
+          Arrays de strings con mínimo 3 valores cada uno.
+
+        fecha
+          String en formato "yyyy-mm-dd".
+
+        autor
+          Objeto con nombre y modelo.
+      */
+
+      id:            "[hash de 5 caracteres]",
+      materia:       "[nombre de la materia]",
+      origen:        "[PR{n} | EX | CL | IA]",
+      ejercicio_nro: "[ej: 1 | 1a | null]",
+
+      paradigma: ["[POO | estructurado | funcional]"],
+      tema: [
+        "[nombre formal del tema]",
+        "[nombre alternativo o coloquial]",
+        "[concepto relacionado]"
+      ],
+      dificultad: ["[basico | intermedio | avanzado]", "[sinonimo]", "[sinonimo]"],
+      seo_keywords: ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
+      fecha:  "[yyyy-mm-dd]",
+      autor:  { nombre: "[nombre]", modelo: "[modelo]" }
+    };
   </script>
 
 </body>

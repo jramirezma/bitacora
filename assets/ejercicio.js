@@ -36,8 +36,6 @@ function _flashCopy(btn, texto) {
 }
 
 function copiarEnunciado(btn) {
-  // Lee el LaTeX crudo guardado antes de que MathJax procese el DOM,
-  // en lugar de textContent (que devuelve el texto Unicode renderizado).
   const el = btn.closest('.ejercicio');
   const texto = el.dataset.latex || el.querySelector('p').textContent.trim();
   _flashCopy(btn, texto);
@@ -60,14 +58,23 @@ function copiar(btn) {
   _flashCopy(btn, texto);
 }
 
+// ─── COPIAR BLOQUE DE PSEUDOCÓDIGO ────────────────────────
+
+function copiarPseudo(btn) {
+  const id = btn.dataset.target;
+  const pre = id ? document.getElementById(id) : null;
+  if (!pre) return;
+  _flashCopy(btn, pre.innerText.trim());
+}
+
 // ─── GUARDAR LATEX CRUDO ANTES DE MATHJAX ────────────────
 
 function guardarLatexCrudo() {
   document.querySelectorAll('.ejercicio').forEach(el => {
     const p = el.querySelector('p');
     if (p) el.dataset.latex = p.innerHTML
-      .replace(/<[^>]+>/g, '')   // quita etiquetas HTML residuales
-      .replace(/\s+/g, ' ')      // colapsa whitespace
+      .replace(/<[^>]+>/g, '')
+      .replace(/\s+/g, ' ')
       .trim();
   });
 }
@@ -83,8 +90,7 @@ function initJustificaciones() {
 
     devs.forEach((dev, i) => {
       const just = justs[i];
-      if (!just) return;
-      dev.after(just);
+      if (just) dev.after(just);
     });
 
     devs.forEach((dev, i) => {
@@ -115,10 +121,39 @@ function initJustificaciones() {
   });
 }
 
+// ─── INIT PSEUDOCÓDIGO ────────────────────────────────────
+
+function initPseudo() {
+  document.querySelectorAll('.pseudo-header').forEach(header => {
+    const title = header.querySelector('.block-title');
+    if (!title || !title.dataset.target) return;
+    const btn = crearBoton('Copiar pseudocódigo', copiarPseudo);
+    btn.dataset.target = title.dataset.target;
+    header.appendChild(btn);
+  });
+}
+
+// ─── FIGURA DEL CIRCUITO — BOTÓN ABRIR SVG ───────────────
+// Agrega un botón junto al figcaption de cada .circuito-figura
+// para abrir el SVG del circuito en una pestaña aparte.
+
+function initCircuitos() {
+  document.querySelectorAll('.circuito-figura').forEach(figura => {
+    const img     = figura.querySelector('img');
+    const caption = figura.querySelector('figcaption');
+    if (!img || !caption) return;
+
+    const btn = crearBoton('Abrir circuito en pestaña nueva', () => {
+      window.open(img.src, '_blank');
+    });
+    btn.style.cssText = 'margin-left:8px; vertical-align:middle;';
+    caption.appendChild(btn);
+  });
+}
+
 // ─── AUTO INIT ────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
-  // CRÍTICO: guardar el LaTeX ANTES de que MathJax reescriba el DOM
   guardarLatexCrudo();
 
   inyectarSymbol();
@@ -139,5 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     li.appendChild(crearBoton('Copiar pregunta', copiar));
   });
 
+  initPseudo();
+  initCircuitos();
   initJustificaciones();
 });

@@ -1,5 +1,69 @@
 [
   {
+    "id": "h1km1",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "EX",
+    "ejercicio_nro": null,
+    "tema": [
+      "funciones"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "inecuación con raíz cuadrada y denominador",
+      "resolver inecuación raíz sobre x",
+      "inecuación subcasos cálculo 1"
+    ],
+    "tipo_solucion": "subcasos",
+    "fecha": "2026-03-27",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/h1km1.html",
+    "enunciado": "Resolver la inecuación: $$\\frac{\\sqrt{x^2 - 4x + 4}}{-x}"
+  },
+  {
+    "id": "ya2hx",
+    "materia": [
+      "Circuitos Eléctricos"
+    ],
+    "origen": "CL",
+    "ejercicio_nro": null,
+    "tema": [
+      "potencia absorbida",
+      "potencia en circuitos DC",
+      "fuente dependiente de tensión",
+      "ley de Kirchhoff de tensiones",
+      "KVT"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "potencia absorbida circuito",
+      "fuente dependiente tensión",
+      "KVT malla única",
+      "balance de potencia circuito DC",
+      "potencia resistencia fuente dependiente"
+    ],
+    "tipo_solucion": "subcasos",
+    "fecha": "2026-03-26",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/ya2hx.html",
+    "enunciado": "En el circuito de la figura, calcular la potencia que absorbe cada elemento. El circuito contiene una fuente de tensión independiente de 120 V, una resistencia de 30 Ω, una fuente de tensión dependien"
+  },
+  {
     "id": "5s2l3",
     "materia": [
       "Álgebra"
@@ -1773,19 +1837,13 @@
   {
     "id": "b7k2f",
     "materia": [
-      "Álgebra",
-      "Lógica matemática",
-      "Matemática discreta"
+      "ALGEBRA"
     ],
     "origen": [
-      "Práctica Álgebra UMSA",
-      "Práctica",
-      "Guía UMSA"
+      "PR1"
     ],
     "ejercicio_nro": [
-      "23e",
-      "Ejercicio 23(e)",
-      "ej23e"
+      "23e"
     ],
     "tema": [
       "reglas de inferencia",
@@ -1795,15 +1853,12 @@
       "modus tollens"
     ],
     "dificultad": [
-      "intermedio",
-      "medio",
-      "moderado"
+      "intermedio"
     ],
     "seo_keywords": [
       "reglas de inferencia lógica",
       "demostración lógica paso a paso",
       "modus tollens modus ponens",
-      "álgebra UMSA lógica",
       "deducción formal premisas"
     ],
     "fecha": "2026-03-07",

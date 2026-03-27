@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>h1km1</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* estilos propios de este ejercicio, si aplica */
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "h1km1",
+      materia: "Cálculo I",
+      origen: "EX",
+      ejercicio_nro: null,
+      tema: ["funciones"],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "inecuación con raíz cuadrada y denominador",
+        "resolver inecuación raíz sobre x",
+        "inecuación subcasos cálculo 1"
+      ],
+      tipo_solucion: "subcasos",
+      fecha: "2026-03-27",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+<h2>El problema</h2>
+<div class="ejercicio">
+  <p>Resolver la inecuación:
+  $$\frac{\sqrt{x^2 - 4x + 4}}{-x} < 2$$</p>
+</div>
+
+<h2>¿Qué hay que ver acá?</h2>
+<div class="bloque">
+  <p>Antes de operar, hay dos cosas que resolver. Primero: el radicando $x^2 - 4x + 4$ es un trinomio cuadrado perfecto, igual a $(x-2)^2$. Eso significa que la raíz es $\sqrt{(x-2)^2} = |x-2|$. Segundo: el denominador es $-x$, que puede ser positivo o negativo según el signo de $x$. Como el signo del denominador cambia la dirección de la desigualdad al multiplicar, hay que analizar los dos casos por separado.</p>
+
+  <div class="nota">
+    Cuando se multiplica o divide una inecuación por una expresión cuyo signo no es fijo, hay que separar en casos. En cada caso, si el factor es positivo la desigualdad se mantiene; si es negativo, se invierte.
+  </div>
+
+  <p>El dominio exige $-x \neq 0$, es decir $x \neq 0$. Y la raíz siempre existe porque $(x-2)^2 \geq 0$ para todo $x$. Entonces el dominio es $\mathbb{R} \setminus \{0\}$, y ahí se divide en $x < 0$ y $x > 0$.</p>
+
+  <p class="chiste">Una raíz que esconde un cuadrado perfecto adentro. El examen avisa que hay que mirar antes de calcular.</p>
+</div>
+
+<h2>Dato de color</h2>
+<div class="bloque dato-curioso">
+  <p>La identidad $\sqrt{x^2} = |x|$ parece obvia pero tiene una trampa clásica: mucha gente escribe $\sqrt{x^2} = x$ sin pensar. Eso es verdad solo cuando $x \geq 0$. Para $x < 0$, $\sqrt{x^2}$ da un número positivo, pero $x$ es negativo: no pueden ser iguales. El valor absoluto existe exactamente para capturar ese comportamiento: $|x|$ siempre devuelve la distancia al cero, sin importar el signo de $x$.</p>
+</div>
+
+<h2>La demostración</h2>
+
+<p class="subcaso">Simplificación previa</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x^2 - 4x + 4 = (x-2)^2$
+  </div>
+  <div class="paso-just">
+    Trinomio cuadrado perfecto: $(a-b)^2 = a^2 - 2ab + b^2$ con $a=x$, $b=2$.
+  </div>
+
+  <div class="paso-dev">
+    $\sqrt{(x-2)^2} = |x-2|$
+  </div>
+  <div class="paso-just">
+    $\sqrt{u^2} = |u|$ para todo $u \in \mathbb{R}$.
+  </div>
+
+  <div class="paso-dev">
+    La inecuación queda: $\dfrac{|x-2|}{-x} < 2$
+  </div>
+  <div class="paso-just">
+    Se sustituye la raíz simplificada. Dominio: $x \neq 0$.
+  </div>
+</div>
+
+<p class="subcaso">Caso 1 — $x < 0$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x < 0 \Rightarrow -x > 0$
+  </div>
+  <div class="paso-just">
+    El denominador es positivo en este caso.
+  </div>
+
+  <div class="paso-dev">
+    $|x-2| < 2 \cdot (-x)$
+  </div>
+  <div class="paso-just">
+    Se multiplica ambos lados por $-x > 0$: la desigualdad se mantiene.
+  </div>
+
+  <div class="paso-dev">
+    $|x-2| < -2x$
+  </div>
+  <div class="paso-just">
+    Se simplifica el lado derecho.
+  </div>
+
+  <div class="paso-dev">
+    $-(-2x) < x - 2 < -2x$
+  </div>
+  <div class="paso-just">
+    Definición de valor absoluto: $|u| < k \Leftrightarrow -k < u < k$, con $k = -2x > 0$.
+  </div>
+
+  <div class="paso-dev">
+    $2x < x - 2 < -2x$
+  </div>
+  <div class="paso-just">
+    Se simplifica $-(-2x) = 2x$.
+  </div>
+
+  <div class="paso-dev">
+    De $2x < x - 2$: $\quad x < -2$
+  </div>
+  <div class="paso-just">
+    Se resta $x$ en ambos lados.
+  </div>
+
+  <div class="paso-dev">
+    De $x - 2 < -2x$: $\quad 3x < 2 \Rightarrow x < \tfrac{2}{3}$
+  </div>
+  <div class="paso-just">
+    Se suma $2x$ y se suma $2$ en ambos lados.
+  </div>
+
+  <div class="paso-dev">
+    Intersección con $x < 0$: $\quad x < -2$
+  </div>
+  <div class="paso-just">
+    Las tres condiciones juntas: $x < -2$ es la más restrictiva dentro de $x < 0$.
+  </div>
+</div>
+
+<p class="subcaso">Caso 2 — $x > 0$</p>
+<div class="dos-col">
+  <div class="col-header col-desarrollo">Desarrollo</div>
+  <div class="col-header">Justificación</div>
+
+  <div class="paso-dev">
+    $x > 0 \Rightarrow -x < 0$
+  </div>
+  <div class="paso-just">
+    El denominador es negativo en este caso.
+  </div>
+
+  <div class="paso-dev">
+    $|x-2| > 2 \cdot (-x)$
+  </div>
+  <div class="paso-just">
+    Se multiplica ambos lados por $-x < 0$: la desigualdad se invierte.
+  </div>
+
+  <div class="paso-dev">
+    $|x-2| > -2x$
+  </div>
+  <div class="paso-just">
+    Se simplifica el lado derecho.
+  </div>
+
+  <div class="paso-dev">
+    Para $x > 0$: $-2x < 0$
+  </div>
+  <div class="paso-just">
+    El lado derecho es negativo.
+  </div>
+
+  <div class="paso-dev">
+    $|x-2| \geq 0 > -2x$ para todo $x > 0$
+  </div>
+  <div class="paso-just">
+    El valor absoluto es siempre $\geq 0$, que ya supera a cualquier número negativo.
+  </div>
+
+  <div class="paso-dev">
+    La desigualdad se cumple para todo $x > 0$
+  </div>
+  <div class="paso-just">
+    No hay restricción adicional dentro de este caso.
+  </div>
+</div>
+
+<h2>Comprobemos con números</h2>
+<div class="bloque">
+  <p>Caso 1 — un punto que debería cumplir: $x = -3$:</p>
+  <p>$\dfrac{\sqrt{9+12+4}}{3} = \dfrac{\sqrt{25}}{3} = \dfrac{5}{3} \approx 1.67 < 2$ ✓</p>
+  <p>Caso 1 — un punto que no debería cumplir: $x = -1$ (está entre $-2$ y $0$):</p>
+  <p>$\dfrac{\sqrt{1+4+4}}{1} = \dfrac{3}{1} = 3 \not< 2$ ✓</p>
+  <p>Caso 2 — un punto que debería cumplir: $x = 1$:</p>
+  <p>$\dfrac{\sqrt{1-4+4}}{-1} = \dfrac{1}{-1} = -1 < 2$ ✓</p>
+</div>
+
+<div class="resultado-final">
+  <strong>Resultado.</strong> El conjunto solución es:
+  $$\boxed{x \in (-\infty,\, -2) \cup (0,\, +\infty)}$$
+  Es decir: todos los $x$ menores que $-2$, y todos los $x$ positivos.
+</div>
+
+<h2>¿Ya usé esto sin saberlo?</h2>
+<div class="bloque bloque-copiable">
+  <p>La separación por casos según el signo del denominador es exactamente lo que hace cualquier función que necesita saber si dividir "da vuelta" el resultado. En programación, cuando se compara el resultado de una división y el divisor puede ser negativo, ignorar ese signo produce bugs difíciles de detectar: la comparación parece correcta en los tests con valores positivos y falla silenciosamente con negativos. Las funciones de ordenamiento que usan un comparador personalizado tienen este problema con frecuencia: si el comparador devuelve un valor cuyo signo depende de la entrada, la función de sort puede producir resultados incorrectos sin lanzar ningún error.</p>
+</div>
+
+<h2>Preguntas para explorar</h2>
+<div class="preguntas">
+  <ol id="lista-preguntas">
+    <li><span>¿Por qué $\sqrt{x^2} = |x|$ y no simplemente $x$? ¿Para qué valores de $x$ coinciden $\sqrt{x^2}$ y $x$?</span></li>
+    <li><span>Al resolver $\frac{|x-2|}{-x} < 2$, en el caso $x > 0$ la desigualdad se cumple para todo $x$ positivo. ¿Eso siempre pasa cuando el lado derecho tras multiplicar es negativo, o depende de la expresión concreta?</span></li>
+    <li><span>¿Qué cambia en la solución si la inecuación fuera $\frac{\sqrt{x^2-4x+4}}{-x} \leq 2$ (con $\leq$ en lugar de $<$)?</span></li>
+    <li><span>¿Cómo se resolvería la misma inecuación $\frac{\sqrt{x^2-4x+4}}{-x} < 2$ si el radicando fuera $x^2 - 4x + 3$ en lugar de $x^2 - 4x + 4$? ¿Qué cambia en el procedimiento?</span></li>
+    <li><span>Al multiplicar ambos lados de una inecuación por una expresión que puede cambiar de signo, ¿qué error se comete si no se separa en casos? ¿Se puede dar un ejemplo concreto donde ese error lleve a una solución incorrecta?</span></li>
+  </ol>
+</div>
+
+</body>
+</html>

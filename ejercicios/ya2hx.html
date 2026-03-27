@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ya2hx</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* No se requieren estilos adicionales para este ejercicio */
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "ya2hx",
+      materia: "Circuitos Eléctricos",
+      origen: "CL",
+      ejercicio_nro: null,
+      tema: [
+        "potencia absorbida",
+        "potencia en circuitos DC",
+        "fuente dependiente de tensión",
+        "ley de Kirchhoff de tensiones",
+        "KVT"
+      ],
+      dificultad: ["intermedio", "medio", "moderado"],
+      seo_keywords: [
+        "potencia absorbida circuito",
+        "fuente dependiente tensión",
+        "KVT malla única",
+        "balance de potencia circuito DC",
+        "potencia resistencia fuente dependiente"
+      ],
+      tipo_solucion: "subcasos",
+      fecha: "2026-03-26",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>
+      En el circuito de la figura, calcular la potencia que absorbe cada elemento.
+      El circuito contiene una fuente de tensión independiente de 120 V, una resistencia
+      de 30 Ω, una fuente de tensión dependiente de valor \(2V_x\), y una resistencia de 5 Ω.
+      La variable de control \(V_x\) es la tensión en la resistencia de 5 Ω.
+    </p>
+  </div>
+
+  <div class="circuito-wrapper">
+  </div>
+
+	<iframe
+    src="https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgAncDQkPK7Hhp8qVMJDYBnEIOH9aNPCKjgQAMwCGAG0kM2Ad2695YHjIQoobAMYyh5y6d7YLtKLHhgkMGjRR4EBBp8PGwMfxokFlE2LTs5AXsXSzF3eEgwyBRsQgQvbKxIDCUJADcFJWSK5VFaKm8VGAROeIdqqrE4NgB7N0JhKmDSEBRobw9CFAbLYWwemRB+lSHiEbG0yEmkCEt6Od6qJcHIYZgivDApja2R24E2QQWAMQhRD08NyHEIFhAAYQ0AAcNNYAJYAFw0ADtrHpHsIXo1YBAwMiQL8AJJQgAmAFdrJCYXCSiBEalvuiIAAlBiSUGSQmwtgAC1UszYQA&hideMenu=true&hideSidebar=true"
+    width="300"
+    height="300"
+    style="border: none; border-radius: 10px; overflow: hidden;"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen>
+</iframe>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>
+      Acá hay cuatro elementos en serie formando una sola malla: la fuente de 120 V,
+      la resistencia de 30 Ω, la fuente dependiente \(2V_x\), y la resistencia de 5 Ω.
+      Como es una única malla, hay una sola corriente circulando, que llamamos \(I\).
+    </p>
+    <div class="nota">
+      La clave está en identificar \(V_x\) antes de calcular la potencia de la fuente dependiente.
+      \(V_x\) es la caída de tensión en la resistencia de 5 Ω, o sea \(V_x = 5I\).
+      Una vez que tenés \(I\), todo lo demás se calcula directo.
+    </div>
+    <p>
+      Para encontrar \(I\) aplicás la Ley de Kirchhoff de Tensiones (KVT) recorriendo
+      la malla: la suma algebraica de todas las tensiones en el lazo es igual a cero.
+      Las fuentes que "empujan" en el sentido del recorrido suman; las que se oponen,
+      restan. Con \(I\) en la mano, calculás la potencia de cada elemento con
+      \(P = V \cdot I\), y verificás que la suma total sea cero (conservación de energía).
+    </p>
+    <p class="chiste">
+      La fuente dependiente es el elemento más inseguro del circuito: su tensión depende
+      de lo que haga otro. Pura ansiedad de apego.
+    </p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Las fuentes dependientes (o controladas) no son un invento teórico para complicarte
+      la vida: modelan el comportamiento real de transistores y amplificadores operacionales.
+      Cuando un transistor amplifica una señal, lo que hace físicamente es controlar
+      una corriente grande con una señal pequeña, exactamente como una fuente dependiente
+      controla su salida en función de otra variable del circuito. Sin este concepto,
+      no podría analizarse ningún circuito con electrónica activa.
+    </p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Paso 1 — Corriente de malla</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$$ V_x = 5I $$</div>
+    <div class="paso-just">Tensión en la resistencia de 5 Ω por ley de Ohm.</div>
+
+    <div class="paso-dev">$$ -120 + 30I + 2V_x + 5I = 0 $$</div>
+    <div class="paso-just">KVT recorriendo la malla en sentido horario. La fuente de 120 V se resta porque la atravesamos de + a −.</div>
+
+    <div class="paso-dev">$$ -120 + 30I + 2(5I) + 5I = 0 $$</div>
+    <div class="paso-just">Sustitución de \(V_x = 5I\).</div>
+
+    <div class="paso-dev">$$ -120 + 30I + 10I + 5I = 0 $$</div>
+    <div class="paso-just">Expansión del término \(2(5I)\).</div>
+
+    <div class="paso-dev">$$ 45I = 120 $$</div>
+    <div class="paso-just">Agrupación de términos con \(I\).</div>
+
+    <div class="paso-dev">$$ I = \frac{120}{45} = \frac{8}{3} \approx 2{,}67\ \text{A} $$</div>
+    <div class="paso-just">Despejando \(I\).</div>
+
+    <div class="paso-dev">$$ V_x = 5 \cdot \frac{8}{3} = \frac{40}{3} \approx 13{,}33\ \text{V} $$</div>
+    <div class="paso-just">Valor numérico de \(V_x\).</div>
+  </div>
+
+  <p class="subcaso">Paso 2 — Potencia de la fuente independiente (120 V)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$$ P_{120\text{V}} = -V_s \cdot I = -120 \times \frac{8}{3} $$</div>
+    <div class="paso-just">Signo negativo: la corriente sale por el terminal +, así que la fuente suministra potencia.</div>
+
+    <div class="paso-dev">$$ P_{120\text{V}} = -320\ \text{W} $$</div>
+    <div class="paso-just">Absorbe −320 W, o sea suministra 320 W.</div>
+  </div>
+
+  <p class="subcaso">Paso 3 — Potencia de la resistencia de 30 Ω</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$$ P_{30\Omega} = I^2 R = \left(\frac{8}{3}\right)^2 \times 30 $$</div>
+    <div class="paso-just">Las resistencias siempre absorben: \(P = I^2R \geq 0\).</div>
+
+    <div class="paso-dev">$$ P_{30\Omega} = \frac{640}{3} \approx 213{,}3\ \text{W} $$</div>
+    <div class="paso-just">Resultado exacto: \(\tfrac{640}{3}\) W.</div>
+  </div>
+
+  <p class="subcaso">Paso 4 — Potencia de la fuente dependiente (2V<sub>x</sub>)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$$ 2V_x = 2 \times \frac{40}{3} = \frac{80}{3} \approx 26{,}67\ \text{V} $$</div>
+    <div class="paso-just">Tensión de la fuente dependiente con \(V_x\) ya calculado.</div>
+
+    <div class="paso-dev">$$ P_{2V_x} = 2V_x \cdot I = \frac{80}{3} \times \frac{8}{3} $$</div>
+    <div class="paso-just">La corriente entra por el terminal +: la fuente absorbe potencia positiva.</div>
+
+    <div class="paso-dev">$$ P_{2V_x} = \frac{640}{9} \approx 71{,}1\ \text{W} $$</div>
+    <div class="paso-just">Absorbe ≈ 71,1 W.</div>
+  </div>
+
+  <p class="subcaso">Paso 5 — Potencia de la resistencia de 5 Ω</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">$$ P_{5\Omega} = I^2 R = \left(\frac{8}{3}\right)^2 \times 5 $$</div>
+    <div class="paso-just">Resistencia: absorbe potencia positiva.</div>
+
+    <div class="paso-dev">$$ P_{5\Omega} = \frac{320}{9} \approx 35{,}6\ \text{W} $$</div>
+    <div class="paso-just">Resultado exacto: \(\tfrac{320}{9}\) W.</div>
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>
+      La conservación de energía exige que la suma de potencias absorbidas sea exactamente cero.
+      Pasando todo a novenos:
+    </p>
+    <p>
+      $$
+        -\frac{2880}{9} + \frac{1920}{9} + \frac{640}{9} + \frac{320}{9}
+        = \frac{-2880 + 1920 + 640 + 320}{9} = \frac{0}{9} = 0\ \checkmark
+      $$
+    </p>
+    <p>
+      El balance cierra. Lo que suministra la fuente independiente (320 W) es exactamente
+      lo que consumen los tres elementos restantes.
+    </p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    Con \(I = \dfrac{8}{3} \approx 2{,}67\text{ A}\) y \(V_x = \dfrac{40}{3} \approx 13{,}33\text{ V}\):
+    <br><br>
+    \[P_{120\text{V}} = \boxed{-320\ \text{W}} \quad \text{(suministra 320 W)}\]
+    \[P_{30\Omega} = \boxed{\tfrac{640}{3} \approx 213{,}3\ \text{W}} \quad \text{(absorbe)}\]
+    \[P_{2V_x} = \boxed{\tfrac{640}{9} \approx 71{,}1\ \text{W}} \quad \text{(absorbe)}\]
+    \[P_{5\Omega} = \boxed{\tfrac{320}{9} \approx 35{,}6\ \text{W}} \quad \text{(absorbe)}\]
+    <br>
+    Verificación: \(-320 + \tfrac{640}{3} + \tfrac{640}{9} + \tfrac{320}{9} = 0\) ✓
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El balance de potencia que acabás de verificar —lo que entra al sistema es exactamente
+      lo que sale— aparece en programación cada vez que trabajás con sistemas de colas o
+      pipelines de datos. Si la suma de lo que entra no es igual a la suma de lo que sale,
+      hay un bug. En circuitos se llama conservación de energía; en sistemas distribuidos
+      se llama balance de flujo o conservación de mensajes. El principio es idéntico.
+    </p>
+    <p>
+      Las fuentes dependientes modelan exactamente lo que hace un transistor: controlar una
+      señal grande en función de una señal pequeña. Cada vez que usás un amplificador de
+      audio, un regulador de tensión o un driver de LED, hay transistores trabajando como
+      fuentes dependientes debajo del capó.
+    </p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>Si la resistencia de 30 Ω se duplicara a 60 Ω, ¿cómo cambiaría la corriente de malla y la potencia absorbida por cada elemento? ¿Seguiría cerrando el balance de potencia?</span></li>
+      <li><span>En un circuito de malla única con una fuente dependiente de tensión, ¿es posible que la fuente dependiente suministre potencia en lugar de absorberla? ¿De qué depende el signo de su potencia?</span></li>
+      <li><span>¿Qué ocurre con el circuito si el coeficiente de la fuente dependiente crece tanto que anula la resistencia equivalente de la malla? ¿Tiene solución física ese caso?</span></li>
+      <li><span>La Ley de Kirchhoff de Tensiones (KVT) establece que la suma de tensiones en una malla cerrada es cero. ¿Por qué esa ley implica automáticamente que la suma de potencias de todos los elementos también es cero?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

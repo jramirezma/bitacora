@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!--
+    CONTEXTO DE CARGA:
+    Este archivo se carga dentro de un <iframe> desde un index.html externo.
+    El scroll lo maneja el contenedor, no este documento.
+
+    INSTRUCCIONES PARA LA IA:
+    - El <title> debe ser únicamente el id del ejercicio (hash de 5 caracteres).
+    - El id en window.EJERCICIO debe ser el mismo hash.
+    - La redacción debe ser en español neutro, segunda persona singular ("tú").
+    - El enunciado se copia textualmente, sin adiciones ni alteraciones.
+    - Humor y comentarios informales van en el Análisis o en las justificaciones,
+      nunca en el Enunciado.
+    - Cada ejercicio es completamente independiente: nunca mencionar otros
+      ejercicios, incisos anteriores ni el contexto de la práctica.
+
+    GRÁFICA DEL CIRCUITO:
+    - Va como <img> apuntando a un .svg separado, justo después del enunciado.
+    - El archivo .svg se llama igual que el id del ejercicio: [id].svg
+    - Se ubica en la misma carpeta que el .html: src="[id].svg"
+    - El SVG usa los símbolos definidos en ../assets/circuito-simbolos.svg
+      mediante <use href="../assets/circuito-simbolos.svg#c-res" .../>
+    - La grilla base es de 80×80 px por celda.
+    - Las etiquetas de valores y los signos + / − se agregan como <text>
+      directamente en el SVG del circuito, nunca dentro de los símbolos.
+    - Para componentes verticales: transform="translate(X,Y) rotate(90)"
+      donde (X,Y) es la coordenada del terminal izquierdo del símbolo.
+
+    SOLUCIÓN — ESTRUCTURA MIXTA:
+    El tipo_solucion en circuitos es siempre "mixto":
+      1. Bloque de planteo: identificación de incógnitas, método elegido
+         (mallas, nodos, etc.) y el sistema de ecuaciones resultante.
+         Va como párrafos dentro de un <div class="bloque">.
+      2. Una o más tablas .dos-col, una por cada ecuación o subcaso
+         a resolver algebraicamente.
+    El bloque de planteo NO usa la tabla .dos-col: es texto/fórmulas libre.
+
+    CRÍTICO: antes de comenzar, verificar que el usuario haya proporcionado:
+      1. El id del ejercicio (hash de 5 caracteres).
+      2. El número de práctica, si el origen es "PR{n}".
+    Nunca inventar ni asumir ninguno de estos dos valores.
+  -->
+  <title>[id de 5 caracteres]</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* estilos propios de este ejercicio, si aplica */
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      /*
+        CAMPOS HEREDADOS DE LA PLANTILLA DE CÁLCULO — mismas reglas.
+
+        CAMPOS NUEVOS O MODIFICADOS:
+
+        materia
+          Usar el nombre exacto de la materia de circuitos.
+          Ejemplos: "Circuitos Eléctricos I", "Teoría de Circuitos"
+
+        tema
+          Incluir: método de análisis (mallas, nodos, superposición...),
+          tipo de fuente (independiente, dependiente), tipo de circuito
+          (DC, AC, transitorio), y conceptos involucrados (KVT, KCT...).
+
+        tipo_solucion
+          Siempre "mixto" para ejercicios de circuitos.
+      */
+
+      id: "[hash de 5 caracteres]",
+      materia: "[ej: Circuitos Eléctricos I]",
+      origen: "[PR{n} | EX | CL | IA]",
+      ejercicio_nro: "[ej: 1 | 1a | 5b | null]",
+      tema: [
+        "[método de análisis: mallas | nodos | superposición | ...]",
+        "[tipo de fuente: independiente | dependiente | mixto]",
+        "[ley aplicada: KVT | KCT | Thévenin | Norton | ...]",
+        "[tipo de circuito: DC | AC | transitorio]"
+      ],
+      dificultad: [
+        "[basico | intermedio | avanzado]",
+        "[elemental | medio | dificil]",
+        "[introductorio | moderado | complejo]"
+      ],
+      seo_keywords: [
+        "[keyword 1]",
+        "[keyword 2]",
+        "[keyword 3]"
+      ],
+      tipo_solucion: "mixto",
+      fecha: "[yyyy-mm-dd]",
+      autor: { nombre: "[nombre]", modelo: "[modelo]" }
+    };
+  </script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ENUNCIADO
+       CRÍTICO: la clase de este div DEBE ser exactamente "ejercicio".
+  ════════════════════════════════════════════════════════════ -->
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>[Enunciado textual del ejercicio, copiado sin alteraciones.]</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GRÁFICA DEL CIRCUITO
+       - El archivo SVG se llama [id].svg y está en la misma
+         carpeta que este HTML.
+       - El SVG referencia símbolos de ../assets/circuito-simbolos.svg
+       - La clase "circuito-figura" aplica el estilo definido en ejercicio.css.
+       - El atributo alt describe el circuito para accesibilidad.
+  ════════════════════════════════════════════════════════════ -->
+  <figure class="circuito-figura">
+    <img src="[id].svg" alt="[Descripción breve del circuito, ej: malla única con fuente de 120V, resistencias de 30Ω y 5Ω, y fuente dependiente 2Vx]">
+    <figcaption>[Descripción corta del circuito, ej: Malla única — 120 V, 30 Ω, fuente dependiente \(2V_x\), 5 Ω]</figcaption>
+  </figure>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ANÁLISIS
+       Mismas reglas que la plantilla de Cálculo.
+       Agregar aquí: identificación visual del tipo de circuito,
+       qué método conviene usar y por qué, variables a encontrar.
+       NUNCA hacer referencia a otros ejercicios.
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[¿De qué se trata esto? | Antes de calcular | Entendamos el circuito]</h2>
+  <div class="bloque">
+    <p>[Explicación intuitiva: ¿cuántas mallas o nodos hay? ¿qué método conviene y por qué?]</p>
+    <div class="nota">
+      [Idea clave o truco principal del ejercicio.]
+    </div>
+    <p>[Variables a encontrar, convenciones de signo adoptadas, sentido de corrientes.]</p>
+    <p class="chiste">[Comentario humorístico opcional.]</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DATO CURIOSO — obligatorio en todos los ejercicios.
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[Algo que vale la pena saber | Dato de color | Por si te lo preguntabas]</h2>
+  <div class="bloque dato-curioso">
+    <p>[Dato autocontenido. Mencionar el concepto por su nombre.
+    No es un resumen de la teoría del ejercicio. Uno o dos párrafos.]</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SOLUCIÓN — ESTRUCTURA MIXTA
+       Parte A: planteo libre (texto + fórmulas, sin tabla).
+       Parte B: resolución algebraica (tabla .dos-col por subcaso).
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[Manos a la obra | Vamos paso a paso | Ahora sí, a calcular]</h2>
+
+  <!--
+    PARTE A — PLANTEO DEL SISTEMA
+    Identificar incógnitas, escribir las ecuaciones del método elegido
+    (KVT por malla, KCT por nodo, etc.) antes de resolverlas.
+    Este bloque es texto libre con fórmulas MathJax: NO usa .dos-col.
+    Usar <p> para la narrativa y $$ ... $$ para las ecuaciones.
+  -->
+  <div class="bloque circuito-planteo">
+    <p>[Identificación de incógnitas y método. Ej: "El circuito tiene una sola
+    malla, así que hay una única corriente \(I\). Aplicando KVT en sentido horario:"]</p>
+
+    $$[Sistema de ecuaciones planteado. Ej: -V_s + R_1 I + V_{dep} + R_2 I = 0]$$
+
+    <p>[Sustitución de variables de control si hay fuentes dependientes.
+    Ej: "Donde \(V_x = R_2 I\), entonces:"]</p>
+
+    $$[Ecuación con sustitución realizada.]$$
+  </div>
+
+  <!--
+    PARTE B — RESOLUCIÓN ALGEBRAICA
+    Una tabla .dos-col por cada corriente/tensión a despejar,
+    o una por subcaso si el método genera varias ecuaciones independientes.
+    Mismas reglas que la plantilla de Cálculo:
+      .paso-dev → solo expresión matemática
+      .paso-just → justificación en una línea
+  -->
+  <p class="subcaso">[Subcaso 1 — ej: Corriente de malla \(I\)]</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">[Expresión matemática del paso 1]</div>
+    <div class="paso-just">[Justificación del paso 1]</div>
+
+    <div class="paso-dev">[Expresión matemática del paso 2]</div>
+    <div class="paso-just">[Justificación del paso 2]</div>
+
+    <!-- Agregar más pares .paso-dev / .paso-just según sea necesario -->
+  </div>
+
+  <p class="subcaso">[Subcaso 2 — ej: Potencia de cada elemento]</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">[Expresión matemática]</div>
+    <div class="paso-just">[Justificación]</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VERIFICACIÓN
+       En circuitos: verificar balance de potencia (suma = 0),
+       o sustituir la solución en las ecuaciones de malla/nodo
+       y confirmar que se cumple la igualdad.
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[Chequeemos que esto tiene sentido | ¿El resultado aguanta? | Una prueba rápida]</h2>
+  <div class="bloque">
+    <p>[Verificación explícita. En potencias: mostrar que la suma algebraica
+    de todas las potencias absorbidas es cero. En tensiones/corrientes:
+    sustituir en la ecuación de malla o nodo original y verificar la igualdad.]</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> [Enunciado claro y completo, con cada
+    magnitud pedida destacada en \(\boxed{}\).]
+    <br><br>
+    [Tabla de resultados si son varios elementos, o fórmula general si aplica.]
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INFORMÁTICA — dónde aparece esto en programación
+       Mismas reglas que la plantilla de Cálculo.
+       Ángulos posibles para circuitos: modelado de sistemas físicos,
+       grafos y redes, resolución de sistemas lineales, simulación.
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[¿Dónde ya existe esto? | ¿Para qué me sirve esto? | ¿Ya usé esto sin saberlo?]</h2>
+  <div class="bloque bloque-copiable">
+    <p>[Conexión entre el concepto del ejercicio y la programación.
+    Sin referencias internas. Nombrar el concepto directamente.
+    Uno o dos párrafos.]</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PREGUNTAS PARA SEGUIR PENSANDO — obligatorias.
+       Entre 3 y 5 preguntas autocontenidas.
+  ════════════════════════════════════════════════════════════ -->
+  <h2>[Para seguir pensando | Si quieres ir más lejos | Preguntas para explorar]</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>[Pregunta autocontenida 1]</span></li>
+      <li><span>[Pregunta autocontenida 2]</span></li>
+      <li><span>[Pregunta autocontenida 3]</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

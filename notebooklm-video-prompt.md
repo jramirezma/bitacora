@@ -1,16 +1,21 @@
-Objetivo:
-Crear una explicación clara, didáctica y progresiva, como si fuera una clase para estudiantes que están aprendiendo el tema por primera vez.
-Instrucciones:
-1. Analiza el documento y extrae el ejercicio junto con su resolución.
-2. Reestructura la solución para que tenga un orden pedagógico:
-   - Presentación del problema
-   - Interpretación del enunciado
-   - Estrategia de resolución
-   - Desarrollo paso a paso
-   - Conclusión final
-3. Si el documento no explica suficientemente algún paso:
-   - Agrega explicaciones intermedias
-   - Justifica cada procedimiento matemático
-   - Introduce conceptos teóricos necesarios (derivadas, crecimiento, etc.)
-4. Evita saltos lógicos. Cada paso debe ser entendible por sí solo.
-5. Usa ejemplos o analogías simples cuando ayuden a entender mejor.
+Objective:
+Create a clear, didactic, and progressive explanation, as if it were a class for students who are learning the topic for the first time.
+
+Instructions:
+1. Analyze the document and extract the exercise along with its solution.
+2. Restructure the solution implicitly so that it follows a pedagogical order:
+   - Problem presentation
+   - Interpretation of the statement
+   - Resolution strategy
+   - Step-by-step development
+   - Final conclusion
+3. If the document does not sufficiently explain any step:
+   - Add intermediate explanations
+   - Justify each mathematical procedure
+   - Introduce necessary theoretical concepts (derivatives, growth, etc.)
+4. Avoid logical gaps. Each step must be understandable on its own.
+5. Use examples, analogies, and simple metaphors when they help improve understanding.
+
+Format: educational YouTuber-style channel
+Tone: Use Spanish with a randomly selected regional accent in each video. Possible accents include: Spain, Bolivia, Argentina, Chile, Mexico, Colombia, and Peru.
+Ensure the vocabulary, expressions, and pronunciation style match the selected region naturally.
