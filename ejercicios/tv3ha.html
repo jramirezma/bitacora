@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>tv3ha</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "tv3ha",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11j",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite infinito función racional denominador mayor denominador con menos",
+        "límite x tiende a infinito grado 2 sobre grado 4 denominador negativo",
+        "lim x tiende a infinito x cuadrado más x más 4 sobre 3x4 menos 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \frac{x^2 + x + 4}{3x^4 - 1}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>El numerador tiene grado $2$ y el denominador tiene grado $4$. El denominador domina: el cociente tiende a $0$. La única diferencia respecto a la función $\frac{x^2+x+4}{3x^4+1}$ es que el término constante del denominador es $-1$ en lugar de $+1$. Para $x$ grande, esa diferencia es completamente irrelevante — $x^4$ aplasta a $1$ igual que aplasta a $-1$.</p>
+
+    <div class="nota">
+      El signo del término constante no afecta el límite en el infinito. Lo que determina el resultado es la relación entre los grados: grado numerador $<$ grado denominador implica límite $0$.
+    </div>
+
+    <p>La técnica es idéntica: dividir por $x^4$ y observar que todos los términos restantes tienden a $0$. El $-1/x^4$ en el denominador tiende a $0$ exactamente igual que $+1/x^4$.</p>
+
+    <p class="chiste">Un $-1$ peleando contra $3x^4$ cuando $x \to \infty$. El $-1$ no tiene la menor chance. A escalas grandes, cambiar $+1$ por $-1$ en el denominador es como rearreglar los cubitos de hielo en el Titanic.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>El hecho de que el límite sea $0$ independientemente del signo del término constante del denominador refleja una idea general: en el estudio asintótico de funciones, solo los términos de mayor grado importan. Esa idea tiene un nombre formal en teoría de la complejidad computacional: la <em>notación asintótica</em> ignora constantes aditivas y multiplicativas porque para entradas suficientemente grandes son irrelevantes. Dos funciones que difieren solo en una constante aditiva — como $3x^4 + 1$ y $3x^4 - 1$ — tienen exactamente el mismo comportamiento asintótico. Eso es lo que captura la notación $\Theta$: $3x^4 + 1 = \Theta(x^4)$ y $3x^4 - 1 = \Theta(x^4)$, y por lo tanto cualquier cociente formado con ellas tiene el mismo límite en el infinito.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty} \dfrac{x^2 + x + 4}{3x^4 - 1}$
+    </div>
+    <div class="paso-just">
+      Grado numerador $= 2 <$ grado denominador $= 4$: se espera $0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{\dfrac{1}{x^2} + \dfrac{1}{x^3} + \dfrac{4}{x^4}}{3 - \dfrac{1}{x^4}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^4$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{0 + 0 + 0}{3 - 0}$
+    </div>
+    <div class="paso-just">
+      $c/x^k \to 0$ cuando $x \to \infty$ para cualquier $k > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{0}{3} = 0$
+    </div>
+    <div class="paso-just">
+      Aritmética. El signo del $-1$ desaparece junto con él.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow 114/(30000-1) = 114/29999 \approx 0{,}0038$; $x = 100 \Rightarrow 10104/(3\cdot10^8-1) \approx 0{,}0000337$; $x = 1000 \Rightarrow \approx 3{,}37\cdot10^{-7}$. Los valores son prácticamente idénticos a los del inciso anterior con $+1$: la diferencia entre $3x^4+1$ y $3x^4-1$ es invisible a estas escalas.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty} \frac{x^2 + x + 4}{3x^4 - 1} = \boxed{0}.$$
+    El grado del denominador ($4$) supera al del numerador ($2$): el cociente tiende a $0$, independientemente del signo del término constante.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En optimización numérica, cuando se busca el mínimo de una función de costo con muchos parámetros, los términos de regularización — que penalizan la complejidad del modelo — suelen ser constantes aditivas o multiplicativas pequeñas comparadas con el término principal. Para entradas grandes, esos términos de regularización son asintóticamente irrelevantes: no cambian el comportamiento del límite ni la forma de la función en el infinito. Sin embargo, para valores pequeños o moderados de los parámetros, esos términos sí importan y guían la solución hacia configuraciones más simples. La distinción entre el comportamiento asintótico (donde $\pm 1$ no importa) y el comportamiento local (donde sí importa) es fundamental para entender por qué la regularización funciona: actúa en el régimen donde las constantes son relevantes, no en el asintótico.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>Los límites $\lim_{x \to \infty}(x^2+x+4)/(3x^4+1)$ y $\lim_{x \to \infty}(x^2+x+4)/(3x^4-1)$ son iguales. ¿Hay algún valor de $x$ para el que las dos funciones den el mismo resultado? ¿O son siempre distintas para $x$ finito?</span></li>
+      <li><span>La función $(x^2+x+4)/(3x^4-1)$ no está definida en los puntos donde $3x^4 - 1 = 0$. ¿Cuántos son esos puntos y dónde están? ¿Cómo afecta eso al dominio de la función?</span></li>
+      <li><span>¿Puede cambiarse el término constante del denominador de $-1$ a $-3x^4$ y que el límite siga siendo $0$? ¿Qué límite daría $\lim_{x \to \infty}(x^2+x+4)/(3x^4 - 3x^4)$, si tiene sentido plantearlo?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

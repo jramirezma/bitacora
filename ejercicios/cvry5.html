@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>cvry5</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "cvry5",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2a",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite cálculo directo sustitución",
+        "límite de función lineal",
+        "lim x tiende a 1 de 2x más 1"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 1} (2x + 1).$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>La función $2x + 1$ es un polinomio — una suma de potencias de $x$ con coeficientes constantes. Los polinomios son las funciones más amigables que existen en cálculo: están definidos en todos los reales, son continuos en todos los reales, y su límite en cualquier punto $c$ se calcula simplemente sustituyendo $x = c$.</p>
+
+    <div class="nota">
+      Para cualquier polinomio $p(x)$ y cualquier punto $c$: $\lim_{x \to c} p(x) = p(c)$. Basta sustituir y calcular.
+    </div>
+
+    <p>El ejercicio pide calcular el límite, no demostrarlo por definición épsilon-delta. Eso significa que se pueden usar las propiedades de los límites directamente: el límite de una suma es la suma de los límites, el límite de una constante por una función es la constante por el límite, y el límite de $x$ cuando $x \to c$ es $c$.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>La propiedad de que los límites de polinomios se calculan por sustitución directa no es un axioma — es una consecuencia de teoremas más profundos sobre continuidad. Un polinomio es continuo en todo punto de los reales, y la continuidad de una función en $c$ se define precisamente como $\lim_{x \to c} f(x) = f(c)$. Lo que parece una regla mecánica ("sustituye y listo") es en realidad una declaración sobre la estructura de los polinomios: son funciones sin saltos, sin agujeros, sin comportamientos extraños en ningún punto. Esa regularidad total es lo que los hace tan útiles como bloques de construcción en análisis y computación numérica.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1}(2x + 1)$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1} 2x + \lim_{x \to 1} 1$
+    </div>
+    <div class="paso-just">
+      Límite de una suma = suma de los límites.
+    </div>
+
+    <div class="paso-dev">
+      $= 2 \lim_{x \to 1} x + \lim_{x \to 1} 1$
+    </div>
+    <div class="paso-just">
+      Límite de constante por función = constante por límite.
+    </div>
+
+    <div class="paso-dev">
+      $= 2 \cdot 1 + 1$
+    </div>
+    <div class="paso-just">
+      $\lim_{x \to c} x = c$ y $\lim_{x \to c} k = k$ para cualquier constante $k$.
+    </div>
+
+    <div class="paso-dev">
+      $= 3$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Si armas una tabla de valores de $2x + 1$ cerca de $x = 1$, ves que la función se acerca a $3$ desde ambos lados: $x = 0{,}9 \Rightarrow 2{,}8$; $x = 0{,}99 \Rightarrow 2{,}98$; $x = 1{,}01 \Rightarrow 3{,}02$; $x = 1{,}1 \Rightarrow 3{,}2$. La función es una recta de pendiente $2$, así que el acercamiento es perfectamente uniforme en ambas direcciones.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1}(2x + 1) = \boxed{3}.$$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Cada vez que un programa evalúa una expresión lineal como <code>2*x + 1</code> para un valor concreto de <code>x</code>, está haciendo exactamente lo que la propiedad de continuidad de los polinomios garantiza: el valor de la expresión en ese punto coincide con el límite de la expresión cuando la variable se acerca a ese punto. En aritmética de punto flotante eso no siempre es exacto por errores de redondeo, pero la garantía matemática de que el límite existe y es igual al valor de la función es lo que da fundamento a la idea de que evaluar una expresión en un punto tiene sentido. Sin continuidad, evaluar y "acercarse" serían dos operaciones distintas que podrían dar resultados diferentes.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1}(2x + 1)$ se calcula sustituyendo $x = 1$ directamente. ¿Hay alguna función para la que esa sustitución directa no funcione, aunque el límite exista? ¿Qué tipo de función sería?</span></li>
+      <li><span>Las propiedades de los límites usadas aquí (límite de suma, límite de producto por constante) requieren que los límites individuales existan. ¿Puede aplicarse la propiedad del límite de una suma cuando uno de los dos límites no existe?</span></li>
+      <li><span>La función $f(x) = 2x + 1$ es continua en $x = 1$, lo que significa que $\lim_{x \to 1} f(x) = f(1)$. ¿Qué tendría que cambiar en la definición de $f$ para que esa igualdad dejara de cumplirse, manteniendo la misma fórmula $2x + 1$ para $x \neq 1$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

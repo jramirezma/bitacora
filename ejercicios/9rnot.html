@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>9rnot</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "9rnot",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11c",
+      tema: "límites indeterminados por factorización",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite indeterminado 0 sobre 0 potencias exponenciales",
+        "límite 5 a la x menos 4 a la x sobre x cuadrado más x",
+        "lim x tiende a 0 potencias fracción factorización"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 0} \frac{5^x - 4^x}{x^2 + x}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Sustituir $x = 0$ da $(1 - 1)/(0 + 0) = 0/0$: forma indeterminada. Hay que reorganizar la expresión antes de evaluar. El denominador factoriza de inmediato: $x^2 + x = x(x+1)$. El numerador $5^x - 4^x$ también se puede reescribir usando la identidad $a^x - b^x = a^x - 1 - (b^x - 1)$, lo que permite separar dos límites conocidos de la forma $(c^x - 1)/x$.</p>
+
+    <div class="nota">
+      El límite fundamental que se usará es: $\lim_{x \to 0} \dfrac{c^x - 1}{x} = \ln c$, para cualquier $c > 0$.
+      Ese resultado viene de la definición de la derivada de $c^x$ en $x = 0$.
+    </div>
+
+    <p>La estrategia: factorizar el denominador, separar el numerador en dos diferencias de la forma $c^x - 1$, dividir y multiplicar por $x$ estratégicamente, y aplicar el límite fundamental a cada parte.</p>
+
+    <p class="chiste">El denominador se factoriza solo con factor común. El numerador pide un poco más de creatividad — hay que sumar y restar $1$ para construir las diferencias $5^x - 1$ y $4^x - 1$. El truco de sumar y restar cero disfrazado de $1 - 1$.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>El límite $\lim_{x \to 0}(c^x - 1)/x = \ln c$ es la definición de la derivada de $f(x) = c^x$ en $x = 0$: $f'(0) = \lim_{x \to 0}(c^x - c^0)/x = \lim_{x \to 0}(c^x - 1)/x$. El número $e$ se define precisamente como la base para la cual esa derivada vale $1$: $\lim_{x \to 0}(e^x - 1)/x = 1$, o equivalentemente $\ln e = 1$. Eso convierte al número $e$ en la base "natural" de la exponencial — la única para la que la función es su propia derivada. El resultado de este ejercicio, $\ln 5 - \ln 4 = \ln(5/4)$, mide precisamente cuánto difieren las tasas de crecimiento de $5^x$ y $4^x$ cerca del origen.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0} \dfrac{5^x - 4^x}{x^2 + x}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa da $0/0$: forma indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{5^x - 4^x}{x(x + 1)}$
+    </div>
+    <div class="paso-just">
+      Factor común en el denominador: $x^2 + x = x(x+1)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{(5^x - 1) - (4^x - 1)}{x(x+1)}$
+    </div>
+    <div class="paso-just">
+      Se suma y resta $1$: $5^x - 4^x = (5^x - 1) - (4^x - 1)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \left(\dfrac{5^x - 1}{x(x+1)} - \dfrac{4^x - 1}{x(x+1)}\right)$
+    </div>
+    <div class="paso-just">
+      Se separa la fracción en dos sumandos.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{5^x - 1}{x} \cdot \dfrac{1}{x+1} - \lim_{x \to 0} \dfrac{4^x - 1}{x} \cdot \dfrac{1}{x+1}$
+    </div>
+    <div class="paso-just">
+      Se reescribe cada fracción aislando el cociente $(c^x-1)/x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \ln 5 \cdot \dfrac{1}{0+1} - \ln 4 \cdot \dfrac{1}{0+1}$
+    </div>
+    <div class="paso-just">
+      $\lim_{x\to 0}(c^x-1)/x = \ln c$ y $\lim_{x\to 0} 1/(x+1) = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \ln 5 - \ln 4$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+    <div class="paso-dev">
+      $= \ln\!\left(\dfrac{5}{4}\right)$
+    </div>
+    <div class="paso-just">
+      Propiedad del logaritmo: $\ln a - \ln b = \ln(a/b)$.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$\ln(5/4) = \ln 1{,}25 \approx 0{,}2231$. Valores cerca de $x = 0$: $x = 0{,}1 \Rightarrow (5^{0{,}1} - 4^{0{,}1})/(0{,}01 + 0{,}1) = (1{,}1746 - 1{,}1487)/0{,}11 \approx 0{,}2355$; $x = 0{,}01 \Rightarrow (5^{0{,}01} - 4^{0{,}01})/(0{,}0001 + 0{,}01) \approx 0{,}2232$; $x = -0{,}01 \Rightarrow \approx 0{,}2230$. La función converge a $\ln(5/4) \approx 0{,}2231$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0} \frac{5^x - 4^x}{x^2 + x} = \ln\!\left(\frac{5}{4}\right).$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En modelos de crecimiento exponencial — poblaciones, inversiones, propagación de información — la diferencia entre dos tasas de crecimiento $5^x - 4^x$ mide la ventaja relativa de un proceso sobre otro. Cuando el tiempo $x$ es pequeño, esa diferencia dividida por $x$ converge a $\ln(5/4)$: la diferencia de los logaritmos de las tasas base. Eso tiene una interpretación directa en finanzas: si dos inversiones crecen a tasas anuales del $400\%$ y $500\%$ respectivamente, la diferencia de sus retornos para períodos cortos es proporcional a $\ln(5/4) \approx 22{,}3\%$ anual. El logaritmo natural aparece aquí porque es la medida correcta de tasas de crecimiento continuo.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 0}(5^x - 4^x)/(x^2 + x) = \ln(5/4)$ usa el resultado $\lim_{x \to 0}(c^x-1)/x = \ln c$. ¿Cómo se demuestra ese resultado? ¿Puede deducirse directamente de la definición de derivada de $e^x$?</span></li>
+      <li><span>El resultado final es $\ln(5/4)$. ¿Cuál sería el resultado si se reemplazaran $5$ y $4$ por dos constantes arbitrarias $a$ y $b$ con $a, b > 0$? ¿La expresión $\lim_{x \to 0}(a^x - b^x)/(x^2 + x)$ siempre tiene límite?</span></li>
+      <li><span>El denominador $x^2 + x = x(x+1)$ tiene dos raíces: $x = 0$ y $x = -1$. El límite en $x = 0$ existe y vale $\ln(5/4)$. ¿Qué ocurre con $\lim_{x \to -1}(5^x - 4^x)/(x^2 + x)$? ¿Es también una forma indeterminada, o se puede calcular directamente?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

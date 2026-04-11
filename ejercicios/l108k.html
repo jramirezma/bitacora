@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>l108k</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "l108k",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "12b",
+      tema: "límites trigonométricos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite trigonométrico raíz seno en cero",
+        "límite 0 sobre 0 raíz de 1 más seno menos raíz de 1 menos seno",
+        "lim x tiende a 0 raíz 1 más sen x menos raíz 1 menos sen x sobre x"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite trigonométrico:
+    $$\lim_{x \to 0} \frac{\sqrt{1+\operatorname{sen} x} - \sqrt{1-\operatorname{sen} x}}{x}.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>Sustituir $x = 0$ da $(1 - 1)/0 = 0/0$: forma indeterminada. El numerador es una diferencia de raíces cuadradas, así que la estrategia natural es multiplicar por el conjugado para eliminar las raíces. Después de eso aparecerá $\operatorname{sen} x / x$, el límite fundamental trigonométrico.</p>
+
+    <div class="nota">
+      Al multiplicar por el conjugado $\sqrt{1+\operatorname{sen} x} + \sqrt{1-\operatorname{sen} x}$, el numerador se convierte en $(1+\operatorname{sen} x) - (1-\operatorname{sen} x) = 2\operatorname{sen} x$. Entonces aparece el factor $\operatorname{sen} x / x$, cuyo límite en $0$ es $1$.
+    </div>
+
+    <p>Una vez aplicado el conjugado, el límite se separa en el producto de $\operatorname{sen} x / x$ (que tiende a $1$) y $2/(\sqrt{1+\operatorname{sen} x} + \sqrt{1-\operatorname{sen} x})$ (que se evalúa directamente en $x = 0$).</p>
+
+    <p class="chiste">El conjugado elimina las raíces, deja el $\operatorname{sen} x$ al descubierto, y ahí aparece el límite fundamental. Es como quitar una envoltura para encontrar exactamente lo que se esperaba adentro.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>El límite $\lim_{x \to 0}\operatorname{sen}(x)/x = 1$ tiene una interpretación geométrica elegante: para ángulos pequeños, el seno de un ángulo y el ángulo mismo (en radianes) son prácticamente iguales. Esa aproximación — $\operatorname{sen}(x) \approx x$ para $x$ pequeño — es la base de la llamada "aproximación de ángulo pequeño", usada en física para simplificar el movimiento del péndulo, la difracción de ondas y la óptica paraxial. Sin esa aproximación, la ecuación del péndulo no tiene solución analítica cerrada; con ella, se convierte en una ecuación de movimiento armónico simple. El límite que hace posible esa simplificación es exactamente el que aparece en este ejercicio.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0} \dfrac{\sqrt{1+\operatorname{sen} x}-\sqrt{1-\operatorname{sen} x}}{x}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa da $0/0$: forma indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{\left(\sqrt{1+\operatorname{sen} x}-\sqrt{1-\operatorname{sen} x}\right)\!\left(\sqrt{1+\operatorname{sen} x}+\sqrt{1-\operatorname{sen} x}\right)}{x\left(\sqrt{1+\operatorname{sen} x}+\sqrt{1-\operatorname{sen} x}\right)}$
+    </div>
+    <div class="paso-just">
+      Se multiplica y divide por el conjugado.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{(1+\operatorname{sen} x)-(1-\operatorname{sen} x)}{x\left(\sqrt{1+\operatorname{sen} x}+\sqrt{1-\operatorname{sen} x}\right)}$
+    </div>
+    <div class="paso-just">
+      $(\sqrt{A}-\sqrt{B})(\sqrt{A}+\sqrt{B}) = A - B$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{2\operatorname{sen} x}{x\left(\sqrt{1+\operatorname{sen} x}+\sqrt{1-\operatorname{sen} x}\right)}$
+    </div>
+    <div class="paso-just">
+      $(1+\operatorname{sen} x)-(1-\operatorname{sen} x) = 2\operatorname{sen} x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0} \dfrac{\operatorname{sen} x}{x} \cdot \dfrac{2}{\sqrt{1+\operatorname{sen} x}+\sqrt{1-\operatorname{sen} x}}$
+    </div>
+    <div class="paso-just">
+      Se separan los factores.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 \cdot \dfrac{2}{\sqrt{1+0}+\sqrt{1-0}}$
+    </div>
+    <div class="paso-just">
+      $\lim_{x\to 0}\operatorname{sen}(x)/x = 1$ y $\operatorname{sen}(0) = 0$: sustitución directa en el segundo factor.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{2}{\sqrt{1}+\sqrt{1}} = \dfrac{2}{1+1}$
+    </div>
+    <div class="paso-just">
+      $\sqrt{1} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 1$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 0$: $x = 0{,}1 \Rightarrow (\sqrt{1{,}0998}-\sqrt{0{,}9002})/0{,}1 = (1{,}0487-0{,}9488)/0{,}1 \approx 0{,}999$; $x = -0{,}1 \Rightarrow (\sqrt{0{,}9002}-\sqrt{1{,}0998})/(-0{,}1) \approx 0{,}999$; $x = 0{,}01 \Rightarrow \approx 1{,}0000$. La función converge a $1$ desde ambos lados. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0} \frac{\sqrt{1+\operatorname{sen} x}-\sqrt{1-\operatorname{sen} x}}{x} = \boxed{1}.$$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>La aproximación de ángulo pequeño $\operatorname{sen}(x) \approx x$ — que es exactamente el enunciado del límite $\operatorname{sen}(x)/x \to 1$ — se usa en motores de física de videojuegos para simplificar cálculos de rotación cuando los ángulos de cambio por frame son pequeños. En lugar de calcular senos y cosenos exactos (operaciones costosas), el motor usa las aproximaciones lineales $\operatorname{sen}(\Delta\theta) \approx \Delta\theta$ y $\cos(\Delta\theta) \approx 1$ para ángulos de rotación pequeños entre frames. Eso reduce multiplicaciones trigonométricas a sumas simples, acelerando la simulación. El error introducido es del orden de $(\Delta\theta)^3$, que para $\Delta\theta$ pequeño es completamente despreciable.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El resultado $\lim_{x \to 0}(\sqrt{1+\operatorname{sen} x}-\sqrt{1-\operatorname{sen} x})/x = 1$ coincide con la derivada de alguna función evaluada en $x = 0$. ¿De qué función? ¿Puede identificarse usando la definición de derivada?</span></li>
+      <li><span>La técnica del conjugado eliminó las raíces y dejó $\operatorname{sen}(x)/x$ al descubierto. ¿Qué hubiera ocurrido si en lugar de $\operatorname{sen} x$ el argumento fuera $\operatorname{sen}(2x)$? ¿El resultado seguiría siendo $1$?</span></li>
+      <li><span>El límite fundamental $\lim_{x \to 0}\operatorname{sen}(x)/x = 1$ requiere que $x$ esté en radianes. ¿Qué valor daría $\lim_{x \to 0}\operatorname{sen}(x°)/x$ si $x$ se mide en grados? ¿Por qué el resultado es distinto?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>w76yv</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "w76yv",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2h",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite de función con raíz cuadrada",
+        "límite por sustitución con raíz de polinomio cuadrático",
+        "lim x tiende a menos 3 de raíz de 5x cuadrado más 2x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to -3} \sqrt{5x^2+2x}.$$</p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>La función $\sqrt{5x^2+2x}$ es continua en todo punto donde su argumento es positivo. Antes de sustituir, hay que verificar que $5x^2 + 2x > 0$ en $x = -3$.</p>
+
+    <div class="nota">
+      Argumento en $x = -3$: $5(-3)^2 + 2(-3) = 5 \cdot 9 - 6 = 45 - 6 = 39 > 0$. La sustitución directa es válida.
+    </div>
+
+    <p>El punto es $x = -3$, así que hay que cuidar los signos al evaluar. El término $5x^2$ siempre es positivo (cuadrado por constante positiva), y $2x$ en $x = -3$ es negativo. La suma da $39$, que es positivo, así que no hay ningún problema con la raíz.</p>
+
+    <p class="chiste">$5(-3)^2$ es $5 \cdot 9 = 45$, no $5 \cdot (-9) = -45$. El cuadrado va primero, el signo negativo no "escapa" del paréntesis. Si te da $-45$, calculaste $-(3^2)$ en lugar de $(-3)^2$. Ya lo sabes.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>El argumento $5x^2 + 2x = x(5x + 2)$ tiene raíces en $x = 0$ y $x = -2/5$. Entre esas raíces, el argumento es negativo — lo que significa que $\sqrt{5x^2+2x}$ no está definida en el intervalo $(-2/5, 0)$. Este tipo de "agujero" en el dominio de una función con raíz cuadrada es exactamente lo que los compiladores detectan cuando analizan si una expresión puede producir un valor no definido. En verificación formal de programas, demostrar que $\sqrt{f(x)}$ nunca recibe un argumento negativo equivale a demostrar que $x$ siempre está fuera del intervalo donde $f(x) < 0$ — el mismo análisis de dominio que se hace aquí.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to -3}\sqrt{5x^2+2x}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $5(-3)^2 + 2(-3) = 45 - 6 = 39 > 0$
+    </div>
+    <div class="paso-just">
+      Verificación previa: el argumento es positivo en $x = -3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \sqrt{5(-3)^2 + 2(-3)}$
+    </div>
+    <div class="paso-just">
+      Función continua en $x = -3$: sustitución directa válida.
+    </div>
+
+    <div class="paso-dev">
+      $= \sqrt{45 - 6}$
+    </div>
+    <div class="paso-just">
+      $5 \cdot 9 = 45$ y $2 \cdot (-3) = -6$.
+    </div>
+
+    <div class="paso-dev">
+      $= \sqrt{39}$
+    </div>
+    <div class="paso-just">
+      $45 - 6 = 39$.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$\sqrt{39} \approx 6{,}245$. Valores cerca de $x = -3$: $x = -3{,}1 \Rightarrow \sqrt{5(9{,}61)+2(-3{,}1)} = \sqrt{48{,}05 - 6{,}2} = \sqrt{41{,}85} \approx 6{,}469$; $x = -2{,}9 \Rightarrow \sqrt{5(8{,}41)+2(-2{,}9)} = \sqrt{42{,}05 - 5{,}8} = \sqrt{36{,}25} \approx 6{,}021$. Ambos se acercan a $\sqrt{39} \approx 6{,}245$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to -3}\sqrt{5x^2+2x} = \boxed{\sqrt{39}}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En geometría computacional, la distancia entre dos puntos se calcula con una raíz cuadrada: $d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$. El argumento de esa raíz es siempre una suma de cuadrados, así que nunca es negativo — la raíz siempre está definida. Pero cuando el argumento de una raíz no es una suma de cuadrados sino una expresión más general, como $5x^2 + 2x$, puede ser negativo para ciertos valores de $x$. Los motores de geometría que calculan distancias generalizadas o métricas no estándar tienen que verificar ese dominio antes de evaluar la raíz, exactamente como se hace en este ejercicio. Un argumento negativo no detectado produce un <code>NaN</code> que se propaga silenciosamente por todo el cálculo.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El argumento $5x^2 + 2x$ de la raíz en $\lim_{x \to -3}\sqrt{5x^2+2x}$ es negativo en el intervalo $(-2/5, 0)$. ¿Qué significa eso para el dominio de la función $f(x) = \sqrt{5x^2+2x}$? ¿Está $x = -3$ dentro o fuera de ese intervalo problemático?</span></li>
+      <li><span>El resultado $\sqrt{39}$ no simplifica a un entero ni a una fracción. ¿Cómo se verifica que $39$ no es un cuadrado perfecto? ¿Existe algún criterio rápido para saberlo sin calcular $\sqrt{39}$ numéricamente?</span></li>
+      <li><span>Si el punto de aproximación fuera $x = 0$ en lugar de $x = -3$, ¿existiría el límite $\lim_{x \to 0}\sqrt{5x^2+2x}$? ¿Qué ocurre con el argumento de la raíz cerca de $x = 0$ por izquierda y por derecha?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

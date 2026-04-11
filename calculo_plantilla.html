@@ -91,7 +91,7 @@
 
         materia
           Un único string con el nombre de la materia.
-          Ejemplos: "Cálculo I", "Álgebra Lineal", "Probabilidad y Estadística"
+          Ejemplo: "Cálculo I"
 
         origen
           Un único string. Valores posibles:
@@ -110,17 +110,14 @@
             - Con inciso:    "1a", "1c", "5b"   (número + letra del inciso)
           Cuando el ejercicio no tiene numeración, usar null.
 
-        tema, dificultad, seo_keywords
+        tema
+          Un único string con el nombre del tema principal del ejercicio.
+          Ejemplo: "límites por definición épsilon-delta"
+
+        dificultad, seo_keywords
           Arrays de strings con mínimo 3 valores cada uno.
           Incluir nombre formal, coloquial, abreviaturas, términos relacionados.
           El objetivo es máxima cobertura de búsqueda.
-
-        tipo_solucion
-          String que indica qué estructura usa la sección Solución.
-          Valores posibles: "algebraico" | "subcasos" | "mixto"
-          "algebraico"  → una sola tabla .dos-col lineal
-          "subcasos"    → varias tablas .dos-col, una por subcaso
-          "mixto"       → combinación de tablas y otros elementos
 
         fecha
           String en formato "yyyy-mm-dd".
@@ -133,11 +130,7 @@
       materia: "[nombre de la materia, ej: Cálculo I]",
       origen: "[PR{n} | EX | CL | IA]",
       ejercicio_nro: "[ej: 1 | 1a | 5b | null]",
-      tema: [
-        "[nombre formal del tema]",
-        "[nombre alternativo o coloquial]",
-        "[concepto relacionado o subtema]"
-      ],
+      tema: "[nombre del tema principal, ej: límites por definición épsilon-delta]",
       dificultad: [
         "[basico | intermedio | avanzado]",
         "[sinonimo: elemental | medio | dificil]",
@@ -148,7 +141,6 @@
         "[keyword 2]",
         "[keyword 3]"
       ],
-      tipo_solucion: "[algebraico | subcasos | mixto]",
       fecha: "[yyyy-mm-dd]",
       autor: { nombre: "[nombre]", modelo: "[modelo]" }
     };
@@ -250,17 +242,17 @@
   <!--
     ESTRUCTURA DE LA SOLUCIÓN:
 
-    A) DESARROLLO ALGEBRAICO LINEAL (tipo_solucion = "algebraico")
+    A) DESARROLLO ALGEBRAICO LINEAL
        Una sola tabla .dos-col. Cada fila = un paso. Sin texto entre filas.
        Usar para: cálculo de dominios, límites directos, derivadas, integrales
        sin ramificaciones, demostraciones de desigualdades.
 
-    B) SOLUCIÓN CON SUBCASOS (tipo_solucion = "subcasos")
+    B) SOLUCIÓN CON SUBCASOS
        Un párrafo .subcaso antes de cada tabla. Una tabla .dos-col por subcaso.
        Usar para: dominios con varias condiciones, análisis de signo por intervalos,
        demostraciones por casos, ejercicios con varias partes independientes.
 
-    C) MIXTO (tipo_solucion = "mixto")
+    C) MIXTO
        Combinación de tablas y otros elementos (párrafos intermedios, notas).
        Usar cuando el ejercicio no encaja limpiamente en A ni en B.
 

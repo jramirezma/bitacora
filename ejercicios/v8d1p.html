@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>v8d1p</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "v8d1p",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "7",
+      tema: "límites laterales y determinación de parámetros",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límites laterales encontrar parámetros a y b",
+        "sistema de ecuaciones límites función a trozos",
+        "límite lateral función por partes determinar constantes"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} ax + b, & \text{si } x < 1; \\[4pt] \dfrac{1}{ax - b}, & \text{si } x > 1. \end{cases}$$
+    Encuentre $a$ y $b$ de tal forma que $\displaystyle\lim_{x \to 1^-} f(x) = 1$ y $\displaystyle\lim_{x \to 1^+} f(x) = \dfrac{1}{2}$.</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cada condición sobre un límite lateral se traduce en una ecuación con $a$ y $b$. El límite por izquierda usa el primer trozo; el límite por derecha usa el segundo. Calcular cada límite lateral e igualarlo al valor pedido da un sistema de dos ecuaciones con dos incógnitas.</p>
+
+    <div class="nota">
+      Límite por izquierda: $\lim_{x \to 1^-}(ax + b) = a \cdot 1 + b = a + b$. Esto debe ser igual a $1$, así que $a + b = 1$.<br><br>
+      Límite por derecha: $\lim_{x \to 1^+}\dfrac{1}{ax - b} = \dfrac{1}{a \cdot 1 - b} = \dfrac{1}{a - b}$. Esto debe ser igual a $\dfrac{1}{2}$, así que $a - b = 2$.
+    </div>
+
+    <p>Con las dos ecuaciones planteadas, resolver el sistema es aritmética directa. Sumar las ecuaciones elimina $b$; restar las ecuaciones elimina $a$.</p>
+
+    <p class="chiste">Un ejercicio de límites que termina siendo un sistema $2\times 2$. Los límites hicieron el trabajo difícil — plantear las ecuaciones — y la aritmética cierra el asunto.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>Imponer condiciones sobre límites laterales para determinar parámetros de una función es exactamente lo que hacen los algoritmos de interpolación por splines. Dado un conjunto de puntos por los que debe pasar una curva, el algoritmo plantea un sistema de ecuaciones donde cada condición — pasar por el punto, tener cierta pendiente, ser continua en las costuras — se traduce en una ecuación lineal. El resultado es un sistema que puede tener decenas o cientos de ecuaciones, pero cuya estructura es siempre la misma: cada condición impuesta es una ecuación, y los parámetros desconocidos son las incógnitas. Lo que en este ejercicio son dos ecuaciones con $a$ y $b$, en un spline cúbico con $n$ segmentos son $4n$ ecuaciones con $4n$ coeficientes.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Condición 1: límite por izquierda</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^-} f(x) = \lim_{x \to 1^-}(ax + b)$
+    </div>
+    <div class="paso-just">
+      Para $x < 1$ rige el primer trozo.
+    </div>
+
+    <div class="paso-dev">
+      $= a(1) + b = a + b$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $a + b = 1$
+    </div>
+    <div class="paso-just">
+      Se iguala al valor pedido. — Ecuación (I)
+    </div>
+
+  </div>
+
+  <p class="subcaso">Condición 2: límite por derecha</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^+} f(x) = \lim_{x \to 1^+} \dfrac{1}{ax - b}$
+    </div>
+    <div class="paso-just">
+      Para $x > 1$ rige el segundo trozo.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{a(1) - b} = \dfrac{1}{a - b}$
+    </div>
+    <div class="paso-just">
+      Función racional continua en $x = 1$ si $a - b \neq 0$; sustitución directa.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{a - b} = \dfrac{1}{2}$
+    </div>
+    <div class="paso-just">
+      Se iguala al valor pedido.
+    </div>
+
+    <div class="paso-dev">
+      $a - b = 2$
+    </div>
+    <div class="paso-just">
+      Invertir ambos lados (ambos positivos). — Ecuación (II)
+    </div>
+
+  </div>
+
+  <p class="subcaso">Resolución del sistema</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\begin{cases} a + b = 1 \\ a - b = 2 \end{cases}$
+    </div>
+    <div class="paso-just">
+      Sistema $2 \times 2$ con incógnitas $a$ y $b$.
+    </div>
+
+    <div class="paso-dev">
+      $(a + b) + (a - b) = 1 + 2$
+    </div>
+    <div class="paso-just">
+      Se suman las dos ecuaciones para eliminar $b$.
+    </div>
+
+    <div class="paso-dev">
+      $2a = 3 \;\Rightarrow\; a = \dfrac{3}{2}$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+    <div class="paso-dev">
+      $b = 1 - a = 1 - \dfrac{3}{2} = -\dfrac{1}{2}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $a$ en la ecuación (I).
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Con $a = 3/2$ y $b = -1/2$:</p>
+    <p>Límite por izquierda: $\lim_{x \to 1^-}\!\left(\tfrac{3}{2}x - \tfrac{1}{2}\right) = \tfrac{3}{2} - \tfrac{1}{2} = 1$. ✓</p>
+    <p>Límite por derecha: $\lim_{x \to 1^+}\dfrac{1}{\frac{3}{2}x + \frac{1}{2}} = \dfrac{1}{\frac{3}{2} + \frac{1}{2}} = \dfrac{1}{2}$. ✓</p>
+    <p>También se verifica que el denominador del segundo trozo no se anula en $x = 1$: $a - b = 3/2 + 1/2 = 2 \neq 0$. ✓</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$a = \frac{3}{2}, \qquad b = -\frac{1}{2}.$$
+    Con estos valores: $\displaystyle\lim_{x \to 1^-} f(x) = 1$ y $\displaystyle\lim_{x \to 1^+} f(x) = \frac{1}{2}$.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En diseño de fuentes tipográficas, cada carácter está compuesto por segmentos de curva definidos por parámetros. Para que las curvas sean suaves en los puntos de unión, se imponen condiciones sobre los límites laterales de la posición y la pendiente — exactamente como en este ejercicio, pero con más parámetros. El proceso de encontrar los coeficientes de cada segmento que satisfagan todas esas condiciones simultáneamente es la resolución de un sistema lineal. Los diseñadores de fuentes ajustan los puntos de control visualmente, y el software resuelve el sistema en tiempo real para actualizar los parámetros de cada curva. Lo que aquí son dos ecuaciones con dos incógnitas, en una fuente tipográfica completa puede ser un sistema de miles de ecuaciones resuelto en milisegundos.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el ejercicio, los valores pedidos para los límites laterales son $1$ y $1/2$, que son distintos. ¿Podría pedirse que ambos límites laterales fueran iguales? ¿Qué condición sobre $a$ y $b$ resultaría de imponer $\lim_{x \to 1^-} f(x) = \lim_{x \to 1^+} f(x)$?</span></li>
+      <li><span>Al plantear la condición sobre el límite por derecha, se asumió que el denominador $a - b \neq 0$. ¿Qué verificación habría que hacer antes de resolver el sistema para asegurarse de que la solución encontrada es válida? ¿Qué pasaría si $a - b = 0$?</span></li>
+      <li><span>La solución encontrada es $a = 3/2$, $b = -1/2$. ¿Hay otra elección de $a$ y $b$ que satisfaga las mismas condiciones sobre los límites, o la solución es única? ¿Cómo lo garantiza el sistema de ecuaciones?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

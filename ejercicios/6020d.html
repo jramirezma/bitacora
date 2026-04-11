@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>6020d</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "6020d",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "4a",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función definida a trozos",
+        "límite lateral función por partes",
+        "lim x tiende a 1 función a trozos tres tramos"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$g(x) = \begin{cases} -x+1, & \text{si } x < 1; \\ x-1, & \text{si } 1 < x < 2; \\ 5-x^2, & \text{si } x \geq 2. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 1} g(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>El punto $x = 1$ es una costura de la función: para $x < 1$ rige $g(x) = -x + 1$, y para $1 < x < 2$ rige $g(x) = x - 1$. El tercer trozo no interviene porque su dominio empieza en $x = 2$, lejos de $x = 1$. Hay que calcular ambos límites laterales y ver si coinciden.</p>
+
+    <div class="nota">
+      Notar también que $g(1)$ sí está definida: el primer trozo cubre $x &lt; 1$, el segundo $1 &lt; x &lt; 2$, y ninguno... espera. En realidad ningún trozo cubre $x = 1$ exactamente: el primero exige $x &lt; 1$ estricto y el segundo $x &gt; 1$ estricto. El tercer trozo empieza en $x \geq 2$. Entonces $g(1)$ tampoco está definida.
+    </div>
+
+    <p>La pregunta es solo sobre el límite, no sobre el valor. Para el límite alcanza con los dos trozos adyacentes a $x = 1$.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>La función $g(x)$ en los dos tramos cercanos a $x = 1$ — $-x+1$ por izquierda y $x-1$ por derecha — forma una figura en "V" con vértice en $(1, 0)$. Esa forma es exactamente la de $|x - 1|$: la distancia de $x$ al punto $1$. El valor absoluto centrado en cualquier punto $c$ siempre tiene esta estructura de dos ramas lineales que se encuentran en cero, y el límite en $x = c$ siempre existe y vale $0$. Es el ejemplo más simple de una función continua con un "pico" — continua en $c$ pero no diferenciable ahí, porque la pendiente cambia abruptamente de $-1$ a $+1$.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 1^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^-} g(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^-$ significa $x < 1$: rige el trozo $g(x) = -x + 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^-} (-x+1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= -1 + 1 = 0$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 1$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 1^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^+} g(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^+$ significa $1 < x < 2$: rige el trozo $g(x) = x - 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^+} (x-1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 - 1 = 0$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 1$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^-} g(x) = 0 = \lim_{x \to 1^+} g(x)$
+    </div>
+    <div class="paso-just">
+      Ambos límites laterales existen y coinciden.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 1} g(x) = 0$
+    </div>
+    <div class="paso-just">
+      El límite bilateral existe y es igual al valor común de los laterales.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Por izquierda: $g(0{,}9) = -0{,}9+1 = 0{,}1$; $g(0{,}99) = 0{,}01$; $g(0{,}999) = 0{,}001$. Por derecha: $g(1{,}1) = 0{,}1$; $g(1{,}01) = 0{,}01$; $g(1{,}001) = 0{,}001$. Desde ambos lados la función se acerca a $0$ simétricamente. El límite existe y vale $0$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1} g(x) = \boxed{0}.$$
+    Los límites laterales coinciden: $\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = 0$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En aprendizaje automático, la función de activación ReLU (Rectified Linear Unit) se define como $\text{ReLU}(x) = \max(0, x)$, que es equivalente a $0$ si $x \leq 0$ y $x$ si $x > 0$. Es una función definida a trozos con una costura en $x = 0$, y el límite en ese punto existe y vale $0$ — exactamente la misma situación que en este ejercicio. Esa continuidad en el punto de costura garantiza que la función no introduce saltos en la señal que pasa por la neurona. Sin embargo, como el valor absoluto, ReLU tampoco es diferenciable en $x = 0$: la pendiente pasa de $0$ a $1$ abruptamente, lo que complica el cálculo del gradiente en ese punto y motivó el desarrollo de variantes como Leaky ReLU y Smooth ReLU.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1} g(x) = 0$ existe aunque $g(1)$ no esté definida. Si se quisiera extender la función para que fuera continua en $x = 1$, ¿qué valor habría que asignarle a $g(1)$? ¿Habría más de una opción?</span></li>
+      <li><span>Los dos trozos de $g$ cerca de $x = 1$ forman una figura en "V" que coincide con $|x - 1|$. ¿La función $|x - c|$ siempre tiene límite $0$ en $x = c$ para cualquier constante $c$? ¿Qué propiedad del valor absoluto garantiza eso?</span></li>
+      <li><span>El tercer trozo de $g$, que rige para $x \geq 2$, no interviene en el cálculo de $\lim_{x \to 1} g(x)$. ¿Existe alguna situación en que un trozo "lejano" de la costura pudiera afectar el valor del límite en ese punto?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

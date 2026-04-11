@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>yro9r</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "yro9r",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1g",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite de función racional por epsilon-delta"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta función racional",
+        "demostración formal límite 1 sobre x",
+        "límite lim x tiende a a de 1/x igual a 1/a"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} \frac{1}{x} = \frac{1}{a}.$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $\left|\dfrac{1}{x} - \dfrac{1}{a}\right|$. Al poner eso sobre denominador común se obtiene $\dfrac{|x - a|}{|x| \cdot |a|}$. El factor $1/(|x| \cdot |a|)$ varía con $x$, así que no se puede tratar como una constante directamente.</p>
+
+    <div class="nota">
+      La estrategia: imponer $\delta \leq |a|/2$ para forzar que $|x| > |a|/2$. Eso convierte $1/|x|$ en algo menor que $2/|a|$, una cota fija. Con ese techo en mano, la expresión completa queda menor que $\dfrac{2}{a^2} \cdot |x - a|$, y basta elegir $\delta \leq a^2\varepsilon/2$ para cerrar la demostración.
+    </div>
+
+    <p>La $\delta$ final es el mínimo de las dos restricciones: $|a|/2$ y $a^2\varepsilon/2$. El mínimo garantiza que ambas condiciones se cumplan simultáneamente.</p>
+
+    <p class="chiste">$1/x$ y $1/a$ se ven casi iguales pero su diferencia no es tan simple como restar numeradores. El denominador común es el que complica todo — y también el que revela la estructura real del problema.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>La función $f(x) = 1/x$ tiene una propiedad geométrica notable: su gráfica es una hipérbola, y esa curva tiene la misma forma en todos sus puntos en un sentido muy preciso — es invariante bajo la transformación $x \mapsto cx$, $y \mapsto y/c$ para cualquier constante $c > 0$. Esa simetría implica que "acercarse" al punto $(a, 1/a)$ es esencialmente lo mismo sin importar cuán grande o chico sea $a$, salvo por un factor de escala. Sin embargo, esa escala es exactamente lo que hace que la demostración épsilon-delta necesite una $\delta$ que depende de $a$: la hipérbola se "empina" cerca del cero y se "aplana" lejos de él, y eso se refleja en que $a^2$ aparece multiplicando $\varepsilon$ en la elección de $\delta$.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \min\!\left(\dfrac{|a|}{2},\; \dfrac{a^2\,\varepsilon}{2}\right)$.
+    </div>
+    <div class="paso-just">
+      Dos condiciones simultáneas; se toma la más restrictiva.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|x - a| < \delta \leq \dfrac{|a|}{2}$
+    </div>
+    <div class="paso-just">
+      Por definición de mínimo, $\delta \leq |a|/2$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x| \geq |a| - |x-a| > |a| - \dfrac{|a|}{2} = \dfrac{|a|}{2}$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular inversa: $|x| = |(x-a) + a| \geq |a| - |x-a|$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; \dfrac{1}{|x|} < \dfrac{2}{|a|}$
+    </div>
+    <div class="paso-just">
+      Invertir desigualdad entre positivos da vuelta el signo.
+    </div>
+
+    <div class="paso-dev">
+      $\left|\dfrac{1}{x} - \dfrac{1}{a}\right| = \left|\dfrac{a - x}{ax}\right|$
+    </div>
+    <div class="paso-just">
+      Denominador común $ax$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{|x - a|}{|a| \cdot |x|}$
+    </div>
+    <div class="paso-just">
+      $|a - x| = |x - a|$; separar valor absoluto del producto.
+    </div>
+
+    <div class="paso-dev">
+      $< \dfrac{\delta}{|a|} \cdot \dfrac{2}{|a|}$
+    </div>
+    <div class="paso-just">
+      Se aplican $|x - a| < \delta$ y $1/|x| < 2/|a|$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{2\delta}{a^2}$
+    </div>
+    <div class="paso-just">
+      $|a| \cdot |a| = a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $\leq \dfrac{2}{a^2} \cdot \dfrac{a^2\,\varepsilon}{2}$
+    </div>
+    <div class="paso-just">
+      Como $\delta \leq a^2\varepsilon/2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $2/a^2$ con $a^2/2$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Toma $a = 2$. El límite dice que $\lim_{x \to 2} 1/x = 1/2$. Con $\varepsilon = 0{,}1$, la $\delta$ es $\min(1,\, 4 \cdot 0{,}1 / 2) = \min(1,\, 0{,}2) = 0{,}2$. Prueba $x = 2{,}15$ (a distancia $0{,}15 < 0{,}2$): $|1/2{,}15 - 1/2| = |0{,}465\ldots - 0{,}5| = 0{,}034\ldots < 0{,}1$. Prueba $x = 1{,}85$ (a distancia $0{,}15 < 0{,}2$): $|1/1{,}85 - 1/2| = |0{,}540\ldots - 0{,}5| = 0{,}040\ldots < 0{,}1$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \min\!\left(\dfrac{|a|}{2},\, \dfrac{a^2\varepsilon}{2}\right)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; \left|\dfrac{1}{x} - \dfrac{1}{a}\right| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a} \frac{1}{x} = \frac{1}{a}$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En gráficos por computadora, calcular la posición de un objeto en perspectiva requiere dividir por la coordenada de profundidad $z$. Cuando $z$ se acerca a cero, el objeto se acerca a la cámara y su imagen proyectada crece sin límite — exactamente el comportamiento de $1/x$ cerca del cero. Los motores de renderizado manejan esto con un valor mínimo de $z$ permitido (llamado plano de recorte cercano), que cumple el mismo rol que la restricción $\delta \leq |a|/2$ en la demostración: garantiza que el denominador nunca sea tan pequeño como para producir resultados incontrolables. Sin ese límite, los objetos demasiado cerca de la cámara producirían desbordamientos numéricos o geometría invertida.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a} 1/x = 1/a$, la segunda cota de $\delta$ es $a^2\varepsilon/2$. ¿Por qué aparece $a^2$ ahí y no simplemente $|a|$? ¿De dónde viene ese factor en la cadena de desigualdades?</span></li>
+      <li><span>La demostración épsilon-delta de $\lim_{x \to a} 1/x = 1/a$ requiere que $\delta$ dependa de $a$. ¿Qué le pasa a esa $\delta$ cuando $a$ se acerca a cero? ¿Qué dice eso sobre el comportamiento de la función cerca del origen?</span></li>
+      <li><span>Si se elige $\delta \leq |a|/3$ en lugar de $|a|/2$ como primera restricción, ¿qué cota se obtiene para $1/|x|$? ¿Cómo cambia en consecuencia la segunda restricción sobre $\delta$?</span></li>
+      <li><span>La función $f(x) = 1/x$ es continua en todo $a \neq 0$ pero no es uniformemente continua en $(0, \infty)$. ¿Qué significa formalmente que una función no sea uniformemente continua? ¿Cómo se construiría un argumento que lo demuestre para $1/x$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

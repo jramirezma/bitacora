@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>znnz1</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "znnz1",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11g",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite en menos infinito función racional mismo grado",
+        "límite x tiende a menos infinito cociente cúbico",
+        "lim x tiende a menos infinito x cúbico menos 3x más 4 sobre 3x cúbico menos 100"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to -\infty} \frac{x^3 - 3x + 4}{3x^3 - 100}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Numerador y denominador son polinomios de grado $3$. Cuando $x \to -\infty$, ambos crecen en valor absoluto sin límite, produciendo la forma $\infty/\infty$. La técnica es la misma que para $x \to +\infty$: dividir por la potencia dominante $x^3$ y evaluar usando que $c/x^k \to 0$ cuando $x \to -\infty$.</p>
+
+    <div class="nota">
+      Dividir por $x^3$ funciona igual para $x \to -\infty$ que para $x \to +\infty$: $c/x \to 0$, $c/x^2 \to 0$ y $c/x^3 \to 0$ en ambos casos. El signo de $x$ no afecta ese resultado porque $c/x^k \to 0$ para cualquier $k > 0$, independientemente de hacia dónde va $x$.
+    </div>
+
+    <p>Los coeficientes principales son $1$ (numerador) y $3$ (denominador), ambos de grado $3$. El resultado final es $1/3$, igual que si fuera $x \to +\infty$. Para funciones racionales con mismo grado, la dirección del infinito no cambia el límite.</p>
+
+    <p class="chiste">El $-100$ del denominador parece intimidante, pero cuando $x^3$ se vuelve millonario, $100$ es calderilla. A $x \to -\infty$, los términos de menor grado son absolutamente irrelevantes. El resultado lo decide solo el coeficiente principal.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Que el límite sea el mismo cuando $x \to +\infty$ y cuando $x \to -\infty$ no es una coincidencia para este ejercicio en particular: ocurre siempre que numerador y denominador tienen el mismo grado. En ese caso, la función racional tiene una única asíntota horizontal $y = a_n/b_n$ en ambas direcciones. Pero si los grados son distintos, la historia cambia: $x^2/(x+1)$, por ejemplo, no tiene asíntota horizontal — tiene una asíntota oblicua $y = x - 1$, que es la recta a la que se acerca la función tanto cuando $x \to +\infty$ como cuando $x \to -\infty$. Las asíntotas oblicuas se calculan con la división de polinomios, no con el cociente de coeficientes.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to -\infty} \dfrac{x^3 - 3x + 4}{3x^3 - 100}$
+    </div>
+    <div class="paso-just">
+      Forma $\infty/\infty$: se divide por la potencia dominante $x^3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to -\infty} \dfrac{1 - \dfrac{3}{x^2} + \dfrac{4}{x^3}}{3 - \dfrac{100}{x^3}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1 - 0 + 0}{3 - 0}$
+    </div>
+    <div class="paso-just">
+      $c/x^k \to 0$ cuando $x \to -\infty$ para cualquier $k > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{3}$
+    </div>
+    <div class="paso-just">
+      Cociente de los coeficientes principales. Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$x = -10 \Rightarrow (-1000+30+4)/(-3000-100) = (-966)/(-3100) \approx 0{,}3116$; $x = -100 \Rightarrow (-10^6+300+4)/(-3\cdot10^6-100) \approx (-999696)/(-3000100) \approx 0{,}3332$; $x = -1000 \Rightarrow \approx 0{,}3333$. La función converge a $1/3 \approx 0{,}3333$ cuando $x \to -\infty$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to -\infty} \frac{x^3 - 3x + 4}{3x^3 - 100} = \boxed{\dfrac{1}{3}}.$$
+    La asíntota horizontal de la función es $y = 1/3$, tanto para $x \to +\infty$ como para $x \to -\infty$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En análisis de algoritmos, comparar el costo de dos algoritmos cuando el tamaño de entrada $n \to \infty$ es exactamente este cálculo. Si un algoritmo tiene costo $n^3 - 3n + 4$ operaciones y otro tiene costo $3n^3 - 100$, el cociente de sus costos tiende a $1/3$: el primero es tres veces más rápido que el segundo para entradas grandes, sin importar los términos de menor orden ni la constante $-100$. Eso es lo que captura la notación $\Theta$: dos funciones son $\Theta$ entre sí cuando su cociente tiene un límite finito no nulo en el infinito. El límite de este ejercicio certifica que $n^3 - 3n + 4$ y $3n^3 - 100$ son $\Theta(n^3)$ entre sí, con constante de proporcionalidad $1/3$.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to -\infty}(x^3-3x+4)/(3x^3-100)$ da el mismo resultado que $\lim_{x \to +\infty}$ de la misma función. ¿Eso ocurre siempre para funciones racionales de mismo grado, o hay casos donde los dos límites en el infinito son distintos?</span></li>
+      <li><span>Si el numerador fuera $x^4 - 3x + 4$ en lugar de $x^3 - 3x + 4$, ¿cuál sería el límite cuando $x \to -\infty$? ¿Cambiaría el signo del resultado respecto al límite cuando $x \to +\infty$?</span></li>
+      <li><span>Dos funciones $f$ y $g$ son $\Theta$ entre sí cuando $\lim_{x \to \infty} f(x)/g(x)$ es un número finito no nulo. ¿Qué condición sobre los grados de dos polinomios garantiza que sean $\Theta$ entre sí?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

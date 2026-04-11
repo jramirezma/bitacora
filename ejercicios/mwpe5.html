@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>mwpe5</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "mwpe5",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1b",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite con epsilon y delta"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta",
+        "demostración formal de límite",
+        "límite de ax menos a cuadrado igual a cero"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (ax - a^2) = 0.$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>La expresión $ax - a^2$ es una función lineal en $x$. Cuando $x$ se acerca a $a$, esa expresión se acerca a $a \cdot a - a^2 = a^2 - a^2 = 0$. Eso se ve solo. El desafío es <em>probarlo formalmente</em> con la definición épsilon-delta.</p>
+
+    <div class="nota">
+      La definición dice: para todo $\varepsilon > 0$ hay que encontrar un $\delta > 0$ tal que $0 < |x - a| < \delta$ garantice $|(ax - a^2) - 0| < \varepsilon$. El límite es $0$, así que la distancia al límite es simplemente $|ax - a^2|$.
+    </div>
+
+    <p>Si factorizas, $ax - a^2 = a(x - a)$. El valor absoluto de eso es $|a| \cdot |x - a|$. Ves directamente que controlar $|x - a|$ es lo mismo que controlar el error de salida, con un factor de escala $|a|$. Eso te da la $\delta$ en bandeja: basta tomar $\delta = \varepsilon / |a|$, y la demostración rueda sola.</p>
+
+    <p class="chiste">En el fondo, este límite dice que $ax - a^2$ tiene una raíz en $x = a$. Lo cual era bastante obvio desde el principio, pero ahora tenemos los papeles en regla.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Un límite igual a cero puede parecer el caso más simple, pero históricamente fue uno de los más problemáticos. Durante el siglo XVII, Newton y Leibniz usaban "cantidades que se anulan" para desarrollar el cálculo, y sus críticos les preguntaban: ¿esas cantidades son cero o no lo son? Si son cero, no puedes dividir por ellas; si no lo son, ¿cómo puedes ignorarlas al final? El obispo George Berkeley llamó a esas cantidades "los fantasmas de las cantidades que desaparecieron". La definición épsilon-delta, desarrollada dos siglos después, resolvió el problema sin necesitar ninguna cantidad que "se acerque a cero" de forma misteriosa: simplemente establece una relación entre dos números positivos fijos, $\varepsilon$ y $\delta$.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El reto llega de afuera: $\varepsilon$ puede ser tan chico como quieran.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \dfrac{\varepsilon}{|a|}$.
+    </div>
+    <div class="paso-just">
+      Válido porque $a \neq 0$. Esta elección es la respuesta al reto.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis: $x$ está dentro del radio $\delta$ alrededor de $a$, pero $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|(ax - a^2) - 0|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite $L = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= |ax - a^2|$
+    </div>
+    <div class="paso-just">
+      Restar cero no cambia nada.
+    </div>
+
+    <div class="paso-dev">
+      $= |a(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $a$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$.
+    </div>
+
+    <div class="paso-dev">
+      $< |a| \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Por la hipótesis $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot \dfrac{\varepsilon}{|a|}$
+    </div>
+    <div class="paso-just">
+      Sustituye $\delta = \varepsilon / |a|$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $|a|$. La cadena cierra exactamente. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Toma $a = 2$. El límite dice que $\lim_{x \to 2}(2x - 4) = 0$. Con $\varepsilon = 0{,}5$, la $\delta$ es $0{,}5/2 = 0{,}25$. Prueba $x = 2{,}2$ (a distancia $0{,}2 < 0{,}25$ de $2$): $|2 \cdot 2{,}2 - 4| = |4{,}4 - 4| = 0{,}4 < 0{,}5$. Prueba $x = 1{,}85$ (a distancia $0{,}15 < 0{,}25$): $|2 \cdot 1{,}85 - 4| = |3{,}7 - 4| = 0{,}3 < 0{,}5$. En ambos casos el error de salida está dentro del margen pedido.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \varepsilon / |a|$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |(ax - a^2) - 0| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(ax - a^2) = 0$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Cuando un sistema de control (un termostato, un dron, un brazo robótico) intenta alcanzar un valor objetivo, el "error" que monitorea es exactamente la diferencia entre el estado actual y el estado deseado — la misma cantidad que aquí llamamos $ax - a^2$. El objetivo del controlador es hacer que ese error tienda a cero. La definición épsilon-delta formaliza exactamente eso: dado cualquier margen de tolerancia $\varepsilon$ que exijas, el sistema puede encontrar un radio $\delta$ de condiciones iniciales que garantiza que el error nunca supere ese margen. Un controlador PID, por ejemplo, está diseñado precisamente para que ese límite exista y sea cero.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(ax - a^2) = 0$, el límite resultó ser exactamente $0$. ¿Cambia algo en la estructura de la demostración cuando el límite es un número distinto de cero? ¿En qué paso aparece esa diferencia?</span></li>
+      <li><span>La función $f(x) = ax - a^2$ tiene una raíz en $x = a$. ¿Qué relación hay entre el hecho de que el límite sea $0$ y que $x = a$ sea una raíz de $f$? ¿Eso siempre implica que el límite es $0$?</span></li>
+      <li><span>Si en lugar de $ax - a^2$ la función fuera $ax^2 - a^3$, ¿cuál sería el límite cuando $x \to a$? ¿La demostración épsilon-delta seguiría la misma estrategia, o habría que agregar algún paso extra?</span></li>
+      <li><span>En la definición épsilon-delta de límite, la condición $0 &lt; |x - a|$ excluye el punto $x = a$ explícitamente. ¿Por qué es importante esa exclusión? ¿Qué pasaría si se permitiera $x = a$ en la definición?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>hypp0</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "hypp0",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11a",
+      tema: "límites indeterminados por factorización",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite indeterminado factorización cancelación",
+        "límite 0 sobre 0 diferencia de cuadrados",
+        "lim x tiende a 1 x cuadrado menos 1 sobre x menos 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 1} \frac{x^2 - 1}{x - 1}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Si se intenta sustituir $x = 1$ directamente, el denominador da $0$ y el numerador también da $0$. Eso es la forma indeterminada $0/0$: no se puede concluir nada sobre el límite a partir de la sustitución directa. Hay que hacer algo antes de evaluar.</p>
+
+    <div class="nota">
+      La estrategia es factorizar el numerador. $x^2 - 1$ es una diferencia de cuadrados: $x^2 - 1 = (x-1)(x+1)$. El factor $(x-1)$ aparece también en el denominador, y puede cancelarse — siempre que $x \neq 1$, que es exactamente lo que garantiza la definición de límite.
+    </div>
+
+    <p>Una vez cancelado el factor común, la expresión resultante ya no tiene denominador que se anule en $x = 1$, y el límite se calcula por sustitución directa. El truco funciona porque el límite describe lo que ocurre <em>cerca</em> de $x = 1$ pero nunca <em>en</em> $x = 1$: cancelar $(x-1)$ es válido para $x \neq 1$, y eso es todo lo que se necesita.</p>
+
+    <p class="chiste">$0/0$ no es $1$, no es $0$, no es indeciso: es una señal de que hay un factor común escondido esperando ser cancelado. En este caso el factor se ve a simple vista. No todos los $0/0$ son tan generosos.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>El límite $\lim_{x \to 1}(x^2 - 1)/(x - 1) = 2$ es, sin saberlo, la derivada de $f(x) = x^2$ en $x = 1$. La definición de derivada es $f'(c) = \lim_{x \to c}[f(x) - f(c)]/(x - c)$; con $f(x) = x^2$ y $c = 1$: $f'(1) = \lim_{x \to 1}(x^2 - 1)/(x - 1)$. El resultado $2$ coincide con $f'(x) = 2x$ evaluada en $x = 1$. Todo el cálculo diferencial descansa sobre límites de esta forma — la derivada no es más que un límite de cocientes de diferencias, y la forma $0/0$ es exactamente la que aparece en cada derivada.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1} \dfrac{x^2 - 1}{x - 1}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa da $0/0$: forma indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1} \dfrac{(x-1)(x+1)}{x-1}$
+    </div>
+    <div class="paso-just">
+      Diferencia de cuadrados: $x^2 - 1 = (x-1)(x+1)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1} (x + 1)$
+    </div>
+    <div class="paso-just">
+      Se cancela $(x-1)$, válido porque $x \neq 1$ en el límite.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 + 1$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 1$: $x = 0{,}9 \Rightarrow (0{,}81-1)/(0{,}9-1) = (-0{,}19)/(-0{,}1) = 1{,}9$; $x = 0{,}99 \Rightarrow (0{,}9801-1)/(-0{,}01) = 1{,}99$; $x = 1{,}01 \Rightarrow (1{,}0201-1)/(0{,}01) = 2{,}01$; $x = 1{,}1 \Rightarrow (1{,}21-1)/(0{,}1) = 2{,}1$. La función se acerca a $2$ desde ambos lados.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \boxed{2}.$$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En diferenciación automática — la técnica que usan PyTorch y TensorFlow para calcular gradientes — cada operación elemental tiene asociada una regla de derivación. Esa regla es, en el fondo, un límite de la forma $(f(x+h) - f(x))/h$ cuando $h \to 0$, que produce la misma indeterminación $0/0$ que aparece en este ejercicio. La cancelación algebraica que se hace aquí manualmente es lo que los sistemas de diferenciación automática realizan de forma simbólica internamente: simplifican la expresión antes de evaluar, exactamente para evitar la división por cero. Sin esa simplificación, calcular derivadas numéricamente con $h$ muy pequeño produce errores de cancelación catastrófica en punto flotante.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1}(x^2-1)/(x-1) = 2$ coincide con la derivada de $x^2$ en $x = 1$. ¿Eso ocurre siempre? ¿Para cualquier polinomio $p(x)$ y cualquier punto $c$, el límite $\lim_{x \to c}[p(x) - p(c)]/(x-c)$ coincide con la derivada $p'(c)$?</span></li>
+      <li><span>La cancelación del factor $(x-1)$ es válida porque el límite considera $x \neq 1$. ¿Qué pasaría si se evaluara directamente en $x = 1$ sin cancelar? ¿El resultado sería incorrecto, o simplemente indefinido?</span></li>
+      <li><span>La función $f(x) = (x^2-1)/(x-1)$ no está definida en $x = 1$, pero su límite en ese punto existe y vale $2$. ¿Eso significa que la discontinuidad en $x = 1$ es evitable? ¿Qué valor habría que asignarle a $f(1)$ para hacer la función continua?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

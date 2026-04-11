@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>nhlfw</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "nhlfw",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2i",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite de función compuesta con potencia",
+        "límite por sustitución con exponente fraccionario",
+        "lim t tiende a menos 2 de 2t cúbico más 15 a la 13"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{t \to -2} (2t^3+15)^{13}.$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>La función $(2t^3+15)^{13}$ es un polinomio elevado a una potencia entera positiva — lo que en definitiva es otro polinomio. Es continuo en todos los reales, sin restricciones de dominio. El límite se calcula sustituyendo directamente.</p>
+
+    <div class="nota">
+      La propiedad clave es la del límite de una potencia: $\lim_{t \to c}[f(t)]^n = \left[\lim_{t \to c} f(t)\right]^n$, siempre que el límite de $f$ exista. Eso permite calcular primero el límite de la base y luego elevar al exponente.
+    </div>
+
+    <p>El exponente $13$ es impar, así que la potencia preserva el signo: si la base es negativa, el resultado es negativo; si es positiva, positivo. Aquí la base en $t = -2$ es $2(-8) + 15 = -16 + 15 = -1$, y $(-1)^{13} = -1$. No hay nada que expandir: calcular la base y elevar al exponente es todo lo que se necesita.</p>
+
+    <p class="chiste">Nadie en su sano juicio expande $(2t^3+15)^{13}$ a mano. Ni con papel extra. La propiedad del límite de una potencia existe precisamente para evitar eso.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Elevar un número a una potencia entera grande parece costoso, pero los computadores lo hacen de forma muy eficiente con un algoritmo llamado <em>exponenciación rápida</em> (o exponenciación por cuadrados). La idea es que $x^{13} = x^8 \cdot x^4 \cdot x^1$, y cada potencia de dos se obtiene cuadrando la anterior: $x^2 = x \cdot x$, $x^4 = (x^2)^2$, $x^8 = (x^4)^2$. En lugar de hacer $12$ multiplicaciones, solo se necesitan $5$. En general, $x^n$ se calcula en $O(\log n)$ multiplicaciones en lugar de $O(n)$. Este algoritmo es uno de los pilares de la criptografía moderna: el cifrado RSA depende de calcular potencias enormes módulo un número primo, y la exponenciación rápida es lo que hace eso viable en tiempo real.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{t \to -2}(2t^3+15)^{13}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $= \left[\lim_{t \to -2}(2t^3+15)\right]^{13}$
+    </div>
+    <div class="paso-just">
+      Límite de una potencia = potencia del límite (exponente entero positivo).
+    </div>
+
+    <div class="paso-dev">
+      $= \bigl(2(-2)^3+15\bigr)^{13}$
+    </div>
+    <div class="paso-just">
+      La base es un polinomio continuo: se sustituye $t = -2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \bigl(2(-8)+15\bigr)^{13}$
+    </div>
+    <div class="paso-just">
+      $(-2)^3 = -8$.
+    </div>
+
+    <div class="paso-dev">
+      $= (-16+15)^{13}$
+    </div>
+    <div class="paso-just">
+      $2 \cdot (-8) = -16$.
+    </div>
+
+    <div class="paso-dev">
+      $= (-1)^{13}$
+    </div>
+    <div class="paso-just">
+      $-16 + 15 = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $= -1$
+    </div>
+    <div class="paso-just">
+      Potencia impar de $-1$ es $-1$.
+    </div>
+
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>Valores cerca de $t = -2$: $t = -2{,}1 \Rightarrow 2(-9{,}261)+15 = -3{,}522$, y $(-3{,}522)^{13}$ es un número negativo grande; $t = -1{,}9 \Rightarrow 2(-6{,}859)+15 = 1{,}282$, y $(1{,}282)^{13}$ es un número positivo mayor que $1$. Ambos se alejan de $-1$ en sentido opuesto cuando $t$ se aleja de $-2$, pero a medida que $t \to -2$ la base tiende a $-1$ y la potencia tiende a $(-1)^{13} = -1$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{t \to -2}(2t^3+15)^{13} = \boxed{-1}.$$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>La propiedad del límite de una potencia — calcular primero el límite de la base y luego elevar al exponente — es la misma idea que subyace a la composición de funciones en programación funcional. Cuando se encadena una función <code>f</code> con una función <code>pow13</code>, el resultado en un punto depende solo del valor de <code>f</code> en ese punto, no de cómo <code>f</code> llega a ese valor. Esa propiedad — que el valor de la composición en un punto solo depende del valor de la función interior en ese punto — es exactamente la continuidad, y es lo que hace que evaluar <code>pow(f(t), 13)</code> en <code>t = -2</code> sea equivalente a calcular <code>pow(f(-2), 13)</code> directamente.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{t \to -2}(2t^3+15)^{13}$, la base resultó ser $-1$ exactamente. ¿Qué valores de $t$ hacen que la base $2t^3 + 15$ sea igual a $-1$? ¿Hay más de uno?</span></li>
+      <li><span>La propiedad $\lim_{t \to c}[f(t)]^n = [\lim_{t \to c} f(t)]^n$ requiere que $n$ sea un entero positivo. ¿Sigue siendo válida si $n$ es un entero negativo? ¿Y si $n$ es un número racional como $1/2$?</span></li>
+      <li><span>El algoritmo de exponenciación rápida calcula $x^n$ en $O(\log n)$ multiplicaciones. ¿Cuántas multiplicaciones necesita para calcular $x^{13}$ específicamente? ¿Cuál es la secuencia de operaciones?</span></li>
+      <li><span>Si el exponente fuera $12$ en lugar de $13$, ¿cambiaría el resultado? ¿Por qué la paridad del exponente importa cuando la base es negativa?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

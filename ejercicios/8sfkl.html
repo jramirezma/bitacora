@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>8sfkl</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "8sfkl",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2c",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite cálculo directo sustitución",
+        "límite de producto de funciones lineales",
+        "lim x tiende a 0 de 2x más 1 por x menos 3"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 0} (2x + 1)(x - 3).$$</p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>$(2x+1)(x-3)$ es un producto de dos polinomios, que a su vez es un polinomio. Se puede expandir y sustituir, o directamente aplicar la propiedad del límite de un producto: el límite del producto es el producto de los límites, siempre que ambos límites existan.</p>
+
+    <div class="nota">
+      $\lim_{x \to c} [f(x) \cdot g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x)$, siempre que ambos límites existan y sean finitos.
+    </div>
+
+    <p>El punto es $x = 0$, así que la sustitución es inmediata: no hay signo negativo que pueda confundir, no hay potencia que elevar. Solo hay que evaluar cada factor en $0$ y multiplicar.</p>
+
+    <p class="chiste">El límite cuando $x \to 0$ tiene fama de ser complicado en otros contextos — del tipo $\sin x / x$ o $e^x - 1)/x$. Acá no: es un polinomio evaluado en cero. La cosa más tranquila del mundo.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>La propiedad de que el límite de un producto es el producto de los límites parece obvia, pero su demostración formal requiere un truco no trivial: escribir $f(x)g(x) - LM$ como $f(x)(g(x)-M) + M(f(x)-L)$, donde $L$ y $M$ son los límites de $f$ y $g$ respectivamente, y luego usar la desigualdad triangular para acotar cada parte. Ese truco — sumar y restar un término estratégico para separar dos efectos — aparece constantemente en análisis matemático y tiene nombre informal: se llama "el truco de agregar y restar". Es la misma técnica que se usa para demostrar la regla del producto de derivadas, la linealidad de la integral, y docenas de resultados más.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0}(2x+1)(x-3)$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0}(2x+1) \cdot \lim_{x \to 0}(x-3)$
+    </div>
+    <div class="paso-just">
+      Límite de un producto = producto de los límites (ambos existen y son finitos).
+    </div>
+
+    <div class="paso-dev">
+      $= (2 \cdot 0 + 1) \cdot (0 - 3)$
+    </div>
+    <div class="paso-just">
+      Cada factor es un polinomio continuo: se sustituye $x = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 \cdot (-3)$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+    <div class="paso-dev">
+      $= -3$
+    </div>
+    <div class="paso-just">
+      Resultado.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 0$: $x = -0{,}1 \Rightarrow (0{,}8)(-3{,}1) = -2{,}48$; $x = -0{,}01 \Rightarrow (0{,}98)(-3{,}01) = -2{,}9498$; $x = 0{,}01 \Rightarrow (1{,}02)(-2{,}99) = -3{,}0498$; $x = 0{,}1 \Rightarrow (1{,}2)(-2{,}9) = -3{,}48$. La función converge a $-3$ desde ambos lados.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0}(2x+1)(x-3) = \boxed{-3}.$$
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>La propiedad del límite de un producto es la base matemática de la <em>regla del producto</em> en diferenciación automática, la técnica que usan los marcos de aprendizaje profundo como PyTorch o TensorFlow para calcular gradientes. Cuando una red neuronal evalúa una expresión que es producto de dos subfunciones, el sistema necesita saber cómo se propaga un pequeño cambio en la entrada a través de ese producto. La garantía de que el límite del producto es el producto de los límites — y su versión diferencial, la regla del producto — es lo que permite descomponer ese cálculo en piezas independientes y componerlas. Sin esa propiedad, calcular gradientes de expresiones complejas requeriría tratar cada función como una caja negra indivisible.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La propiedad $\lim_{x \to c}[f(x)g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x)$ requiere que ambos límites existan y sean finitos. ¿Qué ocurre si uno de los dos límites es infinito y el otro es cero? ¿El límite del producto sigue siendo el producto de los límites?</span></li>
+      <li><span>En el cálculo de $\lim_{x \to 0}(2x+1)(x-3)$, se podría haber expandido el producto primero: $(2x+1)(x-3) = 2x^2 - 5x - 3$, y luego sustituido $x = 0$. ¿El resultado es el mismo? ¿Siempre es equivalente expandir antes de tomar el límite?</span></li>
+      <li><span>¿Puede el límite de un producto ser cero aunque ninguno de los dos factores tenga límite cero? ¿O si el límite del producto es cero, necesariamente alguno de los factores tiende a cero?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

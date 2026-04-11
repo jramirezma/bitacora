@@ -1,5 +1,1610 @@
 [
   {
+    "id": "5msko",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11e",
+    "tema": [
+      "límites indeterminados con raíces por racionalización"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite indeterminado raíces racionalización conjugado",
+      "límite 0 sobre 0 raíz cúbica más raíz cuadrada",
+      "lim x tiende a 1 raíz cúbica de x más raíz de x menos 2 sobre x menos 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/5msko.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 1} \\frac{\\sqrt[3]{x} + \\sqrt{x} - 2}{x - 1}.$$"
+  },
+  {
+    "id": "7tq16",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11n",
+    "tema": [
+      "límites en el infinito con raíces cuadradas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite infinito raíz cuadrada producto menos x",
+      "límite conjugado raíz de producto lineal en infinito",
+      "lim x tiende a infinito raíz de x más a por x más b menos x"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/7tq16.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\left(\\sqrt{(x+a)(x+b)} - x\\right).$$"
+  },
+  {
+    "id": "7zkiu",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11h",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite infinito función racional grado numerador mayor",
+      "límite x tiende a infinito x quinto sobre x cúbico",
+      "lim x tiende a infinito x5 más x más 4 sobre 3x3 más 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/7zkiu.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\frac{x^5 + x + 4}{3x^3 + 1}.$$"
+  },
+  {
+    "id": "8p0t1",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11l",
+    "tema": [
+      "límites en el infinito con raíces cuadradas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite infinito diferencia de raíces cuadradas",
+      "límite conjugado raíces cuadradas en infinito",
+      "lim x tiende a infinito raíz x cuadrado más 8x más 3 menos raíz x cuadrado más 4x más 3"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/8p0t1.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\left(\\sqrt{x^2+8x+3} - \\sqrt{x^2+4x+3}\\right).$$"
+  },
+  {
+    "id": "9rnot",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11c",
+    "tema": [
+      "límites indeterminados por factorización"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite indeterminado 0 sobre 0 potencias exponenciales",
+      "límite 5 a la x menos 4 a la x sobre x cuadrado más x",
+      "lim x tiende a 0 potencias fracción factorización"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/9rnot.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 0} \\frac{5^x - 4^x}{x^2 + x}.$$"
+  },
+  {
+    "id": "b4r45",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11m",
+    "tema": [
+      "límites en el infinito con diferencia de fracciones racionales"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite infinito diferencia de fracciones racionales",
+      "límite infinito menos infinito fracciones polinómicas",
+      "lim x tiende a infinito x cúbico sobre 2x cuadrado menos 1 menos x cuadrado sobre 2x más 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b4r45.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\left(\\frac{x^3}{2x^2-1} - \\frac{x^2}{2x+1}\\right).$$"
+  },
+  {
+    "id": "hypp0",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11a",
+    "tema": [
+      "límites indeterminados por factorización"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite indeterminado factorización cancelación",
+      "límite 0 sobre 0 diferencia de cuadrados",
+      "lim x tiende a 1 x cuadrado menos 1 sobre x menos 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/hypp0.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 1} \\frac{x^2 - 1}{x - 1}.$$"
+  },
+  {
+    "id": "l108k",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "12b",
+    "tema": [
+      "límites trigonométricos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite trigonométrico raíz seno en cero",
+      "límite 0 sobre 0 raíz de 1 más seno menos raíz de 1 menos seno",
+      "lim x tiende a 0 raíz 1 más sen x menos raíz 1 menos sen x sobre x"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/l108k.html",
+    "enunciado": "Calcule el siguiente límite trigonométrico: $$\\lim_{x \\to 0} \\frac{\\sqrt{1+\\operatorname{sen} x} - \\sqrt{1-\\operatorname{sen} x}}{x}.$$"
+  },
+  {
+    "id": "oc11e",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11d",
+    "tema": [
+      "límites indeterminados con raíces anidadas"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite indeterminado raíz anidada racionalización",
+      "límite 0 sobre 0 raíz de 2 más raíz cúbica de x",
+      "lim x tiende a 8 raíz cuadrada de 2 más raíz cúbica x menos 2 sobre x menos 8"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/oc11e.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 8} \\frac{\\sqrt{2 + \\sqrt[3]{x}} - 2}{x - 8}.$$"
+  },
+  {
+    "id": "pload",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11f",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite en el infinito función racional mismo grado",
+      "límite cociente polinomios grado igual infinito",
+      "lim x tiende a infinito 6x cuadrado más x más 1 sobre 3x cuadrado más 3"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/pload.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\frac{6x^2 + x + 1}{3x^2 + 3}.$$"
+  },
+  {
+    "id": "t5m7y",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11k",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite infinito función racional numerador mayor denominador lineal",
+      "límite x tiende a infinito cúbico sobre lineal",
+      "lim x tiende a infinito menos 2x cúbico más x más 4 sobre 3x más 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/t5m7y.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\frac{-2x^3 + x + 4}{3x + 1}.$$"
+  },
+  {
+    "id": "tv3ha",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11j",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite infinito función racional denominador mayor denominador con menos",
+      "límite x tiende a infinito grado 2 sobre grado 4 denominador negativo",
+      "lim x tiende a infinito x cuadrado más x más 4 sobre 3x4 menos 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/tv3ha.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\frac{x^2 + x + 4}{3x^4 - 1}.$$"
+  },
+  {
+    "id": "vhjma",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "12a",
+    "tema": [
+      "límites trigonométricos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite trigonométrico tangente en punto especial",
+      "límite 1 menos x por tangente de x pi sobre 2",
+      "lim x tiende a 1 uno menos x por tan x pi medio"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/vhjma.html",
+    "enunciado": "Calcule el siguiente límite trigonométrico: $$\\lim_{x \\to 1} (1-x)\\tan\\frac{x\\pi}{2}.$$"
+  },
+  {
+    "id": "znnz1",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11g",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite en menos infinito función racional mismo grado",
+      "límite x tiende a menos infinito cociente cúbico",
+      "lim x tiende a menos infinito x cúbico menos 3x más 4 sobre 3x cúbico menos 100"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/znnz1.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to -\\infty} \\frac{x^3 - 3x + 4}{3x^3 - 100}.$$"
+  },
+  {
+    "id": "zsaxn",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "11i",
+    "tema": [
+      "límites en el infinito de funciones racionales"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite infinito función racional grado denominador mayor",
+      "límite x tiende a infinito cociente grado 2 sobre grado 4",
+      "lim x tiende a infinito x cuadrado más x más 4 sobre 3x4 más 1"
+    ],
+    "fecha": "2026-04-03",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/zsaxn.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\infty} \\frac{x^2 + x + 4}{3x^4 + 1}.$$"
+  },
+  {
+    "id": "26z6m",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1l",
+    "tema": [
+      "límites por definición épsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta polinomio cuadrático",
+      "demostración formal límite x cuadrado más 2ax",
+      "límite lim x tiende a a de x² más 2ax igual a 3a²"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/26z6m.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (x^2 + 2ax) = 3a^2.$$"
+  },
+  {
+    "id": "41zw7",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2f",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite de función racional por sustitución",
+      "límite cociente polinomio cúbico",
+      "lim x tiende a menos 3 de 4x cúbico más 1 sobre 7 menos 2x cuadrado"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/41zw7.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to -3} \\frac{4x^3+1}{7-2x^2}.$$"
+  },
+  {
+    "id": "4eizq",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "6c",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite lateral izquierdo función signo",
+      "límite por izquierda |x| sobre x en cero",
+      "lim x tiende a 0 por izquierda función valor absoluto sobre x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/4eizq.html",
+    "enunciado": "Sea $f(x) = \\dfrac{|x|}{x}$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 0^-} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "5dfxs",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "5d",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite función parte fraccionaria en no entero",
+      "límite bilateral función piso punto interior",
+      "lim x tiende a 1/2 función x menos piso x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/5dfxs.html",
+    "enunciado": "Sea $f(x) = x - \\lfloor x \\rfloor$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 1/2} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "6020d",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "4a",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función definida a trozos",
+      "límite lateral función por partes",
+      "lim x tiende a 1 función a trozos tres tramos"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/6020d.html",
+    "enunciado": "Sea $$g(x) = \\begin{cases} -x+1, & \\text{si } x"
+  },
+  {
+    "id": "7npxe",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "9",
+    "tema": [
+      "límites en el infinito y determinación de parámetros"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite en el infinito función racional parámetros",
+      "sistema de ecuaciones límites infinito función a trozos",
+      "encontrar a y b límite en menos infinito e infinito"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/7npxe.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} \\dfrac{2ax - 1}{bx + 1}, & \\text{si } x 1. \\end{cases}$$ Encuentre $a$ y $b$ de tal forma que $\\displaystyle\\lim_{x \\to -\\infty} f(x) = 1$ y $\\displaystyle\\lim_{x \\to \\infty"
+  },
+  {
+    "id": "8sfkl",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2c",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite cálculo directo sustitución",
+      "límite de producto de funciones lineales",
+      "lim x tiende a 0 de 2x más 1 por x menos 3"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/8sfkl.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 0} (2x + 1)(x - 3).$$"
+  },
+  {
+    "id": "9hvdy",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2b",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite cálculo directo sustitución",
+      "límite de polinomio cuadrático",
+      "lim x tiende a menos 1 de 3x cuadrado menos 11"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/9hvdy.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to -1} (3x^2 - 11).$$"
+  },
+  {
+    "id": "b0r5s",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "5b",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite función piso parte fraccionaria",
+      "límite bilateral función x menos piso x en entero",
+      "lim x tiende a 0 función parte fraccionaria no existe"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/b0r5s.html",
+    "enunciado": "Sea $f(x) = x - \\lfloor x \\rfloor$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 0} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "bbevs",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1k",
+    "tema": [
+      "límites por definición épsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta polinomio cuadrático",
+      "demostración formal límite x cuadrado menos 2ax",
+      "límite lim x tiende a a de x² menos 2ax igual a menos a²"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/bbevs.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (x^2 - 2ax) = -a^2.$$"
+  },
+  {
+    "id": "bm9hd",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2d",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite cálculo directo sustitución",
+      "límite de producto de polinomios cuadráticos",
+      "lim x tiende a raíz de 2 de 2x cuadrado más 1 por 7x cuadrado más 13"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/bm9hd.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to \\sqrt{2}} (2x^2 + 1)(7x^2 + 13).$$"
+  },
+  {
+    "id": "cvry5",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2a",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite cálculo directo sustitución",
+      "límite de función lineal",
+      "lim x tiende a 1 de 2x más 1"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/cvry5.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 1} (2x + 1).$$"
+  },
+  {
+    "id": "dz0r5",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "6b",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función signo valor absoluto sobre x",
+      "límite bilateral |x| sobre x en cero no existe",
+      "lim x tiende a 0 función signo"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/dz0r5.html",
+    "enunciado": "Sea $f(x) = \\dfrac{|x|}{x}$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 0} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "f18u0",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "4b",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "valor función definida a trozos punto incluido",
+      "función por partes evaluación en punto de costura",
+      "g de 1 función a trozos definida"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/f18u0.html",
+    "enunciado": "Sea $$g(x) = \\begin{cases} -x+1, & \\text{si } x"
+  },
+  {
+    "id": "grgey",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "3c",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "valor de función a trozos en un punto",
+      "función definida por partes evaluación directa",
+      "f de 1 función a trozos no definida"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/grgey.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} -x, & \\text{si } x 1. \\end{cases}$$ Calcule, si es posible, $f(1)$; sino, establezca que no existe."
+  },
+  {
+    "id": "gvfh4",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "3a",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función definida a trozos",
+      "límite lateral función por partes",
+      "lim x tiende a 0 función a trozos"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/gvfh4.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} -x, & \\text{si } x 1. \\end{cases}$$ Calcule, si es posible, $\\displaystyle\\lim_{x \\to 0} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "idk8w",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "4c",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función definida a trozos costura con cuadrática",
+      "límite lateral función por partes en x igual a 2",
+      "lim x tiende a 2 función a trozos tres tramos"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/idk8w.html",
+    "enunciado": "Sea $$g(x) = \\begin{cases} -x+1, & \\text{si } x"
+  },
+  {
+    "id": "juvgr",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1j",
+    "tema": [
+      "límites por definición épsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta polinomio cuadrático",
+      "demostración formal límite x cuadrado menos ax",
+      "límite lim x tiende a a de x² menos ax igual a cero"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/juvgr.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (x^2 - ax) = 0.$$"
+  },
+  {
+    "id": "ku656",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "4d",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite lateral derecho función a trozos",
+      "límite por derecha en punto de costura",
+      "lim x tiende a 1 por derecha función a trozos tres tramos"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/ku656.html",
+    "enunciado": "Sea $$g(x) = \\begin{cases} -x+1, & \\text{si } x"
+  },
+  {
+    "id": "nhlfw",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2i",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite de función compuesta con potencia",
+      "límite por sustitución con exponente fraccionario",
+      "lim t tiende a menos 2 de 2t cúbico más 15 a la 13"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/nhlfw.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{t \\to -2} (2t^3+15)^{13}.$$"
+  },
+  {
+    "id": "pvicp",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "3b",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función definida a trozos",
+      "límite lateral función por partes salto",
+      "lim x tiende a 1 función a trozos no existe"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/pvicp.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} -x, & \\text{si } x 1. \\end{cases}$$ Calcule, si es posible, $\\displaystyle\\lim_{x \\to 1} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "sachs",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2g",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite de función con raíz cuadrada",
+      "límite por sustitución con raíz",
+      "lim x tiende a 3 de raíz de 3x menos 5"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/sachs.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 3} \\sqrt{3x-5}.$$"
+  },
+  {
+    "id": "staaq",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2e",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite de función racional por sustitución",
+      "límite cociente de polinomios",
+      "lim x tiende a 2 de 2x más 1 sobre 5 menos 3x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/staaq.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to 2} \\frac{2x+1}{5-3x}.$$"
+  },
+  {
+    "id": "t1103",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "6a",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "función valor absoluto sobre x evaluación en cero",
+      "dominio función |x| sobre x",
+      "f de 0 no existe valor absoluto partido x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/t1103.html",
+    "enunciado": "Sea $f(x) = \\dfrac{|x|}{x}$. Calcule, si es posible, $f(0)$; sino, establezca que no existe."
+  },
+  {
+    "id": "tjayu",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "6d",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite función signo en punto no conflictivo",
+      "límite |x| sobre x en punto positivo",
+      "lim x tiende a 1/2 función valor absoluto sobre x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/tjayu.html",
+    "enunciado": "Sea $f(x) = \\dfrac{|x|}{x}$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 1/2} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "v8d1p",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "7",
+    "tema": [
+      "límites laterales y determinación de parámetros"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límites laterales encontrar parámetros a y b",
+      "sistema de ecuaciones límites función a trozos",
+      "límite lateral función por partes determinar constantes"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/v8d1p.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} ax + b, & \\text{si } x 1. \\end{cases}$$ Encuentre $a$ y $b$ de tal forma que $\\displaystyle\\lim_{x \\to 1^-} f(x) = 1$ y $\\displaystyle\\lim_{x \\to 1^+} f(x) = \\dfrac{1}{2}$."
+  },
+  {
+    "id": "vbzjq",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "3d",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite lateral derecho función a trozos",
+      "límite por derecha función definida por partes",
+      "lim x tiende a 1 por derecha función a trozos"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/vbzjq.html",
+    "enunciado": "Sea $$f(x) = \\begin{cases} -x, & \\text{si } x 1. \\end{cases}$$ Calcule, si es posible, $\\displaystyle\\lim_{x \\to 1^+} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "w76yv",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "2h",
+    "tema": [
+      "cálculo directo de límites"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite de función con raíz cuadrada",
+      "límite por sustitución con raíz de polinomio cuadrático",
+      "lim x tiende a menos 3 de raíz de 5x cuadrado más 2x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/w76yv.html",
+    "enunciado": "Calcule el siguiente límite: $$\\lim_{x \\to -3} \\sqrt{5x^2+2x}.$$"
+  },
+  {
+    "id": "wqm7x",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "5c",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite lateral izquierdo función parte fraccionaria",
+      "límite por izquierda función piso",
+      "lim x tiende a 0 por izquierda x menos piso x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/wqm7x.html",
+    "enunciado": "Sea $f(x) = x - \\lfloor x \\rfloor$. Calcule, si es posible, $\\displaystyle\\lim_{x \\to 0^-} f(x)$; sino, establezca que no existe."
+  },
+  {
+    "id": "xoqow",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "5a",
+    "tema": [
+      "límites de funciones definidas a trozos"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "función piso floor parte fraccionaria",
+      "valor de función parte fraccionaria en entero",
+      "f de 0 función x menos piso de x"
+    ],
+    "fecha": "2026-03-31",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/xoqow.html",
+    "enunciado": "Sea $f(x) = x - \\lfloor x \\rfloor$. Calcule, si es posible, $f(0)$; sino, establezca que no existe."
+  },
+  {
+    "id": "1soho",
+    "materia": [
+      "limites"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1i",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite de función cuadrática por epsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta función cuadrática",
+      "demostración formal límite ax cuadrado",
+      "límite lim x tiende a a de ax² igual a a³"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/1soho.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} ax^2 = a^3.$$"
+  },
+  {
+    "id": "2r107",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1f",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite de función racional por epsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta función racional",
+      "demostración formal límite a cuadrado sobre x",
+      "límite lim x tiende a a de a²/x igual a a"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/2r107.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} \\frac{a^2}{x} = a.$$"
+  },
+  {
+    "id": "8b23d",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1a",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite con epsilon y delta"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta",
+      "demostración formal de límite",
+      "límite lim x tiende a a de ax"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/8b23d.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} ax = a^2.$$"
+  },
+  {
+    "id": "k7ox1",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1c",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite con epsilon y delta"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta",
+      "demostración formal de límite",
+      "límite de ax menos 2a cuadrado igual a menos a cuadrado"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/k7ox1.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (ax - 2a^2) = -a^2.$$"
+  },
+  {
+    "id": "mwpe5",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1b",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite con epsilon y delta"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta",
+      "demostración formal de límite",
+      "límite de ax menos a cuadrado igual a cero"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/mwpe5.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (ax - a^2) = 0.$$"
+  },
+  {
+    "id": "t529b",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1h",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite de función racional por epsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta función racional",
+      "demostración formal límite a sobre x",
+      "límite lim x tiende a a de a/x igual a 1"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/t529b.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} \\frac{a}{x} = 1.$$"
+  },
+  {
+    "id": "tza53",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1d",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite con epsilon y delta"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta",
+      "demostración formal de límite",
+      "límite de ax más 2a cuadrado igual a 3a cuadrado"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/tza53.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (ax + 2a^2) = 3a^2.$$"
+  },
+  {
+    "id": "uvikh",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1e",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite con epsilon y delta"
+    ],
+    "dificultad": [
+      "basico",
+      "elemental",
+      "introductorio"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta",
+      "demostración formal de límite",
+      "límite de 2ax menos a cuadrado igual a a cuadrado"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/uvikh.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} (2ax - a^2) = a^2.$$"
+  },
+  {
+    "id": "yro9r",
+    "materia": [
+      "Cálculo I"
+    ],
+    "origen": "PR3",
+    "ejercicio_nro": "1g",
+    "tema": [
+      "límites por definición épsilon-delta",
+      "definición formal de límite",
+      "límite de función racional por epsilon-delta"
+    ],
+    "dificultad": [
+      "intermedio",
+      "medio",
+      "moderado"
+    ],
+    "seo_keywords": [
+      "límite por definición epsilon delta función racional",
+      "demostración formal límite 1 sobre x",
+      "límite lim x tiende a a de 1/x igual a 1/a"
+    ],
+    "tipo_solucion": "algebraico",
+    "fecha": "2026-03-30",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/yro9r.html",
+    "enunciado": "Demuestre, mediante la definición de límite, que ($a \\neq 0$): $$\\lim_{x \\to a} \\frac{1}{x} = \\frac{1}{a}.$$"
+  },
+  {
+    "id": "2wi7v",
+    "materia": [
+      "PROGRAMACION II"
+    ],
+    "origen": "CL",
+    "ejercicio_nro": null,
+    "paradigma": [
+      "POO"
+    ],
+    "tema": [
+      "métodos con objetos como parámetros",
+      "comparación entre instancias",
+      "encapsulamiento y getters"
+    ],
+    "dificultad": [
+      "basico",
+      "introductorio",
+      "inicial"
+    ],
+    "seo_keywords": [
+      "clase Persona POO pseudocódigo",
+      "comparar objetos misma clase",
+      "método con parámetro objeto"
+    ],
+    "fecha": "2026-03-29",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/2wi7v.html",
+    "enunciado": "Crea un programa donde pueda instanciar objetos de la clase Persona con los atributos (nombre, edad) y un método que me compare la edad de una persona con la de otras dos personas y me muestre quién e"
+  },
+  {
+    "id": "bbz4k",
+    "materia": [
+      "PROGRAMACION II"
+    ],
+    "origen": "CL",
+    "ejercicio_nro": null,
+    "paradigma": [
+      "POO"
+    ],
+    "tema": [
+      "sobrecarga de métodos",
+      "method overloading",
+      "constructores sobrecargados"
+    ],
+    "dificultad": [
+      "basico",
+      "introductorio",
+      "inicial"
+    ],
+    "seo_keywords": [
+      "sobrecarga constructores java",
+      "overloading POO",
+      "clase Celular pseudocódigo"
+    ],
+    "fecha": "2026-03-29",
+    "autor": {
+      "nombre": "Claude",
+      "modelo": "claude-sonnet-4-6"
+    },
+    "archivo": "ejercicios/bbz4k.html",
+    "enunciado": "A) Instanciar 3 objetos de la clase Celular de 3 maneras y identificar al menos 4 atributos significativos. B) Dado muchas falsificaciones de celulares, haz el método que verifique si un cel. es del m"
+  },
+  {
     "id": "h1km1",
     "materia": [
       "Cálculo I"
@@ -1669,7 +3274,7 @@
   {
     "id": "b2r9k",
     "materia": [
-      "Programación I"
+      "Programación II"
     ],
     "origen": "CL",
     "ejercicio_nro": null,
@@ -3162,9 +4767,7 @@
   {
     "id": "cb3f2",
     "materia": [
-      "Programación Orientada a Objetos",
-      "POO",
-      "Programación II"
+      "PROGRAMACION II"
     ],
     "tema": [
       "Clases y objetos",
@@ -3194,9 +4797,7 @@
   {
     "id": "d82a1",
     "materia": [
-      "Programación Orientada a Objetos",
-      "POO",
-      "Programación II"
+      "PROGRAMACION II"
     ],
     "tema": [
       "Clases y objetos",

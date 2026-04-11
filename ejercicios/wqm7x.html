@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>wqm7x</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "wqm7x",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "5c",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite lateral izquierdo función parte fraccionaria",
+        "límite por izquierda función piso",
+        "lim x tiende a 0 por izquierda x menos piso x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = x - \lfloor x \rfloor$. Calcule, si es posible, $\displaystyle\lim_{x \to 0^-} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>El símbolo $0^-$ indica que $x$ se acerca a $0$ viniendo desde la izquierda, es decir, con $x < 0$. La pregunta es solo sobre ese lado: hay que determinar qué vale $\lfloor x \rfloor$ para $x$ ligeramente negativo y calcular el límite de $f(x) = x - \lfloor x \rfloor$ en esa dirección.</p>
+
+    <div class="nota">
+      Para $-1 < x < 0$, el entero más grande menor o igual a $x$ es $-1$. Por lo tanto $\lfloor x \rfloor = -1$ en ese intervalo, y $f(x) = x - (-1) = x + 1$.
+    </div>
+
+    <p>La función piso "salta" en cada entero. Justo antes de llegar a $0$ por la izquierda, $x$ está en el intervalo $(-1, 0)$, donde $\lfloor x \rfloor = -1$. Eso convierte a $f$ en la función lineal $x + 1$ cerca de $0$ por la izquierda, y el límite se calcula por sustitución directa.</p>
+
+    <p class="chiste">$\lfloor -0{,}001 \rfloor = -1$, no $0$. La función piso redondea hacia abajo — siempre hacia $-\infty$, nunca hacia cero. Para los negativos, eso significa que el resultado es más negativo de lo que parece intuitivo. Un número como $-0{,}001$ está "entre" $-1$ y $0$, y la función piso elige el de abajo: $-1$.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>El hecho de que $\lim_{x \to 0^-}(x - \lfloor x \rfloor) = 1$ — y no $0$ — es la razón por la que la parte fraccionaria de números negativos puede sorprender. $-0{,}3$ tiene parte fraccionaria $0{,}7$, no $0{,}3$. Eso es matemáticamente coherente: la parte fraccionaria siempre está en $[0, 1)$, así que nunca es negativa. Pero en computación, algunos lenguajes definen la "parte fraccionaria" de un negativo como el resultado de truncar hacia cero en lugar de hacia $-\infty$, obteniendo $-0{,}3$ en lugar de $0{,}7$. Esa diferencia de convención no es un error de implementación — es una elección de diseño — pero puede generar bugs sutiles cuando se usa la parte fraccionaria para indexar en tablas o calcular posiciones en una cuadrícula.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x) = \lim_{x \to 0^-}(x - \lfloor x \rfloor)$
+    </div>
+    <div class="paso-just">
+      Se escribe la fórmula completa.
+    </div>
+
+    <div class="paso-dev">
+      Para $-1 < x < 0$: $\lfloor x \rfloor = -1$
+    </div>
+    <div class="paso-just">
+      El entero más grande $\leq x$ para $x \in (-1, 0)$ es $-1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-}(x - (-1))$
+    </div>
+    <div class="paso-just">
+      Se sustituye $\lfloor x \rfloor = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-}(x + 1)$
+    </div>
+    <div class="paso-just">
+      $x - (-1) = x + 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 0 + 1 = 1$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 0$.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Valores de $f$ para $x < 0$ acercándose a $0$: $f(-0{,}5) = -0{,}5 - (-1) = 0{,}5$; $f(-0{,}1) = -0{,}1 + 1 = 0{,}9$; $f(-0{,}01) = 0{,}99$; $f(-0{,}001) = 0{,}999$. La función se acerca a $1$ cuando $x \to 0$ por la izquierda. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0^-} f(x) = \boxed{1}.$$
+    Para $x \in (-1, 0)$, $\lfloor x \rfloor = -1$ y $f(x) = x + 1 \to 1$ cuando $x \to 0^-$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En síntesis de audio digital, una onda diente de sierra se genera precisamente con la función parte fraccionaria: la señal sube linealmente de $0$ a $1$ durante cada período y luego salta abruptamente de vuelta a $0$. Ese salto — que ocurre en cada entero — es exactamente la discontinuidad que se calcula en este ejercicio: el límite por izquierda vale $1$ y el límite por derecha vale $0$. En la práctica, ese salto abrupto introduce distorsión audible conocida como <em>aliasing</em>. Los sintetizadores modernos suavizan ese salto con técnicas de band-limiting que reemplazan la discontinuidad por una transición rápida pero continua, reduciendo el aliasing sin perder el carácter del sonido.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 0^-}(x - \lfloor x \rfloor) = 1$ se calculó usando que $\lfloor x \rfloor = -1$ para $x \in (-1, 0)$. ¿Qué ocurre si $x$ se acerca a $0$ por la izquierda pero viene desde más lejos, por ejemplo desde $x = -5$? ¿El valor de $\lfloor x \rfloor$ cambia en el camino, o solo importa el intervalo inmediatamente a la izquierda de $0$?</span></li>
+      <li><span>¿Cuánto vale $\lim_{x \to -1^-}(x - \lfloor x \rfloor)$? ¿Y $\lim_{x \to -1^+}(x - \lfloor x \rfloor)$? ¿El patrón es el mismo que en $x = 0$?</span></li>
+      <li><span>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ tiene límite por izquierda igual a $1$ en todos los enteros. ¿Puede construirse una función periódica con período $1$ que tenga límite por izquierda igual a $0$ en todos los enteros y límite por derecha igual a $1$? ¿Qué aspecto tendría su gráfica?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

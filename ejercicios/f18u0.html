@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>f18u0</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "f18u0",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "4b",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "valor función definida a trozos punto incluido",
+        "función por partes evaluación en punto de costura",
+        "g de 1 función a trozos definida"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$g(x) = \begin{cases} -x+1, & \text{si } x < 1; \\ x-1, & \text{si } 1 < x < 2; \\ 5-x^2, & \text{si } x \geq 2. \end{cases}$$
+    Calcule, si es posible, $g(1)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>La pregunta es sobre el <em>valor</em> de la función en $x = 1$, no sobre un límite. Para responderla hay que revisar cuál trozo de la definición cubre ese punto exacto.</p>
+
+    <div class="nota">
+      Trozo 1: $x &lt; 1$ — no incluye $x = 1$.<br>
+      Trozo 2: $1 &lt; x &lt; 2$ — no incluye $x = 1$.<br>
+      Trozo 3: $x \geq 2$ — no incluye $x = 1$.
+    </div>
+
+    <p>Ningún trozo cubre $x = 1$. La función $g$ no está definida en ese punto. El dominio de $g$ es $(-\infty, 1) \cup (1, 2) \cup [2, +\infty) = \mathbb{R} \setminus \{1\}$: todos los reales excepto $x = 1$.</p>
+
+    <p class="chiste">El punto $x = 1$ es el único real al que $g$ le da la espalda. Ni izquierda, ni derecha, ni arriba: simplemente no está en la lista de invitados.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>Un punto aislado fuera del dominio de una función se llama <em>singularidad evitable</em> si el límite de la función en ese punto existe y es finito. En ese caso, basta con definir $f(c) = \lim_{x \to c} f(x)$ para "tapar el agujero" y obtener una función continua. Para la función $g$ de este ejercicio, el límite en $x = 1$ vale $0$ — así que la discontinuidad es evitable. La función $g$ extendida con $g(1) = 0$ sería continua en $x = 1$. En análisis complejo, las singularidades evitables tienen una importancia enorme: el teorema de Riemann sobre singularidades evitables garantiza que una función analítica acotada cerca de una singularidad aislada siempre puede extenderse de forma continua a ese punto.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $g(1) = \;?$
+    </div>
+    <div class="paso-just">
+      Se busca el trozo cuyo dominio contiene $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      Trozo 1: $x < 1$ — no aplica.<br>
+      Trozo 2: $1 < x < 2$ — no aplica.<br>
+      Trozo 3: $x \geq 2$ — no aplica.
+    </div>
+    <div class="paso-just">
+      Ningún trozo cubre $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $g(1)$ no está definida.
+    </div>
+    <div class="paso-just">
+      $x = 1 \notin \text{Dom}(g)$.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>No hay valor que verificar. Lo que sí puede observarse es que los valores cercanos existen y se acercan a $0$ desde ambos lados: $g(0{,}99) = -0{,}99 + 1 = 0{,}01$ y $g(1{,}01) = 1{,}01 - 1 = 0{,}01$. El punto $x = 1$ es un agujero puntual en un entorno de valores bien definidos.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> $g(1)$ <strong>no existe</strong>.
+    <br><br>
+    El punto $x = 1$ no pertenece al dominio de $g$. La discontinuidad es evitable: podría definirse $g(1) = 0$ para hacer la función continua en ese punto.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En diseño de APIs, una función que no está definida para ciertos valores de entrada se documenta explícitamente con los casos inválidos — exactamente el dominio de la función matemática. Cuando una petición llega con un valor fuera del dominio, la API devuelve un error o un valor especial en lugar de un resultado. La distinción entre "este valor no está en el dominio" y "este valor produce un resultado indefinido por algún cálculo interno" es importante: el primero es un error de contrato (el llamador violó las precondiciones), el segundo es un error de implementación. La singularidad evitable en matemáticas tiene su análogo en programación: una función que podría manejar un caso borde pero que por descuido no lo hace — el "agujero" está en el código, no en la matemática.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La función $g$ no está definida en $x = 1$, pero el límite $\lim_{x \to 1} g(x)$ existe y vale $0$. Si se define $g(1) = 0$, ¿la función extendida es continua en $x = 1$? ¿Qué condición formal de continuidad habría que verificar?</span></li>
+      <li><span>¿Puede una función no estar definida en un punto y aun así tener un límite infinito en ese punto? ¿Ese tipo de discontinuidad también se llama evitable?</span></li>
+      <li><span>El dominio de $g$ es $\mathbb{R} \setminus \{1\}$: todos los reales excepto $x = 1$. ¿Es posible construir una función cuyo dominio excluya un intervalo entero en lugar de un punto aislado? ¿Cómo afectaría eso a la existencia de límites en los extremos del intervalo excluido?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

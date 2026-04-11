@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>t529b</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "t529b",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1h",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite de función racional por epsilon-delta"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta función racional",
+        "demostración formal límite a sobre x",
+        "límite lim x tiende a a de a/x igual a 1"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} \frac{a}{x} = 1.$$</p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $\left|\dfrac{a}{x} - 1\right|$. Al poner eso sobre denominador común se obtiene $\dfrac{|a - x|}{|x|} = \dfrac{|a|}{|x|} \cdot \dfrac{|x-a|}{|a|}$. Simplificando: $\dfrac{|x - a|}{|x|}$. El factor $1/|x|$ varía con $x$, así que hay que acotarlo.</p>
+
+    <div class="nota">
+      La estrategia es la misma que para cualquier función racional con $x$ en el denominador: imponer $\delta \leq |a|/2$ para forzar $|x| > |a|/2$, lo que convierte $1/|x|$ en algo menor que $2/|a|$. Con ese techo, la expresión completa queda acotada por $\dfrac{2}{|a|} \cdot |x - a|$, y eligiendo $\delta \leq |a|\varepsilon/2$ se cierra la cadena.
+    </div>
+
+    <p>Lo que hace particular a este inciso es que el límite es $1$, un número que no depende de $a$. Eso significa que $a/x \to 1$ sin importar cuánto vale $a$ — siempre que $x$ se acerque a ese mismo $a$. Intuitivamente: cuando $x \approx a$, el cociente $a/x \approx a/a = 1$.</p>
+
+    <p class="chiste">El límite es $1$ para cualquier $a \neq 0$. Si $a = 7$, el límite es $1$. Si $a = -\pi$, el límite es $1$. Si $a = 10^{100}$, el límite sigue siendo $1$. Hay algo casi filosófico en que una función que depende de $a$ tenga siempre el mismo límite.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>El cociente $a/x$ mide cuántas veces cabe $x$ en $a$. Cuando $x \to a$, ese cociente tiende a $1$ — lo que dice que $x$ "cabe exactamente una vez" en $a$ en el límite. Esta idea aparece en teoría de números bajo el nombre de <em>densidad relativa</em>: si dos secuencias de enteros crecen al mismo ritmo, su cociente tiende a $1$. Por ejemplo, los números primos menores que $n$ y los números primos menores que $2n$ tienen una razón que tiende a $1/\ln 2$ por el teorema de los números primos — una generalización mucho más profunda de la misma intuición de que "cociente de cosas parecidas tiende a algo fijo".</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \min\!\left(\dfrac{|a|}{2},\; \dfrac{|a|\,\varepsilon}{2}\right)$.
+    </div>
+    <div class="paso-just">
+      Dos condiciones simultáneas; se toma la más restrictiva.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|x - a| < \delta \leq \dfrac{|a|}{2}$
+    </div>
+    <div class="paso-just">
+      Por definición de mínimo, $\delta \leq |a|/2$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x| \geq |a| - |x - a| > |a| - \dfrac{|a|}{2} = \dfrac{|a|}{2}$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular inversa: $|x| \geq |a| - |x - a|$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; \dfrac{1}{|x|} < \dfrac{2}{|a|}$
+    </div>
+    <div class="paso-just">
+      Invertir desigualdad entre positivos da vuelta el signo.
+    </div>
+
+    <div class="paso-dev">
+      $\left|\dfrac{a}{x} - 1\right| = \left|\dfrac{a - x}{x}\right|$
+    </div>
+    <div class="paso-just">
+      Denominador común $x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{|a - x|}{|x|}$
+    </div>
+    <div class="paso-just">
+      Separar valor absoluto del cociente.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{|x - a|}{|x|}$
+    </div>
+    <div class="paso-just">
+      $|a - x| = |x - a|$.
+    </div>
+
+    <div class="paso-dev">
+      $< \dfrac{2}{|a|} \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Se aplican $1/|x| < 2/|a|$ y $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $\leq \dfrac{2}{|a|} \cdot \dfrac{|a|\,\varepsilon}{2}$
+    </div>
+    <div class="paso-just">
+      Como $\delta \leq |a|\varepsilon/2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $2/|a|$ con $|a|/2$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Toma $a = 5$. El límite dice que $\lim_{x \to 5} 5/x = 1$. Con $\varepsilon = 0{,}2$, la $\delta$ es $\min(2{,}5,\, 5 \cdot 0{,}2 / 2) = \min(2{,}5,\, 0{,}5) = 0{,}5$. Prueba $x = 5{,}4$ (a distancia $0{,}4 < 0{,}5$): $|5/5{,}4 - 1| = |0{,}925\ldots - 1| = 0{,}074\ldots < 0{,}2$. Prueba $x = 4{,}7$ (a distancia $0{,}3 < 0{,}5$): $|5/4{,}7 - 1| = |1{,}063\ldots - 1| = 0{,}063\ldots < 0{,}2$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \min\!\left(\dfrac{|a|}{2},\, \dfrac{|a|\,\varepsilon}{2}\right)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; \left|\dfrac{a}{x} - 1\right| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a} \frac{a}{x} = 1$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En algoritmos de normalización, dividir un valor por una referencia del mismo orden produce un cociente cercano a $1$. Eso es exactamente lo que ocurre con $a/x$ cuando $x \approx a$. Técnicas como la normalización por lotes en redes neuronales dividen cada valor de activación por la media del lote — que es del mismo orden que el valor — para que el cociente quede cerca de $1$ antes de aplicar una escala aprendida. La garantía de que ese cociente sea continuo y tienda suavemente a $1$ cuando el denominador se acerca al numerador es lo que hace que el entrenamiento sea estable: si el cociente saltara, los gradientes serían impredecibles.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a} a/x = 1$, la segunda cota de $\delta$ es $|a|\varepsilon/2$. ¿Por qué aparece $|a|$ ahí? ¿Qué ocurre con esa cota cuando $|a|$ es muy grande? ¿Y cuando $|a|$ es muy pequeño?</span></li>
+      <li><span>El límite $\lim_{x \to a} a/x = 1$ no depende del valor concreto de $a \neq 0$. Sin embargo, la $\delta$ elegida sí depende de $a$. ¿Cómo se reconcilian esas dos cosas? ¿Podría existir una $\delta$ que funcione para todos los valores de $a$ a la vez?</span></li>
+      <li><span>¿Qué pasa con $\lim_{x \to a} a/x$ si se permite que $a$ dependa de $x$, es decir, si en lugar de una constante $a$ se tiene una función $g(x)$ tal que $g(x) \to a$ cuando $x \to a$? ¿El límite de $g(x)/x$ sigue siendo $1$?</span></li>
+      <li><span>La demostración épsilon-delta de $\lim_{x \to a} a/x = 1$ usa la misma estructura que la de $\lim_{x \to a} 1/x = 1/a$. ¿En qué paso concreto difieren las dos demostraciones? ¿Qué factor algebraico desaparece en una y no en la otra?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

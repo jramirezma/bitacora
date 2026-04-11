@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>pload</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "pload",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11f",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite en el infinito función racional mismo grado",
+        "límite cociente polinomios grado igual infinito",
+        "lim x tiende a infinito 6x cuadrado más x más 1 sobre 3x cuadrado más 3"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \frac{6x^2 + x + 1}{3x^2 + 3}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cuando $x \to \infty$, tanto el numerador como el denominador crecen sin límite. Eso da la forma indeterminada $\infty/\infty$. La técnica estándar es dividir numerador y denominador por la potencia más alta de $x$ que aparezca — en este caso $x^2$ — y luego evaluar el límite usando que $c/x^k \to 0$ para cualquier constante $c$ y $k > 0$.</p>
+
+    <div class="nota">
+      Para funciones racionales con numerador y denominador del mismo grado, el límite en el infinito es siempre el cociente de los coeficientes principales: $\lim_{x \to \infty} \frac{a_n x^n + \cdots}{b_n x^n + \cdots} = \frac{a_n}{b_n}$.
+    </div>
+
+    <p>Acá el grado de ambos polinomios es $2$, los coeficientes principales son $6$ y $3$, y el resultado es $6/3 = 2$. La división por $x^2$ lo confirma algebraicamente paso a paso.</p>
+
+    <p class="chiste">Cuando numerador y denominador tienen el mismo grado, los términos de menor orden pierden toda influencia al llegar al infinito. El $x$, el $1$ y el $3$ del fondo desaparecen como si nunca hubieran existido. Solo sobreviven los coeficientes del término dominante.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>El comportamiento de una función racional en el infinito depende enteramente de la diferencia entre los grados del numerador y del denominador. Si el grado del numerador es menor, el límite es $0$. Si son iguales, el límite es el cociente de los coeficientes principales. Si el grado del numerador es mayor, el límite es $\pm\infty$. Esa tricotomía tiene un nombre en teoría de sistemas: determina si el sistema es <em>estrictamente propio</em> (límite $0$), <em>propio</em> (límite finito no nulo) o <em>impropio</em> (límite infinito). En ingeniería de control, los sistemas estrictamente propios son los más fáciles de estabilizar, y esa propiedad se verifica exactamente comparando los grados del numerador y denominador de la función de transferencia.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty} \dfrac{6x^2 + x + 1}{3x^2 + 3}$
+    </div>
+    <div class="paso-just">
+      Forma $\infty/\infty$: se divide por la potencia dominante $x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{6 + \dfrac{1}{x} + \dfrac{1}{x^2}}{3 + \dfrac{3}{x^2}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{6 + 0 + 0}{3 + 0}$
+    </div>
+    <div class="paso-just">
+      $1/x \to 0$ y $1/x^2 \to 0$ cuando $x \to \infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{6}{3}$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      Cociente de los coeficientes principales.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow (600+10+1)/(300+3) = 611/303 \approx 2{,}017$; $x = 100 \Rightarrow (60000+100+1)/(30000+3) = 60101/30003 \approx 2{,}0031$; $x = 1000 \Rightarrow \approx 2{,}00033$. La función converge a $2$ desde abajo, acercándose cada vez más a medida que $x$ crece.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty} \frac{6x^2 + x + 1}{3x^2 + 3} = \boxed{2}.$$
+    La asíntota horizontal de la función es $y = 2$.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En análisis de algoritmos, la notación $O$ describe el comportamiento asintótico de una función de costo cuando el tamaño de entrada $n$ crece sin límite — exactamente un límite en el infinito. Si un algoritmo tiene costo $6n^2 + n + 1$ y otro tiene costo $3n^2 + 3$, ambos son $O(n^2)$: para entradas grandes, el cociente de sus costos converge a $2$, exactamente el resultado de este límite. Eso significa que el primero es aproximadamente el doble de lento que el segundo para entradas grandes, sin importar los términos de menor orden. La técnica de dividir por la potencia dominante es la misma operación que hace el análisis asintótico cuando compara algoritmos del mismo orden de complejidad.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to \infty}(6x^2+x+1)/(3x^2+3) = 2$ es el cociente de los coeficientes principales. ¿Cambia el resultado si se considera $\lim_{x \to -\infty}$ en lugar de $\lim_{x \to +\infty}$? ¿Por qué?</span></li>
+      <li><span>Si el numerador fuera $6x^3 + x + 1$ en lugar de $6x^2 + x + 1$, ¿cuál sería el límite cuando $x \to \infty$? ¿Y si fuera $6x + 1$?</span></li>
+      <li><span>La función $f(x) = (6x^2+x+1)/(3x^2+3)$ tiene asíntota horizontal $y = 2$. ¿Significa eso que $f(x) = 2$ para algún valor finito de $x$, o la función nunca alcanza exactamente ese valor?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>1soho</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "1soho",
+      materia: "limites",
+      origen: "PR3",
+      ejercicio_nro: "1i",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite de función cuadrática por epsilon-delta"
+      ],
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta función cuadrática",
+        "demostración formal límite ax cuadrado",
+        "límite lim x tiende a a de ax² igual a a³"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} ax^2 = a^3.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $|ax^2 - a^3|$. Factorizando: $|a||x^2 - a^2| = |a||x-a||x+a|$. El factor $|x + a|$ varía con $x$, así que no se puede tratar como constante directamente — hay que acotarlo.</p>
+
+    <div class="nota">
+      La estrategia: imponer $\delta \leq 1$ para mantener $x$ cerca de $a$ y obtener una cota fija para $|x + a|$. Si $|x - a| < 1$, entonces $|x| < |a| + 1$, y por la desigualdad triangular $|x + a| \leq |x| + |a| < 2|a| + 1$. Con ese techo fijo, la expresión completa queda acotada por $|a|(2|a|+1) \cdot |x-a|$, y eligiendo $\delta \leq \varepsilon / (|a|(2|a|+1))$ se cierra la demostración.
+    </div>
+
+    <p>La $\delta$ final es el mínimo de las dos restricciones: $1$ y $\varepsilon\,/\,(|a|(2|a|+1))$. Notar que la cota $\delta \leq 1$ es una elección conveniente pero no la única posible — cualquier número positivo fijo funcionaría; $1$ es simplemente el más cómodo para calcular.</p>
+
+    <p class="chiste">Por primera vez aparece $x^2$, y con él llega el factor $|x + a|$ que no estaba en los casos lineales. La función cuadrática "siente" tanto cuánto se aleja $x$ de $a$ como en qué dirección lo hace — por eso el factor $|x + a|$ mezcla ambas cosas.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>La factorización $x^2 - a^2 = (x-a)(x+a)$ que aparece en esta demostración es un caso particular de una identidad algebraica con siglos de historia: la diferencia de cuadrados. Los babilonios ya la usaban alrededor del 1800 a.C. para calcular productos difíciles reescribiéndolos como diferencias de cuadrados: $mn = \left(\frac{m+n}{2}\right)^2 - \left(\frac{m-n}{2}\right)^2$. Lo notable es que esa misma identidad, pensada originalmente como un truco aritmético, es precisamente la herramienta algebraica que permite aislar el factor $|x - a|$ en la demostración épsilon-delta de límites cuadráticos.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \min\!\left(1,\; \dfrac{\varepsilon}{|a|(2|a|+1)}\right)$.
+    </div>
+    <div class="paso-just">
+      Dos condiciones simultáneas; se toma la más restrictiva.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|x - a| < \delta \leq 1$
+    </div>
+    <div class="paso-just">
+      Por definición de mínimo, $\delta \leq 1$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x| = |(x - a) + a| \leq |x - a| + |a| < 1 + |a|$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular aplicada a $x = (x-a) + a$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x + a| \leq |x| + |a| < (1 + |a|) + |a| = 2|a| + 1$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular otra vez; se sustituye la cota de $|x|$.
+    </div>
+
+    <div class="paso-dev">
+      $|ax^2 - a^3| = |a|\,|x^2 - a^2|$
+    </div>
+    <div class="paso-just">
+      Factor común $a$; $|a \cdot (\cdot)| = |a| \cdot |\cdot|$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a|\,|x - a|\,|x + a|$
+    </div>
+    <div class="paso-just">
+      Diferencia de cuadrados: $x^2 - a^2 = (x-a)(x+a)$.
+    </div>
+
+    <div class="paso-dev">
+      $< |a| \cdot \delta \cdot (2|a| + 1)$
+    </div>
+    <div class="paso-just">
+      Se aplican $|x - a| < \delta$ y $|x + a| < 2|a| + 1$.
+    </div>
+
+    <div class="paso-dev">
+      $\leq |a|(2|a|+1) \cdot \dfrac{\varepsilon}{|a|(2|a|+1)}$
+    </div>
+    <div class="paso-just">
+      Como $\delta \leq \varepsilon\,/\,(|a|(2|a|+1))$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $|a|(2|a|+1)$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Toma $a = 2$. El límite dice que $\lim_{x \to 2} 2x^2 = 8$. Con $\varepsilon = 0{,}5$, la segunda cota es $0{,}5\,/\,(2 \cdot 5) = 0{,}05$, así que $\delta = \min(1, 0{,}05) = 0{,}05$. Prueba $x = 2{,}04$ (a distancia $0{,}04 < 0{,}05$): $|2 \cdot 2{,}04^2 - 8| = |2 \cdot 4{,}1616 - 8| = |8{,}3232 - 8| = 0{,}3232 < 0{,}5$. Prueba $x = 1{,}97$ (a distancia $0{,}03 < 0{,}05$): $|2 \cdot 1{,}97^2 - 8| = |2 \cdot 3{,}8809 - 8| = |7{,}7618 - 8| = 0{,}238 < 0{,}5$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \min\!\left(1,\, \dfrac{\varepsilon}{|a|(2|a|+1)}\right)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |ax^2 - a^3| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a} ax^2 = a^3$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En simulación física, la energía cinética de un objeto es proporcional al cuadrado de su velocidad: $E = \frac{1}{2}mv^2$. Cuando la velocidad cambia suavemente alrededor de un valor $v_0$, la energía cambia de forma cuadrática — y la tasa de cambio de la energía respecto a la velocidad crece linealmente con $v_0$. Eso es exactamente lo que refleja el factor $|x + a|$ en la demostración: para funciones cuadráticas, la sensibilidad a perturbaciones en la entrada no es constante sino que depende del punto base. Un motor de simulación que no tenga en cuenta esa dependencia — que asuma sensibilidad constante como en funciones lineales — acumula errores numéricos que crecen con la velocidad.</p>
+  </div>
+
+  <h2>¿Te quedaron dudas? Estas pueden ayudar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a} ax^2 = a^3$, se eligió $\delta \leq 1$ para acotar $|x + a|$. ¿Por qué $1$ y no otro número, por ejemplo $2$ o $|a|/2$? ¿Cambiaría la estructura de la demostración si se usara $\delta \leq |a|$ como primera restricción?</span></li>
+      <li><span>El factor que complica la demostración épsilon-delta de $\lim_{x \to a} ax^2 = a^3$ es $|x + a|$, que depende de $x$. ¿Qué factor análogo aparecería al demostrar $\lim_{x \to a} x^3 = a^3$? ¿Cómo se acotaría?</span></li>
+      <li><span>En la demostración de $\lim_{x \to a} ax^2 = a^3$, la cota de $\delta$ involucra el factor $|a|(2|a|+1)$. ¿Qué le pasa a ese factor cuando $|a|$ es muy grande? ¿Eso hace que la $\delta$ sea más grande o más chica para un $\varepsilon$ fijo?</span></li>
+      <li><span>La factorización $x^2 - a^2 = (x-a)(x+a)$ es clave en la demostración épsilon-delta de $\lim_{x \to a} ax^2 = a^3$. ¿Existe una factorización análoga para $x^n - a^n$ con $n$ entero positivo cualquiera? ¿Esa factorización permitiría seguir la misma estrategia para demostrar $\lim_{x \to a} x^n = a^n$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

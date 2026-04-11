@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>26z6m</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "26z6m",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1l",
+      tema: "límites por definición épsilon-delta",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta polinomio cuadrático",
+        "demostración formal límite x cuadrado más 2ax",
+        "límite lim x tiende a a de x² más 2ax igual a 3a²"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (x^2 + 2ax) = 3a^2.$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $|(x^2 + 2ax) - 3a^2|$. Al simplificar: $x^2 + 2ax - 3a^2$. Ese trinomio se factoriza como $(x - a)(x + 3a)$. Entonces la distancia al límite es $|x - a| \cdot |x + 3a|$. El factor $|x + 3a|$ varía con $x$ y hay que acotarlo.</p>
+
+    <div class="nota">
+      La estrategia: imponer $\delta \leq 1$ para mantener $x$ cerca de $a$. Si $|x - a| < 1$, entonces $|x| < 1 + |a|$, y por la desigualdad triangular $|x + 3a| \leq |x| + 3|a| < 1 + 4|a|$. Con ese techo fijo, basta elegir $\delta \leq \varepsilon\,/\,(1 + 4|a|)$ para cerrar la demostración.
+    </div>
+
+    <p>La factorización $x^2 + 2ax - 3a^2 = (x - a)(x + 3a)$ es el paso algebraico clave. Para encontrarla, hay que buscar dos números cuyo producto sea $-3a^2$ y cuya suma sea $2a$: esos números son $-a$ y $3a$. Una vez que está la factorización, el resto sigue el camino estándar.</p>
+
+    <p class="chiste">Factorizar $x^2 + 2ax - 3a^2$ a mano puede llevar un momento. Si no sale de inmediato, la fórmula cuadrática siempre está disponible como respaldo — aunque en un examen de definición épsilon-delta probablemente nadie te pida que muestres cómo factorizaste.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>Factorizar un trinomio cuadrático como $x^2 + 2ax - 3a^2$ es equivalente a encontrar las raíces de la ecuación $x^2 + 2ax - 3a^2 = 0$. Esas raíces son $x = a$ y $x = -3a$, que se pueden encontrar con la fórmula cuadrática o por inspección. Lo interesante es que este vínculo entre factorización y raíces — que parece un truco algebraico de secundaria — es en realidad un caso particular del <em>teorema fundamental del álgebra</em>: todo polinomio de grado $n$ con coeficientes complejos tiene exactamente $n$ raíces complejas contadas con multiplicidad, y esas raíces determinan completamente la factorización del polinomio. Para polinomios de grado 2 con coeficientes reales, eso se reduce exactamente a la fórmula cuadrática.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \min\!\left(1,\; \dfrac{\varepsilon}{1 + 4|a|}\right)$.
+    </div>
+    <div class="paso-just">
+      Dos condiciones simultáneas; se toma la más restrictiva.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|x - a| < \delta \leq 1$
+    </div>
+    <div class="paso-just">
+      Por definición de mínimo, $\delta \leq 1$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x| \leq |x - a| + |a| < 1 + |a|$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular: $|x| = |(x-a)+a| \leq |x-a| + |a|$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x + 3a| \leq |x| + 3|a| < (1 + |a|) + 3|a| = 1 + 4|a|$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular otra vez; se sustituye la cota de $|x|$.
+    </div>
+
+    <div class="paso-dev">
+      $|(x^2 + 2ax) - 3a^2|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite $L = 3a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |x^2 + 2ax - 3a^2|$
+    </div>
+    <div class="paso-just">
+      Se distribuye el signo negativo.
+    </div>
+
+    <div class="paso-dev">
+      $= |(x - a)(x + 3a)|$
+    </div>
+    <div class="paso-just">
+      Factorización del trinomio: raíces en $x = a$ y $x = -3a$.
+    </div>
+
+    <div class="paso-dev">
+      $= |x - a| \cdot |x + 3a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$.
+    </div>
+
+    <div class="paso-dev">
+      $< \delta \cdot (1 + 4|a|)$
+    </div>
+    <div class="paso-just">
+      Se aplican $|x - a| < \delta$ y $|x + 3a| < 1 + 4|a|$.
+    </div>
+
+    <div class="paso-dev">
+      $\leq \dfrac{\varepsilon}{1 + 4|a|} \cdot (1 + 4|a|)$
+    </div>
+    <div class="paso-just">
+      Como $\delta \leq \varepsilon\,/\,(1 + 4|a|)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $(1 + 4|a|)$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>Toma $a = 2$. El límite dice que $\lim_{x \to 2}(x^2 + 4x) = 12$. Con $\varepsilon = 0{,}9$, la segunda cota es $0{,}9\,/\,(1 + 8) = 0{,}1$, así que $\delta = \min(1,\, 0{,}1) = 0{,}1$. Prueba $x = 2{,}08$ (a distancia $0{,}08 < 0{,}1$): $|(2{,}08^2 + 4 \cdot 2{,}08) - 12| = |4{,}3264 + 8{,}32 - 12| = 0{,}6464 < 0{,}9$. Prueba $x = 1{,}93$ (a distancia $0{,}07 < 0{,}1$): $|(1{,}93^2 + 4 \cdot 1{,}93) - 12| = |3{,}7249 + 7{,}72 - 12| = 0{,}5551 < 0{,}9$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \min\!\left(1,\, \dfrac{\varepsilon}{1 + 4|a|}\right)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |(x^2 + 2ax) - 3a^2| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(x^2 + 2ax) = 3a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Los compiladores modernos usan la factorización de polinomios como parte de la optimización de expresiones algebraicas. Cuando un programa calcula $x^2 + 2ax - 3a^2$, el compilador puede reconocer que esa expresión es equivalente a $(x-a)(x+3a)$ y elegir la forma más eficiente de evaluarla según el contexto — por ejemplo, si $x - a$ ya fue calculado antes, reutilizar ese valor en lugar de recalcularlo. Esa equivalencia algebraica que el compilador explota es exactamente la misma factorización que aparece en la demostración épsilon-delta: el compilador y el matemático están haciendo la misma operación, solo que con objetivos distintos.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 + 2ax) = 3a^2$, el factor variable a acotar fue $|x + 3a|$, que resultó menor que $1 + 4|a|$. ¿De dónde viene el coeficiente $4$ en esa expresión? ¿Cambia si se usa $\delta \leq 2$ como primera restricción en lugar de $\delta \leq 1$?</span></li>
+      <li><span>La factorización $x^2 + 2ax - 3a^2 = (x-a)(x+3a)$ tiene raíces en $x = a$ y $x = -3a$. ¿Qué relación hay entre la posición de esas raíces y el valor del límite $3a^2$? ¿Es una coincidencia que el límite sea el valor de la función en $x = a$?</span></li>
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 + 2ax) = 3a^2$, ¿qué pasaría si se intentara usar $\delta \leq |a|/2$ como primera restricción en lugar de $\delta \leq 1$? ¿La cota de $|x + 3a|$ sería más simple o más complicada?</span></li>
+      <li><span>El trinomio $x^2 + 2ax - 3a^2$ se factorizó encontrando dos números cuyo producto es $-3a^2$ y cuya suma es $2a$. ¿Qué ocurre cuando esos dos números no son evidentes, como en $x^2 + x - 1$? ¿Sigue siendo posible hacer una demostración épsilon-delta del límite de ese polinomio cuando $x \to a$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>t1103</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "t1103",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "6a",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "función valor absoluto sobre x evaluación en cero",
+        "dominio función |x| sobre x",
+        "f de 0 no existe valor absoluto partido x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = \dfrac{|x|}{x}$. Calcule, si es posible, $f(0)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>La función $f(x) = |x|/x$ es un cociente. Antes de evaluar en cualquier punto, hay que revisar el denominador: si es cero, la función no está definida ahí. El denominador de $f$ es $x$ a secas, así que $f$ no está definida en $x = 0$.</p>
+
+    <div class="nota">
+      El dominio de $f(x) = |x|/x$ es $\mathbb{R} \setminus \{0\}$: todos los reales excepto $x = 0$. La función existe para todo $x \neq 0$ y no existe en $x = 0$.
+    </div>
+
+    <p>Para $x \neq 0$, la función tiene un comportamiento simple: $|x|/x$ es $1$ si $x > 0$ y $-1$ si $x < 0$. Eso se ve porque $|x| = x$ cuando $x > 0$, y $|x| = -x$ cuando $x < 0$. Pero en $x = 0$, el denominador es cero y la función simplemente no existe.</p>
+
+    <p class="chiste">$f(0) = |0|/0 = 0/0$. Y $0/0$ no es $1$, no es $0$, no es nada. Es la forma indeterminada más famosa del cálculo, pero acá ni siquiera llega a ser indeterminada — es directamente una división por cero. Fin de la historia.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>La función $f(x) = |x|/x$ se llama función <em>signo</em> y se denota $\text{sgn}(x)$. Devuelve $1$ si $x > 0$, $-1$ si $x < 0$, y no está definida en $x = 0$ — aunque muchas implementaciones prácticas le asignan $\text{sgn}(0) = 0$ por convención. La función signo aparece en física para indicar la dirección de una fuerza de fricción (siempre opuesta al movimiento), en procesamiento de señales para detectar cambios de signo, y en optimización para calcular el gradiente de la función valor absoluto. En todos esos contextos, el comportamiento en $x = 0$ requiere un tratamiento especial que la definición matemática estricta no provee.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $f(0) = \dfrac{|0|}{0}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa de $x = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{0}{0}$
+    </div>
+    <div class="paso-just">
+      $|0| = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $f(0)$ no está definida.
+    </div>
+    <div class="paso-just">
+      División por cero: $x = 0 \notin \text{Dom}(f)$.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Para $x > 0$: $f(0{,}5) = 0{,}5/0{,}5 = 1$; $f(0{,}01) = 1$; $f(0{,}0001) = 1$. Para $x < 0$: $f(-0{,}5) = 0{,}5/(-0{,}5) = -1$; $f(-0{,}01) = -1$; $f(-0{,}0001) = -1$. La función vale $1$ a la derecha de $0$ y $-1$ a la izquierda, pero en $x = 0$ no existe.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> $f(0)$ <strong>no existe</strong>.
+    <br><br>
+    El punto $x = 0$ no pertenece al dominio de $f(x) = |x|/x$ porque produce una división por cero.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>La función signo $\text{sgn}(x) = |x|/x$ aparece en optimización numérica como parte del gradiente de la función valor absoluto: la "derivada" de $|x|$ es $\text{sgn}(x)$ para $x \neq 0$. En algoritmos de aprendizaje automático que minimizan funciones con términos $|w|$ — como la regularización L1 — el gradiente en $w = 0$ no está definido matemáticamente, y los optimizadores necesitan una regla especial para ese punto (usualmente se asigna $0$ o se usa un subgradiente). Ignorar ese punto problemático y calcular $\text{sgn}(0)$ sin verificación produce una división por cero que detiene el entrenamiento. La misma guardia que se hace en matemáticas — verificar que $x \neq 0$ antes de evaluar — es la que el código de optimización tiene que implementar explícitamente.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La función $f(x) = |x|/x$ no está definida en $x = 0$. Si se quisiera extender su dominio para incluir $x = 0$, ¿qué valor sería "natural" asignarle a $f(0)$? ¿La extensión resultante sería continua en $x = 0$?</span></li>
+      <li><span>Para $x \neq 0$, la función $f(x) = |x|/x$ solo toma dos valores: $1$ y $-1$. ¿Qué dice eso sobre el rango de $f$? ¿Es posible que una función con dominio $\mathbb{R} \setminus \{0\}$ tenga un rango tan pequeño?</span></li>
+      <li><span>En optimización, cuando la función objetivo incluye un término $|w|$, el gradiente en $w = 0$ no existe en el sentido clásico. ¿Qué es un subgradiente, y por qué permite manejar ese punto sin necesidad de que el gradiente exista?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

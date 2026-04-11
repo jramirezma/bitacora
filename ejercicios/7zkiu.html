@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>7zkiu</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "7zkiu",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11h",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite infinito función racional grado numerador mayor",
+        "límite x tiende a infinito x quinto sobre x cúbico",
+        "lim x tiende a infinito x5 más x más 4 sobre 3x3 más 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \frac{x^5 + x + 4}{3x^3 + 1}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>El numerador tiene grado $5$ y el denominador tiene grado $3$: el numerador crece mucho más rápido que el denominador cuando $x \to \infty$. No hay límite finito — el cociente crece sin límite.</p>
+
+    <div class="nota">
+      Cuando el grado del numerador supera al del denominador, el cociente $\to \infty$ (o $-\infty$, según los signos). Para verlo formalmente, se divide por la potencia dominante del denominador, $x^3$, y se observa que el numerador resultante crece sin límite mientras el denominador tiende a una constante.
+    </div>
+
+    <p>Dividir por $x^3$ convierte el numerador en $x^2 + 1/x^2 + 4/x^3$, que crece como $x^2 \to \infty$, y el denominador en $3 + 1/x^3 \to 3$. El cociente se comporta como $x^2/3 \to \infty$.</p>
+
+    <p class="chiste">Grado $5$ contra grado $3$. Es como hacer correr a un guepardo contra una tortuga y preguntar quién llega antes al infinito. No hay suspenso.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>Cuando el grado del numerador supera al del denominador en exactamente $1$, la función racional no tiene asíntota horizontal sino una asíntota oblicua: una recta $y = mx + b$ a la que la función se acerca cuando $x \to \pm\infty$. En este ejercicio la diferencia de grados es $2$, así que no hay asíntota lineal — el cociente crece como $x^2/3$, una parábola. En general, si la diferencia de grados es $k$, el comportamiento asintótico es el de un polinomio de grado $k$ multiplicado por el cociente de los coeficientes principales. Solo cuando $k = 0$ hay asíntota horizontal; cuando $k = 1$, asíntota oblicua; cuando $k \geq 2$, crecimiento polinomial sin asíntota.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty} \dfrac{x^5 + x + 4}{3x^3 + 1}$
+    </div>
+    <div class="paso-just">
+      Grado numerador $= 5 >$ grado denominador $= 3$: se espera $\infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{x^2 + \dfrac{1}{x^2} + \dfrac{4}{x^3}}{3 + \dfrac{1}{x^3}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^3$ (potencia dominante del denominador).
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{x^2} \to 0, \quad \dfrac{4}{x^3} \to 0, \quad \dfrac{1}{x^3} \to 0$
+    </div>
+    <div class="paso-just">
+      Todos los términos con $x$ en el denominador tienden a $0$.
+    </div>
+
+    <div class="paso-dev">
+      $\sim \dfrac{x^2 + 0 + 0}{3 + 0} = \dfrac{x^2}{3}$
+    </div>
+    <div class="paso-just">
+      La expresión se comporta como $x^2/3$ para $x$ grande.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{x^2}{3} \to \infty \quad \text{cuando } x \to \infty$
+    </div>
+    <div class="paso-just">
+      $x^2$ crece sin límite.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to \infty} \dfrac{x^5+x+4}{3x^3+1} = \infty$
+    </div>
+    <div class="paso-just">
+      El límite no es finito: el cociente crece sin límite.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow (10^5+10+4)/(3\cdot10^3+1) = 100014/3001 \approx 33{,}33$; $x = 100 \Rightarrow (10^{10}+104)/(3\cdot10^6+1) \approx 10^{10}/3\cdot10^6 \approx 3333$; $x = 1000 \Rightarrow \approx 333333$. El cociente crece como $x^2/3$: cada vez que $x$ se multiplica por $10$, el resultado se multiplica por $100$. Consistente con $\infty$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty} \frac{x^5 + x + 4}{3x^3 + 1} = \infty.$$
+    El grado del numerador ($5$) supera al del denominador ($3$): el cociente crece sin límite, comportándose asintóticamente como $x^2/3$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En análisis de algoritmos, cuando el costo de un algoritmo crece más rápido que otro — como $n^5$ frente a $n^3$ — se dice que el primero es asintóticamente peor. El cociente de sus costos tiende a infinito, lo que significa que para entradas suficientemente grandes el algoritmo más costoso tarda un tiempo arbitrariamente mayor que el otro. Eso es exactamente lo que captura la notación $\omega$ (omega minúscula): $f = \omega(g)$ cuando $\lim_{n \to \infty} f(n)/g(n) = \infty$. En la práctica, eso guía decisiones de diseño: si dos algoritmos resuelven el mismo problema pero uno es $O(n^3)$ y otro $O(n^5)$, el primero siempre es preferible para entradas grandes, sin importar las constantes.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to \infty}(x^5+x+4)/(3x^3+1) = \infty$ porque el grado del numerador supera al del denominador. ¿Qué ocurre con $\lim_{x \to -\infty}$ de la misma función? ¿El resultado es también $\infty$, o cambia el signo?</span></li>
+      <li><span>La función $(x^5+x+4)/(3x^3+1)$ se comporta asintóticamente como $x^2/3$. ¿Eso significa que $\lim_{x\to\infty}[(x^5+x+4)/(3x^3+1) - x^2/3] = 0$? ¿Cómo se verificaría ese resultado?</span></li>
+      <li><span>Si el grado del numerador supera al del denominador en exactamente $1$, la función tiene una asíntota oblicua. ¿Cómo se calcula esa asíntota? ¿Qué operación algebraica produce la recta a la que se acerca la función?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

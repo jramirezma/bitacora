@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>5msko</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "5msko",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11e",
+      tema: "límites indeterminados con raíces por racionalización",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite indeterminado raíces racionalización conjugado",
+        "límite 0 sobre 0 raíz cúbica más raíz cuadrada",
+        "lim x tiende a 1 raíz cúbica de x más raíz de x menos 2 sobre x menos 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 1} \frac{\sqrt[3]{x} + \sqrt{x} - 2}{x - 1}.$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>Sustituir $x = 1$ da $(1 + 1 - 2)/0 = 0/0$: forma indeterminada. El numerador tiene dos raíces de índices distintos — una cúbica y una cuadrada — que no pueden eliminarse con un solo conjugado. La estrategia más limpia es el cambio de variable $t = x^{1/6}$, la raíz de índice mínimo común entre $2$ y $3$, que convierte ambas raíces en potencias enteras de $t$.</p>
+
+    <div class="nota">
+      Con $t = x^{1/6}$: $\sqrt[3]{x} = x^{1/3} = t^2$ y $\sqrt{x} = x^{1/2} = t^3$. Cuando $x \to 1$, $t \to 1$. El denominador $x - 1 = t^6 - 1$ se factoriza como diferencia de sextas potencias, que incluye $(t-1)$ como factor.
+    </div>
+
+    <p>Con esa sustitución, todo el límite se convierte en un cociente de polinomios en $t$ con un factor $(t-1)$ cancelable. La diferencia de sextas potencias factoriza como $t^6 - 1 = (t-1)(t^5 + t^4 + t^3 + t^2 + t + 1)$, y el numerador $t^2 + t^3 - 2$ también tiene $(t-1)$ como factor.</p>
+
+    <p class="chiste">Raíz cúbica más raíz cuadrada — ¿conjugado de qué? La respuesta es: cambio de variable con $t = x^{1/6}$, el mínimo común múltiplo de los índices. Cuando hay raíces de distintos índices, el mínimo común múltiplo es siempre la clave.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>Este límite es la derivada de $f(x) = x^{1/3} + x^{1/2}$ en $x = 1$. Por la regla de la potencia: $f'(x) = \frac{1}{3}x^{-2/3} + \frac{1}{2}x^{-1/2}$, evaluada en $x = 1$: $f'(1) = \frac{1}{3} + \frac{1}{2} = \frac{5}{6}$. El resultado del límite debería ser $5/6$ — lo que da una verificación independiente antes de terminar el cálculo. El cambio de variable $t = x^{1/6}$ convierte potencias fraccionarias en potencias enteras, una técnica que aparece también en el cálculo de integrales de funciones con raíces de distintos índices.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1} \dfrac{\sqrt[3]{x} + \sqrt{x} - 2}{x - 1}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa da $0/0$: forma indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      Sea $t = x^{1/6}$, i.e. $x = t^6$. Cuando $x \to 1$, $t \to 1$.
+    </div>
+    <div class="paso-just">
+      $\text{mcm}(2, 3) = 6$: índice mínimo que convierte ambas raíces en potencias enteras.
+    </div>
+
+    <div class="paso-dev">
+      $\sqrt[3]{x} = (t^6)^{1/3} = t^2, \quad \sqrt{x} = (t^6)^{1/2} = t^3$
+    </div>
+    <div class="paso-just">
+      Se reescriben las raíces en términos de $t$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 1} \dfrac{t^2 + t^3 - 2}{t^6 - 1}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $x = t^6$ en numerador y denominador.
+    </div>
+
+    <div class="paso-dev">
+      $t^6 - 1 = (t-1)(t^5+t^4+t^3+t^2+t+1)$
+    </div>
+    <div class="paso-just">
+      Diferencia de potencias: $t^n - 1 = (t-1)(t^{n-1}+\cdots+1)$.
+    </div>
+
+    <div class="paso-dev">
+      $t^3 + t^2 - 2 = (t-1)(t^2+2t+2)$
+    </div>
+    <div class="paso-just">
+      Se verifica: $(t-1)(t^2+2t+2) = t^3+2t^2+2t - t^2-2t-2 = t^3+t^2-2$. ✓
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 1} \dfrac{(t-1)(t^2+2t+2)}{(t-1)(t^5+t^4+t^3+t^2+t+1)}$
+    </div>
+    <div class="paso-just">
+      Se reescribe con las factorizaciones.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 1} \dfrac{t^2+2t+2}{t^5+t^4+t^3+t^2+t+1}$
+    </div>
+    <div class="paso-just">
+      Se cancela $(t-1)$, válido porque $t \neq 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1+2+2}{1+1+1+1+1+1}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa con $t = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{5}{6}$
+    </div>
+    <div class="paso-just">
+      Aritmética. Coincide con $f'(1) = 1/3 + 1/2 = 5/6$. ✓
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$5/6 \approx 0{,}8333$. Valores cerca de $x = 1$: $x = 1{,}1 \Rightarrow (\sqrt[3]{1{,}1}+\sqrt{1{,}1}-2)/0{,}1 \approx (1{,}0323+1{,}0488-2)/0{,}1 = 0{,}811/0{,}1 \approx 0{,}811$; $x = 1{,}01 \Rightarrow \approx 0{,}831$; $x = 0{,}99 \Rightarrow \approx 0{,}836$. La función converge a $5/6 \approx 0{,}833$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1} \frac{\sqrt[3]{x} + \sqrt{x} - 2}{x - 1} = \boxed{\dfrac{5}{6}}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>El cambio de variable $t = x^{1/6}$ que convierte potencias fraccionarias en potencias enteras es la base del método de sustitución racional en integración. Cuando una integral contiene varias raíces de índices distintos — por ejemplo $\sqrt{x}$ y $\sqrt[3]{x}$ simultáneamente — la sustitución $t = x^{1/n}$ con $n$ igual al mínimo común múltiplo de los índices convierte toda la expresión en una función racional de $t$, que puede integrarse con técnicas estándar de fracciones parciales. Esa misma heurística — identificar el mínimo común múltiplo de los índices y usarlo como exponente de la sustitución — es exactamente lo que guía la elección del cambio de variable en este límite.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El cambio de variable $t = x^{1/6}$ convirtió $\sqrt[3]{x} + \sqrt{x} - 2$ en $t^2 + t^3 - 2$. ¿Cómo se factoriza $t^3 + t^2 - 2$? ¿Por qué $t = 1$ es siempre una raíz de $t^n + t^m - 2$ cuando el numerador se anula en $x = 1$?</span></li>
+      <li><span>El resultado $5/6$ coincide con la derivada de $x^{1/3} + x^{1/2}$ en $x = 1$. Si se reemplazara la función por $x^{1/4} + x^{1/3}$, ¿cuál sería el límite análogo en $x = 1$? ¿Qué cambio de variable habría que usar?</span></li>
+      <li><span>El denominador $t^6 - 1$ se factorizó como $(t-1)(t^5+t^4+t^3+t^2+t+1)$. El segundo factor no tiene raíces reales distintas de $t = -1$ (si $n$ es par) o ninguna (si $n$ es impar). ¿Cuáles son las raíces reales de $t^5+t^4+t^3+t^2+t+1$? ¿Tiene alguna?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

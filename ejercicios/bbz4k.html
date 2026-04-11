@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>bbz4k</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>
+      A) Instanciar 3 objetos de la clase Celular de 3 maneras y identificar al menos 4 atributos significativos.<br>
+      B) Dado muchas falsificaciones de celulares, haz el método que verifique si un cel. es del mismo modelo que el otro y entonces igualar los atributos de el equipo modificado.<br>
+      C) Sobrecargar el método mostrar.
+    </p>
+  </div>
+
+
+  <h2>Antes de codear</h2>
+  <div class="bloque">
+    <p>
+      Pensá en tres celulares sobre una mesa. El primero no tiene caja ni datos —
+      apareció con valores vacíos. El segundo tiene modelo y precio pero le faltan
+      datos de fábrica. El tercero viene completo: modelo, marca, precio y almacenamiento.
+      Esas tres situaciones son los tres constructores del inciso A.
+    </p>
+    <div class="nota">
+      La sobrecarga de constructores permite crear objetos del mismo tipo con distinta
+      cantidad de información inicial; la sobrecarga de métodos permite que el mismo
+      nombre de operación haga cosas ligeramente distintas según los argumentos que recibe.
+    </div>
+    <p>
+      Para el inciso B, la lógica es: "si este celular tiene el mismo modelo que aquél,
+      copiá sus atributos". No creás un objeto nuevo; modificás el objeto receptor usando
+      los setters del objeto que se pasa como parámetro. Para el inciso C,
+      <code>mostrar()</code> sin argumentos imprime los datos propios, y
+      <code>mostrar(String propietario)</code> agrega quién es el dueño — mismo nombre,
+      distinta firma.
+    </p>
+    <p class="chiste">
+      Un celular falso con los atributos del original: básicamente el inciso B resuelve
+      el problema que ningún perito de Mercado Libre pudo.
+    </p>
+  </div>
+
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      La sobrecarga de métodos (method overloading) existe en los lenguajes desde antes
+      de que la orientación a objetos se popularizara, pero fue la POO la que la convirtió
+      en una herramienta de diseño cotidiana. El compilador distingue qué versión del
+      método llamar según la cantidad y el tipo de los argumentos, no según el nombre.
+      Por eso dos métodos <code>mostrar()</code> y <code>mostrar(String propietario)</code>
+      conviven sin conflicto: son firmas distintas aunque compartan nombre.
+    </p>
+    <p>
+      En Java, el constructor también es un método sobrecargado. Cada vez que escribís
+      <code>new Celular()</code>, <code>new Celular("X", 999)</code> o
+      <code>new Celular("X", "Samsung", 999, 128)</code>, el compilador elige
+      cuál de los tres bloques ejecutar basándose únicamente en los argumentos que le pasás.
+    </p>
+  </div>
+
+
+  <h2>El diseño</h2>
+  <div class="bloque">
+    <p>
+      El ejercicio se modela con una sola clase <strong>Celular</strong>. Tiene cuatro
+      atributos privados que representan las características del equipo. Expone tres
+      constructores sobrecargados, getters y setters para cada atributo, el método
+      <code>Verificar</code> que recibe otro objeto <code>Celular</code>, y dos versiones
+      sobrecargadas de <code>mostrar</code>.
+    </p>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">Celular</div>
+    <div class="section">
+      - String modelo<br>
+      - String marca<br>
+      - float precio<br>
+      - int almacenamiento
+    </div>
+    <div class="section">
+      + Celular()<br>
+      + Celular(String modelo, float precio)<br>
+      + Celular(String modelo, String marca, float precio, int almacenamiento)<br>
+      + void Verificar(Celular b)<br>
+      + void mostrar()<br>
+      + void mostrar(String propietario)<br>
+      + String getModelo()<br>
+      + String getMarca()<br>
+      + float getPrecio()<br>
+      + int getAlmacenamiento()<br>
+      + void setModelo(String modelo)<br>
+      + void setMarca(String marca)<br>
+      + void setPrecio(float precio)<br>
+      + void setAlmacenamiento(int almacenamiento)
+    </div>
+  </div>
+
+  <div class="bloque" style="margin-top:14px;">
+    <p>
+      Todos los atributos son privados: solo se accede a ellos desde afuera a través de
+      los getters y setters. <code>Verificar</code> recibe un objeto <code>Celular</code>
+      completo para poder comparar modelos y copiar atributos con los setters del receptor.
+      Los dos <code>mostrar</code> son la sobrecarga del inciso C: misma clase, mismo nombre,
+      firmas distintas.
+    </p>
+  </div>
+
+  <hr>
+
+
+  <div class="pseudo-header">
+    <span class="block-title" data-target="pseudo-clase">CLASE Celular</span>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-clase">// Constructor por defecto
+Celular() {
+    self.modelo         = ""
+    self.marca          = ""
+    self.precio         = 0
+    self.almacenamiento = 0
+}
+
+// Constructor con modelo y precio
+Celular(String modelo, float precio) {
+    self.modelo         = modelo
+    self.marca          = ""
+    self.precio         = precio
+    self.almacenamiento = 0
+}
+
+// Constructor completo
+Celular(String modelo, String marca, float precio, int almacenamiento) {
+    self.modelo         = modelo
+    self.marca          = marca
+    self.precio         = precio
+    self.almacenamiento = almacenamiento
+}
+
+// Getters
+String getModelo()         { retornar modelo }
+String getMarca()          { retornar marca }
+float  getPrecio()         { retornar precio }
+int    getAlmacenamiento() { retornar almacenamiento }
+
+// Setters
+void setModelo(String m)      { self.modelo = m }
+void setMarca(String m)       { self.marca = m }
+void setPrecio(float p)       { self.precio = p }
+void setAlmacenamiento(int a) { self.almacenamiento = a }
+
+// Inciso B — verifica modelo y copia atributos si coincide
+void Verificar(Celular b) {
+    SI self.modelo == b.getModelo()
+        self.setMarca(b.getMarca())
+        self.setPrecio(b.getPrecio())
+        self.setAlmacenamiento(b.getAlmacenamiento())
+        IMPRIMIR "LOS MODELOS SON IGUALES"
+    SINO
+        IMPRIMIR "LOS MODELOS NO SON IGUALES"
+}
+
+// Inciso C — mostrar sin argumentos
+void mostrar() {
+    IMPRIMIR modelo + " " + marca + " " + precio + " " + almacenamiento
+}
+
+// Inciso C — mostrar con propietario (sobrecarga)
+void mostrar(String propietario) {
+    IMPRIMIR "EL CELULAR DE MODELO " + modelo + " LE PERTENECE A " + propietario
+}</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>Inicializa cadenas vacías</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Precio y almacenamiento en cero</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Solo llegan modelo y precio</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Marca y almacenamiento por defecto</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Los cuatro atributos llegan por parámetro</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Devuelven el atributo correspondiente</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Reemplazan el atributo correspondiente</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>b es el celular "original" con el que comparar</span>
+      <span>Compara el modelo del receptor con el de b</span>
+      <span>Copia marca, precio y almacenamiento de b</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Avisa que son iguales</span>
+      <span>&nbsp;</span>
+      <span>Avisa que no coinciden</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Imprime los 4 atributos del objeto</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Misma firma base, agrega el nombre del dueño</span>
+      <span>Mensaje con modelo y propietario</span>
+      <span>&nbsp;</span>
+    </div>
+  </div>
+
+
+  <div class="pseudo-header">
+    <span class="block-title" data-target="pseudo-main">PROGRAMA PRINCIPAL</span>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-main">// Inciso A — tres formas de instanciar
+Celular a = nuevo Celular()
+Celular b = nuevo Celular("AX24", 6569.32)
+Celular c = nuevo Celular("AX24", "SAMSUNG", 7000.99, 100)
+
+// Mostrar estado inicial
+a.mostrar()
+b.mostrar()
+c.mostrar()
+
+// Inciso B — c verifica si tiene el mismo modelo que b
+c.Verificar(b)
+b.mostrar()
+c.mostrar()
+
+// Inciso C — primera forma (sin argumento)
+IMPRIMIR "INCISO C"
+IMPRIMIR "PRIMERA FORMA"
+c.mostrar()
+
+// Inciso C — segunda forma (con propietario)
+IMPRIMIR "SEGUNDA FORMA"
+c.mostrar("JOSUE")</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>Constructor por defecto — todo vacío/cero</span>
+      <span>Constructor parcial — solo modelo y precio</span>
+      <span>Constructor completo — los 4 atributos</span>
+      <span>&nbsp;</span>
+      <span>a: "" "" 0 0</span>
+      <span>b: "AX24" "" 6569.32 0</span>
+      <span>c: "AX24" "SAMSUNG" 7000.99 100</span>
+      <span>&nbsp;</span>
+      <span>c compara su modelo con el de b</span>
+      <span>Coinciden → c copia atributos de b</span>
+      <span>Muestra b y c tras Verificar</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Llama mostrar() sin parámetros</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Llama mostrar(String) — firma distinta</span>
+    </div>
+  </div>
+
+
+  <h2>Tracemos a mano</h2>
+  <div class="bloque">
+    <p>
+      Creamos los tres objetos del inciso A:<br>
+      <strong>a</strong> → modelo="", marca="", precio=0, almacenamiento=0<br>
+      <strong>b</strong> → modelo="AX24", marca="", precio=6569.32, almacenamiento=0<br>
+      <strong>c</strong> → modelo="AX24", marca="SAMSUNG", precio=7000.99, almacenamiento=100
+    </p>
+    <p>
+      Las tres llamadas a <code>mostrar()</code> imprimen esos valores tal cual.
+    </p>
+    <p>
+      Inciso B: <code>c.Verificar(b)</code>. Se compara <code>c.modelo</code> ("AX24")
+      con <code>b.getModelo()</code> ("AX24") — son iguales. Entonces <strong>c</strong>
+      copia los atributos de b sobre sí mismo:<br>
+      <strong>c</strong> queda → modelo="AX24", marca="", precio=6569.32, almacenamiento=0<br>
+      Se imprime: "LOS MODELOS SON IGUALES".
+    </p>
+    <p>
+      Inciso C: <code>c.mostrar()</code> imprime los 4 atributos actuales de c.
+      <code>c.mostrar("JOSUE")</code> imprime "EL CELULAR DE MODELO AX24 LE PERTENECE A JOSUE".
+      Mismo nombre, dos comportamientos distintos según la firma invocada.
+    </p>
+  </div>
+
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Se modeló la clase <strong>Celular</strong> con cuatro
+    atributos privados (modelo, marca, precio, almacenamiento), tres constructores
+    sobrecargados para distintos niveles de inicialización, getters y setters completos,
+    el método <code>Verificar(Celular b)</code> que compara modelos y copia atributos
+    si coinciden, y dos versiones sobrecargadas de <code>mostrar</code>: una que imprime
+    los datos del equipo y otra que agrega el nombre del propietario.
+  </div>
+
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      Cada vez que en Java escribís <code>System.out.println(42)</code>,
+      <code>System.out.println("hola")</code> o <code>System.out.println(3.14)</code>,
+      estás usando sobrecarga de métodos. <code>println</code> tiene más de diez versiones
+      en la clase <code>PrintStream</code>, una por cada tipo primitivo y una para objetos.
+      El compilador elige cuál ejecutar según lo que le pasás — vos nunca lo notás porque
+      el nombre siempre es el mismo.
+    </p>
+    <p>
+      La sobrecarga de constructores aparece en clases de uso cotidiano como
+      <code>StringBuilder</code>, que puede construirse vacío, con una cadena inicial,
+      o con una capacidad inicial. Mismo patrón que el <code>Celular</code> de este
+      ejercicio: distintas firmas para distintas situaciones de arranque.
+    </p>
+  </div>
+
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En una clase con sobrecarga de constructores en POO, ¿qué pasa si dos constructores tienen la misma cantidad de parámetros pero de tipos distintos? ¿El compilador los distingue igual?</span></li>
+      <li><span>En POO, el método Verificar modifica el objeto que lo llama copiando atributos de otro objeto. ¿Qué ventaja tiene hacer eso con setters en lugar de asignar directamente los atributos?</span></li>
+      <li><span>Si en una clase orientada a objetos se tiene un método mostrar() sin parámetros y otro mostrar(String propietario), ¿se considera herencia, sobrecarga o sobreescritura? ¿Por qué?</span></li>
+      <li><span>En diseño orientado a objetos, ¿cuándo conviene agregar un constructor por defecto aunque no inicialice nada útil? ¿Hay casos en que su ausencia cause problemas?</span></li>
+      <li><span>Si la clase Celular necesitara comparar dos objetos por precio además de por modelo, ¿agregarías un segundo método Verificar con otra firma, o cambiarías el existente? ¿Qué criterio usarías para decidir?</span></li>
+    </ol>
+  </div>
+
+
+  <script>
+    window.EJERCICIO = {
+      id:            "bbz4k",
+      materia:       "PROGRAMACION II",
+      origen:        "CL",
+      ejercicio_nro: null,
+      paradigma:     ["POO"],
+      tema: [
+        "sobrecarga de métodos",
+        "method overloading",
+        "constructores sobrecargados"
+      ],
+      dificultad: ["basico", "introductorio", "inicial"],
+      seo_keywords: ["sobrecarga constructores java", "overloading POO", "clase Celular pseudocódigo"],
+      fecha:  "2026-03-29",
+      autor:  { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+
+</body>
+</html>

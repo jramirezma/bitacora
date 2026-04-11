@@ -45,7 +45,7 @@
 
     DIAGRAMA DE CLASES:
     - Solo nombre de clase, atributos y métodos. Sin colores de fondo.
-    - Tipo primero: "float ancho", "boolean esCuadrado()".
+    - Para escribir el UML se debe usar la notacion estandar.
     - Visibilidad: - privado, + público.
 
     PSEUDOCÓDIGO:
@@ -62,53 +62,6 @@
   <title>[id de 5 caracteres]</title>
 
   <link rel="stylesheet" href="../assets/ejercicio.css">
-
-  <style>
-    /* Diagrama de clases */
-    .class-box  { display: inline-block; border: 2px solid #111; min-width: 340px; margin: 12px 0; font-family: monospace; }
-    .class-name { text-align: center; font-weight: bold; padding: 8px; border-bottom: 2px solid #111; font-size: 14px; }
-    .section    { padding: 8px 14px; font-size: 13px; line-height: 1.9; }
-    .section + .section { border-top: 1px solid #111; }
-
-    /* Pseudocódigo con columna de comentarios */
-    .pseudo-wrap {
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 0;
-      border-left: 3px solid #111;
-      margin: 0 0 20px 0;
-    }
-    .pseudo-wrap pre {
-      margin: 0;
-      padding: 14px 18px;
-      font-size: 13px;
-      line-height: 1.7;
-      white-space: pre;
-      border: none;
-      overflow-x: auto;
-    }
-    .pseudo-comments {
-      border-left: 1px dashed #aaa;
-      padding: 14px 14px;
-      font-family: sans-serif;
-      font-size: 12px;
-      line-height: 1.7;
-      color: #444;
-      display: flex;
-      flex-direction: column;
-    }
-    .pseudo-comments span { display: block; }
-
-    .pseudo-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 18px 0 4px 0;
-    }
-    .block-title { font-weight: bold; font-size: 13px; font-family: monospace; }
-
-    hr { border: none; border-top: 1px solid #111; margin: 28px 0; }
-  </style>
 
   <script src="../assets/ejercicio.js"></script>
 </head>
@@ -193,14 +146,8 @@
   <div class="class-box">
     <div class="class-name">[NombreClase]</div>
     <div class="section">
-      - [tipo] [atributo1]<br>
-      - [tipo] [atributo2]
     </div>
     <div class="section">
-      + [NombreClase]([tipo] param1, [tipo] param2)<br>
-      + [tipoRetorno] [metodo1]()<br>
-      + [tipoRetorno] [metodo2]([tipo] param)<br>
-      + [tipoRetorno] [metodo3]([NombreClase] otro)
     </div>
   </div>
 
@@ -333,7 +280,7 @@ SINO
 
 
   <!-- ═══════════════════════════════════════════════
-       PRUEBA DE ESCRITORIO — equivalente a la Verificación de cálculo.
+       PRUEBA DE ESCRITORIO 
        Ejecutar el pseudocódigo mentalmente con valores concretos.
        Mostrar qué valores toman las variables paso a paso y cuál es
        la salida esperada. Verificar al menos un caso "feliz" y,
@@ -434,10 +381,6 @@ SINO
           String que identifica el ejercicio dentro de su origen.
           Sin incisos: "1" | Con inciso: "1a", "3c" | Sin numeración: null
 
-        paradigma
-          Array de strings. Paradigma(s) involucrado(s).
-          Ejemplos: ["POO"], ["POO", "funcional"], ["estructurado"]
-
         tema, dificultad, seo_keywords
           Arrays de strings con mínimo 3 valores cada uno.
 
@@ -452,14 +395,10 @@ SINO
       materia:       "[nombre de la materia]",
       origen:        "[PR{n} | EX | CL | IA]",
       ejercicio_nro: "[ej: 1 | 1a | null]",
-
-      paradigma: ["[POO | estructurado | funcional]"],
       tema: [
         "[nombre formal del tema]",
-        "[nombre alternativo o coloquial]",
-        "[concepto relacionado]"
       ],
-      dificultad: ["[basico | intermedio | avanzado]", "[sinonimo]", "[sinonimo]"],
+      dificultad: ["[basico | intermedio | avanzado]"],
       seo_keywords: ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
       fecha:  "[yyyy-mm-dd]",
       autor:  { nombre: "[nombre]", modelo: "[modelo]" }

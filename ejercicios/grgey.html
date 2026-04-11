@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>grgey</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "grgey",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "3c",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "valor de función a trozos en un punto",
+        "función definida por partes evaluación directa",
+        "f de 1 función a trozos no definida"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} -x, & \text{si } x < 0; \\ x, & \text{si } 0 \leq x < 1; \\ x+1, & \text{si } x > 1. \end{cases}$$
+    Calcule, si es posible, $f(1)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>Este inciso no pide un límite sino el <em>valor</em> de la función en $x = 1$. Para encontrarlo, hay que mirar la definición a trozos y ver cuál trozo cubre $x = 1$.</p>
+
+    <div class="nota">
+      El primer trozo cubre $x &lt; 0$. El segundo cubre $0 \leq x &lt; 1$. El tercero cubre $x &gt; 1$. Ninguno cubre $x = 1$ exactamente.
+    </div>
+
+    <p>La pregunta tiene respuesta inmediata: $x = 1$ no pertenece al dominio de ninguno de los tres trozos. La función simplemente no está definida en ese punto. No hay valor que calcular.</p>
+
+    <p class="chiste">A veces la respuesta más corta es la correcta. $f(1)$ no existe — no porque haya un cálculo difícil, sino porque nadie se tomó la molestia de definirla ahí.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>Que una función no esté definida en un punto aislado no impide que sea útil ni que tenga un límite en ese punto. De hecho, muchos límites importantes en cálculo — como $\lim_{x \to 0} \sin(x)/x = 1$ — involucran funciones que no están definidas exactamente en el punto de interés. La definición formal de límite excluye deliberadamente el punto $c$ de la condición $0 &lt; |x - c| &lt; \delta$: el límite describe el comportamiento de la función <em>cerca</em> del punto, no <em>en</em> el punto. Un punto sin definir en el dominio es un "agujero" en la gráfica; si el límite existe en ese agujero, la discontinuidad se llama evitable, porque basta con definir $f(c) = L$ para tapar el agujero y hacer la función continua.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $f(1) = \;?$
+    </div>
+    <div class="paso-just">
+      Se busca el trozo cuyo dominio contiene $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      Trozo 1: $x &lt; 0$ — no aplica.<br>
+      Trozo 2: $0 \leq x &lt; 1$ — no aplica ($1 \notin [0,1)$).<br>
+      Trozo 3: $x &gt; 1$ — no aplica.
+    </div>
+    <div class="paso-just">
+      Ningún trozo cubre $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $f(1)$ no está definida.
+    </div>
+    <div class="paso-just">
+      $x = 1$ no pertenece al dominio de $f$.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>No hay nada que verificar numéricamente: la función no tiene valor en $x = 1$ por construcción. Lo que sí puede observarse es que los valores cercanos existen: $f(0{,}99) = 0{,}99$ (trozo 2) y $f(1{,}01) = 2{,}01$ (trozo 3). El punto $x = 1$ es un agujero rodeado de valores bien definidos a ambos lados.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> $f(1)$ <strong>no existe</strong>.
+    <br><br>
+    El punto $x = 1$ no pertenece al dominio de $f$: ningún trozo de la definición lo cubre. La función tiene un agujero en $x = 1$.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En bases de datos, el equivalente de un punto sin definir es el valor <code>NULL</code>: una celda que existe en la tabla pero no tiene valor asignado. Cuando una consulta intenta evaluar una expresión sobre un <code>NULL</code>, el resultado es <code>NULL</code> — no un error, sino una propagación del "sin valor". La distinción entre "el valor es cero", "el valor es desconocido" y "el valor no existe" es fundamental en diseño de bases de datos, y corresponde exactamente a la distinción entre $f(c) = 0$, $f(c)$ indefinida con límite conocido, y $f(c)$ indefinida sin límite. SQL maneja esos tres casos de forma diferente, y confundirlos produce consultas que devuelven resultados incorrectos silenciosamente.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La función a trozos dada no está definida en $x = 1$. ¿Cómo podría modificarse la definición para incluir $x = 1$ en el dominio sin cambiar la función en ningún otro punto? ¿Hay más de una forma de hacerlo?</span></li>
+      <li><span>Una discontinuidad evitable ocurre cuando una función no está definida en un punto pero su límite en ese punto existe. Para la función a trozos dada, ¿es la discontinuidad en $x = 1$ evitable? ¿Por qué?</span></li>
+      <li><span>En la definición formal de límite, la condición $0 &lt; |x - c| &lt; \delta$ excluye explícitamente $x = c$. ¿Por qué es importante esa exclusión? ¿Qué pasaría con el concepto de límite si se permitiera $x = c$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

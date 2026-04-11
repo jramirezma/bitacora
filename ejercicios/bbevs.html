@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>bbevs</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "bbevs",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1k",
+      tema: "límites por definición épsilon-delta",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta polinomio cuadrático",
+        "demostración formal límite x cuadrado menos 2ax",
+        "límite lim x tiende a a de x² menos 2ax igual a menos a²"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (x^2 - 2ax) = -a^2.$$</p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $|(x^2 - 2ax) - (-a^2)| = |x^2 - 2ax + a^2|$. Ese trinomio se factoriza como un cuadrado perfecto: $|x^2 - 2ax + a^2| = |(x - a)^2| = (x-a)^2$. El resultado es limpio: la distancia al límite es exactamente el cuadrado de la distancia al punto.</p>
+
+    <div class="nota">
+      Cuando la expresión dentro del valor absoluto es un cuadrado perfecto, la demostración se simplifica considerablemente: no hace falta el truco del $\min$ ni acotar ningún factor variable. Basta con elegir $\delta = \sqrt{\varepsilon}$ y la cadena cierra en un solo paso.
+    </div>
+
+    <p>Este es uno de los casos más elegantes de la definición épsilon-delta: la geometría del problema (la distancia al límite es el cuadrado de la distancia al punto) hace que la demostración sea casi directa. El cuadrado perfecto $x^2 - 2ax + a^2 = (x-a)^2$ es la clave que lo hace posible.</p>
+
+    <p class="chiste">Después de varios ejercicios con $\min$, cotas intermedias y desigualdades triangulares, este inciso llega como una bocanada de aire fresco. A veces la naturaleza es generosa.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>La identidad $(x - a)^2 = x^2 - 2ax + a^2$ es el caso más simple de una familia de fórmulas llamadas <em>identidades del binomio</em>. El caso general, $(x + y)^n$, fue estudiado sistemáticamente por Isaac Newton alrededor de 1665, aunque casos particulares eran conocidos desde mucho antes en China, India y el mundo árabe. Lo que Newton descubrió es que la fórmula funciona incluso cuando $n$ no es un entero positivo — por ejemplo, $(1 + x)^{1/2} \approx 1 + x/2$ para $x$ pequeño. Esa versión generalizada del binomio es una de las herramientas más usadas en física para obtener aproximaciones rápidas, y su validez depende precisamente de que el límite de la serie resultante exista — algo que solo puede garantizarse con una definición rigurosa de límite.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \sqrt{\varepsilon}$.
+    </div>
+    <div class="paso-just">
+      Sin necesidad de $\min$: el cuadrado perfecto hace innecesaria una segunda restricción.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|(x^2 - 2ax) - (-a^2)|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite $L = -a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |x^2 - 2ax + a^2|$
+    </div>
+    <div class="paso-just">
+      $-(-a^2) = +a^2$; se distribuye el signo negativo.
+    </div>
+
+    <div class="paso-dev">
+      $= |(x - a)^2|$
+    </div>
+    <div class="paso-just">
+      Cuadrado perfecto: $x^2 - 2ax + a^2 = (x-a)^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= (x - a)^2$
+    </div>
+    <div class="paso-just">
+      Todo cuadrado real es no negativo, así que el valor absoluto no cambia nada.
+    </div>
+
+    <div class="paso-dev">
+      $< \delta^2$
+    </div>
+    <div class="paso-just">
+      Como $|x - a| < \delta$, elevando al cuadrado (ambos lados positivos) se preserva la desigualdad.
+    </div>
+
+    <div class="paso-dev">
+      $= (\sqrt{\varepsilon})^2$
+    </div>
+    <div class="paso-just">
+      Sustituye $\delta = \sqrt{\varepsilon}$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      $(\sqrt{\varepsilon})^2 = \varepsilon$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Toma $a = 3$. El límite dice que $\lim_{x \to 3}(x^2 - 6x) = -9$. Con $\varepsilon = 0{,}25$, la $\delta$ es $\sqrt{0{,}25} = 0{,}5$. Prueba $x = 3{,}4$ (a distancia $0{,}4 < 0{,}5$): $|(3{,}4^2 - 6 \cdot 3{,}4) - (-9)| = |11{,}56 - 20{,}4 + 9| = 0{,}16 < 0{,}25$. Prueba $x = 2{,}7$ (a distancia $0{,}3 < 0{,}5$): $|(2{,}7^2 - 6 \cdot 2{,}7) - (-9)| = |7{,}29 - 16{,}2 + 9| = 0{,}09 < 0{,}25$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \sqrt{\varepsilon}$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |(x^2 - 2ax) - (-a^2)| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(x^2 - 2ax) = -a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En criptografía y teoría de la información, la distancia cuadrática entre dos valores aparece constantemente como medida de error o de divergencia. Cuando un algoritmo de compresión o de corrección de errores evalúa qué tan lejos está una señal recibida de la señal original, suele usar el cuadrado de la diferencia en lugar de la diferencia directa — entre otras razones, porque el cuadrado es siempre positivo y diferenciable en todas partes. La propiedad que hace posible la demostración de este límite — que $(x - a)^2$ se controla directamente con $|x - a|$ sin cotas intermedias — es la misma que hace que la distancia cuadrática sea tan manejable matemáticamente: su comportamiento cerca de cero es predecible y suave.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 - 2ax) = -a^2$, la elección $\delta = \sqrt{\varepsilon}$ no depende de $a$. ¿Eso significa que la función $f(x) = x^2 - 2ax$ es uniformemente continua en $\mathbb{R}$? ¿O hay alguna razón por la que esa conclusión no sería válida?</span></li>
+      <li><span>El truco que simplifica la demostración de $\lim_{x \to a}(x^2 - 2ax) = -a^2$ es que la distancia al límite resulta ser exactamente $(x-a)^2$. ¿Puede construirse siempre una función cuadrática cuya distancia al límite sea un cuadrado perfecto? ¿Qué condición tiene que cumplir la función para que eso ocurra?</span></li>
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 - 2ax) = -a^2$, se usó que $|x - a| < \delta$ implica $(x-a)^2 < \delta^2$. ¿Por qué es válido elevar ambos lados al cuadrado en esa desigualdad? ¿Funcionaría lo mismo si los lados no fueran positivos?</span></li>
+      <li><span>La función $f(x) = x^2 - 2ax$ puede escribirse como $f(x) = (x-a)^2 - a^2$. ¿Qué dice esa forma sobre la gráfica de $f$? ¿Dónde está el vértice de la parábola y cómo se relaciona con el valor del límite $-a^2$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

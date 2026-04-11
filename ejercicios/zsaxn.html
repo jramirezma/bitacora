@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>zsaxn</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "zsaxn",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11i",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite infinito función racional grado denominador mayor",
+        "límite x tiende a infinito cociente grado 2 sobre grado 4",
+        "lim x tiende a infinito x cuadrado más x más 4 sobre 3x4 más 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \frac{x^2 + x + 4}{3x^4 + 1}.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>El numerador tiene grado $2$ y el denominador tiene grado $4$: el denominador crece mucho más rápido que el numerador cuando $x \to \infty$. El cociente tiende a $0$.</p>
+
+    <div class="nota">
+      Cuando el grado del denominador supera al del numerador, el cociente $\to 0$. Para verlo, se divide por la potencia dominante del denominador, $x^4$: el numerador se convierte en algo que tiende a $0$ mientras el denominador tiende a la constante $3$.
+    </div>
+
+    <p>Dividir por $x^4$ convierte el numerador en $1/x^2 + 1/x^3 + 4/x^4$, todo lo cual tiende a $0$, y el denominador en $3 + 1/x^4 \to 3$. El cociente tiende a $0/3 = 0$.</p>
+
+    <p class="chiste">Esta vez el denominador aplasta al numerador. El numerador crece cuadráticamente, el denominador crece a la cuarta. Es la misma carrera que antes, pero al revés: la tortuga va adelante.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>Un cociente de polinomios que tiende a $0$ cuando $x \to \infty$ se llama función <em>estrictamente propia</em> en teoría de sistemas: el grado del numerador es estrictamente menor que el del denominador. Esa propiedad tiene consecuencias físicas concretas: en un circuito eléctrico modelado por una función de transferencia estrictamente propia, la respuesta en frecuencia decae a $0$ para frecuencias muy altas, lo que significa que el circuito atenúa las señales de alta frecuencia. Los filtros paso bajo — los que dejan pasar frecuencias bajas y atenúan las altas — tienen siempre funciones de transferencia estrictamente propias. El límite en el infinito de esa función es exactamente su ganancia a frecuencia infinita, que para un filtro paso bajo es $0$.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty} \dfrac{x^2 + x + 4}{3x^4 + 1}$
+    </div>
+    <div class="paso-just">
+      Grado numerador $= 2 <$ grado denominador $= 4$: se espera $0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{\dfrac{1}{x^2} + \dfrac{1}{x^3} + \dfrac{4}{x^4}}{3 + \dfrac{1}{x^4}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^4$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{0 + 0 + 0}{3 + 0}$
+    </div>
+    <div class="paso-just">
+      $c/x^k \to 0$ cuando $x \to \infty$ para cualquier $k > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{0}{3} = 0$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow (100+10+4)/(30000+1) = 114/30001 \approx 0{,}0038$; $x = 100 \Rightarrow (10000+104)/(3\cdot10^8+1) \approx 10104/300000001 \approx 0{,}0000337$; $x = 1000 \Rightarrow \approx 3{,}37\cdot10^{-7}$. El cociente se acerca a $0$ cada vez más rápido. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty} \frac{x^2 + x + 4}{3x^4 + 1} = \boxed{0}.$$
+    El grado del denominador ($4$) supera al del numerador ($2$): el cociente tiende a $0$.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En aprendizaje automático, la función softmax convierte un vector de valores en una distribución de probabilidad. Para un valor $x$ muy grande comparado con los demás, el cociente $e^{x_i}/\sum_j e^{x_j}$ se acerca a $1$ para el elemento dominante y a $0$ para todos los demás — exactamente la misma lógica que aquí: cuando el denominador crece más rápido que el numerador, el cociente tiende a $0$. Eso es lo que hace que softmax produzca distribuciones "confiadas" cuando las diferencias entre valores son grandes: los elementos pequeños quedan aplastados por el denominador y su probabilidad asignada tiende a $0$.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to \infty}(x^2+x+4)/(3x^4+1) = 0$ porque el denominador tiene mayor grado. ¿Qué ocurre con $\lim_{x \to -\infty}$ de la misma función? ¿También es $0$, o el signo de los coeficientes importa?</span></li>
+      <li><span>La función $(x^2+x+4)/(3x^4+1)$ tiende a $0$ cuando $x \to \infty$. ¿Eso significa que la recta $y = 0$ es una asíntota horizontal? ¿Por qué o por qué no?</span></li>
+      <li><span>¿Puede una función racional tener límite $0$ cuando $x \to \infty$ pero tender a $\infty$ en algún punto finito? ¿Qué estructura tendría esa función?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

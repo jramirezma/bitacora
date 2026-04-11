@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>staaq</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "staaq",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2e",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite de función racional por sustitución",
+        "límite cociente de polinomios",
+        "lim x tiende a 2 de 2x más 1 sobre 5 menos 3x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 2} \frac{2x+1}{5-3x}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Una función racional es un cociente de dos polinomios. Su límite en un punto $c$ se calcula por sustitución directa, <em>siempre que el denominador no se anule en ese punto</em>. Si el denominador es cero en $c$, la situación es más delicada y hay que analizar caso a caso.</p>
+
+    <div class="nota">
+      Antes de sustituir, verificar que el denominador no se anula en $x = 2$: $5 - 3 \cdot 2 = 5 - 6 = -1 \neq 0$. Todo en orden: la sustitución directa es válida.
+    </div>
+
+    <p>El denominador vale $-1$ en $x = 2$, así que la función está perfectamente definida ahí y es continua en ese punto. No hay indeterminación. Se sustituye y se calcula.</p>
+
+    <p class="chiste">Verificar el denominador antes de sustituir toma dos segundos y evita el error de proclamar que un límite "no existe" cuando en realidad sí existe — o peor, inventar un resultado donde había una división por cero. Dos segundos bien invertidos.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>Una función racional $p(x)/q(x)$ es continua en todo punto donde $q(x) \neq 0$. Los puntos donde $q(x) = 0$ se llaman <em>singularidades</em> de la función, y pueden ser de dos tipos: evitables (si el numerador también se anula ahí y el cociente tiene límite finito) o no evitables (si el límite es infinito o no existe). Toda la teoría de funciones racionales en cálculo gira alrededor de esa distinción. En el caso de este ejercicio, $5 - 3x = 0$ tiene solución $x = 5/3$, que no es $2$, así que el punto de interés está completamente alejado de cualquier singularidad.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 2} \dfrac{2x+1}{5-3x}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $5 - 3 \cdot 2 = -1 \neq 0$
+    </div>
+    <div class="paso-just">
+      Verificación previa: el denominador no se anula en $x = 2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{2 \cdot 2 + 1}{5 - 3 \cdot 2}$
+    </div>
+    <div class="paso-just">
+      Función racional continua en $x = 2$: sustitución directa válida.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{5}{-1}$
+    </div>
+    <div class="paso-just">
+      Numerador: $4 + 1 = 5$. Denominador: $5 - 6 = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $= -5$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 2$: $x = 1{,}9 \Rightarrow 4{,}8\,/\,(-2{,}7) \approx -4{,}78$; $x = 1{,}99 \Rightarrow 4{,}98\,/\,(-0{,}97) \approx -5{,}13$; $x = 2{,}01 \Rightarrow 5{,}02\,/\,(-1{,}03) \approx -4{,}87$; $x = 2{,}1 \Rightarrow 5{,}2\,/\,(-1{,}3) \approx -4{,}00$. La función se acerca a $-5$ desde ambos lados. Consistente con el resultado.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 2} \frac{2x+1}{5-3x} = \boxed{-5}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En programación, antes de ejecutar una división hay que verificar que el divisor no sea cero — de lo contrario, el programa lanza una excepción o produce un valor especial como <code>NaN</code> o <code>Inf</code>. La verificación previa que se hace en este ejercicio (comprobar que $5 - 3 \cdot 2 \neq 0$ antes de sustituir) es exactamente esa guardia. La diferencia es que en matemáticas se verifica una vez para el punto concreto; en programación, esa verificación tiene que hacerse para cualquier valor que pueda tomar el denominador en tiempo de ejecución. Las singularidades de una función racional — los puntos donde el denominador se anula — son exactamente los valores de entrada que un programa debe validar antes de ejecutar la división.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to 2}(2x+1)/(5-3x)$, el denominador $5 - 3x$ se anula en $x = 5/3$. ¿Qué ocurre con la función en ese punto? ¿Existe el límite cuando $x \to 5/3$?</span></li>
+      <li><span>Una función racional $p(x)/q(x)$ es continua en todo punto donde $q(x) \neq 0$. ¿Qué pasa en un punto donde tanto $p(x)$ como $q(x)$ se anulan simultáneamente? ¿El límite siempre existe en esos casos?</span></li>
+      <li><span>El límite $\lim_{x \to 2}(2x+1)/(5-3x) = -5$ es negativo aunque el numerador en $x = 2$ sea positivo. ¿Por qué? ¿Para qué valores de $x$ la función es positiva y para cuáles es negativa?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

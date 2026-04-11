@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>7npxe</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "7npxe",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "9",
+      tema: "límites en el infinito y determinación de parámetros",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite en el infinito función racional parámetros",
+        "sistema de ecuaciones límites infinito función a trozos",
+        "encontrar a y b límite en menos infinito e infinito"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} \dfrac{2ax - 1}{bx + 1}, & \text{si } x < 1; \\[8pt] \dfrac{x}{ax + 1} - \dfrac{bx + 1}{x + 1}, & \text{si } x > 1. \end{cases}$$
+    Encuentre $a$ y $b$ de tal forma que $\displaystyle\lim_{x \to -\infty} f(x) = 1$ y $\displaystyle\lim_{x \to \infty} f(x) = 1$.</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Las dos condiciones son sobre límites en el infinito — no en un punto finito. Eso cambia la técnica: para calcular $\lim_{x \to \pm\infty}$ de una función racional, se divide numerador y denominador por la potencia más alta de $x$ que aparezca y se evalúa el resultado cuando $x \to \pm\infty$, usando que $c/x \to 0$ para cualquier constante $c$.</p>
+
+    <div class="nota">
+      $\lim_{x \to -\infty} f(x)$ usa el trozo válido para $x &lt; 1$: $\dfrac{2ax-1}{bx+1}$.<br><br>
+      $\lim_{x \to +\infty} f(x)$ usa el trozo válido para $x &gt; 1$: $\dfrac{x}{ax+1} - \dfrac{bx+1}{x+1}$.
+    </div>
+
+    <p>Cada límite produce una ecuación en $a$ y $b$. El sistema resultante determina los valores buscados.</p>
+
+    <p class="chiste">$\lim_{x \to -\infty}$ usa el trozo de la izquierda, y $\lim_{x \to +\infty}$ usa el trozo de la derecha. La función a trozos y los límites en el infinito se reparten el trabajo de forma bastante ordenada.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>El límite de una función racional cuando $x \to \pm\infty$ determina sus <em>asíntotas horizontales</em>: las rectas $y = L$ hacia las que la función se acerca sin llegar. Una función racional puede tener a lo sumo dos asíntotas horizontales distintas — una cuando $x \to +\infty$ y otra cuando $x \to -\infty$ — o ninguna si el grado del numerador supera al del denominador. En este ejercicio, ambas condiciones piden que el límite sea $1$, lo que significa que la función tiene la misma asíntota horizontal en ambas direcciones. Eso no ocurre para todo par $(a, b)$: encontrar los valores que lo hacen posible es exactamente el objetivo del ejercicio.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Condición 1: $\lim_{x \to -\infty} f(x) = 1$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to -\infty} \dfrac{2ax - 1}{bx + 1}$
+    </div>
+    <div class="paso-just">
+      Para $x &lt; 1$ rige el primer trozo; este límite usa $x \to -\infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to -\infty} \dfrac{2a - \frac{1}{x}}{b + \frac{1}{x}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x$ (la potencia más alta).
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{2a - 0}{b + 0} = \dfrac{2a}{b}$
+    </div>
+    <div class="paso-just">
+      $1/x \to 0$ cuando $x \to -\infty$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{2a}{b} = 1 \;\Rightarrow\; 2a = b$
+    </div>
+    <div class="paso-just">
+      Se iguala al valor pedido. — Ecuación (I)
+    </div>
+
+  </div>
+
+  <p class="subcaso">Condición 2: $\lim_{x \to +\infty} f(x) = 1$</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to +\infty} \left(\dfrac{x}{ax+1} - \dfrac{bx+1}{x+1}\right)$
+    </div>
+    <div class="paso-just">
+      Para $x &gt; 1$ rige el segundo trozo.
+    </div>
+
+    <div class="paso-dev">
+      $\lim_{x \to +\infty} \dfrac{x}{ax+1} = \lim_{x \to +\infty} \dfrac{1}{a + \frac{1}{x}} = \dfrac{1}{a}$
+    </div>
+    <div class="paso-just">
+      Se divide por $x$; $1/x \to 0$.
+    </div>
+
+    <div class="paso-dev">
+      $\lim_{x \to +\infty} \dfrac{bx+1}{x+1} = \lim_{x \to +\infty} \dfrac{b + \frac{1}{x}}{1 + \frac{1}{x}} = \dfrac{b}{1} = b$
+    </div>
+    <div class="paso-just">
+      Se divide por $x$; $1/x \to 0$.
+    </div>
+
+    <div class="paso-dev">
+      $\lim_{x \to +\infty} f(x) = \dfrac{1}{a} - b$
+    </div>
+    <div class="paso-just">
+      Límite de una diferencia = diferencia de los límites.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{a} - b = 1$
+    </div>
+    <div class="paso-just">
+      Se iguala al valor pedido. — Ecuación (II)
+    </div>
+
+  </div>
+
+  <p class="subcaso">Resolución del sistema</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\begin{cases} b = 2a \\ \dfrac{1}{a} - b = 1 \end{cases}$
+    </div>
+    <div class="paso-just">
+      Sistema con incógnitas $a$ y $b$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{a} - 2a = 1$
+    </div>
+    <div class="paso-just">
+      Se sustituye $b = 2a$ en la ecuación (II).
+    </div>
+
+    <div class="paso-dev">
+      $1 - 2a^2 = a$
+    </div>
+    <div class="paso-just">
+      Se multiplica por $a$ (asumiendo $a \neq 0$).
+    </div>
+
+    <div class="paso-dev">
+      $2a^2 + a - 1 = 0$
+    </div>
+    <div class="paso-just">
+      Se reorganiza como ecuación cuadrática.
+    </div>
+
+    <div class="paso-dev">
+      $(2a - 1)(a + 1) = 0$
+    </div>
+    <div class="paso-just">
+      Factorización: raíces en $a = 1/2$ y $a = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $a = \dfrac{1}{2} \;\Rightarrow\; b = 1$
+      \quad o \quad
+      $a = -1 \;\Rightarrow\; b = -2$
+    </div>
+    <div class="paso-just">
+      Se sustituye cada raíz en $b = 2a$.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p><strong>Caso $a = 1/2$, $b = 1$:</strong><br>
+    $\lim_{x \to -\infty}\dfrac{x - 1}{x + 1} = 1$ ✓ &nbsp;&nbsp; $\lim_{x \to +\infty}\left(\dfrac{x}{\frac{x}{2}+1} - \dfrac{x+1}{x+1}\right) = \lim_{x\to+\infty}\left(\dfrac{2x}{x+2} - 1\right) = 2 - 1 = 1$ ✓</p>
+    <p><strong>Caso $a = -1$, $b = -2$:</strong><br>
+    $\lim_{x \to -\infty}\dfrac{-2x - 1}{-2x + 1} = \dfrac{-2}{-2} = 1$ ✓ &nbsp;&nbsp; $\lim_{x \to +\infty}\left(\dfrac{x}{-x+1} - \dfrac{-2x+1}{x+1}\right) = -1 - (-2) = 1$ ✓</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Hay dos soluciones:
+    $$a = \frac{1}{2},\; b = 1 \qquad \text{o} \qquad a = -1,\; b = -2.$$
+    Ambas hacen que $\displaystyle\lim_{x \to -\infty} f(x) = \lim_{x \to +\infty} f(x) = 1$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Las asíntotas horizontales de una función describen su comportamiento a largo plazo — lo que ocurre cuando la variable crece sin límite. En aprendizaje automático, las funciones de activación sigmoide y tangente hiperbólica tienen asíntotas horizontales que determinan los valores extremos que puede tomar una neurona: la sigmoide se acerca a $0$ cuando $x \to -\infty$ y a $1$ cuando $x \to +\infty$. Diseñar una función de activación con asíntotas específicas — como imponer que ambos límites sean $1$, como en este ejercicio — es una decisión arquitectónica que afecta directamente cómo fluye la información a través de la red. Los valores de los parámetros que producen esas asíntotas se eligen exactamente con el mismo proceso: plantear las condiciones como ecuaciones y resolver el sistema.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El sistema de ecuaciones del ejercicio 9 produjo dos soluciones: $(a, b) = (1/2, 1)$ y $(a, b) = (-1, -2)$. ¿Ambas soluciones producen la misma función $f$, o son funciones distintas que comparten los mismos límites en el infinito?</span></li>
+      <li><span>Al multiplicar por $a$ en el paso $1/a - 2a = 1$, se asumió implícitamente que $a \neq 0$. ¿Qué ocurriría si $a = 0$? ¿Ese valor podría ser solución del sistema original?</span></li>
+      <li><span>Las condiciones del ejercicio imponen que $\lim_{x \to -\infty} f(x) = \lim_{x \to +\infty} f(x) = 1$. ¿Eso garantiza que la función tenga una única asíntota horizontal $y = 1$, o podría tener comportamientos distintos en otros rangos de $x$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

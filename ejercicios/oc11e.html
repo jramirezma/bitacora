@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>oc11e</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "oc11e",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11d",
+      tema: "límites indeterminados con raíces anidadas",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite indeterminado raíz anidada racionalización",
+        "límite 0 sobre 0 raíz de 2 más raíz cúbica de x",
+        "lim x tiende a 8 raíz cuadrada de 2 más raíz cúbica x menos 2 sobre x menos 8"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 8} \frac{\sqrt{2 + \sqrt[3]{x}} - 2}{x - 8}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Sustituir $x = 8$ da $({\sqrt{2 + 2}} - 2)/(8-8) = (2-2)/0 = 0/0$: forma indeterminada. El numerador tiene una raíz cuadrada que envuelve una raíz cúbica — una raíz anidada. Para eliminar la raíz cuadrada del numerador se multiplica por el conjugado. Para eliminar la raíz cúbica hace falta un cambio de variable.</p>
+
+    <div class="nota">
+      La estrategia tiene dos etapas. Primero: multiplicar por el conjugado $\sqrt{2+\sqrt[3]{x}}+2$ para eliminar la raíz cuadrada. Segundo: hacer el cambio de variable $t = \sqrt[3]{x}$, es decir $x = t^3$, para convertir la raíz cúbica restante en algo algebraico que pueda factorizarse.
+    </div>
+
+    <p>Con $t = \sqrt[3]{x}$: cuando $x \to 8$, $t \to \sqrt[3]{8} = 2$. El denominador $x - 8 = t^3 - 8$ se factoriza como diferencia de cubos: $t^3 - 8 = (t-2)(t^2+2t+4)$. Ahí aparece el factor $(t-2)$ que cancela con el que surge del conjugado.</p>
+
+    <p class="chiste">Una raíz dentro de otra raíz. El conjugado saca la raíz cuadrada, el cambio de variable saca la cúbica, y la diferencia de cubos cancela lo que queda. Tres herramientas para un solo límite — el ejercicio más ambicioso del bloque hasta ahora.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Este límite es la derivada de $f(x) = \sqrt{2 + \sqrt[3]{x}}$ evaluada en $x = 8$, escrita según la definición: $f'(8) = \lim_{x \to 8}[f(x) - f(8)]/(x-8)$. Calcularlo directamente por la regla de la cadena da $f'(x) = \frac{1}{2\sqrt{2+x^{1/3}}} \cdot \frac{1}{3}x^{-2/3}$, evaluada en $x = 8$: $\frac{1}{2\cdot 2} \cdot \frac{1}{3 \cdot 4} = \frac{1}{48}$. El resultado del límite debería ser $1/48$ — lo que sirve de verificación independiente del cálculo algebraico.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 8} \dfrac{\sqrt{2+\sqrt[3]{x}}-2}{x-8}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa da $0/0$: forma indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 8} \dfrac{\sqrt{2+\sqrt[3]{x}}-2}{x-8} \cdot \dfrac{\sqrt{2+\sqrt[3]{x}}+2}{\sqrt{2+\sqrt[3]{x}}+2}$
+    </div>
+    <div class="paso-just">
+      Se multiplica por el conjugado del numerador.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 8} \dfrac{(2+\sqrt[3]{x})-4}{(x-8)(\sqrt{2+\sqrt[3]{x}}+2)}$
+    </div>
+    <div class="paso-just">
+      Numerador: $(a-b)(a+b) = a^2 - b^2$, con $a^2 = 2+\sqrt[3]{x}$ y $b^2=4$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 8} \dfrac{\sqrt[3]{x}-2}{(x-8)(\sqrt{2+\sqrt[3]{x}}+2)}$
+    </div>
+    <div class="paso-just">
+      $2 + \sqrt[3]{x} - 4 = \sqrt[3]{x} - 2$.
+    </div>
+
+    <div class="paso-dev">
+      Sea $t = \sqrt[3]{x}$, i.e. $x = t^3$. Cuando $x \to 8$, $t \to 2$.
+    </div>
+    <div class="paso-just">
+      Cambio de variable para eliminar la raíz cúbica.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 2} \dfrac{t - 2}{(t^3-8)(\sqrt{2+t}+2)}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $x = t^3$ y $\sqrt[3]{x} = t$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 2} \dfrac{t-2}{(t-2)(t^2+2t+4)(\sqrt{2+t}+2)}$
+    </div>
+    <div class="paso-just">
+      Diferencia de cubos: $t^3 - 8 = (t-2)(t^2+2t+4)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{t \to 2} \dfrac{1}{(t^2+2t+4)(\sqrt{2+t}+2)}$
+    </div>
+    <div class="paso-just">
+      Se cancela $(t-2)$, válido porque $t \neq 2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{(4+4+4)(\sqrt{4}+2)}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa con $t = 2$: $t^2+2t+4 = 12$ y $\sqrt{2+2}+2 = 4$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{12 \cdot 4} = \dfrac{1}{48}$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>$1/48 \approx 0{,}02083$. Valores cerca de $x = 8$: $x = 8{,}1 \Rightarrow (\sqrt{2+\sqrt[3]{8{,}1}}-2)/0{,}1 \approx (\sqrt{2+2{,}0083}-2)/0{,}1 \approx (2{,}00208-2)/0{,}1 \approx 0{,}0208$; $x = 7{,}9 \Rightarrow \approx 0{,}0208$. Consistente con $1/48 \approx 0{,}02083$. El dato curioso también lo confirmó: la derivada de $\sqrt{2+x^{1/3}}$ en $x=8$ da exactamente $1/48$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 8} \frac{\sqrt{2+\sqrt[3]{x}}-2}{x-8} = \boxed{\dfrac{1}{48}}.$$
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>El cambio de variable $t = \sqrt[3]{x}$ que convierte $x - 8$ en $t^3 - 8$ es una técnica de sustitución que aparece constantemente en integración. Cuando una integral contiene una raíz $\sqrt[n]{g(x)}$, la sustitución $t = \sqrt[n]{g(x)}$ elimina la raíz y convierte la integral en un problema algebraico más manejable. Ese patrón — identificar la raíz más "profunda", sustituirla por una variable nueva, reescribir todo en términos de esa variable — es exactamente lo que se hace en este límite, y es la misma heurística que guía la elección de sustitución en integrales con radicales. La diferencia de cubos que aparece tras la sustitución no es casualidad: es la huella algebraica de haber reemplazado $x = t^3$.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to 8}(\sqrt{2+\sqrt[3]{x}}-2)/(x-8)$, se usaron dos herramientas en secuencia: el conjugado y el cambio de variable. ¿Podría haberse aplicado el cambio de variable primero, antes que el conjugado? ¿El orden importa?</span></li>
+      <li><span>El resultado $1/48$ coincide con la derivada de $f(x) = \sqrt{2+\sqrt[3]{x}}$ en $x = 8$, calculada por la regla de la cadena. ¿Por qué ese límite y esa derivada son siempre iguales? ¿Qué definición conecta los dos conceptos?</span></li>
+      <li><span>El cambio de variable $t = \sqrt[3]{x}$ convirtió $x - 8$ en $t^3 - 8$, que se factorizó como diferencia de cubos. Si el punto fuera $x = 27$ en lugar de $x = 8$, ¿qué cambiaría en la sustitución y en la factorización resultante?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

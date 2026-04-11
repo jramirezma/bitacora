@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>gvfh4</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "gvfh4",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "3a",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función definida a trozos",
+        "límite lateral función por partes",
+        "lim x tiende a 0 función a trozos"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} -x, & \text{si } x < 0; \\ x, & \text{si } 0 \leq x < 1; \\ x+1, & \text{si } x > 1. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 0} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cuando una función está definida a trozos, cada trozo tiene su propia fórmula y su propio dominio. Para calcular el límite en un punto de "costura" — un punto donde la definición cambia — no basta con sustituir: hay que verificar que la función se acerca al mismo valor tanto por la izquierda como por la derecha.</p>
+
+    <div class="nota">
+      El límite $\lim_{x \to c} f(x)$ existe si y solo si el límite por izquierda y el límite por derecha existen y son iguales: $\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$.
+    </div>
+
+    <p>El punto $x = 0$ es exactamente una de esas costuras: para $x < 0$ rige $f(x) = -x$, y para $0 \leq x < 1$ rige $f(x) = x$. Hay que calcular el límite desde cada lado usando la fórmula que corresponde a ese lado, y luego comparar.</p>
+
+    <p class="chiste">Una función definida a trozos es como una carretera con cambio de sentido en un cruce: para saber si el tráfico fluye sin problemas, tenés que mirar de ambos lados del cruce, no solo desde uno.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>La función definida en este ejercicio es, en los tramos $x < 0$ y $0 \leq x < 1$, exactamente el valor absoluto: $|x| = \begin{cases} -x & x < 0 \\ x & x \geq 0 \end{cases}$. El valor absoluto es continuo en todos los reales — incluyendo $x = 0$ — pero no es diferenciable en $x = 0$: viene con pendiente $-1$ desde la izquierda y con pendiente $+1$ desde la derecha. Ese punto es el ejemplo canónico de una función continua pero no diferenciable: el límite existe, pero la derivada no.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 0^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 0^-$ significa que $x < 0$: rige el trozo $f(x) = -x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} (-x)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 0$
+    </div>
+    <div class="paso-just">
+      $-x$ es continua; sustitución directa: $-(0) = 0$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 0^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^+} f(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 0^+$ significa que $0 < x < 1$: rige el trozo $f(x) = x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^+} x$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 0$
+    </div>
+    <div class="paso-just">
+      $x$ es continua; sustitución directa: $0$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x) = 0 = \lim_{x \to 0^+} f(x)$
+    </div>
+    <div class="paso-just">
+      Ambos límites laterales existen y coinciden.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 0} f(x) = 0$
+    </div>
+    <div class="paso-just">
+      El límite bilateral existe y es igual al valor común de los laterales.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 0$ por izquierda: $f(-0{,}1) = -(-0{,}1) = 0{,}1$; $f(-0{,}01) = 0{,}01$. Por derecha: $f(0{,}1) = 0{,}1$; $f(0{,}01) = 0{,}01$. Desde ambos lados la función se acerca a $0$. El límite existe y vale $0$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0} f(x) = \boxed{0}.$$
+    El límite existe porque los límites laterales coinciden: $\lim_{x \to 0^-} f(x) = \lim_{x \to 0^+} f(x) = 0$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Las funciones definidas a trozos aparecen constantemente en programación bajo la forma de estructuras <code>if-else</code>: dependiendo del valor de la entrada, se ejecuta una fórmula u otra. Cuando dos ramas de un <code>if-else</code> producen valores que coinciden en el punto de transición, la función resultante es continua ahí — exactamente lo que ocurre en este ejercicio con $x = 0$. En diseño de interfaces, esa continuidad se traduce en transiciones suaves: si la función que controla el tamaño o la posición de un elemento es continua en los puntos de cambio de comportamiento, la animación no salta. Si no lo es, aparece un "glitch".</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to 0} f(x)$ para la función a trozos dada, el límite existe porque los dos límites laterales coinciden. ¿Puede ocurrir que una función a trozos tenga el mismo límite lateral por izquierda y por derecha, pero que ese límite no coincida con el valor de la función en el punto? ¿Qué nombre recibe esa situación?</span></li>
+      <li><span>La función $f(x) = |x|$ es continua en $x = 0$ pero no es diferenciable ahí. ¿Qué significa geométricamente que una función sea continua pero no diferenciable en un punto? ¿Qué aspecto tiene la gráfica en ese punto?</span></li>
+      <li><span>Para calcular $\lim_{x \to 0} f(x)$ de una función definida a trozos, se calcularon los límites laterales usando las fórmulas de los trozos adyacentes. ¿Qué ocurre si el punto de interés no es un punto de "costura" sino un punto interior de uno de los trozos? ¿Cambia el procedimiento?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

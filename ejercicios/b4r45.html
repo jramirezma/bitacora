@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b4r45</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "b4r45",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11m",
+      tema: "límites en el infinito con diferencia de fracciones racionales",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite infinito diferencia de fracciones racionales",
+        "límite infinito menos infinito fracciones polinómicas",
+        "lim x tiende a infinito x cúbico sobre 2x cuadrado menos 1 menos x cuadrado sobre 2x más 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \left(\frac{x^3}{2x^2-1} - \frac{x^2}{2x+1}\right).$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cada fracción por separado tiende a $\infty$ cuando $x \to \infty$: la primera como $x/2$ y la segunda como $x/2$. La diferencia es $\infty - \infty$, indeterminada. Para resolverla hay que unir las dos fracciones en una sola usando denominador común, y luego analizar el cociente resultante.</p>
+
+    <div class="nota">
+      El denominador común es $(2x^2-1)(2x+1)$. Una vez unidas las fracciones, el numerador resultante es un polinomio que hay que expandir cuidadosamente. Luego se divide por la potencia dominante del denominador y se evalúa.
+    </div>
+
+    <p>El denominador común tiene grado $3$. Para que el límite sea finito, el numerador unificado tiene que tener también grado $3$ — de lo contrario el cociente tendería a $0$ o a $\pm\infty$. Vale la pena anticipar cuál es el término dominante del numerador antes de expandir todo.</p>
+
+    <p class="chiste">Dos fracciones que individualmente van al infinito, pero cuya diferencia tiene un límite finito. La clave está en que los términos dominantes se cancelan parcialmente al restar — exactamente como las raíces del inciso anterior. El infinito, cuando se porta bien, puede tener diferencias finitas.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>La técnica de unir fracciones en denominador común para resolver $\infty - \infty$ es el caso discreto de un principio que aparece en integración: la descomposición en fracciones parciales. Allí el objetivo es el inverso — separar una fracción compleja en sumandos más simples — pero la herramienta algebraica es la misma: el denominador común y la manipulación del numerador. En cálculo numérico, sumar o restar fracciones con denominadores muy distintos puede causar pérdida de precisión si uno de los denominadores es mucho mayor que el otro. Unificar en denominador común antes de evaluar — como se hace aquí — produce resultados más estables que evaluar cada fracción por separado y luego restar.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty}\!\left(\dfrac{x^3}{2x^2-1} - \dfrac{x^2}{2x+1}\right)$
+    </div>
+    <div class="paso-just">
+      Forma $\infty - \infty$: se unen en denominador común.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{x^3(2x+1) - x^2(2x^2-1)}{(2x^2-1)(2x+1)}$
+    </div>
+    <div class="paso-just">
+      Denominador común $(2x^2-1)(2x+1)$.
+    </div>
+
+    <div class="paso-dev">
+      $x^3(2x+1) = 2x^4 + x^3$
+    </div>
+    <div class="paso-just">
+      Se expande el primer término del numerador.
+    </div>
+
+    <div class="paso-dev">
+      $x^2(2x^2-1) = 2x^4 - x^2$
+    </div>
+    <div class="paso-just">
+      Se expande el segundo término del numerador.
+    </div>
+
+    <div class="paso-dev">
+      $\text{Numerador} = (2x^4+x^3) - (2x^4-x^2) = x^3 + x^2$
+    </div>
+    <div class="paso-just">
+      Los términos $2x^4$ se cancelan. Queda $x^3 + x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $(2x^2-1)(2x+1) = 4x^3 + 2x^2 - 2x - 1$
+    </div>
+    <div class="paso-just">
+      Se expande el denominador.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{x^3 + x^2}{4x^3 + 2x^2 - 2x - 1}$
+    </div>
+    <div class="paso-just">
+      Se reescribe con numerador y denominador expandidos.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{1 + \dfrac{1}{x}}{4 + \dfrac{2}{x} - \dfrac{2}{x^2} - \dfrac{1}{x^3}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x^3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1 + 0}{4 + 0 - 0 - 0}$
+    </div>
+    <div class="paso-just">
+      $c/x^k \to 0$ cuando $x \to \infty$ para $k > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{4}$
+    </div>
+    <div class="paso-just">
+      Cociente de los coeficientes principales: $1/4$.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$x = 10$: $\dfrac{1000}{199} - \dfrac{100}{21} = 5{,}025 - 4{,}762 = 0{,}263$; $x = 100$: $\dfrac{10^6}{19999} - \dfrac{10^4}{201} = 50{,}003 - 49{,}751 = 0{,}252$; $x = 1000$: $\approx 0{,}2502$. Converge a $1/4 = 0{,}25$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty}\!\left(\frac{x^3}{2x^2-1} - \frac{x^2}{2x+1}\right) = \boxed{\dfrac{1}{4}}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En análisis de algoritmos, comparar el costo de dos rutinas que se ejecutan en secuencia requiere sumar o restar sus costos. Si los costos son funciones racionales de $n$ — como ocurre en algoritmos de divide y vencerás con distintos tamaños de subproblema — la diferencia puede tener la forma $\infty - \infty$ cuando $n \to \infty$. Unificar en denominador común antes de analizar el comportamiento asintótico da el costo neto correcto, mientras que evaluar cada término por separado y restar puede producir cancelaciones que ocultan el orden real de crecimiento. El resultado $1/4$ en este ejercicio sería la constante que multiplica al término dominante del costo neto — información que se pierde si se trabaja con los términos por separado.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to \infty}[x^3/(2x^2-1) - x^2/(2x+1)]$, los términos $2x^4$ del numerador se cancelaron exactamente. ¿Eso es una coincidencia del ejercicio, o ocurre siempre que se restan dos fracciones racionales cuyos numeradores tienen el mismo grado que sus denominadores más uno?</span></li>
+      <li><span>Cada fracción por separado se comporta como $x/2$ cuando $x \to \infty$. ¿Eso significa que su diferencia debería tender a $0$? ¿Por qué el resultado es $1/4$ y no $0$?</span></li>
+      <li><span>Si se cambia el signo de la resta por una suma — $x^3/(2x^2-1) + x^2/(2x+1)$ — ¿cuál sería el límite cuando $x \to \infty$? ¿La técnica sería la misma?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

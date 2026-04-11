@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>2wi7v</title>
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>
+      Crea un programa donde pueda instanciar objetos de la clase Persona con los atributos
+      (nombre, edad) y un método que me compare la edad de una persona con la de otras dos
+      personas y me muestre quién es el mayor imprimiendo los datos de esa persona.
+    </p>
+  </div>
+
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>
+      Imaginá que tenés tres personas en una fila. Querés saber cuál es la de mayor edad.
+      Pero hay un detalle: el método <code>Comparar</code> vive dentro de uno de los objetos
+      — digamos <code>a</code> — y recibe a los otros dos (<code>b</code> y <code>c</code>)
+      como parámetros. Entonces <code>a</code> actúa como árbitro: compara su propia edad
+      con la de <code>b</code> y con la de <code>c</code> para determinar quién gana.
+    </p>
+    <div class="nota">
+      Un método de instancia puede recibir otros objetos de su misma clase como parámetros
+      y acceder a sus atributos a través de los getters. Así un objeto "habla" con otro
+      sin romper el encapsulamiento.
+    </div>
+    <p>
+      Los casos posibles son cuatro: las tres edades son iguales, solo <code>a</code> es
+      la mayor, solo <code>b</code> es la mayor, solo <code>c</code> es la mayor, o hay
+      empate entre dos. La cadena de <code>SI / SINO SI</code> maneja cada uno en orden.
+    </p>
+    <p class="chiste">
+      Tres personas, una sola mayor. Si vivieran en un reality show, este método decidiría
+      quién sigue y quién se va a casa.
+    </p>
+  </div>
+
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>
+      Cuando un método de una clase recibe como parámetro otro objeto de esa misma clase,
+      en POO se lo llama a veces "método de comparación entre pares" (peer comparison).
+      Este patrón es la base de cómo funciona la interfaz <code>Comparable</code> en Java:
+      su único método, <code>compareTo(T otro)</code>, recibe un objeto del mismo tipo y
+      devuelve un entero que indica el orden relativo. Toda la maquinaria de ordenamiento
+      de Java — <code>Collections.sort</code>, <code>Arrays.sort</code>, los árboles
+      ordenados — depende de ese único método que sigue exactamente la misma idea que
+      <code>Comparar(Persona x, Persona y)</code>.
+    </p>
+  </div>
+
+
+  <h2>Manos a la obra</h2>
+  <div class="bloque">
+    <p>
+      Una sola clase <strong>Persona</strong> con dos atributos privados. El método
+      <code>Comparar</code> recibe dos objetos <code>Persona</code> y determina cuál
+      de los tres — el receptor o cualquiera de los dos parámetros — tiene la mayor edad.
+    </p>
+  </div>
+
+  <div class="class-box">
+    <div class="class-name">Persona</div>
+    <div class="section">
+      - String nombre<br>
+      - int edad
+    </div>
+    <div class="section">
+      + leer()<br>
+      + mostrar()<br>
+      + String getNombre()<br>
+      + int getEdad()<br>
+      + void Comparar(Persona x, Persona y)
+    </div>
+  </div>
+
+  <div class="bloque" style="margin-top:14px;">
+    <p>
+      <code>leer()</code> carga los datos del objeto por teclado. <code>mostrar()</code>
+      los imprime. Los getters permiten que <code>Comparar</code> acceda a la edad de
+      <code>x</code> e <code>y</code> sin tocar directamente sus atributos privados.
+      El objeto que invoca <code>Comparar</code> usa su propio atributo <code>edad</code>
+      directamente, porque está dentro de la clase.
+    </p>
+  </div>
+
+  <hr>
+
+
+  <div class="pseudo-header">
+    <span class="block-title" data-target="pseudo-clase">CLASE Persona</span>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-clase">// Carga datos por teclado
+void leer() {
+    leer(nombre, edad)
+}
+
+// Imprime los datos de esta persona
+void mostrar() {
+    IMPRIMIR nombre + " " + edad
+}
+
+// Getters
+String getNombre() { retornar nombre }
+int    getEdad()   { retornar edad }
+
+// Compara la edad de self con la de x e y
+// y muestra los datos del mayor
+void Comparar(Persona x, Persona y) {
+    int ea = edad
+    int ex = x.getEdad()
+    int ey = y.getEdad()
+
+    SI (ea == ex) Y (ea == ey)
+        IMPRIMIR "Las tres personas tienen la misma edad"
+    SINO SI (ea < ex) Y (ea < ey)
+        SI ex > ey
+            x.mostrar()
+        SINO SI ey > ex
+            y.mostrar()
+        SINO
+            IMPRIMIR "Existen dos personas con la mayor edad"
+    SINO SI (ex < ea) Y (ex < ey)
+        SI ea > ey
+            self.mostrar()
+        SINO SI ey > ea
+            y.mostrar()
+        SINO
+            IMPRIMIR "Existen dos personas con la mayor edad"
+    SINO SI (ey < ea) Y (ey < ex)
+        SI ea > ex
+            self.mostrar()
+        SINO SI ex > ea
+            x.mostrar()
+        SINO
+            IMPRIMIR "Existen dos personas con la mayor edad"
+    SINO
+        IMPRIMIR "Existen dos personas con la mayor edad"
+}</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>Lee nombre y edad desde teclado</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Muestra nombre y edad del objeto receptor</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Devuelven el atributo correspondiente</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>ea = edad del objeto que llama al método</span>
+      <span>ex = edad de x, accedida por getter</span>
+      <span>ey = edad de y, accedida por getter</span>
+      <span>&nbsp;</span>
+      <span>Caso 1: las tres son iguales</span>
+      <span>&nbsp;</span>
+      <span>Caso 2: a es la menor → mayor es x o y</span>
+      <span>x gana entre x e y</span>
+      <span>&nbsp;</span>
+      <span>y gana entre x e y</span>
+      <span>&nbsp;</span>
+      <span>x e y empatan como máximas</span>
+      <span>Caso 3: x es la menor → mayor es a o y</span>
+      <span>a gana entre a e y</span>
+      <span>&nbsp;</span>
+      <span>y gana entre a e y</span>
+      <span>&nbsp;</span>
+      <span>a e y empatan como máximas</span>
+      <span>Caso 4: y es la menor → mayor es a o x</span>
+      <span>a gana entre a e x</span>
+      <span>&nbsp;</span>
+      <span>x gana entre a e x</span>
+      <span>&nbsp;</span>
+      <span>a y x empatan como máximas</span>
+      <span>Caso residual: empate no cubierto arriba</span>
+      <span>&nbsp;</span>
+    </div>
+  </div>
+
+
+  <div class="pseudo-header">
+    <span class="block-title" data-target="pseudo-main">PROGRAMA PRINCIPAL</span>
+  </div>
+  <div class="pseudo-wrap">
+    <pre id="pseudo-main">// Crear tres objetos Persona
+Persona a = nuevo Persona()
+Persona b = nuevo Persona()
+Persona c = nuevo Persona()
+
+// Cargar datos por teclado
+a.leer()
+b.leer()
+c.leer()
+
+// a actúa como árbitro y compara las tres edades
+a.Comparar(b, c)</pre>
+    <div class="pseudo-comments">
+      <span>&nbsp;</span>
+      <span>Tres instancias independientes</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Cada objeto recibe su nombre y edad</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>Dentro de Comparar, a usa su edad directamente</span>
+      <span>y accede a b y c a través de sus getters</span>
+    </div>
+  </div>
+
+
+  <h2>Probemos con un ejemplo</h2>
+  <div class="bloque">
+    <p>
+      Datos ingresados:<br>
+      <strong>a</strong> → nombre="Ana", edad=30<br>
+      <strong>b</strong> → nombre="Luis", edad=45<br>
+      <strong>c</strong> → nombre="Marta", edad=38
+    </p>
+    <p>
+      Se llama <code>a.Comparar(b, c)</code>. Dentro del método:
+      ea=30, ex=45, ey=38.<br>
+      ¿(30==45) Y (30==38)? No.<br>
+      ¿(30&lt;45) Y (30&lt;38)? Sí — a es la menor.<br>
+      ¿ex &gt; ey? ¿45 &gt; 38? Sí → se imprime <code>b.mostrar()</code>.<br>
+      Salida: <strong>"Luis 45"</strong>.
+    </p>
+    <p>
+      Caso de empate: a=30, b=45, c=45.<br>
+      ea=30, ex=45, ey=45. Segunda condición se cumple.<br>
+      ¿ex &gt; ey? No. ¿ey &gt; ex? No → salida:
+      <strong>"Existen dos personas con la mayor edad"</strong>.
+    </p>
+  </div>
+
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Se modeló la clase <strong>Persona</strong> con atributos
+    privados nombre y edad, métodos <code>leer()</code> y <code>mostrar()</code>,
+    getters para ambos atributos, y el método <code>Comparar(Persona x, Persona y)</code>
+    que evalúa los cuatro casos posibles — igualdad total, cada una como única mayor,
+    y empate entre dos — para imprimir los datos de la persona con mayor edad o informar
+    si hay empate.
+  </div>
+
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>
+      El patrón de recibir otro objeto de la misma clase como parámetro para compararlo
+      es exactamente lo que hace la interfaz <code>Comparable</code> en Java. Cuando una
+      clase implementa <code>compareTo(T otro)</code>, le está diciendo al lenguaje cómo
+      ordenarse respecto de otro objeto del mismo tipo. Cada vez que usás
+      <code>Collections.sort</code> sobre una lista de objetos, por debajo se invocan
+      llamadas a ese método — el mismo mecanismo que <code>Comparar</code>, reducido a
+      retornar un entero negativo, cero o positivo en lugar de imprimir un mensaje.
+    </p>
+    <p>
+      La diferencia de diseño es interesante: <code>Comparar</code> imprime el resultado
+      directamente (responsabilidad mezclada), mientras que <code>compareTo</code> solo
+      devuelve un valor y deja que quien llama decida qué hacer con él. Esa separación —
+      calcular vs. actuar — es uno de los principios que aparece constantemente a medida
+      que los programas crecen.
+    </p>
+  </div>
+
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En POO, el método Comparar recibe dos objetos Persona como parámetros y accede a su edad mediante getters. ¿Qué pasaría si los atributos fueran públicos en lugar de privados? ¿Cambiaría el comportamiento o solo el estilo de escritura?</span></li>
+      <li><span>El método Comparar está definido dentro de la clase Persona y usa la edad del objeto receptor directamente. ¿Qué ventaja o desventaja tiene eso frente a diseñarlo como un método estático que reciba los tres objetos Persona como parámetros?</span></li>
+      <li><span>En este diseño de clase Persona, el método Comparar imprime el resultado en lugar de retornarlo. ¿En qué situaciones prácticas sería mejor que retornara la Persona de mayor edad en vez de imprimirla?</span></li>
+      <li><span>Si se quisiera extender la clase Persona para comparar no solo la edad sino también el nombre en orden alfabético cuando las edades son iguales, ¿cómo modificarías el método Comparar para contemplar ese criterio secundario?</span></li>
+      <li><span>En Java existe la interfaz Comparable con el método compareTo(T otro), que sigue la misma idea que Comparar(Persona x, Persona y). ¿Qué diferencia de diseño existe entre un método que imprime el resultado directamente y uno que retorna un valor para que quien llama decida qué hacer?</span></li>
+    </ol>
+  </div>
+
+
+  <script>
+    window.EJERCICIO = {
+      id:            "2wi7v",
+      materia:       "PROGRAMACION II",
+      origen:        "CL",
+      ejercicio_nro: null,
+      paradigma:     ["POO"],
+      tema: [
+        "métodos con objetos como parámetros",
+        "comparación entre instancias",
+        "encapsulamiento y getters"
+      ],
+      dificultad: ["basico", "introductorio", "inicial"],
+      seo_keywords: ["clase Persona POO pseudocódigo", "comparar objetos misma clase", "método con parámetro objeto"],
+      fecha:  "2026-03-29",
+      autor:  { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+
+</body>
+</html>

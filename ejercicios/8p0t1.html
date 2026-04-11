@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>8p0t1</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "8p0t1",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11l",
+      tema: "límites en el infinito con raíces cuadradas",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite infinito diferencia de raíces cuadradas",
+        "límite conjugado raíces cuadradas en infinito",
+        "lim x tiende a infinito raíz x cuadrado más 8x más 3 menos raíz x cuadrado más 4x más 3"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \left(\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3}\right).$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cuando $x \to \infty$, ambas raíces crecen sin límite — la forma es $\infty - \infty$, que es indeterminada. No se puede concluir nada directamente. La estrategia es multiplicar y dividir por el conjugado de la expresión para convertir la diferencia en un cociente.</p>
+
+    <div class="nota">
+      El conjugado de $\sqrt{A} - \sqrt{B}$ es $\sqrt{A} + \sqrt{B}$. El producto es $(\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B$, que elimina las raíces del numerador. Queda una diferencia de polinomios dividida por la suma de las raíces.
+    </div>
+
+    <p>Aquí $A = x^2 + 8x + 3$ y $B = x^2 + 4x + 3$, así que $A - B = 4x$. El denominador es $\sqrt{x^2+8x+3} + \sqrt{x^2+4x+3}$, que para $x$ grande se comporta como $x + x = 2x$. El cociente tiende a $4x / 2x = 2$.</p>
+
+    <p class="chiste">$\infty - \infty$ es la forma indeterminada más engañosa de todas. Dos raíces que parecen idénticas para $x$ grande — ambas se aproximan a $x$ — pero cuya diferencia tiene un valor finito bien definido. El conjugado es el bisturí que separa lo que parece inseparable.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>La técnica del conjugado para resolver $\infty - \infty$ con raíces es, en el fondo, una aplicación de la identidad algebraica $a^2 - b^2 = (a-b)(a+b)$. Pero hay una forma de anticipar el resultado sin calcular: para $x$ grande, $\sqrt{x^2 + cx} \approx x + c/2$ (primera corrección de la expansión de Taylor de $\sqrt{x^2+cx} = x\sqrt{1+c/x}$). Entonces $\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3} \approx (x + 4) - (x + 2) = 2$. Esa aproximación da el límite exacto, y la demostración rigurosa con el conjugado confirma lo que la intuición ya anticipó.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty}\!\left(\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3}\right)$
+    </div>
+    <div class="paso-just">
+      Forma $\infty - \infty$: indeterminada. Se aplica el conjugado.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{\left(\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3}\right)\!\left(\sqrt{x^2+8x+3} + \sqrt{x^2+4x+3}\right)}{\sqrt{x^2+8x+3} + \sqrt{x^2+4x+3}}$
+    </div>
+    <div class="paso-just">
+      Se multiplica y divide por el conjugado.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{(x^2+8x+3)-(x^2+4x+3)}{\sqrt{x^2+8x+3}+\sqrt{x^2+4x+3}}$
+    </div>
+    <div class="paso-just">
+      $(\sqrt{A}-\sqrt{B})(\sqrt{A}+\sqrt{B}) = A - B$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{4x}{\sqrt{x^2+8x+3}+\sqrt{x^2+4x+3}}$
+    </div>
+    <div class="paso-just">
+      $A - B = (x^2+8x+3)-(x^2+4x+3) = 4x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{4x}{x\!\left(\sqrt{1+\dfrac{8}{x}+\dfrac{3}{x^2}}+\sqrt{1+\dfrac{4}{x}+\dfrac{3}{x^2}}\right)}$
+    </div>
+    <div class="paso-just">
+      Se factoriza $x = \sqrt{x^2}$ dentro de cada raíz (válido para $x > 0$).
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{4}{\sqrt{1+\dfrac{8}{x}+\dfrac{3}{x^2}}+\sqrt{1+\dfrac{4}{x}+\dfrac{3}{x^2}}}$
+    </div>
+    <div class="paso-just">
+      Se cancela $x$ en numerador y denominador.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{4}{\sqrt{1+0+0}+\sqrt{1+0+0}}$
+    </div>
+    <div class="paso-just">
+      $c/x \to 0$ y $c/x^2 \to 0$ cuando $x \to \infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{4}{1 + 1} = \dfrac{4}{2}$
+    </div>
+    <div class="paso-just">
+      $\sqrt{1} = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow \sqrt{183}-\sqrt{143} = 13{,}528 - 11{,}958 = 1{,}570$; $x = 100 \Rightarrow \sqrt{10803}-\sqrt{10403} = 103{,}937 - 101{,}994 = 1{,}943$; $x = 1000 \Rightarrow \sqrt{1\,008\,003}-\sqrt{1\,004\,003} \approx 1003{,}995 - 1001{,}999 = 1{,}996$. La diferencia converge a $2$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty}\!\left(\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3}\right) = \boxed{2}.$$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En cómputo de alta precisión, restar dos números casi iguales produce pérdida de dígitos significativos — un fenómeno conocido como <em>cancelación catastrófica</em>. Por ejemplo, calcular $\sqrt{x^2+8x+3} - \sqrt{x^2+4x+3}$ directamente para $x = 10^6$ da dos números del orden de $10^6$ cuya diferencia es apenas $2$: la computadora pierde todos los decimales útiles en la resta. La solución es exactamente la del conjugado: reescribir la expresión como $4x/(\sqrt{x^2+8x+3}+\sqrt{x^2+4x+3})$, que para $x$ grande es aproximadamente $4x/(2x) = 2$, sin resta de números casi iguales. Esa reformulación algebraica no solo resuelve el límite matemático — también es la forma numéricamente estable de calcular la expresión en punto flotante.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La aproximación $\sqrt{x^2+cx} \approx x + c/2$ para $x$ grande permite anticipar el resultado antes de calcular. ¿De dónde viene esa aproximación? ¿Está relacionada con la expansión de Taylor de $\sqrt{1+u}$ cerca de $u = 0$?</span></li>
+      <li><span>En el cálculo de $\lim_{x \to \infty}(\sqrt{x^2+8x+3}-\sqrt{x^2+4x+3})$, el resultado depende de los coeficientes de $x$ en cada raíz ($8$ y $4$) pero no de los términos constantes ($3$ y $3$). ¿Por qué los términos constantes no afectan el límite? ¿Qué pasaría si fueran distintos entre sí?</span></li>
+      <li><span>¿Qué ocurre con $\lim_{x \to \infty}(\sqrt{x^2+8x} - x)$? ¿La técnica del conjugado sigue siendo válida? ¿Cuál es el resultado?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

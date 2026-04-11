@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>uvikh</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "uvikh",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1e",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite con epsilon y delta"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta",
+        "demostración formal de límite",
+        "límite de 2ax menos a cuadrado igual a a cuadrado"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (2ax - a^2) = a^2.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>La función $2ax - a^2$ es lineal en $x$. Sustituyendo $x = a$ se obtiene $2a \cdot a - a^2 = 2a^2 - a^2 = a^2$, que es el límite a demostrar. Hasta ahí todo claro. El trabajo es probar eso formalmente.</p>
+
+    <div class="nota">
+      Este caso tiene una diferencia respecto a los anteriores: el coeficiente de $x$ ya no es $a$ sino $2a$. Eso cambia la constante de escala entre el error de entrada y el de salida. Al calcular $|(2ax - a^2) - a^2|$ aparece $2a(x - a)$, así que el factor es $2|a|$ en lugar de $|a|$. La $\delta$ se ajusta en consecuencia: $\delta = \varepsilon / (2|a|)$.
+    </div>
+
+    <p>El procedimiento es el mismo de siempre: simplificar la distancia al límite hasta aislar $|x - a|$, identificar el factor de escala, y despejar $\delta$ de la desigualdad $\text{factor} \cdot |x - a| < \varepsilon$. El único cuidado es no perder el $2$ cuando factorizas.</p>
+
+    <p class="chiste">Si llegas a $\delta = \varepsilon / |a|$ en lugar de $\varepsilon / (2|a|)$, la demostración también funciona — ese $\delta$ es simplemente más generoso de lo necesario. Pero en una práctica, conviene ser exacto para no parecer descuidado.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>En la demostración épsilon-delta, el factor que multiplica a $|x - a|$ determina qué tan "sensible" es la función a perturbaciones en la entrada. Para $2ax - a^2$, ese factor es $2|a|$: el doble que para $ax - a^2$. En teoría de control, esa sensibilidad tiene un nombre preciso: la <em>constante de Lipschitz</em>. Una función tiene constante de Lipschitz $K$ si $|f(x) - f(y)| \leq K|x - y|$ para todos $x$, $y$ en el dominio. Para las funciones lineales $f(x) = mx + b$, la constante de Lipschitz es exactamente $|m|$ — el valor absoluto de la pendiente. Toda función con constante de Lipschitz finita es automáticamente uniformemente continua, y la $\delta$ de su demostración épsilon-delta es siempre $\delta = \varepsilon / K$.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error viene de afuera; puede ser tan pequeño como quieran.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \dfrac{\varepsilon}{2|a|}$.
+    </div>
+    <div class="paso-just">
+      Válido porque $a \neq 0$. El factor $2$ viene del coeficiente de $x$.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis: $x$ está dentro del radio $\delta$ de $a$, con $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $\bigl|(2ax - a^2) - a^2\bigr|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite propuesto $L = a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |2ax - a^2 - a^2|$
+    </div>
+    <div class="paso-just">
+      Se distribuye el signo negativo.
+    </div>
+
+    <div class="paso-dev">
+      $= |2ax - 2a^2|$
+    </div>
+    <div class="paso-just">
+      $-a^2 - a^2 = -2a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |2a(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $2a$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2|a| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$, y $|2a| = 2|a|$ porque $2 > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $< 2|a| \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Por la hipótesis $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2|a| \cdot \dfrac{\varepsilon}{2|a|}$
+    </div>
+    <div class="paso-just">
+      Sustituye $\delta = \varepsilon / (2|a|)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $2|a|$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>Toma $a = 3$. El límite dice que $\lim_{x \to 3}(6x - 9) = 9$. Con $\varepsilon = 0{,}6$, la $\delta$ es $0{,}6 / (2 \cdot 3) = 0{,}1$. Prueba $x = 3{,}08$ (a distancia $0{,}08 < 0{,}1$ de $3$): $|(6 \cdot 3{,}08 - 9) - 9| = |18{,}48 - 18| = 0{,}48 < 0{,}6$. Prueba $x = 2{,}93$ (a distancia $0{,}07 < 0{,}1$): $|(6 \cdot 2{,}93 - 9) - 9| = |17{,}58 - 18| = 0{,}42 < 0{,}6$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \varepsilon / (2|a|)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; \bigl|(2ax - a^2) - a^2\bigr| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(2ax - a^2) = a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En aprendizaje automático, el algoritmo de gradiente descendente actualiza los parámetros de un modelo moviéndolos en proporción al gradiente de la función de pérdida. Para funciones lineales, ese gradiente es constante e igual al coeficiente de la variable — en este caso, $2a$. La constante de Lipschitz de la función determina directamente el tamaño máximo del paso de aprendizaje que el algoritmo puede dar sin divergir: si el paso es mayor que $1/K$, donde $K$ es la constante de Lipschitz, el algoritmo oscila en lugar de converger. Que el coeficiente de $x$ sea $2a$ en lugar de $a$ no es un detalle menor: duplica la sensibilidad de la función y reduce a la mitad el tamaño de paso seguro.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(2ax - a^2) = a^2$, la $\delta$ resultó ser $\varepsilon / (2|a|)$, la mitad de la que aparece cuando el coeficiente de $x$ es $a$ en lugar de $2a$. ¿Qué relación hay en general entre el coeficiente de $x$ en una función lineal $f(x) = mx$ y la $\delta$ que aparece en su demostración épsilon-delta?</span></li>
+      <li><span>La constante de Lipschitz de $f(x) = 2ax - a^2$ es $2|a|$. Si $|a|$ es muy grande, esa constante crece y la $\delta$ necesaria para un $\varepsilon$ fijo se hace muy pequeña. ¿Qué significa eso geométricamente, en términos de la pendiente de la recta?</span></li>
+      <li><span>En la demostración épsilon-delta de límites de funciones lineales, ¿puede elegirse cualquier $\delta \leq \varepsilon / (2|a|)$ y la demostración seguiría siendo válida? ¿O es obligatorio elegir exactamente ese valor?</span></li>
+      <li><span>¿Qué ocurre con la demostración épsilon-delta si el coeficiente de $x$ depende de $x$ además de depender de $a$, como en $f(x) = x^2$? ¿Por qué ahí ya no basta factorizar directamente para aislar $|x - a|$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

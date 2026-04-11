@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>t5m7y</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "t5m7y",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11k",
+      tema: "límites en el infinito de funciones racionales",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite infinito función racional numerador mayor denominador lineal",
+        "límite x tiende a infinito cúbico sobre lineal",
+        "lim x tiende a infinito menos 2x cúbico más x más 4 sobre 3x más 1"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \frac{-2x^3 + x + 4}{3x + 1}.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>El numerador tiene grado $3$ y el denominador tiene grado $1$. El numerador domina ampliamente. Dividir por la potencia dominante del denominador ($x$) deja $-2x^2 + \cdots$ en el numerador, que crece sin límite — pero en dirección negativa, porque el coeficiente principal del numerador es $-2$.</p>
+
+    <div class="nota">
+      Cuando el grado del numerador supera al del denominador y el coeficiente principal del numerador es negativo, el cociente tiende a $-\infty$ cuando $x \to +\infty$.
+    </div>
+
+    <p>El coeficiente del término dominante del cociente es $-2x^3 / 3x = -2x^2/3$, que crece en valor absoluto pero con signo negativo. Para $x$ grande y positivo, el cociente se hace cada vez más negativo.</p>
+
+    <p class="chiste">El $-2$ del numerador cambia todo. En los incisos anteriores el numerador dominante tenía coeficiente positivo y el límite era $+\infty$. Acá el coeficiente es negativo: mismo desenlace, distinto signo. El infinito tiene dos direcciones.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>El signo del límite en el infinito de una función racional cuando el numerador domina depende del signo del cociente entre los coeficientes principales. Para $x \to +\infty$, el signo es el del cociente de coeficientes directamente. Para $x \to -\infty$, hay que tener en cuenta también la paridad de la diferencia de grados: si la diferencia es impar, el signo se invierte. En este ejercicio la diferencia de grados es $3 - 1 = 2$ (par), así que $\lim_{x \to -\infty}$ también da $-\infty$. Si la diferencia fuera impar, los dos límites tendrían signos opuestos.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty} \dfrac{-2x^3 + x + 4}{3x + 1}$
+    </div>
+    <div class="paso-just">
+      Grado numerador $= 3 >$ grado denominador $= 1$: se espera $\pm\infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{-2x^2 + 1 + \dfrac{4}{x}}{3 + \dfrac{1}{x}}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{1}{x} \to 0, \quad \dfrac{4}{x} \to 0$
+    </div>
+    <div class="paso-just">
+      Los términos con $x$ en el denominador tienden a $0$.
+    </div>
+
+    <div class="paso-dev">
+      $\sim \dfrac{-2x^2 + 1}{3}$
+    </div>
+    <div class="paso-just">
+      La expresión se comporta como $(-2x^2+1)/3$ para $x$ grande.
+    </div>
+
+    <div class="paso-dev">
+      $-2x^2 \to -\infty \quad \text{cuando } x \to +\infty$
+    </div>
+    <div class="paso-just">
+      $x^2 \to +\infty$ pero el coeficiente $-2$ da signo negativo.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to \infty} \dfrac{-2x^3+x+4}{3x+1} = -\infty$
+    </div>
+    <div class="paso-just">
+      El cociente crece sin límite en dirección negativa.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$x = 10 \Rightarrow (-2000+10+4)/(30+1) = -1986/31 \approx -64{,}1$; $x = 100 \Rightarrow (-2\cdot10^6+104)/301 \approx -6645$; $x = 1000 \Rightarrow \approx -666\,667$. El cociente crece en valor absoluto con signo negativo, comportándose como $-2x^2/3$. Consistente con $-\infty$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty} \frac{-2x^3 + x + 4}{3x + 1} = -\infty.$$
+    El numerador (grado $3$, coeficiente principal $-2$) domina al denominador (grado $1$): el cociente crece sin límite en dirección negativa.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En aprendizaje automático, las funciones de pérdida mal diseñadas pueden tender a $-\infty$ cuando los parámetros del modelo crecen sin límite — exactamente la situación de este límite. Eso significa que el optimizador puede reducir la pérdida indefinidamente simplemente haciendo los parámetros más grandes, sin aprender nada útil. Ese fenómeno se llama <em>divergencia del gradiente</em> o sobreajuste extremo. La solución estándar es agregar un término de regularización que penalice parámetros grandes, convirtiendo la función de pérdida en algo que tienda a $+\infty$ en lugar de $-\infty$ cuando los parámetros crecen. El signo del comportamiento asintótico — $+\infty$ o $-\infty$ — determina si un problema de optimización está bien planteado o no.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to \infty}(-2x^3+x+4)/(3x+1) = -\infty$. ¿Cuál es el resultado de $\lim_{x \to -\infty}$ de la misma función? ¿El signo cambia o se mantiene negativo?</span></li>
+      <li><span>La función $(-2x^3+x+4)/(3x+1)$ se comporta asintóticamente como $-2x^2/3$. ¿Eso significa que tiene una asíntota parabólica? ¿Puede una función racional tener una asíntota que sea una curva en lugar de una recta?</span></li>
+      <li><span>Si se cambia el coeficiente $-2$ por $+2$ en el numerador, el límite pasa de $-\infty$ a $+\infty$. ¿Existe algún valor del coeficiente principal del numerador para el que el límite sea finito y no nulo? ¿Por qué?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

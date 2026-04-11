@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>9hvdy</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "9hvdy",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2b",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite cálculo directo sustitución",
+        "límite de polinomio cuadrático",
+        "lim x tiende a menos 1 de 3x cuadrado menos 11"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to -1} (3x^2 - 11).$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>$3x^2 - 11$ es un polinomio. Los polinomios son continuos en todos los reales, lo que significa que su límite en cualquier punto se obtiene sustituyendo directamente. No hay indeterminación posible, no hay denominador que se anule, no hay raíz de negativo: solo aritmética.</p>
+
+    <div class="nota">
+      El único cuidado aquí es no olvidar el signo: el punto es $x = -1$, así que $x^2 = (-1)^2 = 1$, no $-1$.
+    </div>
+
+    <p>Es un error clásico escribir $(-1)^2 = -1$ en lugar de $1$. El cuadrado de cualquier número real es no negativo, y $(-1)^2 = (-1) \cdot (-1) = 1$.</p>
+
+    <p class="chiste">Si el resultado te da $-14$, calculaste $-(1)^2$ en lugar de $(-1)^2$. El paréntesis importa. Mucho.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Evaluar un polinomio en un punto parece trivial, pero hacerlo eficientemente en una computadora no lo es. El método más ingenuo para calcular $a_n x^n + a_{n-1}x^{n-1} + \cdots + a_0$ requiere calcular cada potencia de $x$ por separado — lo que implica muchas multiplicaciones. El <em>método de Horner</em>, descrito por William Horner en 1819, reorganiza el polinomio como $(\cdots((a_n x + a_{n-1})x + a_{n-2})x + \cdots)x + a_0$, reduciendo el número de multiplicaciones de $O(n^2)$ a $O(n)$. Para $3x^2 - 11$, el método de Horner lo escribe como $(3x)x - 11$: primero multiplica por $x$, luego suma el coeficiente siguiente. Es la misma operación, reorganizada para que una computadora la haga con el mínimo trabajo posible.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to -1}(3x^2 - 11)$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $= 3(-1)^2 - 11$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo: se sustituye $x = -1$ directamente.
+    </div>
+
+    <div class="paso-dev">
+      $= 3 \cdot 1 - 11$
+    </div>
+    <div class="paso-just">
+      $(-1)^2 = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= -8$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores cercanos a $x = -1$ desde ambos lados: $x = -1{,}1 \Rightarrow 3(1{,}21) - 11 = -7{,}37$; $x = -1{,}01 \Rightarrow 3(1{,}0201) - 11 = -7{,}9397$; $x = -0{,}99 \Rightarrow 3(0{,}9801) - 11 = -8{,}0597$; $x = -0{,}9 \Rightarrow 3(0{,}81) - 11 = -8{,}57$. La función se acerca a $-8$ desde ambos lados. El resultado es consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to -1}(3x^2 - 11) = \boxed{-8}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En gráficos por computadora, evaluar polinomios en puntos concretos es la operación central de las curvas de Bézier, que definen la forma de trayectorias, fuentes tipográficas y contornos en diseño vectorial. Una curva de Bézier cuadrática es exactamente un polinomio de grado 2 evaluado en un parámetro $t$ que va de $0$ a $1$. La continuidad del polinomio — el hecho de que su límite en cualquier punto coincide con su valor — es lo que garantiza que la curva no tenga saltos ni esquinas inesperadas: cada punto de la curva es el límite de los puntos vecinos, y eso produce trazos suaves.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to -1}(3x^2 - 11) = -8$ coincide con el valor de la función en $x = -1$. ¿Eso siempre ocurre con los polinomios? ¿Existe algún polinomio para el que el límite en un punto no coincida con el valor de la función en ese punto?</span></li>
+      <li><span>Al calcular $\lim_{x \to -1}(3x^2 - 11)$, el resultado es negativo aunque $x^2$ siempre sea no negativo. ¿Para qué valores de $x$ la función $3x^2 - 11$ es positiva, negativa o cero? ¿Cómo se relaciona eso con las raíces del polinomio?</span></li>
+      <li><span>El método de Horner evalúa un polinomio reorganizando las operaciones para minimizar multiplicaciones. Para $3x^2 - 11$, la forma de Horner es $(3x)x - 11$. ¿Cómo se escribiría en forma de Horner un polinomio de grado 3, como $2x^3 - x^2 + 4x - 7$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

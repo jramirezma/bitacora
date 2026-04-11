@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>tjayu</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "tjayu",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "6d",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función signo en punto no conflictivo",
+        "límite |x| sobre x en punto positivo",
+        "lim x tiende a 1/2 función valor absoluto sobre x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = \dfrac{|x|}{x}$. Calcule, si es posible, $\displaystyle\lim_{x \to 1/2} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>El punto $x = 1/2$ es positivo y está lejos del único punto problemático de $f$, que es $x = 0$. En todo un entorno de $1/2$ — por ejemplo, en el intervalo $(0, 1)$ — todos los valores de $x$ son positivos, así que $|x| = x$ sin excepción. No hay costura ni salto cerca de $1/2$.</p>
+
+    <div class="nota">
+      Para $x > 0$: $|x| = x$, así que $f(x) = x/x = 1$. La función es la constante $1$ en todo $(0, +\infty)$. En particular, en cualquier entorno de $1/2$ que no incluya al $0$.
+    </div>
+
+    <p>El límite de una constante es esa constante. No hace falta calcular límites laterales por separado: a ambos lados de $1/2$ la función vale $1$, y el límite bilateral existe directamente.</p>
+
+    <p class="chiste">El único drama de $f(x) = |x|/x$ ocurre en $x = 0$. Lejos de ahí, la función es aburrida en el mejor sentido: constante, predecible, sin sorpresas. $x = 1/2$ es territorio tranquilo.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>La función signo $\text{sgn}(x) = |x|/x$ es continua en todos los reales excepto en $x = 0$. Eso significa que tiene exactamente una discontinuidad — de salto, de altura $2$ — en todo su dominio. En teoría de la medida, un conjunto de un solo punto tiene medida cero, así que la función signo es integrable en cualquier intervalo acotado que contenga al $0$, y su integral en $[-a, a]$ vale $0$ para cualquier $a > 0$ (las áreas positiva y negativa se cancelan). Que el límite exista y valga $1$ en $x = 1/2$ es parte de esa continuidad fuera del origen: en todo punto positivo, $\text{sgn}$ se comporta exactamente como la función constante $1$.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1/2} \dfrac{|x|}{x}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      Para $x \in (0, 1)$: $|x| = x$
+    </div>
+    <div class="paso-just">
+      Todo $x$ en un entorno de $1/2$ es positivo: $|x| = x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1/2} \dfrac{x}{x}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $|x| = x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1/2} 1$
+    </div>
+    <div class="paso-just">
+      $x/x = 1$ para todo $x \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= 1$
+    </div>
+    <div class="paso-just">
+      Límite de una constante es la constante.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 1/2$: $f(0{,}4) = 0{,}4/0{,}4 = 1$; $f(0{,}49) = 1$; $f(0{,}51) = 1$; $f(0{,}6) = 1$. La función vale exactamente $1$ en todo punto positivo — no hay convergencia gradual, el valor ya está ahí desde el principio. Además $f(1/2) = 1$, así que el límite coincide con el valor: $f$ es continua en $x = 1/2$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1/2} \frac{|x|}{x} = \boxed{1}.$$
+    Para todo $x > 0$, $|x|/x = 1$. El límite existe, vale $1$, y coincide con el valor de la función: $f$ es continua en $x = 1/2$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En procesamiento de señales digitales, la función signo se usa para convertir una señal analógica en una señal binaria: cualquier valor positivo se mapea a $1$ y cualquier valor negativo a $-1$. Ese proceso se llama comparación con umbral cero. Lejos del umbral — es decir, lejos de $x = 0$ — la señal de salida es perfectamente estable: un pequeño ruido en la entrada no cambia la salida. Eso es exactamente la continuidad de $\text{sgn}$ fuera del origen: en $x = 1/2$, una perturbación pequeña sigue produciendo salida $1$. El problema aparece solo cerca de $x = 0$, donde un pequeño ruido puede cruzar el umbral y producir salidas erráticas — exactamente la discontinuidad que los incisos anteriores documentaron.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1/2}|x|/x = 1$ existe porque $1/2$ está lejos de la única discontinuidad de $f$, que es $x = 0$. ¿Ocurre lo mismo para cualquier $c > 0$? ¿Y para cualquier $c < 0$?</span></li>
+      <li><span>La función $f(x) = |x|/x$ es continua en $x = 1/2$ y el límite coincide con el valor $f(1/2) = 1$. ¿Eso significa que $f$ podría redefinirse en $x = 0$ para hacerla continua en todos los reales? ¿Qué valor habría que asignar y sería la discontinuidad evitable?</span></li>
+      <li><span>La integral de $\text{sgn}(x) = |x|/x$ en el intervalo $[-1, 1]$ vale $0$ porque las áreas positiva y negativa se cancelan. ¿Puede calcularse esa integral directamente usando la definición de integral de Riemann, o la discontinuidad en $x = 0$ requiere algún tratamiento especial?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

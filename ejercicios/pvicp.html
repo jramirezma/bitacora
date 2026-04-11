@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>pvicp</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "pvicp",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "3b",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función definida a trozos",
+        "límite lateral función por partes salto",
+        "lim x tiende a 1 función a trozos no existe"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} -x, & \text{si } x < 0; \\ x, & \text{si } 0 \leq x < 1; \\ x+1, & \text{si } x > 1. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 1} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>El punto $x = 1$ es una costura de la función: para $x$ cerca de $1$ por la izquierda rige $f(x) = x$, y para $x$ cerca de $1$ por la derecha rige $f(x) = x + 1$. Son dos fórmulas distintas que dan valores distintos cerca de $x = 1$. Hay que calcular cada límite lateral por separado y ver si coinciden.</p>
+
+    <div class="nota">
+      Si los límites laterales no coinciden, el límite bilateral no existe. No hay forma de "promediar" o "elegir" un valor: la función simplemente no se acerca a un único número desde ambos lados.
+    </div>
+
+    <p>Notar además que $f(1)$ no está definida: ningún trozo cubre $x = 1$ exactamente (el segundo trozo llega hasta $x < 1$ y el tercero empieza en $x > 1$). Eso no impide que el límite exista — el límite no depende del valor en el punto, sino de lo que pasa alrededor — pero en este caso el límite tampoco existe, por razones propias.</p>
+
+    <p class="chiste">$f(1)$ no está definida Y el límite no existe. Doble mala noticia para $x = 1$. Algunos puntos simplemente no tienen suerte.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>Una discontinuidad donde los límites laterales existen pero son distintos se llama <em>discontinuidad de salto</em>. La altura del salto es la diferencia entre los dos límites laterales. En este ejercicio, el salto en $x = 1$ tiene altura $2 - 1 = 1$. Las discontinuidades de salto aparecen con frecuencia en señales físicas: el voltaje de un interruptor que se enciende instantáneamente, la presión en una onda de choque, o la intensidad de un píxel en el borde de dos regiones de color uniforme. En todos esos casos, los límites laterales existen — la señal tiene un valor bien definido a cada lado del salto — pero el límite bilateral no existe porque los dos lados no coinciden.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 1^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^-} f(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^-$ significa que $0 \leq x < 1$: rige el trozo $f(x) = x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^-} x$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 1$
+    </div>
+    <div class="paso-just">
+      $x$ es continua; sustitución directa.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 1^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^+} f(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^+$ significa que $x > 1$: rige el trozo $f(x) = x + 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^+} (x+1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      $x + 1$ es continua; sustitución directa: $1 + 1 = 2$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^-} f(x) = 1 \neq 2 = \lim_{x \to 1^+} f(x)$
+    </div>
+    <div class="paso-just">
+      Los límites laterales existen pero son distintos.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 1} f(x) \text{ no existe}$
+    </div>
+    <div class="paso-just">
+      El límite bilateral no existe cuando los laterales no coinciden.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Por izquierda: $f(0{,}9) = 0{,}9$; $f(0{,}99) = 0{,}99$; $f(0{,}999) = 0{,}999$ — se acerca a $1$. Por derecha: $f(1{,}1) = 2{,}1$; $f(1{,}01) = 2{,}01$; $f(1{,}001) = 2{,}001$ — se acerca a $2$. Los dos lados se acercan a valores distintos: el límite no existe.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El límite $\displaystyle\lim_{x \to 1} f(x)$ <strong>no existe</strong>.
+    <br><br>
+    $\lim_{x \to 1^-} f(x) = 1$ y $\lim_{x \to 1^+} f(x) = 2$. Como los límites laterales son distintos, el límite bilateral no existe. La función tiene una discontinuidad de salto de altura $1$ en $x = 1$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En renderizado de gráficos, las discontinuidades de salto en funciones de color o posición producen bordes nítidos — exactamente lo que se busca en algunos diseños y lo que se quiere evitar en otros. Los algoritmos de antialiasing suavizan esos saltos interpolando valores en la zona de transición, convirtiendo una discontinuidad de salto en una función continua que pasa gradualmente de un valor al otro. El precio es perder la nitidez del borde; la ganancia es eliminar el efecto de escalera que aparece en bordes diagonales. Decidir cuándo suavizar y cuándo no es una decisión de diseño que se reduce a la misma pregunta matemática: ¿queremos que el límite exista en ese punto, o preferimos el salto?</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el análisis de $\lim_{x \to 1} f(x)$ para la función a trozos dada, $f(1)$ no está definida y además el límite no existe. ¿Pueden darse estas dos situaciones de forma independiente? ¿Es posible que $f(1)$ no esté definida pero el límite sí exista? ¿O que $f(1)$ esté definida pero el límite no exista?</span></li>
+      <li><span>La discontinuidad de salto en $x = 1$ tiene altura $1$. Si se redefiniera el tercer trozo como $f(x) = x + c$ para alguna constante $c$, ¿qué valor de $c$ haría que el límite bilateral en $x = 1$ existiera? ¿Qué condición tendría que cumplirse?</span></li>
+      <li><span>Una discontinuidad de salto en una función ocurre cuando los límites laterales existen pero son distintos. ¿Puede una función tener infinitas discontinuidades de salto en un intervalo finito? ¿Qué aspecto tendría su gráfica?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

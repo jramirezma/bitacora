@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>8b23d</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <style>
+    /* sin estilos adicionales */
+  </style>
+
+  <script>
+    window.EJERCICIO = {
+      id: "8b23d",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1a",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite con epsilon y delta"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta",
+        "demostración formal de límite",
+        "límite lim x tiende a a de ax"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El problema</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} ax = a^2.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>Imagina que le dices a alguien: "cuando $x$ se acerca a $a$, el valor de $ax$ se acerca a $a^2$". Eso suena razonable, pero en matemáticas "razonable" no alcanza. La <strong>definición épsilon-delta</strong> es la forma de probarlo sin dejar ninguna duda.</p>
+
+    <div class="nota">
+      La idea es esta: alguien te reta con un margen de error $\varepsilon > 0$ (tan pequeño como quiera). Tu trabajo es encontrar un radio $\delta > 0$ tal que, si $x$ está a menos de $\delta$ de $a$, entonces $ax$ está a menos de $\varepsilon$ de $a^2$.
+    </div>
+
+    <p>La clave es que $ax - a^2 = a(x - a)$. Es decir, el error en la salida es exactamente $|a|$ veces el error en la entrada. Eso te dice directamente qué $\delta$ elegir: si quieres que el error en la salida sea menor que $\varepsilon$, basta con que el error en la entrada sea menor que $\varepsilon / |a|$. Como $a \neq 0$, esa división está bien definida.</p>
+
+    <p class="chiste">Que $a \neq 0$ no es un detalle menor: si $a$ fuera cero, la función sería $f(x) = 0$ para todo $x$, el límite sería $0$, y la demostración sería tan fácil que daría vergüenza incluirla en una práctica.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>La definición épsilon-delta del límite fue formulada con precisión por Karl Weierstrass alrededor de 1860, aunque Cauchy ya trabajaba con ideas parecidas décadas antes. Durante siglos, el cálculo funcionó con la intuición de "cantidades infinitamente pequeñas" sin que nadie pudiera definirlas formalmente. El escándalo llegó cuando se encontraron funciones que se comportaban de maneras completamente inesperadas bajo esa intuición. Weierstrass construyó incluso una función continua en todos los reales pero sin derivada en ningún punto — algo que parecía imposible hasta que se tuvo una definición rigurosa de límite con la cual analizarla.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El reto: alguien elige $\varepsilon$, tan chico como quiera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \dfrac{\varepsilon}{|a|}$.
+    </div>
+    <div class="paso-just">
+      Como $a \neq 0$, la división es válida. Esta es la respuesta al reto.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis: $x$ está dentro del radio $\delta$ alrededor de $a$.
+    </div>
+
+    <div class="paso-dev">
+      $|ax - a^2|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite propuesto.
+    </div>
+
+    <div class="paso-dev">
+      $= |a(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $a$ dentro del valor absoluto.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$ para cualquier par de reales.
+    </div>
+
+    <div class="paso-dev">
+      $< |a| \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Por la hipótesis $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot \dfrac{\varepsilon}{|a|}$
+    </div>
+    <div class="paso-just">
+      Sustituye la $\delta$ elegida.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $|a|$. Llegamos exactamente al margen pedido.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore \quad |ax - a^2| < \varepsilon$
+    </div>
+    <div class="paso-just">
+      La cadena de desigualdades cierra. Demostración completa. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Una prueba rápida</h2>
+  <div class="bloque">
+    <p>Toma $a = 3$. El límite afirma que $\lim_{x \to 3} 3x = 9$. Si alguien te reta con $\varepsilon = 0{,}6$, tu $\delta$ sería $0{,}6 / 3 = 0{,}2$. Prueba con $x = 3{,}1$ (que está a $0{,}1 < 0{,}2$ de $3$): $|3 \cdot 3{,}1 - 9| = |9{,}3 - 9| = 0{,}3 < 0{,}6$. Funciona. Prueba con $x = 3{,}19$ (a $0{,}19 < 0{,}2$ de $3$): $|3 \cdot 3{,}19 - 9| = |9{,}57 - 9| = 0{,}57 < 0{,}6$. También funciona. Todo valor dentro del radio $\delta$ da un error menor que $\varepsilon$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \varepsilon / |a|$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |ax - a^2| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a} ax = a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Cada vez que un programa numérico verifica que dos valores son "suficientemente iguales" en lugar de exactamente iguales, está aplicando la misma lógica que la definición épsilon-delta. En aritmética de punto flotante, comparar <code>a == b</code> casi nunca es confiable por errores de redondeo. La solución estándar es comparar <code>|a - b| &lt; tolerancia</code>, donde la tolerancia juega exactamente el papel de $\varepsilon$: tú defines cuán cerca es "suficientemente cerca". La demostración épsilon-delta es, en el fondo, la justificación teórica de por qué esa estrategia de comparación tiene sentido.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a} ax = a^2$, la elección $\delta = \varepsilon / |a|$ es exacta (no una cota holgada). ¿Qué significa eso geométricamente? ¿Podría elegirse un $\delta$ más pequeño y la demostración seguiría siendo válida?</span></li>
+      <li><span>¿Qué ocurre con el límite $\lim_{x \to a} ax$ si se permite que $a = 0$? ¿La definición épsilon-delta sigue siendo aplicable? ¿Qué cambiaría en la demostración?</span></li>
+      <li><span>La demostración épsilon-delta de $\lim_{x \to a} ax = a^2$ usa que la función es lineal en $x$. ¿Qué dificultad adicional aparece cuando la función es cuadrática, por ejemplo al demostrar $\lim_{x \to a} x^2 = a^2$ con la misma definición?</span></li>
+      <li><span>¿Cuál es la diferencia entre decir que $\lim_{x \to a} f(x) = L$ y decir que $f(a) = L$? ¿Puede el límite existir en un punto donde la función no está definida?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

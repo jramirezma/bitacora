@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>k7ox1</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "k7ox1",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1c",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite con epsilon y delta"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta",
+        "demostración formal de límite",
+        "límite de ax menos 2a cuadrado igual a menos a cuadrado"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (ax - 2a^2) = -a^2.$$</p>
+  </div>
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>La función $ax - 2a^2$ es lineal en $x$. Cuando $x$ se acerca a $a$, la expresión se acerca a $a \cdot a - 2a^2 = a^2 - 2a^2 = -a^2$. Eso es el límite que hay que demostrar. Hasta ahí, cálculo directo. Ahora hay que convencer formalmente con la definición épsilon-delta.</p>
+
+    <div class="nota">
+      Lo que se necesita acotar es la distancia entre la función y el límite: $|(ax - 2a^2) - (-a^2)|$. Simplificando esa expresión, aparece $a(x-a)$, y desde ahí el camino es el mismo de siempre: $|a| \cdot |x - a|$, que se controla eligiendo $\delta = \varepsilon / |a|$.
+    </div>
+
+    <p>El único paso nuevo respecto a casos anteriores es la simplificación inicial: $|(ax - 2a^2) - (-a^2)| = |ax - 2a^2 + a^2| = |ax - a^2| = |a||x-a|$. Una vez que llegas ahí, el resto es idéntico a demostrar que una función lineal tiene el límite que corresponde.</p>
+
+    <p class="chiste">El $-a^2$ del resultado puede parecer sospechoso, como si algo saliera mal. No salió nada mal: la función simplemente no pasa por cero cuando $x = a$, sino por $-a^2$. Perfectamente legal.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>La definición épsilon-delta no solo sirve para funciones "bien portadas" como las lineales. Su verdadero poder aparece con funciones que tienen comportamientos extraños. En 1830, Bernhard Bolzano construyó una función continua en todos los reales que no tiene derivada en ningún punto — un resultado que resultó incomprensible para la intuición geométrica de la época, porque toda curva "suave" que uno pueda dibujar tiene tangente en casi todos sus puntos. La definición rigurosa de límite es exactamente la herramienta que permite analizar esos casos sin depender de la intuición visual, que en ejemplos como ese simplemente falla.</p>
+  </div>
+
+  <h2>Vamos por partes</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega desde afuera; puede ser tan pequeño como quieran.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \dfrac{\varepsilon}{|a|}$.
+    </div>
+    <div class="paso-just">
+      Válido porque $a \neq 0$. Esta será la respuesta al reto.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis: $x$ está dentro del radio $\delta$ alrededor de $a$, con $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $\bigl|(ax - 2a^2) - (-a^2)\bigr|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite propuesto $L = -a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |ax - 2a^2 + a^2|$
+    </div>
+    <div class="paso-just">
+      Se distribuye el signo negativo: $-(-a^2) = +a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |ax - a^2|$
+    </div>
+    <div class="paso-just">
+      $-2a^2 + a^2 = -a^2$, queda solo $ax - a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $a$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$.
+    </div>
+
+    <div class="paso-dev">
+      $< |a| \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Por la hipótesis $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot \dfrac{\varepsilon}{|a|}$
+    </div>
+    <div class="paso-just">
+      Sustituye $\delta = \varepsilon / |a|$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $|a|$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Toma $a = 3$. El límite dice que $\lim_{x \to 3}(3x - 18) = -9$. Con $\varepsilon = 0{,}3$, la $\delta$ es $0{,}3/3 = 0{,}1$. Prueba $x = 3{,}08$ (a distancia $0{,}08 < 0{,}1$ de $3$): $|(3 \cdot 3{,}08 - 18) - (-9)| = |9{,}24 - 18 + 9| = |0{,}24| = 0{,}24 < 0{,}3$. Prueba $x = 2{,}95$ (a distancia $0{,}05 < 0{,}1$): $|(3 \cdot 2{,}95 - 18) - (-9)| = |8{,}85 - 18 + 9| = |-0{,}15| = 0{,}15 < 0{,}3$. El margen se respeta en ambos casos.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \varepsilon / |a|$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; \bigl|(ax - 2a^2) - (-a^2)\bigr| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(ax - 2a^2) = -a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En animación por computadora y simulación física, las funciones lineales en el tiempo del estilo $at - 2a^2$ describen posiciones o velocidades en movimiento uniforme. Cuando un motor de física calcula la posición de un objeto en el instante $t = a$, no evalúa el límite — simplemente sustituye. Pero la garantía de que ese valor coincide con el límite (es decir, que la función no "salta" en ese punto) es exactamente lo que la definición épsilon-delta formaliza: la posición calculada se acerca suavemente al valor esperado sin discontinuidades. Si esa propiedad no se cumpliera, los objetos en pantalla teletransportarían en lugar de moverse.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(ax - 2a^2) = -a^2$, el paso clave fue simplificar $|(ax - 2a^2) - (-a^2)|$ hasta obtener $|a||x-a|$. ¿Qué propiedad algebraica de las funciones lineales hace que esa simplificación siempre conduzca a una expresión proporcional a $|x - a|$?</span></li>
+      <li><span>Si se cambia la función a $ax - ca^2$ para alguna constante real $c$, ¿cuál sería el límite cuando $x \to a$? ¿La demostración épsilon-delta seguiría exactamente la misma estructura?</span></li>
+      <li><span>En la definición épsilon-delta de límite, $\delta$ depende de $\varepsilon$ pero también puede depender del punto $a$. ¿Qué significa que $\delta$ no dependa de $a$, es decir, que la misma $\delta$ funcione para todos los puntos del dominio a la vez? ¿Tiene nombre esa propiedad más fuerte?</span></li>
+      <li><span>¿Es posible que una función tenga límite $-a^2$ en $x = a$ pero que $f(a) \neq -a^2$, o incluso que $f(a)$ no esté definido? ¿Qué implicaría eso sobre la continuidad de la función en ese punto?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

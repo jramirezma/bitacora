@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>41zw7</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "41zw7",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2f",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite de función racional por sustitución",
+        "límite cociente polinomio cúbico",
+        "lim x tiende a menos 3 de 4x cúbico más 1 sobre 7 menos 2x cuadrado"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to -3} \frac{4x^3+1}{7-2x^2}.$$</p>
+  </div>
+
+  <h2>El mapa antes del territorio</h2>
+  <div class="bloque">
+    <p>La función es racional: cociente de dos polinomios. El límite se calcula por sustitución directa si el denominador no se anula en el punto. Lo primero, siempre, es verificar eso.</p>
+
+    <div class="nota">
+      Denominador en $x = -3$: $7 - 2(-3)^2 = 7 - 18 = -11 \neq 0$. La sustitución directa es válida.
+    </div>
+
+    <p>El punto es $x = -3$, así que aparecen potencias de un número negativo. Hay que prestar atención a los signos: $(-3)^2 = 9$ y $(-3)^3 = -27$. El cubo de un negativo es negativo; el cuadrado, positivo.</p>
+
+    <p class="chiste">$(-3)^3 = -27$, no $27$. Si el resultado final te da positivo, revisá si se te escapó un signo en el cubo. Los signos en potencias de negativos son el origen del 40% de los errores aritméticos en cálculo. El otro 60% es no verificar el denominador antes de sustituir.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Los polinomios de grado impar siempre tienen al menos una raíz real. Eso es una consecuencia del teorema del valor intermedio: como $p(x) \to +\infty$ cuando $x \to +\infty$ y $p(x) \to -\infty$ cuando $x \to -\infty$ (o viceversa, según el signo del coeficiente principal), en algún punto intermedio la función tiene que cruzar el cero. En cambio, los polinomios de grado par pueden no tener ninguna raíz real — por ejemplo, $x^2 + 1 > 0$ para todo $x$ real. En este ejercicio, el numerador $4x^3 + 1$ tiene grado impar, así que garantizadamente tiene al menos una raíz real. El denominador $7 - 2x^2$ tiene grado par y sí tiene raíces reales: $x = \pm\sqrt{7/2}$. Que ninguna de esas raíces sea $-3$ es lo que hace posible la sustitución directa.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to -3} \dfrac{4x^3+1}{7-2x^2}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $7 - 2(-3)^2 = 7 - 18 = -11 \neq 0$
+    </div>
+    <div class="paso-just">
+      Verificación previa: el denominador no se anula en $x = -3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{4(-3)^3 + 1}{7 - 2(-3)^2}$
+    </div>
+    <div class="paso-just">
+      Función racional continua en $x = -3$: sustitución directa válida.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{4(-27) + 1}{7 - 2(9)}$
+    </div>
+    <div class="paso-just">
+      $(-3)^3 = -27$ y $(-3)^2 = 9$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{-108 + 1}{7 - 18}$
+    </div>
+    <div class="paso-just">
+      $4 \cdot (-27) = -108$ y $2 \cdot 9 = 18$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{-107}{-11}$
+    </div>
+    <div class="paso-just">
+      Numerador: $-108 + 1 = -107$. Denominador: $7 - 18 = -11$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{107}{11}$
+    </div>
+    <div class="paso-just">
+      Negativo sobre negativo = positivo.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$107/11 \approx 9{,}727$. Valores cerca de $x = -3$: $x = -3{,}1 \Rightarrow (4(-29{,}791)+1)\,/\,(7-2(9{,}61)) = (-118{,}164)\,/\,(-12{,}22) \approx 9{,}67$; $x = -2{,}9 \Rightarrow (4(-24{,}389)+1)\,/\,(7-2(8{,}41)) = (-96{,}556)\,/\,(-9{,}82) \approx 9{,}83$. Ambos se acercan a $107/11 \approx 9{,}73$ desde lados opuestos. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to -3} \frac{4x^3+1}{7-2x^2} = \boxed{\dfrac{107}{11}}.$$
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En compiladores e intérpretes, la evaluación de expresiones racionales en un punto concreto sigue exactamente el mismo protocolo: primero se evalúa el denominador, y si es cero se lanza una excepción o se retorna un valor especial; si no es cero, se evalúan ambos polinomios y se divide. Ese orden de operaciones no es arbitrario — refleja la misma lógica matemática de verificar el denominador antes de sustituir. Los lenguajes de programación con evaluación perezosa (lazy evaluation), como Haskell, pueden diferir esa verificación hasta el último momento posible, pero la semántica es la misma: si el denominador resulta cero, la expresión no tiene valor definido.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to -3}(4x^3+1)/(7-2x^2)$, el denominador $7 - 2x^2$ se anula en $x = \pm\sqrt{7/2}$. ¿Qué ocurre con el límite de la función cuando $x$ se acerca a alguno de esos puntos? ¿Es el mismo comportamiento en ambos?</span></li>
+      <li><span>El resultado $107/11$ es una fracción irreducible. ¿Cómo se verifica que un cociente de enteros es irreducible? ¿Qué propiedad del máximo común divisor de $107$ y $11$ lo garantiza?</span></li>
+      <li><span>El numerador $4x^3 + 1$ tiene grado impar, lo que garantiza que tiene al menos una raíz real. ¿Cómo se encontraría esa raíz numéricamente? ¿Qué método iterativo es el más adecuado para funciones cúbicas?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

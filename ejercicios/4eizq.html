@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>4eizq</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "4eizq",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "6c",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite lateral izquierdo función signo",
+        "límite por izquierda |x| sobre x en cero",
+        "lim x tiende a 0 por izquierda función valor absoluto sobre x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = \dfrac{|x|}{x}$. Calcule, si es posible, $\displaystyle\lim_{x \to 0^-} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿Qué hay que ver acá?</h2>
+  <div class="bloque">
+    <p>El símbolo $0^-$ indica que $x$ se acerca a $0$ desde la izquierda, es decir, con $x < 0$. Para valores negativos, el valor absoluto se calcula como $|x| = -x$. Eso simplifica el cociente directamente.</p>
+
+    <div class="nota">
+      Para $x < 0$: $|x| = -x$, así que $\dfrac{|x|}{x} = \dfrac{-x}{x} = -1$. La función es la constante $-1$ en todo $(-\infty, 0)$.
+    </div>
+
+    <p>Una función constante tiene límite igual a esa constante en cualquier punto, independientemente de desde dónde se aproxime. No hay cálculo complicado: la función vale $-1$ para todo $x < 0$, y por lo tanto su límite cuando $x \to 0^-$ es $-1$.</p>
+
+    <p class="chiste">El límite de una constante es la constante. No importa cuánto se acerque $x$ a $0$ — la función sigue respondiendo $-1$ sin inmutarse. Es el límite más aburrido posible, y eso es una buena noticia.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>El hecho de que $|x|/x = -1$ para todo $x < 0$ es un caso particular de una propiedad más general: para cualquier número real $x \neq 0$, $|x|/x$ solo depende del signo de $x$, no de su magnitud. Eso convierte a la función signo en una herramienta de <em>normalización de dirección</em>: elimina la magnitud y conserva solo la orientación. En espacios de mayor dimensión, la generalización es $\mathbf{x}/\|\mathbf{x}\|$, que convierte cualquier vector no nulo en un vector unitario apuntando en la misma dirección. Esa operación — dividir por la norma — aparece en toda la geometría computacional, en redes neuronales con normalización de pesos, y en cálculo de reflecciones y refracciones en óptica.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} \dfrac{|x|}{x}$
+    </div>
+    <div class="paso-just">
+      $x \to 0^-$ significa $x < 0$: se usa $|x| = -x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} \dfrac{-x}{x}$
+    </div>
+    <div class="paso-just">
+      Sustitución de $|x|$ por $-x$ para $x < 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} (-1)$
+    </div>
+    <div class="paso-just">
+      $-x/x = -1$ para todo $x \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= -1$
+    </div>
+    <div class="paso-just">
+      Límite de una constante es la constante.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores de $f$ para $x < 0$ acercándose a $0$: $f(-1) = 1/(-1) = -1$; $f(-0{,}1) = 0{,}1/(-0{,}1) = -1$; $f(-0{,}001) = -1$. La función vale exactamente $-1$ para todo $x < 0$ — no hay convergencia gradual, el valor es constante desde el principio.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 0^-} \frac{|x|}{x} = \boxed{-1}.$$
+    Para todo $x < 0$, $|x|/x = -1$. El límite lateral por izquierda existe y vale $-1$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En gráficos 3D, normalizar un vector — dividirlo por su longitud — es una operación tan común que tiene su propia función en casi todas las bibliotecas de matemáticas: <code>normalize(v)</code>. El resultado es un vector de longitud $1$ que apunta en la misma dirección que el original. La función signo $|x|/x$ es la versión unidimensional de esa operación: divide un número por su valor absoluto para obtener solo su dirección ($+1$ o $-1$). Cuando $x < 0$, la dirección es $-1$ — exactamente el resultado de este límite. En sombreado de superficies, los vectores normales se normalizan antes de calcular la iluminación; si no se normalizaran, la intensidad de luz dependería de la distancia al objeto además del ángulo, produciendo resultados incorrectos.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 0^-}|x|/x = -1$ se obtuvo porque la función es constante e igual a $-1$ para todo $x < 0$. ¿Ocurre lo mismo para $\lim_{x \to c^-}|x|/x$ con cualquier $c < 0$? ¿Y con $c > 0$?</span></li>
+      <li><span>La función $f(x) = |x|/x$ vale $-1$ para $x < 0$ y $1$ para $x > 0$. ¿Puede construirse una función $g$ que valga $-2$ para $x < 0$ y $3$ para $x > 0$ usando solo operaciones elementales con $|x|$ y $x$?</span></li>
+      <li><span>En espacios vectoriales, la normalización $\mathbf{v}/\|\mathbf{v}\|$ no está definida para el vector cero, igual que $|x|/x$ no está definida en $x = 0$. ¿Qué estrategias usan los motores gráficos para manejar ese caso sin que el programa falle?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

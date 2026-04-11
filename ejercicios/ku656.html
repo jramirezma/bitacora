@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ku656</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "ku656",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "4d",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite lateral derecho función a trozos",
+        "límite por derecha en punto de costura",
+        "lim x tiende a 1 por derecha función a trozos tres tramos"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$g(x) = \begin{cases} -x+1, & \text{si } x < 1; \\ x-1, & \text{si } 1 < x < 2; \\ 5-x^2, & \text{si } x \geq 2. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 1^+} g(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>El símbolo $1^+$ indica que $x$ se acerca a $1$ desde la derecha, es decir, con $x > 1$. Es un límite lateral: solo importa el comportamiento de la función para valores ligeramente mayores que $1$.</p>
+
+    <div class="nota">
+      Para $x$ ligeramente mayor que $1$, el dominio $1 < x < 2$ activa el segundo trozo: $g(x) = x - 1$. El primer trozo ($x < 1$) y el tercero ($x \geq 2$) quedan fuera de escena.
+    </div>
+
+    <p>Es un cálculo de un solo lado: se identifica el trozo que rige para $x > 1$ cerca de $1$, se evalúa su límite cuando $x \to 1$, y listo. No hace falta comparar con el lado izquierdo para responder esta pregunta.</p>
+
+    <p class="chiste">El límite por derecha en $x = 1$ da $0$, y el límite por izquierda también da $0$ — así que el límite bilateral existe. Pero eso es información para otro inciso. Acá solo se pregunta por la derecha, y la derecha habla sola.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>Los límites laterales son la herramienta que permite hablar de derivadas en los extremos de un intervalo. La derivada de una función en un punto interior se define como un límite bilateral; en un extremo del dominio, solo existe el límite lateral correspondiente. Por eso se habla de <em>derivada lateral</em>: la derivada por derecha en $x = a$ es $\lim_{h \to 0^+}[f(a+h) - f(a)]/h$. En la función $g$ de este ejercicio, el trozo $x - 1$ tiene pendiente $1$ y el trozo $-x + 1$ tiene pendiente $-1$. Aunque los valores coinciden en $x = 1$ (el límite es $0$ desde ambos lados), las pendientes no coinciden — lo que significa que $g$ no es diferenciable en $x = 1$, exactamente como el valor absoluto.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^+} g(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^+$ significa $1 < x < 2$: rige el trozo $g(x) = x - 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^+} (x - 1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 - 1$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 0$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores de $g$ para $x > 1$ acercándose a $1$: $g(1{,}5) = 0{,}5$; $g(1{,}1) = 0{,}1$; $g(1{,}01) = 0{,}01$; $g(1{,}001) = 0{,}001$. La función se acerca a $0$ cuando $x$ baja hacia $1$ por la derecha. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1^+} g(x) = \boxed{0}.$$
+    Para $x$ ligeramente mayor que $1$, la función sigue el trozo $g(x) = x - 1$, que tiende a $0$ cuando $x \to 1$.
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En simulación de física de videojuegos, las colisiones entre objetos se modelan con funciones que cambian de comportamiento en el instante exacto del impacto. Antes del impacto, la trayectoria sigue una fórmula; después, otra distinta. El límite lateral por derecha en el instante de la colisión describe el comportamiento inmediatamente posterior al impacto — la velocidad inicial tras el rebote, por ejemplo. Si ese límite existe y coincide con el límite por izquierda, la transición es continua y el objeto no "teletransporta". Si no coincide, hay un salto que el motor de físicas tiene que manejar explícitamente para evitar que los objetos se atraviesen o exploten.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1^+} g(x) = 0$ coincide con el límite $\lim_{x \to 1^-} g(x) = 0$. ¿Eso implica automáticamente que $g$ es continua en $x = 1$? ¿Qué condición adicional falta para que haya continuidad?</span></li>
+      <li><span>El trozo $g(x) = x - 1$ tiene pendiente $1$ para $x > 1$, y el trozo $g(x) = -x + 1$ tiene pendiente $-1$ para $x < 1$. ¿Qué dice eso sobre la derivada lateral por derecha y la derivada lateral por izquierda de $g$ en $x = 1$? ¿Es $g$ diferenciable en ese punto?</span></li>
+      <li><span>¿Puede existir $\lim_{x \to c^+} f(x)$ sin que $f$ esté definida en ningún punto a la derecha de $c$? ¿Qué estructura tendría que tener el dominio de $f$ para que eso ocurriera?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

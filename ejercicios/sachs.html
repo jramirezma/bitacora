@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>sachs</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "sachs",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2g",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite de función con raíz cuadrada",
+        "límite por sustitución con raíz",
+        "lim x tiende a 3 de raíz de 3x menos 5"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to 3} \sqrt{3x-5}.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>La función $\sqrt{3x-5}$ es continua en todo punto donde su argumento es positivo, es decir, donde $3x - 5 > 0$, o sea $x > 5/3$. El punto $x = 3$ cumple esa condición con holgura: $3 \cdot 3 - 5 = 4 > 0$. Entonces el límite se calcula sustituyendo directamente bajo la raíz.</p>
+
+    <div class="nota">
+      Para funciones de la forma $\sqrt{p(x)}$ con $p$ polinomio, si $p(c) > 0$ entonces la función es continua en $c$ y $\lim_{x \to c}\sqrt{p(x)} = \sqrt{p(c)}$.
+    </div>
+
+    <p>La verificación aquí es distinta a la de las funciones racionales: en lugar de comprobar que el denominador no sea cero, hay que comprobar que el argumento de la raíz sea estrictamente positivo en el punto. Negativo daría complejo; cero daría un caso límite que vale la pena notar pero que acá no aplica.</p>
+
+    <p class="chiste">$\sqrt{4} = 2$, no $\pm 2$. La raíz cuadrada de un número positivo es siempre el valor positivo. El $\pm$ aparece cuando se despeja $x$ de $x^2 = 4$, no cuando se evalúa $\sqrt{4}$ directamente.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>La función raíz cuadrada $f(x) = \sqrt{x}$ es continua en $(0, \infty)$ pero no es diferenciable en $x = 0$: su derivada $1/(2\sqrt{x})$ tiende a infinito cuando $x \to 0^+$, lo que produce una tangente vertical en el origen. Eso significa que la raíz cuadrada tiene un "pico" suavizado en el cero — continua pero con pendiente infinita. En procesamiento de imágenes, la transformación $\sqrt{I}$ aplicada a la intensidad de cada píxel $I$ se usa para comprimir el rango dinámico: los valores oscuros se amplían y los brillantes se comprimen. Que esa transformación sea continua en todos los puntos positivos garantiza que no introduce discontinuidades artificiales en la imagen.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 3}\sqrt{3x-5}$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $3(3) - 5 = 4 > 0$
+    </div>
+    <div class="paso-just">
+      Verificación previa: el argumento de la raíz es positivo en $x = 3$.
+    </div>
+
+    <div class="paso-dev">
+      $= \sqrt{3(3)-5}$
+    </div>
+    <div class="paso-just">
+      Función continua en $x = 3$: sustitución directa válida.
+    </div>
+
+    <div class="paso-dev">
+      $= \sqrt{4}$
+    </div>
+    <div class="paso-just">
+      $3 \cdot 3 - 5 = 4$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      $\sqrt{4} = 2$ (raíz positiva).
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Valores cerca de $x = 3$: $x = 2{,}9 \Rightarrow \sqrt{3(2{,}9)-5} = \sqrt{3{,}7} \approx 1{,}924$; $x = 2{,}99 \Rightarrow \sqrt{3(2{,}99)-5} = \sqrt{3{,}97} \approx 1{,}992$; $x = 3{,}01 \Rightarrow \sqrt{3(3{,}01)-5} = \sqrt{4{,}03} \approx 2{,}007$; $x = 3{,}1 \Rightarrow \sqrt{3(3{,}1)-5} = \sqrt{4{,}3} \approx 2{,}074$. La función se acerca a $2$ desde ambos lados.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 3}\sqrt{3x-5} = \boxed{2}.$$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En cualquier lenguaje de programación, la función <code>sqrt()</code> lanza una excepción o devuelve <code>NaN</code> si su argumento es negativo, porque la raíz cuadrada de un número negativo no está definida en los reales. Esa restricción es exactamente el dominio de la función $\sqrt{x}$: solo existe para $x \geq 0$. La verificación que se hace antes de sustituir en este ejercicio — comprobar que $3x - 5 > 0$ en el punto — es el equivalente matemático de la guardia <code>if (3*x - 5 >= 0)</code> que un programador escribiría antes de llamar a <code>sqrt(3*x - 5)</code>. Sin esa verificación, tanto el matemático como el programa podrían llegar a un resultado sin sentido.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to 3}\sqrt{3x-5}$, el argumento de la raíz es positivo en $x = 3$. ¿Qué ocurriría con el límite si el punto de aproximación fuera $x = 5/3$, donde el argumento es exactamente cero? ¿Existe ese límite? ¿Es el mismo por izquierda y por derecha?</span></li>
+      <li><span>La función $f(x) = \sqrt{3x-5}$ está definida solo para $x \geq 5/3$. ¿Cómo afecta eso al concepto de límite cuando $x \to 5/3$? ¿Puede hablarse de límite bilateral en un extremo del dominio?</span></li>
+      <li><span>¿Qué diferencia hay entre $\sqrt{p(x)}$ y $|p(x)|^{1/2}$ para un polinomio $p(x)$ que puede tomar valores negativos? ¿Son la misma función en los reales?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

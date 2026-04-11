@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>b0r5s</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "b0r5s",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "5b",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite función piso parte fraccionaria",
+        "límite bilateral función x menos piso x en entero",
+        "lim x tiende a 0 función parte fraccionaria no existe"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = x - \lfloor x \rfloor$. Calcule, si es posible, $\displaystyle\lim_{x \to 0} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ no se escribe a trozos explícitamente, pero lo es en la práctica: la función piso $\lfloor x \rfloor$ salta en cada entero, cambiando su valor de golpe. En $x = 0$ hay una de esas costuras. Para calcular el límite bilateral hay que analizar qué hace $f$ a cada lado de $0$.</p>
+
+    <div class="nota">
+      Para $x$ ligeramente negativo (por ejemplo $x = -0{,}1$): $\lfloor x \rfloor = -1$, así que $f(x) = x - (-1) = x + 1$, que se acerca a $0 + 1 = 1$ cuando $x \to 0^-$.<br>
+      Para $x$ ligeramente positivo (por ejemplo $x = 0{,}1$): $\lfloor x \rfloor = 0$, así que $f(x) = x - 0 = x$, que se acerca a $0$ cuando $x \to 0^+$.
+    </div>
+
+    <p>Los dos lados se acercan a valores distintos: $1$ por la izquierda y $0$ por la derecha. El límite bilateral no existe. Y sin embargo $f(0) = 0$, que coincide con el límite por derecha pero no con el por izquierda — lo que confirma que $f$ es discontinua en $x = 0$.</p>
+
+    <p class="chiste">La parte fraccionaria llega tranquila a $0$ desde la derecha, pero desde la izquierda viene corriendo desde $1$. El límite no existe porque los dos lados no se pusieron de acuerdo en dónde llegar.</p>
+  </div>
+
+  <h2>Un dato que cambia todo</h2>
+  <div class="bloque dato-curioso">
+    <p>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ tiene una discontinuidad de salto en cada entero. En cada uno de esos puntos, el límite por derecha es $0$ y el límite por izquierda es $1$, así que el salto tiene siempre la misma altura: $1$. Eso convierte a $f$ en una función con infinitas discontinuidades, todas del mismo tamaño, distribuidas uniformemente en los enteros. En teoría de la integración, Riemann demostró que una función acotada con un número finito de discontinuidades es integrable. La parte fraccionaria tiene infinitas discontinuidades, pero son todas de salto — y Lebesgue demostró que eso tampoco es un obstáculo: la parte fraccionaria es integrable en el sentido de Lebesgue, y su integral en $[0,1]$ vale $1/2$.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 0^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x) = \lim_{x \to 0^-} (x - \lfloor x \rfloor)$
+    </div>
+    <div class="paso-just">
+      Se escribe la fórmula completa.
+    </div>
+
+    <div class="paso-dev">
+      Para $-1 < x < 0$: $\lfloor x \rfloor = -1$
+    </div>
+    <div class="paso-just">
+      El entero más grande $\leq x$ para $x \in (-1, 0)$ es $-1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} (x - (-1)) = \lim_{x \to 0^-} (x + 1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye $\lfloor x \rfloor = -1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 0 + 1 = 1$
+    </div>
+    <div class="paso-just">
+      Sustitución directa con $x = 0$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 0^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^+} f(x) = \lim_{x \to 0^+} (x - \lfloor x \rfloor)$
+    </div>
+    <div class="paso-just">
+      Se escribe la fórmula completa.
+    </div>
+
+    <div class="paso-dev">
+      Para $0 < x < 1$: $\lfloor x \rfloor = 0$
+    </div>
+    <div class="paso-just">
+      El entero más grande $\leq x$ para $x \in (0, 1)$ es $0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^+} (x - 0) = \lim_{x \to 0^+} x$
+    </div>
+    <div class="paso-just">
+      Se sustituye $\lfloor x \rfloor = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= 0$
+    </div>
+    <div class="paso-just">
+      Sustitución directa con $x = 0$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x) = 1 \neq 0 = \lim_{x \to 0^+} f(x)$
+    </div>
+    <div class="paso-just">
+      Los límites laterales existen pero son distintos.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 0} f(x) \text{ no existe}$
+    </div>
+    <div class="paso-just">
+      El límite bilateral no existe cuando los laterales no coinciden.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Por izquierda: $f(-0{,}1) = -0{,}1 - (-1) = 0{,}9$; $f(-0{,}01) = -0{,}01 + 1 = 0{,}99$; $f(-0{,}001) = 0{,}999$. Se acerca a $1$. Por derecha: $f(0{,}1) = 0{,}1$; $f(0{,}01) = 0{,}01$; $f(0{,}001) = 0{,}001$. Se acerca a $0$. Los dos lados van en direcciones opuestas: el límite no existe.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El límite $\displaystyle\lim_{x \to 0} f(x)$ <strong>no existe</strong>.
+    <br><br>
+    $\lim_{x \to 0^-} f(x) = 1$ y $\lim_{x \to 0^+} f(x) = 0$. Los límites laterales son distintos: hay una discontinuidad de salto de altura $1$ en $x = 0$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En programación, la operación módulo con números negativos produce resultados que sorprenden a muchos: en algunos lenguajes, <code>-0.1 % 1</code> da <code>-0.1</code> en lugar de <code>0.9</code>. Esa diferencia refleja exactamente el salto de la función piso en $x = 0$: la convención matemática de $\lfloor x \rfloor$ da $-1$ para $x = -0{,}1$, produciendo parte fraccionaria $0{,}9$; pero algunos lenguajes truncan hacia cero en lugar de hacia $-\infty$, lo que cambia el resultado para negativos. Python usa la convención matemática correcta (<code>-0.1 % 1 = 0.9</code>); C y JavaScript truncan hacia cero (<code>-0.1 % 1 = -0.1</code>). La discontinuidad de la función parte fraccionaria en los enteros es la raíz matemática de esa diferencia de comportamiento entre lenguajes.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ tiene una discontinuidad de salto en $x = 0$ con límite por izquierda $1$ y límite por derecha $0$. ¿Ocurre lo mismo en todos los enteros, o el comportamiento varía de un entero a otro?</span></li>
+      <li><span>El valor $f(0) = 0$ coincide con el límite por derecha pero no con el límite por izquierda. ¿Eso significa que $f$ es "continua por derecha" en $x = 0$? ¿Qué significa formalmente que una función sea continua por derecha en un punto?</span></li>
+      <li><span>La función piso $\lfloor x \rfloor$ también tiene discontinuidades de salto en los enteros. ¿Cuánto valen sus límites laterales en $x = 0$? ¿La discontinuidad de $\lfloor x \rfloor$ es del mismo tipo que la de $f(x) = x - \lfloor x \rfloor$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

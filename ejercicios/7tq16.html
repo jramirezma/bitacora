@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>7tq16</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "7tq16",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "11n",
+      tema: "límites en el infinito con raíces cuadradas",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite infinito raíz cuadrada producto menos x",
+        "límite conjugado raíz de producto lineal en infinito",
+        "lim x tiende a infinito raíz de x más a por x más b menos x"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \infty} \left(\sqrt{(x+a)(x+b)} - x\right).$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>Cuando $x \to \infty$, $\sqrt{(x+a)(x+b)} \approx x$ y $x \to \infty$: la forma es $\infty - \infty$, indeterminada. La estrategia es multiplicar y dividir por el conjugado $\sqrt{(x+a)(x+b)} + x$ para convertir la diferencia en un cociente manejable.</p>
+
+    <div class="nota">
+      Al multiplicar por el conjugado, el numerador se convierte en $(x+a)(x+b) - x^2$. Expandiendo: $(x+a)(x+b) = x^2 + (a+b)x + ab$, así que $(x+a)(x+b) - x^2 = (a+b)x + ab$. El término $x^2$ se cancela exactamente.
+    </div>
+
+    <p>El denominador es $\sqrt{(x+a)(x+b)} + x$, que para $x$ grande se comporta como $x + x = 2x$. El cociente resultante tiene numerador de grado $1$ y denominador de grado $1$, así que el límite es finito.</p>
+
+    <p class="chiste">Este ejercicio es el más general del bloque: $a$ y $b$ son constantes arbitrarias. El resultado va a depender de $a$ y $b$ — y cuando se vea cuál es, va a tener todo el sentido del mundo.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>El resultado $(a+b)/2$ es la media aritmética de $a$ y $b$. Eso no es una coincidencia: para $x$ grande, $\sqrt{(x+a)(x+b)} \approx x + (a+b)/2$, que es exactamente la corrección de primer orden de la expansión de Taylor de $\sqrt{x^2+(a+b)x+ab}$ alrededor de $x^2$. La diferencia $\sqrt{(x+a)(x+b)} - x$ mide cuánto se aleja la raíz del producto de la recta $y = x$, y esa distancia converge a la semisuma de los desplazamientos $a$ y $b$. En estadística, $\sqrt{(x+a)(x+b)}$ es la media geométrica de $x+a$ y $x+b$, y el límite dice que para valores base $x$ grandes, la diferencia entre la media geométrica y $x$ tiende a la semisuma de los excesos — es decir, a la media aritmética de los excesos.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \infty}\!\left(\sqrt{(x+a)(x+b)} - x\right)$
+    </div>
+    <div class="paso-just">
+      Forma $\infty - \infty$: se aplica el conjugado.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{\left(\sqrt{(x+a)(x+b)}-x\right)\!\left(\sqrt{(x+a)(x+b)}+x\right)}{\sqrt{(x+a)(x+b)}+x}$
+    </div>
+    <div class="paso-just">
+      Se multiplica y divide por el conjugado $\sqrt{(x+a)(x+b)}+x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{(x+a)(x+b)-x^2}{\sqrt{(x+a)(x+b)}+x}$
+    </div>
+    <div class="paso-just">
+      $(\sqrt{A}-x)(\sqrt{A}+x) = A - x^2$ con $A = (x+a)(x+b)$.
+    </div>
+
+    <div class="paso-dev">
+      $(x+a)(x+b) = x^2+(a+b)x+ab$
+    </div>
+    <div class="paso-just">
+      Se expande el producto.
+    </div>
+
+    <div class="paso-dev">
+      $(x+a)(x+b) - x^2 = (a+b)x + ab$
+    </div>
+    <div class="paso-just">
+      Se cancela $x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{(a+b)x + ab}{\sqrt{(x+a)(x+b)}+x}$
+    </div>
+    <div class="paso-just">
+      Se sustituye el numerador simplificado.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \infty} \dfrac{(a+b) + \dfrac{ab}{x}}{\sqrt{\left(1+\dfrac{a}{x}\right)\!\left(1+\dfrac{b}{x}\right)}+1}$
+    </div>
+    <div class="paso-just">
+      Se divide numerador y denominador por $x$; dentro de la raíz se factoriza $x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{(a+b) + 0}{\sqrt{(1+0)(1+0)}+1}$
+    </div>
+    <div class="paso-just">
+      $ab/x \to 0$, $a/x \to 0$ y $b/x \to 0$ cuando $x \to \infty$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{a+b}{\sqrt{1}+1} = \dfrac{a+b}{2}$
+    </div>
+    <div class="paso-just">
+      $\sqrt{1} = 1$. Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Toma $a = 2$, $b = 4$: el resultado debe ser $(2+4)/2 = 3$. $x = 10$: $\sqrt{12 \cdot 14} - 10 = \sqrt{168} - 10 \approx 12{,}961 - 10 = 2{,}961$; $x = 100$: $\sqrt{102 \cdot 104} - 100 = \sqrt{10608} - 100 \approx 102{,}994 - 100 = 2{,}994$; $x = 1000$: $\approx 2{,}9995$. Converge a $3$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \infty}\!\left(\sqrt{(x+a)(x+b)} - x\right) = \boxed{\dfrac{a+b}{2}}.$$
+    El límite es la media aritmética de $a$ y $b$.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En geometría computacional, la distancia entre un punto y una curva se aproxima con expresiones del tipo $\sqrt{(x+a)(x+b)} - x$ cuando el punto está lejos del origen. El resultado $(a+b)/2$ dice que para puntos muy lejanos, esa distancia converge a una constante que depende solo de los parámetros de la curva, no de la posición del punto. Eso se usa en algoritmos de detección de colisiones de largo alcance: cuando dos objetos están muy lejos entre sí, la distancia relativa puede aproximarse por una expresión lineal más una corrección constante $(a+b)/2$, evitando el cómputo costoso de la raíz cuadrada completa. Esa aproximación es válida precisamente porque el límite existe y es finito.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El resultado $\lim_{x \to \infty}(\sqrt{(x+a)(x+b)}-x) = (a+b)/2$ es la media aritmética de $a$ y $b$. ¿Qué ocurre si $a = b$? ¿El resultado se simplifica a algo conocido?</span></li>
+      <li><span>La desigualdad entre medias establece que la media geométrica de dos números positivos es siempre menor o igual que su media aritmética: $\sqrt{pq} \leq (p+q)/2$. ¿Cómo se relaciona eso con el resultado de este límite? ¿Puede usarse el límite para "ver" esa desigualdad de otra forma?</span></li>
+      <li><span>¿Qué ocurre con $\lim_{x \to \infty}(\sqrt{(x+a)(x+b)} - x)$ si $a$ y $b$ tienen signos opuestos, por ejemplo $a > 0$ y $b < 0$ con $a + b > 0$? ¿La demostración sigue siendo válida? ¿Y si $a + b = 0$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

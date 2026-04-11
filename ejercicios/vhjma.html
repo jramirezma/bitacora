@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>vhjma</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "vhjma",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "12a",
+      tema: "límites trigonométricos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite trigonométrico tangente en punto especial",
+        "límite 1 menos x por tangente de x pi sobre 2",
+        "lim x tiende a 1 uno menos x por tan x pi medio"
+      ],
+      fecha: "2026-04-03",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite trigonométrico:
+    $$\lim_{x \to 1} (1-x)\tan\frac{x\pi}{2}.$$</p>
+  </div>
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Cuando $x \to 1$, el factor $(1-x) \to 0$ y $\tan(x\pi/2) \to \tan(\pi/2)$, que no existe — la tangente tiene una asíntota vertical en $\pi/2$. La forma es $0 \cdot \infty$, indeterminada. Para resolverla hay que convertirla en un cociente.</p>
+
+    <div class="nota">
+      La estrategia: escribir $\tan(x\pi/2) = \sin(x\pi/2)/\cos(x\pi/2)$ y plantear el límite como $\sin(x\pi/2) \cdot (1-x)/\cos(x\pi/2)$. Cuando $x \to 1$, $\sin(x\pi/2) \to \sin(\pi/2) = 1$. El trabajo está en el cociente $(1-x)/\cos(x\pi/2)$.
+    </div>
+
+    <p>Cerca de $x = 1$, $\cos(x\pi/2) \approx \cos(\pi/2 + \varepsilon)$ para $\varepsilon$ pequeño. Usando el cambio de variable $u = x - 1$ (es decir, $x = 1 + u$ con $u \to 0$), el argumento del coseno se convierte en $\pi/2 + u\pi/2$, y $\cos(\pi/2 + u\pi/2) = -\sin(u\pi/2)$. Entonces el límite fundamental $\sin(t)/t \to 1$ cierra la cuenta.</p>
+
+    <p class="chiste">$\tan(\pi/2)$ es el límite que ninguna calculadora acepta. Y sin embargo, multiplicado por $(1-x)$ que se va a cero, produce un número perfectamente finito y razonable. La indeterminación $0 \cdot \infty$ tiene más decoro del que parece.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>El límite fundamental $\lim_{t \to 0} \sin(t)/t = 1$ — que aparece en este ejercicio disfrazado — fue demostrado por primera vez de forma rigurosa por Leonhard Euler en el siglo XVIII usando el método del sandwich (o de las cotas). La idea es encerrar $\sin(t)$ entre las áreas de dos triángulos y un sector circular, y demostrar que esas áreas convergen al mismo valor cuando $t \to 0$. Es uno de los pocos límites que no puede demostrarse por sustitución directa ni por factorización algebraica: requiere geometría. Toda la trigonometría del cálculo descansa sobre él.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1}(1-x)\tan\dfrac{x\pi}{2}$
+    </div>
+    <div class="paso-just">
+      Forma $0 \cdot \infty$: indeterminada.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1} \dfrac{(1-x)\sin\dfrac{x\pi}{2}}{\cos\dfrac{x\pi}{2}}$
+    </div>
+    <div class="paso-just">
+      $\tan\theta = \sin\theta/\cos\theta$.
+    </div>
+
+    <div class="paso-dev">
+      Sea $u = x - 1$, es decir $x = 1 + u$. Cuando $x \to 1$, $u \to 0$.
+    </div>
+    <div class="paso-just">
+      Cambio de variable para centrar el límite en $u = 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{u \to 0} \dfrac{-u\cdot\sin\!\left(\dfrac{(1+u)\pi}{2}\right)}{\cos\!\left(\dfrac{(1+u)\pi}{2}\right)}$
+    </div>
+    <div class="paso-just">
+      $1 - x = 1-(1+u) = -u$; se sustituye $x = 1+u$.
+    </div>
+
+    <div class="paso-dev">
+      $\dfrac{(1+u)\pi}{2} = \dfrac{\pi}{2} + \dfrac{u\pi}{2}$
+    </div>
+    <div class="paso-just">
+      Se distribuye la suma en el argumento.
+    </div>
+
+    <div class="paso-dev">
+      $\sin\!\left(\dfrac{\pi}{2}+\dfrac{u\pi}{2}\right) = \cos\!\left(\dfrac{u\pi}{2}\right)$
+    </div>
+    <div class="paso-just">
+      Identidad: $\sin(\pi/2 + \alpha) = \cos\alpha$.
+    </div>
+
+    <div class="paso-dev">
+      $\cos\!\left(\dfrac{\pi}{2}+\dfrac{u\pi}{2}\right) = -\sin\!\left(\dfrac{u\pi}{2}\right)$
+    </div>
+    <div class="paso-just">
+      Identidad: $\cos(\pi/2 + \alpha) = -\sin\alpha$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{u \to 0} \dfrac{-u\cdot\cos\!\left(\dfrac{u\pi}{2}\right)}{-\sin\!\left(\dfrac{u\pi}{2}\right)}$
+    </div>
+    <div class="paso-just">
+      Se sustituyen las identidades trigonométricas.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{u \to 0} \dfrac{u}{\sin\!\left(\dfrac{u\pi}{2}\right)} \cdot \cos\!\left(\dfrac{u\pi}{2}\right)$
+    </div>
+    <div class="paso-just">
+      Se cancelan los signos negativos y se separan factores.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{u \to 0} \dfrac{1}{\dfrac{\sin(u\pi/2)}{u}} \cdot \cos\!\left(\dfrac{u\pi}{2}\right)$
+    </div>
+    <div class="paso-just">
+      Se reescribe $u/\sin(u\pi/2) = 1/[\sin(u\pi/2)/u]$.
+    </div>
+
+    <div class="paso-dev">
+      $\lim_{u \to 0}\dfrac{\sin(u\pi/2)}{u} = \dfrac{\pi}{2} \cdot \lim_{u \to 0}\dfrac{\sin(u\pi/2)}{u\pi/2} = \dfrac{\pi}{2} \cdot 1 = \dfrac{\pi}{2}$
+    </div>
+    <div class="paso-just">
+      Límite fundamental $\lim_{t\to 0}\sin(t)/t = 1$ con $t = u\pi/2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{\pi/2} \cdot \cos(0)$
+    </div>
+    <div class="paso-just">
+      Se sustituyen los límites: $\cos(u\pi/2) \to \cos(0) = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{2}{\pi} \cdot 1 = \dfrac{2}{\pi}$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>Comprobemos con números</h2>
+  <div class="bloque">
+    <p>$2/\pi \approx 0{,}6366$. Valores cerca de $x = 1$: $x = 0{,}9 \Rightarrow (0{,}1)\tan(0{,}45\pi) = 0{,}1 \cdot \tan(81°) \approx 0{,}1 \cdot 6{,}314 = 0{,}631$; $x = 0{,}99 \Rightarrow (0{,}01)\tan(89{,}1°) \approx 0{,}01 \cdot 63{,}66 = 0{,}637$; $x = 1{,}01 \Rightarrow (−0{,}01)\tan(90{,}9°) \approx (-0{,}01)(-63{,}66) = 0{,}637$. Converge a $2/\pi \approx 0{,}6366$. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1}(1-x)\tan\frac{x\pi}{2} = \boxed{\dfrac{2}{\pi}}.$$
+  </div>
+
+  <h2>¿Para qué me sirve esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En procesamiento de señales, la tangente aparece en el diseño de filtros digitales mediante la transformación bilineal, que mapea el eje de frecuencias analógico al círculo unitario digital usando $s = \tan(\omega/2)$. Cerca de la frecuencia de Nyquist ($\omega = \pi$), la tangente tiene una singularidad — igual que $\tan(\pi/2)$ en este ejercicio. El producto $(1-x)\tan(x\pi/2)$ modela exactamente cómo se comporta la ganancia del filtro cerca de esa singularidad: el factor $(1-x)$ representa la proximidad a la frecuencia crítica, y el resultado $2/\pi$ es la constante que determina la pendiente de la respuesta en frecuencia cerca de ese punto. Conocer ese límite permite diseñar filtros que se comporten predeciblemente incluso cerca de las frecuencias problemáticas.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1}(1-x)\tan(x\pi/2) = 2/\pi$ se resolvió con el cambio de variable $u = x-1$ y el límite fundamental $\sin(t)/t \to 1$. ¿Podría resolverse directamente usando la regla de L'Hôpital, convirtiendo primero la forma $0\cdot\infty$ en $0/0$ o $\infty/\infty$?</span></li>
+      <li><span>El resultado $2/\pi$ involucra $\pi$ de forma inesperada en un límite que parece algebraico. ¿Por qué aparece $\pi$ en el resultado? ¿Dónde entra $\pi$ en la cadena de cálculo?</span></li>
+      <li><span>La tangente tiene asíntotas verticales en todos los puntos $\pi/2 + k\pi$ para $k$ entero. ¿El límite $\lim_{x \to 1}(1-x)\tan(x\pi/2)$ tendría el mismo valor si se reemplazara $x \to 1$ por $x \to 3$ (que corresponde a otra asíntota de la tangente)? ¿O el resultado dependería del punto?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

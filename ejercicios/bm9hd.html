@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>bm9hd</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "bm9hd",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "2d",
+      tema: "cálculo directo de límites",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite cálculo directo sustitución",
+        "límite de producto de polinomios cuadráticos",
+        "lim x tiende a raíz de 2 de 2x cuadrado más 1 por 7x cuadrado más 13"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Calcule el siguiente límite:
+    $$\lim_{x \to \sqrt{2}} (2x^2 + 1)(7x^2 + 13).$$</p>
+  </div>
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>El producto $(2x^2+1)(7x^2+13)$ es un polinomio en $x$, así que es continuo en todos los reales y el límite se calcula sustituyendo directamente. El único detalle es que el punto es $x = \sqrt{2}$, así que hay que calcular $(\sqrt{2})^2 = 2$ — lo que simplifica bastante las cosas.</p>
+
+    <div class="nota">
+      $(\sqrt{2})^2 = 2$ por definición de raíz cuadrada. Eso convierte cada aparición de $x^2$ en un simple $2$, y la aritmética se vuelve inmediata.
+    </div>
+
+    <p>La estrategia más limpia es evaluar cada factor por separado en $x = \sqrt{2}$ y luego multiplicar, en lugar de expandir el producto completo antes de sustituir.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>El número $\sqrt{2}$ fue el primero en la historia en demostrarse irracional — es decir, que no puede escribirse como cociente de dos enteros. La demostración, atribuida a los pitagóricos alrededor del siglo V a.C., causó una crisis filosófica en la escuela: su visión del mundo dependía de que toda magnitud fuera medible con números racionales. Lo interesante para el cálculo es que $\sqrt{2}$, a pesar de ser irracional, es un punto perfectamente válido para evaluar límites de polinomios. La irracionalidad no tiene ningún efecto sobre la continuidad: $(\sqrt{2})^2 = 2$ es un entero, y eso hace que la aritmética de este ejercicio sea incluso más limpia que si el punto fuera, por ejemplo, $x = 1{,}5$.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to \sqrt{2}}(2x^2+1)(7x^2+13)$
+    </div>
+    <div class="paso-just">
+      Punto de partida.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to \sqrt{2}}(2x^2+1) \cdot \lim_{x \to \sqrt{2}}(7x^2+13)$
+    </div>
+    <div class="paso-just">
+      Límite de un producto = producto de los límites (ambos existen y son finitos).
+    </div>
+
+    <div class="paso-dev">
+      $= \bigl(2(\sqrt{2})^2+1\bigr)\cdot\bigl(7(\sqrt{2})^2+13\bigr)$
+    </div>
+    <div class="paso-just">
+      Cada factor es un polinomio continuo: se sustituye $x = \sqrt{2}$.
+    </div>
+
+    <div class="paso-dev">
+      $= (2 \cdot 2 + 1)(7 \cdot 2 + 13)$
+    </div>
+    <div class="paso-just">
+      $(\sqrt{2})^2 = 2$.
+    </div>
+
+    <div class="paso-dev">
+      $= 5 \cdot 27$
+    </div>
+    <div class="paso-just">
+      $2 \cdot 2 + 1 = 5$ y $7 \cdot 2 + 13 = 27$.
+    </div>
+
+    <div class="paso-dev">
+      $= 135$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>$\sqrt{2} \approx 1{,}4142$. Evaluando cerca del punto: $x = 1{,}41 \Rightarrow (2 \cdot 1{,}9881 + 1)(7 \cdot 1{,}9881 + 13) = (4{,}9762)(26{,}9167) \approx 133{,}9$; $x = 1{,}42 \Rightarrow (2 \cdot 2{,}0164 + 1)(7 \cdot 2{,}0164 + 13) = (5{,}0328)(27{,}1148) \approx 136{,}4$. El valor exacto $135$ queda entre esos dos, consistente con la convergencia al límite.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to \sqrt{2}}(2x^2+1)(7x^2+13) = \boxed{135}.$$
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En álgebra computacional, los sistemas como Mathematica o SymPy evalúan expresiones simbólicas en puntos irracionales como $\sqrt{2}$ sin convertirlos a decimales. Cuando el sistema calcula $(2x^2+1)(7x^2+13)$ en $x = \sqrt{2}$, reconoce que $(\sqrt{2})^2 = 2$ exactamente y produce el resultado entero $135$ sin ningún error de redondeo. Eso contrasta con la aritmética de punto flotante, donde $\sqrt{2}$ se aproxima por un decimal finito y el resultado podría ser $134{,}999\ldots$ o $135{,}001\ldots$ dependiendo del redondeo. La distinción entre cálculo simbólico exacto y cálculo numérico aproximado es una de las decisiones de diseño centrales en cualquier sistema de cómputo matemático.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to \sqrt{2}}(2x^2+1)(7x^2+13)$, la irracionalidad de $\sqrt{2}$ no complicó nada porque $(\sqrt{2})^2 = 2$. ¿Habría alguna diferencia si el punto fuera $x = \sqrt{3}$ en lugar de $x = \sqrt{2}$? ¿O $x = 2^{1/3}$?</span></li>
+      <li><span>El resultado del límite $\lim_{x \to \sqrt{2}}(2x^2+1)(7x^2+13) = 135$ es un entero, aunque el punto $\sqrt{2}$ sea irracional. ¿Es posible construir un polinomio con coeficientes enteros que evaluado en $\sqrt{2}$ dé un número irracional?</span></li>
+      <li><span>Si en lugar de $\sqrt{2}$ el punto de aproximación fuera $\sqrt{2} + \varepsilon$ para un $\varepsilon$ muy pequeño, ¿cuánto cambiaría el valor del límite? ¿Cómo se relaciona esa sensibilidad con la derivada del producto en $x = \sqrt{2}$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

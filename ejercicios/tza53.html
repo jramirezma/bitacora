@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>tza53</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "tza53",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1d",
+      tema: [
+        "límites por definición épsilon-delta",
+        "definición formal de límite",
+        "límite con epsilon y delta"
+      ],
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta",
+        "demostración formal de límite",
+        "límite de ax más 2a cuadrado igual a 3a cuadrado"
+      ],
+      tipo_solucion: "algebraico",
+      fecha: "2026-03-30",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (ax + 2a^2) = 3a^2.$$</p>
+  </div>
+
+  <h2>El mapa antes del territorio</h2>
+  <div class="bloque">
+    <p>La función $ax + 2a^2$ es lineal en $x$. Sustituir $x = a$ da $a \cdot a + 2a^2 = a^2 + 2a^2 = 3a^2$. Eso confirma cuál debe ser el límite. Ahora hay que demostrarlo con la definición épsilon-delta.</p>
+
+    <div class="nota">
+      La distancia entre la función y su límite es $|(ax + 2a^2) - 3a^2|$. Al simplificar eso aparece $|a(x - a)|$, que vale $|a| \cdot |x - a|$. Desde ahí, elegir $\delta = \varepsilon / |a|$ cierra la demostración.
+    </div>
+
+    <p>La simplificación clave: $(ax + 2a^2) - 3a^2 = ax + 2a^2 - 3a^2 = ax - a^2 = a(x - a)$. Notar que esta vez la constante $2a^2$ suma en lugar de restar, pero al hacer la diferencia con el límite $3a^2$ termina desapareciendo igual. El resultado es el mismo factor $a(x-a)$ de siempre.</p>
+
+    <p class="chiste">$ax + 2a^2$ y $ax - 2a^2$ tienen límites distintos ($3a^2$ y $-a^2$), pero sus demostraciones son prácticamente gemelas. Los términos constantes en $x$ no le importan a la definición épsilon-delta: desaparecen solos al calcular la distancia al límite.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>Una función lineal $f(x) = mx + b$ siempre tiene límite en cualquier punto, y ese límite siempre coincide con el valor de la función en ese punto. Eso parece obvio, pero tiene una consecuencia importante: toda función lineal es continua en todos los reales. Lo interesante es que la demostración épsilon-delta de esa continuidad es <em>uniforme</em> — el mismo $\delta = \varepsilon / |m|$ funciona para cualquier punto del dominio, no solo para el punto específico que se esté mirando. Esa propiedad más fuerte, llamada continuidad uniforme, no la tienen todas las funciones continuas: $f(x) = x^2$, por ejemplo, es continua en todos los reales pero no uniformemente continua, porque cerca del infinito necesita deltas cada vez más pequeñas para el mismo $\varepsilon$.</p>
+  </div>
+
+  <h2>Manos a la obra</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error viene de afuera; puede ser tan pequeño como quieran.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \dfrac{\varepsilon}{|a|}$.
+    </div>
+    <div class="paso-just">
+      Válido porque $a \neq 0$. Esta es la respuesta al reto.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis: $x$ está dentro del radio $\delta$ de $a$, con $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $\bigl|(ax + 2a^2) - 3a^2\bigr|$
+    </div>
+    <div class="paso-just">
+      Distancia entre la función y el límite propuesto $L = 3a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |ax + 2a^2 - 3a^2|$
+    </div>
+    <div class="paso-just">
+      Se distribuye el signo negativo.
+    </div>
+
+    <div class="paso-dev">
+      $= |ax - a^2|$
+    </div>
+    <div class="paso-just">
+      $2a^2 - 3a^2 = -a^2$, queda $ax - a^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $a$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$.
+    </div>
+
+    <div class="paso-dev">
+      $< |a| \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Por la hipótesis $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $= |a| \cdot \dfrac{\varepsilon}{|a|}$
+    </div>
+    <div class="paso-just">
+      Sustituye $\delta = \varepsilon / |a|$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $|a|$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Toma $a = -2$. El límite dice que $\lim_{x \to -2}(-2x + 8) = 12$. Con $\varepsilon = 0{,}4$, la $\delta$ es $0{,}4 / |-2| = 0{,}2$. Prueba $x = -2{,}15$ (a distancia $0{,}15 < 0{,}2$ de $-2$): $|(-2)(-2{,}15) + 8 - 12| = |4{,}3 + 8 - 12| = |0{,}3| = 0{,}3 < 0{,}4$. Prueba $x = -1{,}82$ (a distancia $0{,}18 < 0{,}2$): $|(-2)(-1{,}82) + 8 - 12| = |3{,}64 + 8 - 12| = |-0{,}36| = 0{,}36 < 0{,}4$. En ambos casos el error de salida está dentro del margen.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \varepsilon / |a|$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; \bigl|(ax + 2a^2) - 3a^2\bigr| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(ax + 2a^2) = 3a^2$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En procesamiento de señales digitales, una operación muy común es sumar una señal lineal y un desplazamiento constante — exactamente la estructura de $ax + 2a^2$. Cuando se analiza el comportamiento de esa señal cerca de un punto particular, lo que importa es que la señal no tenga saltos: que el valor al que tiende coincida con el valor que toma. La continuidad de las funciones lineales, que la definición épsilon-delta garantiza formalmente, es lo que permite a los filtros digitales procesar señales sin introducir discontinuidades artificiales. Si los componentes lineales de un filtro no fueran continuos, cada muestra de audio o video podría producir un artefacto audible o visible.</p>
+  </div>
+
+  <h2>¿Te quedaron dudas? Estas pueden ayudar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(ax + 2a^2) = 3a^2$, el término constante $2a^2$ desapareció al calcular la distancia al límite. ¿Por qué los términos constantes (en $x$) nunca afectan la elección de $\delta$ en una función lineal?</span></li>
+      <li><span>Si se reemplaza $2a^2$ por una constante arbitraria $c$ (independiente de $a$), es decir $f(x) = ax + c$, ¿cuánto vale $\lim_{x \to a} f(x)$? ¿Cambia algo en la demostración épsilon-delta?</span></li>
+      <li><span>La verificación numérica usó $a = -2$, un valor negativo. ¿Hay alguna diferencia en la demostración épsilon-delta cuando $a$ es negativo respecto a cuando es positivo? ¿El valor absoluto $|a|$ maneja eso automáticamente?</span></li>
+      <li><span>Una función lineal $f(x) = ax + b$ es continua en todos los reales y además uniformemente continua. ¿Qué significa que una función sea uniformemente continua, y por qué $f(x) = x^2$ es continua pero no uniformemente continua en $\mathbb{R}$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

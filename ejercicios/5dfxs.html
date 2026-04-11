@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>5dfxs</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "5dfxs",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "5d",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite función parte fraccionaria en no entero",
+        "límite bilateral función piso punto interior",
+        "lim x tiende a 1/2 función x menos piso x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = x - \lfloor x \rfloor$. Calcule, si es posible, $\displaystyle\lim_{x \to 1/2} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>El punto $x = 1/2$ no es un entero. Las costuras de la función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ ocurren solo en los enteros — ahí es donde $\lfloor x \rfloor$ salta. En $x = 1/2$, que está en el interior del intervalo $(0, 1)$, la función piso vale $\lfloor x \rfloor = 0$ tanto por izquierda como por derecha. No hay salto cerca de ese punto.</p>
+
+    <div class="nota">
+      Para todo $x$ en un entorno de $1/2$ — por ejemplo, para $x \in (0, 1)$ — se tiene $\lfloor x \rfloor = 0$, así que $f(x) = x - 0 = x$. La función parte fraccionaria se comporta como la identidad en ese intervalo.
+    </div>
+
+    <p>Como $\lfloor x \rfloor$ no salta cerca de $1/2$, la función $f$ es continua ahí. El límite se calcula por sustitución directa: $\lim_{x \to 1/2} f(x) = f(1/2) = 1/2$.</p>
+
+    <p class="chiste">Después de tanto drama en los enteros, $x = 1/2$ es el descanso merecido. Sin saltos, sin costuras, sin suspenso. Solo una función lineal comportándose exactamente como se espera.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ es continua en todos los no enteros y discontinua en todos los enteros. Eso significa que tiene un conjunto de discontinuidades de medida cero — los enteros son "pocos" en comparación con todos los reales. El teorema de Lebesgue sobre integrabilidad de Riemann establece que una función acotada es integrable en el sentido de Riemann si y solo si su conjunto de discontinuidades tiene medida cero. Como los enteros tienen medida cero, la función parte fraccionaria es integrable en $[0, 1]$, y su integral vale $\int_0^1 x\, dx = 1/2$. No es coincidencia que ese valor coincida con el límite de este ejercicio: refleja la simetría de la función en el intervalo.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1/2} f(x) = \lim_{x \to 1/2}(x - \lfloor x \rfloor)$
+    </div>
+    <div class="paso-just">
+      Se escribe la fórmula completa.
+    </div>
+
+    <div class="paso-dev">
+      Para $x \in (0, 1)$: $\lfloor x \rfloor = 0$
+    </div>
+    <div class="paso-just">
+      El entero más grande $\leq x$ para $x \in (0,1)$ es $0$. El punto $1/2$ está en este intervalo.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1/2}(x - 0) = \lim_{x \to 1/2} x$
+    </div>
+    <div class="paso-just">
+      Se sustituye $\lfloor x \rfloor = 0$; la función se reduce a la identidad.
+    </div>
+
+    <div class="paso-dev">
+      $= \dfrac{1}{2}$
+    </div>
+    <div class="paso-just">
+      Sustitución directa. $f$ es continua en $x = 1/2$.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores cercanos a $x = 1/2$: $f(0{,}4) = 0{,}4$; $f(0{,}49) = 0{,}49$; $f(0{,}499) = 0{,}499$; $f(0{,}51) = 0{,}51$; $f(0{,}6) = 0{,}6$. Desde ambos lados, $f(x) = x$ en ese intervalo, y la función converge a $1/2$ suavemente. Sin sorpresas.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1/2} f(x) = \boxed{\dfrac{1}{2}}.$$
+    Como $1/2 \in (0,1)$, la función piso vale $\lfloor x \rfloor = 0$ en todo un entorno de $1/2$, y $f(x) = x$ ahí. El límite existe y coincide con el valor de la función: $f$ es continua en $x = 1/2$.
+  </div>
+
+  <h2>¿Dónde ya existe esto?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En gráficos procedurales, la función parte fraccionaria se usa para generar patrones repetitivos: dado un valor continuo de coordenada, la parte fraccionaria lo "reinicia" en cada entero, produciendo una textura que se repite indefinidamente. En el interior de cada celda — lejos de los bordes enteros — la función se comporta exactamente como la identidad, y cualquier cálculo basado en ella es continuo y predecible. Los problemas aparecen solo en los bordes entre celdas, donde la función salta. Saber que el límite existe y es continuo en puntos como $x = 1/2$ es la garantía matemática de que el patrón no tiene artefactos en el interior de las celdas — solo potencialmente en sus bordes.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 1/2}(x - \lfloor x \rfloor) = 1/2$ se calculó usando que $\lfloor x \rfloor = 0$ en un entorno de $1/2$. ¿Para qué otros puntos $c \in (0,1)$ ocurre exactamente lo mismo? ¿La respuesta es siempre $\lim_{x \to c} f(x) = c$?</span></li>
+      <li><span>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ es continua en $x = 1/2$ pero discontinua en $x = 0$ y $x = 1$. ¿Cómo cambia el conjunto de puntos de continuidad si se considera la función $g(x) = x - \lfloor 2x \rfloor / 2$? ¿Dónde están sus discontinuidades?</span></li>
+      <li><span>La integral de $f(x) = x - \lfloor x \rfloor$ en $[0,1]$ vale $1/2$, que coincide con el valor del límite en $x = 1/2$. ¿Es una coincidencia, o hay una razón geométrica detrás de que la integral de la parte fraccionaria en $[0,1]$ sea exactamente $1/2$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

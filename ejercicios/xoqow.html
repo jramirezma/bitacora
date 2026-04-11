@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>xoqow</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "xoqow",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "5a",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "función piso floor parte fraccionaria",
+        "valor de función parte fraccionaria en entero",
+        "f de 0 función x menos piso de x"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = x - \lfloor x \rfloor$. Calcule, si es posible, $f(0)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>¿De qué se trata esto?</h2>
+  <div class="bloque">
+    <p>Antes de calcular nada, hay que entender qué es $\lfloor x \rfloor$. La <strong>función piso</strong> (también llamada función parte entera) toma un número real y devuelve el entero más grande que sea menor o igual a él. Algunos ejemplos: $\lfloor 2{,}7 \rfloor = 2$, $\lfloor 3 \rfloor = 3$, $\lfloor -1{,}3 \rfloor = -2$, $\lfloor 0 \rfloor = 0$.</p>
+
+    <div class="nota">
+      La función $f(x) = x - \lfloor x \rfloor$ se llama <strong>parte fraccionaria</strong> de $x$: es lo que queda después de quitarle a $x$ su parte entera. Para cualquier $x$, $f(x) \in [0, 1)$.
+    </div>
+
+    <p>Para calcular $f(0)$, basta evaluar la fórmula directamente: $f(0) = 0 - \lfloor 0 \rfloor$. El único ingrediente necesario es saber cuánto vale $\lfloor 0 \rfloor$. Como $0$ es un entero, su parte entera es él mismo: $\lfloor 0 \rfloor = 0$.</p>
+
+    <p class="chiste">La parte fraccionaria de un entero siempre es $0$. Tiene todo el sentido: si a un número le quitás su parte entera y no queda nada, es porque era entero desde el principio.</p>
+  </div>
+
+  <h2>Algo que vale la pena saber</h2>
+  <div class="bloque dato-curioso">
+    <p>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ es periódica con período $1$: $f(x + 1) = f(x)$ para todo $x$ real. Su gráfica es una serie de segmentos que van de $0$ (incluido) a $1$ (excluido) en cada intervalo $[n, n+1)$ para $n$ entero — una escalera de dientes de sierra. Esa forma es exactamente la de una onda diente de sierra, que aparece en síntesis de sonido: los sintetizadores analógicos la generan para producir timbres ricos en armónicos. En teoría de números, la parte fraccionaria de $n\alpha$ para $\alpha$ irracional es la base del teorema de equidistribución de Weyl: esos valores se distribuyen de forma uniforme en $[0,1)$, lo que tiene aplicaciones en métodos numéricos de integración cuasi-Monte Carlo.</p>
+  </div>
+
+  <h2>Ahora sí, a calcular</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $f(0) = 0 - \lfloor 0 \rfloor$
+    </div>
+    <div class="paso-just">
+      Sustitución directa de $x = 0$ en $f(x) = x - \lfloor x \rfloor$.
+    </div>
+
+    <div class="paso-dev">
+      $= 0 - 0$
+    </div>
+    <div class="paso-just">
+      $\lfloor 0 \rfloor = 0$: el entero más grande $\leq 0$ es $0$ mismo.
+    </div>
+
+    <div class="paso-dev">
+      $= 0$
+    </div>
+    <div class="paso-just">
+      La parte fraccionaria de un entero es siempre $0$.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>La parte fraccionaria de cualquier número entero es $0$: $f(1) = 1 - 1 = 0$; $f(2) = 2 - 2 = 0$; $f(-3) = -3 - (-3) = 0$. En todos los casos, quitarle a un entero su parte entera deja exactamente $0$. El resultado $f(0) = 0$ es consistente con ese patrón.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$f(0) = \boxed{0}.$$
+    La parte fraccionaria de $0$ es $0$: $0 - \lfloor 0 \rfloor = 0 - 0 = 0$.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En programación, la operación módulo (<code>x % 1</code> en muchos lenguajes) calcula exactamente la parte fraccionaria de un número real: extrae lo que queda después de la parte entera. Eso es $f(x) = x - \lfloor x \rfloor$ traducido a código. Se usa en animaciones cíclicas — donde el tiempo avanza continuamente pero la animación se reinicia cada segundo — y en generación procedural de texturas, donde la parte fraccionaria de una coordenada determina la posición dentro de una celda repetida. El valor $f(0) = 0$ corresponde al inicio exacto de un ciclo: el momento en que la animación o la textura está en su punto de partida.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>La función parte fraccionaria $f(x) = x - \lfloor x \rfloor$ vale $0$ en todos los enteros. ¿Eso significa que $f$ es continua en todos los enteros? ¿O el hecho de que $f(n) = 0$ no es suficiente para garantizar continuidad en $x = n$?</span></li>
+      <li><span>¿Cuánto vale $\lfloor -0{,}5 \rfloor$? ¿Y $f(-0{,}5) = -0{,}5 - \lfloor -0{,}5 \rfloor$? ¿El resultado está en $[0,1)$ como se espera de la parte fraccionaria?</span></li>
+      <li><span>La función $f(x) = x - \lfloor x \rfloor$ es periódica con período $1$. ¿Qué significa formalmente que una función sea periódica? ¿Cómo se verifica que el período de $f$ es exactamente $1$ y no $2$ o $1/2$?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

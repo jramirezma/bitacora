@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>juvgr</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "juvgr",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "1j",
+      tema: "límites por definición épsilon-delta",
+      dificultad: [
+        "intermedio",
+        "medio",
+        "moderado"
+      ],
+      seo_keywords: [
+        "límite por definición epsilon delta polinomio cuadrático",
+        "demostración formal límite x cuadrado menos ax",
+        "límite lim x tiende a a de x² menos ax igual a cero"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Demuestre, mediante la definición de límite, que ($a \neq 0$):
+    $$\lim_{x \to a} (x^2 - ax) = 0.$$</p>
+  </div>
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>La distancia entre la función y el límite es $|(x^2 - ax) - 0| = |x^2 - ax|$. Factorizando: $|x(x - a)|= |x| \cdot |x - a|$. El factor $|x|$ varía con $x$, así que hay que acotarlo antes de poder controlar la expresión completa.</p>
+
+    <div class="nota">
+      La estrategia: imponer $\delta \leq 1$ para mantener $x$ cerca de $a$. Si $|x - a| < 1$, entonces $|x| \leq |x - a| + |a| < 1 + |a|$. Con ese techo fijo, la expresión queda acotada por $(1 + |a|) \cdot |x - a|$, y eligiendo $\delta \leq \varepsilon\,/\,(1 + |a|)$ se cierra la cadena.
+    </div>
+
+    <p>La $\delta$ final es el mínimo de las dos restricciones: $1$ y $\varepsilon\,/\,(1+|a|)$. El límite es $0$ porque $x^2 - ax = x(x-a)$ tiene una raíz en $x = a$: cuando $x$ se acerca a $a$, el factor $(x - a)$ se acerca a cero y arrastra al producto entero.</p>
+
+    <p class="chiste">El límite es $0$ y la demostración lo confirma. Pero si alguien te pregunta por qué es cero sin querer la demostración formal, la respuesta corta es: porque $a^2 - a \cdot a = 0$. A veces la intuición llega antes que los símbolos.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>La factorización $x^2 - ax = x(x - a)$ muestra que la función tiene raíces en $x = 0$ y en $x = a$. Eso significa que la parábola $y = x^2 - ax$ cruza el eje horizontal exactamente en esos dos puntos. La distancia entre las raíces es $|a|$, y el vértice de la parábola cae justo en el punto medio $x = a/2$. Este tipo de análisis — encontrar raíces factorizando — es la base del método de la bisección para hallar raíces numéricamente: si la función vale $0$ en dos puntos y es continua entre ellos, en algún punto intermedio tiene que cruzar el eje. La continuidad que garantiza la definición épsilon-delta es exactamente la condición que ese método necesita para funcionar.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      Sea $\varepsilon > 0$ arbitrario.
+    </div>
+    <div class="paso-just">
+      El margen de error llega de afuera.
+    </div>
+
+    <div class="paso-dev">
+      Elegir $\delta = \min\!\left(1,\; \dfrac{\varepsilon}{1 + |a|}\right)$.
+    </div>
+    <div class="paso-just">
+      Dos condiciones simultáneas; se toma la más restrictiva.
+    </div>
+
+    <div class="paso-dev">
+      Suponer $0 < |x - a| < \delta$.
+    </div>
+    <div class="paso-just">
+      Hipótesis estándar; $x \neq a$.
+    </div>
+
+    <div class="paso-dev">
+      $|x - a| < \delta \leq 1$
+    </div>
+    <div class="paso-just">
+      Por definición de mínimo, $\delta \leq 1$.
+    </div>
+
+    <div class="paso-dev">
+      $\Rightarrow\; |x| = |(x - a) + a| \leq |x - a| + |a| < 1 + |a|$
+    </div>
+    <div class="paso-just">
+      Desigualdad triangular: $|x| \leq |x - a| + |a|$.
+    </div>
+
+    <div class="paso-dev">
+      $|(x^2 - ax) - 0| = |x^2 - ax|$
+    </div>
+    <div class="paso-just">
+      Distancia al límite $L = 0$; restar cero no cambia nada.
+    </div>
+
+    <div class="paso-dev">
+      $= |x(x - a)|$
+    </div>
+    <div class="paso-just">
+      Factor común $x$.
+    </div>
+
+    <div class="paso-dev">
+      $= |x| \cdot |x - a|$
+    </div>
+    <div class="paso-just">
+      $|pq| = |p||q|$.
+    </div>
+
+    <div class="paso-dev">
+      $< (1 + |a|) \cdot \delta$
+    </div>
+    <div class="paso-just">
+      Se aplican $|x| < 1 + |a|$ y $|x - a| < \delta$.
+    </div>
+
+    <div class="paso-dev">
+      $\leq (1 + |a|) \cdot \dfrac{\varepsilon}{1 + |a|}$
+    </div>
+    <div class="paso-just">
+      Como $\delta \leq \varepsilon\,/\,(1 + |a|)$.
+    </div>
+
+    <div class="paso-dev">
+      $= \varepsilon$
+    </div>
+    <div class="paso-just">
+      Se cancela $(1 + |a|)$. La cadena cierra. $\blacksquare$
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Toma $a = 3$. El límite dice que $\lim_{x \to 3}(x^2 - 3x) = 0$. Con $\varepsilon = 0{,}4$, la segunda cota es $0{,}4\,/\,(1+3) = 0{,}1$, así que $\delta = \min(1,\, 0{,}1) = 0{,}1$. Prueba $x = 3{,}08$ (a distancia $0{,}08 < 0{,}1$): $|3{,}08^2 - 3 \cdot 3{,}08| = |9{,}4864 - 9{,}24| = 0{,}2464 < 0{,}4$. Prueba $x = 2{,}94$ (a distancia $0{,}06 < 0{,}1$): $|2{,}94^2 - 3 \cdot 2{,}94| = |8{,}6436 - 8{,}82| = 0{,}1764 < 0{,}4$. El margen se respeta.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> Para todo $\varepsilon > 0$, eligiendo $\delta = \min\!\left(1,\, \dfrac{\varepsilon}{1+|a|}\right)$, se cumple que
+    $0 < |x - a| < \delta \;\Rightarrow\; |(x^2 - ax) - 0| < \varepsilon$.
+    <br><br>
+    Por lo tanto, $\displaystyle\lim_{x \to a}(x^2 - ax) = 0$. $\quad \blacksquare$
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>El método de la bisección es uno de los algoritmos más usados para encontrar raíces de funciones numéricamente. Funciona así: si una función continua vale positivo en un punto y negativo en otro, entonces en algún punto intermedio vale cero. El algoritmo divide el intervalo por la mitad repetidamente hasta que el valor de la función es suficientemente cercano a cero — con "suficientemente cercano" definido por una tolerancia $\varepsilon$ que el programador elige. Esa tolerancia es exactamente el $\varepsilon$ de la definición de límite: la garantía de que la función es continua — es decir, que su límite existe y coincide con su valor — es lo que asegura que el algoritmo siempre converge a una raíz real en lugar de oscilar sin llegar a ningún lado.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 - ax) = 0$, la cota de $|x|$ resultó ser $1 + |a|$. ¿De dónde viene el $1$ en esa expresión? ¿Cambiaría esa cota si se usara $\delta \leq 2$ como primera restricción en lugar de $\delta \leq 1$?</span></li>
+      <li><span>La función $f(x) = x^2 - ax$ tiene raíces en $x = 0$ y $x = a$. La demostración épsilon-delta prueba que el límite cuando $x \to a$ es $0$, es decir, que $f$ es continua en $x = a$. ¿Es $f$ también continua en $x = 0$? ¿La demostración seguiría la misma estructura con $a = 0$?</span></li>
+      <li><span>En la demostración épsilon-delta de $\lim_{x \to a}(x^2 - ax) = 0$, el factor variable que hay que acotar es $|x|$. ¿Por qué no aparece un factor $|x + a|$ como ocurre con otras funciones cuadráticas? ¿Qué tiene de especial la factorización $x(x-a)$ respecto a $(x-a)(x+a)$?</span></li>
+      <li><span>Si se generaliza la función a $f(x) = x^2 - bx$ con $b \neq a$, ¿cuál sería $\lim_{x \to a} f(x)$? ¿La estrategia de demostración épsilon-delta sería idéntica, o cambiaría algún paso?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

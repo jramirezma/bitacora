@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>idk8w</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "idk8w",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "4c",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función definida a trozos costura con cuadrática",
+        "límite lateral función por partes en x igual a 2",
+        "lim x tiende a 2 función a trozos tres tramos"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>El ejercicio</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$g(x) = \begin{cases} -x+1, & \text{si } x < 1; \\ x-1, & \text{si } 1 < x < 2; \\ 5-x^2, & \text{si } x \geq 2. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 2} g(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>El punto $x = 2$ es la segunda costura de la función. Para $x$ cerca de $2$ por la izquierda rige $g(x) = x - 1$ (segundo trozo, válido para $1 < x < 2$), y para $x$ en $2$ o por la derecha rige $g(x) = 5 - x^2$ (tercer trozo, válido para $x \geq 2$). Hay que calcular ambos límites laterales y compararlos.</p>
+
+    <div class="nota">
+      A diferencia de $x = 1$, el punto $x = 2$ sí pertenece al dominio de $g$: el tercer trozo cubre $x \geq 2$, así que $g(2) = 5 - 4 = 1$ está definido. Pero que $g(2)$ exista no garantiza que el límite exista — hay que verificar los laterales igual.
+    </div>
+
+    <p>El primer trozo ($x < 1$) no interviene: está demasiado lejos de $x = 2$ para afectar los límites laterales en ese punto.</p>
+
+    <p class="chiste">El tercer trozo tiene $x^2$ — así que por primera vez en este ejercicio hay una curva en juego. La costura ya no es entre dos rectas sino entre una recta y una parábola. Bienvenido el drama.</p>
+  </div>
+
+  <h2>Por si te lo preguntabas</h2>
+  <div class="bloque dato-curioso">
+    <p>Cuando los dos trozos adyacentes a una costura producen el mismo valor en ese punto, la función es continua ahí — incluso si las fórmulas son completamente distintas (una recta y una parábola, por ejemplo). Esa idea es el núcleo del concepto de <em>spline</em>: una función definida a trozos por polinomios que se empalman de forma continua (y a veces también con la misma derivada) en cada costura. Los splines son la herramienta estándar en diseño asistido por computadora para modelar curvas suaves: cada segmento de la carrocería de un auto, cada letra de una fuente tipográfica, cada trayectoria de animación está definida por splines cúbicos que garantizan continuidad — y a veces diferenciabilidad — en cada punto de unión.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 2^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 2^-} g(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 2^-$ significa $1 < x < 2$: rige el trozo $g(x) = x - 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 2^-} (x-1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 2 - 1 = 1$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 2$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 2^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 2^+} g(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 2^+$ significa $x > 2$: rige el trozo $g(x) = 5 - x^2$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 2^+} (5 - x^2)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 5 - 4 = 1$
+    </div>
+    <div class="paso-just">
+      Polinomio continuo; sustitución directa con $x = 2$: $5 - 2^2 = 1$.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 2^-} g(x) = 1 = \lim_{x \to 2^+} g(x)$
+    </div>
+    <div class="paso-just">
+      Ambos límites laterales existen y coinciden.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 2} g(x) = 1$
+    </div>
+    <div class="paso-just">
+      El límite bilateral existe y es igual al valor común de los laterales.
+    </div>
+
+  </div>
+
+  <h2>Chequeemos que esto tiene sentido</h2>
+  <div class="bloque">
+    <p>Por izquierda: $g(1{,}9) = 0{,}9$; $g(1{,}99) = 0{,}99$; $g(1{,}999) = 0{,}999$. Por derecha: $g(2{,}1) = 5 - 4{,}41 = 0{,}59$; $g(2{,}01) = 5 - 4{,}0401 = 0{,}9599$; $g(2{,}001) = 5 - 4{,}004 = 0{,}996$. Ambos lados se acercan a $1$. Además $g(2) = 5 - 4 = 1$, que coincide con el límite: la función es continua en $x = 2$.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 2} g(x) = \boxed{1}.$$
+    Los límites laterales coinciden: $\lim_{x \to 2^-} g(x) = \lim_{x \to 2^+} g(x) = 1$. Además $g(2) = 1$, así que $g$ es continua en $x = 2$.
+  </div>
+
+  <h2>¿Ya usé esto sin saberlo?</h2>
+  <div class="bloque bloque-copiable">
+    <p>Los splines cúbicos son la técnica estándar para interpolar curvas suaves en gráficos por computadora, animación y diseño de fuentes tipográficas. Un spline es una función definida a trozos por polinomios — exactamente como $g(x)$ — donde cada costura cumple condiciones de continuidad: el valor del trozo izquierdo y el del trozo derecho coinciden en el punto de unión. Eso es exactamente lo que ocurre en $x = 2$ en este ejercicio: la recta $x - 1$ y la parábola $5 - x^2$ se empalman sin salto. Los splines más sofisticados imponen además que las derivadas coincidan en cada costura, lo que elimina las esquinas y produce curvas visualmente suaves. Cada vez que una fuente tipográfica muestra una letra con curvas fluidas, hay splines trabajando detrás.</p>
+  </div>
+
+  <h2>Si quieres ir más lejos</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>En el cálculo de $\lim_{x \to 2} g(x)$, tanto el límite bilateral como el valor $g(2)$ resultaron ser $1$. Eso significa que $g$ es continua en $x = 2$. ¿Qué condición formal define la continuidad de una función en un punto? ¿Cuántas cosas hay que verificar?</span></li>
+      <li><span>Los dos trozos que se empalman en $x = 2$ son una recta ($x - 1$) y una parábola ($5 - x^2$). Aunque sus valores coinciden en $x = 2$, ¿sus derivadas también coinciden ahí? ¿Qué implicaría que las derivadas coincidieran o no coincidieran para la suavidad de la curva?</span></li>
+      <li><span>La función $g$ es continua en $x = 2$ pero tiene un agujero en $x = 1$. ¿Es posible redefinir $g$ en un único punto para que sea continua en todos los reales? ¿Qué valor habría que asignar y dónde?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

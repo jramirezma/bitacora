@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>vbzjq</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "vbzjq",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "3d",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite lateral derecho función a trozos",
+        "límite por derecha función definida por partes",
+        "lim x tiende a 1 por derecha función a trozos"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea
+    $$f(x) = \begin{cases} -x, & \text{si } x < 0; \\ x, & \text{si } 0 \leq x < 1; \\ x+1, & \text{si } x > 1. \end{cases}$$
+    Calcule, si es posible, $\displaystyle\lim_{x \to 1^+} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Entendamos el problema</h2>
+  <div class="bloque">
+    <p>El símbolo $1^+$ significa que $x$ se acerca a $1$ viniendo desde la derecha, es decir, con $x > 1$. Se trata de un límite lateral: solo importa lo que hace la función para valores de $x$ ligeramente mayores que $1$.</p>
+
+    <div class="nota">
+      Para calcular $\lim_{x \to 1^+} f(x)$, hay que usar el trozo que rige cuando $x > 1$: en este caso, $f(x) = x + 1$.
+    </div>
+
+    <p>El límite lateral por derecha no requiere mirar ambos lados ni comparar: es una pregunta con un solo lado. Basta con identificar el trozo correcto y evaluar su límite cuando $x \to 1$ desde ese lado. El resultado es el valor al que se acerca $x + 1$ cuando $x$ baja hacia $1$ por valores mayores.</p>
+
+    <p class="chiste">Un límite lateral es como preguntar qué temperatura hace afuera mirando solo por la ventana derecha. Puede que la izquierda dé a otro clima — no importa, esa no es la pregunta.</p>
+  </div>
+
+  <h2>Antes de resolver, esto:</h2>
+  <div class="bloque dato-curioso">
+    <p>Los límites laterales son la herramienta que permite analizar funciones en puntos donde el comportamiento es asimétrico. En física, la función de Heaviside $H(x) = \begin{cases} 0 & x < 0 \\ 1 & x \geq 0 \end{cases}$ modela el encendido instantáneo de una señal: $\lim_{x \to 0^-} H(x) = 0$ y $\lim_{x \to 0^+} H(x) = 1$. El límite bilateral no existe, pero ambos límites laterales sí existen y son distintos. En ingeniería de señales, esa asimetría es deliberada: representa un cambio de estado abrupto. La función de Heaviside es la base matemática de los filtros paso bajo, paso alto y muchos otros sistemas de procesamiento de señales.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 1^+} f(x)$
+    </div>
+    <div class="paso-just">
+      $x \to 1^+$ significa que $x > 1$: rige el trozo $f(x) = x + 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 1^+} (x + 1)$
+    </div>
+    <div class="paso-just">
+      Se sustituye la fórmula del trozo correspondiente.
+    </div>
+
+    <div class="paso-dev">
+      $= 1 + 1$
+    </div>
+    <div class="paso-just">
+      $x + 1$ es continua; sustitución directa con $x = 1$.
+    </div>
+
+    <div class="paso-dev">
+      $= 2$
+    </div>
+    <div class="paso-just">
+      Aritmética.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Valores de $f$ para $x > 1$ acercándose a $1$: $f(1{,}5) = 2{,}5$; $f(1{,}1) = 2{,}1$; $f(1{,}01) = 2{,}01$; $f(1{,}001) = 2{,}001$. La función se acerca a $2$ cuando $x$ baja hacia $1$ por la derecha. Consistente.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong>
+    $$\lim_{x \to 1^+} f(x) = \boxed{2}.$$
+    La función se acerca a $2$ cuando $x \to 1$ por la derecha, usando el trozo $f(x) = x + 1$.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>En programación orientada a eventos, un listener de teclado o de mouse solo "escucha" desde un lado del tiempo: detecta lo que ocurre después de registrarse, no lo que ocurrió antes. Eso es exactamente un límite lateral por derecha en el tiempo: el sistema solo observa el comportamiento de la función para valores del parámetro temporal mayores que el instante de registro. El comportamiento previo al evento — el límite por izquierda — no le importa al listener. Cuando se dice que un botón "responde al clic", se está describiendo el límite lateral por derecha del estado del sistema en el instante del clic.</p>
+  </div>
+
+  <h2>Para seguir pensando</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite lateral $\lim_{x \to 1^+} f(x) = 2$ existe aunque $f(1)$ no esté definida. ¿Eso es posible en general? ¿La existencia de un límite lateral requiere que la función esté definida en el punto?</span></li>
+      <li><span>Para la función a trozos dada, $\lim_{x \to 1^+} f(x) = 2$ pero $\lim_{x \to 1^-} f(x) = 1$. ¿Qué tendría que ocurrir para que ambos límites laterales fueran iguales? ¿Bastaría con cambiar la fórmula de uno de los trozos, o habría que cambiar también los intervalos?</span></li>
+      <li><span>¿Puede existir $\lim_{x \to c^+} f(x)$ sin que exista $\lim_{x \to c^-} f(x)$? ¿Qué tipo de comportamiento de la función a la izquierda de $c$ haría que el límite lateral izquierdo no existiera?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>

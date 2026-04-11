@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>dz0r5</title>
+
+  <link rel="stylesheet" href="../assets/ejercicio.css">
+
+  <script>
+    window.EJERCICIO = {
+      id: "dz0r5",
+      materia: "Cálculo I",
+      origen: "PR3",
+      ejercicio_nro: "6b",
+      tema: "límites de funciones definidas a trozos",
+      dificultad: [
+        "basico",
+        "elemental",
+        "introductorio"
+      ],
+      seo_keywords: [
+        "límite función signo valor absoluto sobre x",
+        "límite bilateral |x| sobre x en cero no existe",
+        "lim x tiende a 0 función signo"
+      ],
+      fecha: "2026-03-31",
+      autor: { nombre: "Claude", modelo: "claude-sonnet-4-6" }
+    };
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js"></script>
+  <script src="../assets/ejercicio.js"></script>
+</head>
+<body>
+
+  <h2>Lo que nos piden</h2>
+  <div class="ejercicio">
+    <p>Sea $f(x) = \dfrac{|x|}{x}$. Calcule, si es posible, $\displaystyle\lim_{x \to 0} f(x)$; sino, establezca que no existe.</p>
+  </div>
+
+  <!-- Espacio reservado para la gráfica de GeoGebra -->
+
+  <h2>Antes de calcular</h2>
+  <div class="bloque">
+    <p>La función $|x|/x$ no está definida en $x = 0$, pero eso no impide que el límite exista — el límite describe lo que ocurre <em>cerca</em> del punto, no <em>en</em> él. Para calcularlo hay que analizar $f$ a cada lado de $0$.</p>
+
+    <div class="nota">
+      El valor absoluto define dos casos: $|x| = x$ si $x > 0$, y $|x| = -x$ si $x < 0$. Eso convierte a $f$ en una función a trozos:
+      $$f(x) = \frac{|x|}{x} = \begin{cases} \dfrac{x}{x} = 1, & \text{si } x > 0; \\[6pt] \dfrac{-x}{x} = -1, & \text{si } x < 0. \end{cases}$$
+    </div>
+
+    <p>Por la derecha la función vale constantemente $1$; por la izquierda, constantemente $-1$. Los dos laterales existen pero son distintos, así que el límite bilateral no existe.</p>
+
+    <p class="chiste">$f$ llega a $0$ desde la derecha con cara de $1$ y desde la izquierda con cara de $-1$. El límite bilateral necesita que ambos lados lleguen con la misma cara. Aquí no hay acuerdo posible.</p>
+  </div>
+
+  <h2>Dato de color</h2>
+  <div class="bloque dato-curioso">
+    <p>La función signo $\text{sgn}(x) = |x|/x$ es el ejemplo más simple de una función que solo toma dos valores en su dominio: $1$ y $-1$. En álgebra abstracta, esa propiedad tiene un nombre: $\text{sgn}$ es un <em>homomorfismo de grupos</em> del grupo multiplicativo $(\mathbb{R}\setminus\{0\}, \cdot)$ al grupo $\{1, -1\}$. Eso significa que $\text{sgn}(xy) = \text{sgn}(x)\cdot\text{sgn}(y)$ para todo $x, y \neq 0$: el signo del producto es el producto de los signos. Esa propiedad es exactamente lo que usamos cada vez que decimos "negativo por negativo es positivo" — una regla que en el fondo describe la estructura algebraica de la función signo.</p>
+  </div>
+
+  <h2>Vamos paso a paso</h2>
+
+  <p class="subcaso">Límite por izquierda ($x \to 0^-$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} \dfrac{|x|}{x}$
+    </div>
+    <div class="paso-just">
+      $x \to 0^-$ significa $x < 0$: $|x| = -x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} \dfrac{-x}{x}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $|x| = -x$ para $x < 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^-} (-1)$
+    </div>
+    <div class="paso-just">
+      $-x/x = -1$ para todo $x \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= -1$
+    </div>
+    <div class="paso-just">
+      Límite de una constante es la constante.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Límite por derecha ($x \to 0^+$)</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^+} \dfrac{|x|}{x}$
+    </div>
+    <div class="paso-just">
+      $x \to 0^+$ significa $x > 0$: $|x| = x$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^+} \dfrac{x}{x}$
+    </div>
+    <div class="paso-just">
+      Se sustituye $|x| = x$ para $x > 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= \lim_{x \to 0^+} 1$
+    </div>
+    <div class="paso-just">
+      $x/x = 1$ para todo $x \neq 0$.
+    </div>
+
+    <div class="paso-dev">
+      $= 1$
+    </div>
+    <div class="paso-just">
+      Límite de una constante es la constante.
+    </div>
+
+  </div>
+
+  <p class="subcaso">Conclusión</p>
+  <div class="dos-col">
+    <div class="col-header col-desarrollo">Desarrollo</div>
+    <div class="col-header">Justificación</div>
+
+    <div class="paso-dev">
+      $\lim_{x \to 0^-} f(x) = -1 \neq 1 = \lim_{x \to 0^+} f(x)$
+    </div>
+    <div class="paso-just">
+      Los límites laterales existen pero son distintos.
+    </div>
+
+    <div class="paso-dev">
+      $\therefore\quad \lim_{x \to 0} f(x) \text{ no existe}$
+    </div>
+    <div class="paso-just">
+      El límite bilateral no existe cuando los laterales no coinciden.
+    </div>
+
+  </div>
+
+  <h2>¿El resultado aguanta?</h2>
+  <div class="bloque">
+    <p>Por izquierda: $f(-0{,}5) = 0{,}5/(-0{,}5) = -1$; $f(-0{,}01) = -1$; $f(-0{,}0001) = -1$. La función vale exactamente $-1$ para todo $x < 0$, sin acercamiento gradual — es constante. Por derecha: $f(0{,}5) = 1$; $f(0{,}01) = 1$; $f(0{,}0001) = 1$. También constante, pero en $1$. El salto de $-1$ a $1$ es abrupto e inevitable.</p>
+  </div>
+
+  <div class="resultado-final">
+    <strong>Resultado.</strong> El límite $\displaystyle\lim_{x \to 0} f(x)$ <strong>no existe</strong>.
+    <br><br>
+    $\lim_{x \to 0^-} f(x) = -1$ y $\lim_{x \to 0^+} f(x) = 1$. La discontinuidad de salto en $x = 0$ tiene altura $2$.
+  </div>
+
+  <h2>¿Dónde vive esto en el código?</h2>
+  <div class="bloque bloque-copiable">
+    <p>La función signo aparece en algoritmos de detección de cambio de signo, que son fundamentales en búsqueda de raíces: si $f(a)$ y $f(b)$ tienen signos opuestos — es decir, $\text{sgn}(f(a)) \neq \text{sgn}(f(b))$ — entonces hay al menos una raíz entre $a$ y $b$. Ese criterio es el corazón del método de la bisección. La discontinuidad de salto de $\text{sgn}(x)$ en $x = 0$ es precisamente lo que hace útil esa detección: el cambio abrupto de $-1$ a $1$ señala exactamente el cruce por cero. Si $\text{sgn}$ fuera continua, no habría forma de detectar ese cruce con una sola comparación.</p>
+  </div>
+
+  <h2>Preguntas para explorar</h2>
+  <div class="preguntas">
+    <ol id="lista-preguntas">
+      <li><span>El límite $\lim_{x \to 0}|x|/x$ no existe porque los límites laterales son $-1$ y $1$. ¿Existe $\lim_{x \to 0}|x|$ (sin dividir por $x$)? ¿Qué diferencia hay entre las dos funciones cerca de $x = 0$?</span></li>
+      <li><span>La función $f(x) = |x|/x$ vale $1$ para $x > 0$ y $-1$ para $x < 0$. ¿Qué ocurre con $\lim_{x \to c} f(x)$ para un $c \neq 0$ cualquiera? ¿Existe ese límite?</span></li>
+      <li><span>La discontinuidad de salto de $f(x) = |x|/x$ en $x = 0$ tiene altura $2$ (de $-1$ a $1$). ¿Es posible construir una función con la misma estructura — constante a trozos con un salto en $x = 0$ — pero cuya discontinuidad tenga altura $1$ en lugar de $2$? ¿Cómo se escribiría?</span></li>
+    </ol>
+  </div>
+
+</body>
+</html>
